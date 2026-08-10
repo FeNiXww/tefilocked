@@ -1,0 +1,172 @@
+[
+  {
+    "id": "prayer-modeh-ani",
+    "hebrewText": "מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ",
+    "transliteration": "Modeh ani lefanecha melech chai v'kayam, shehechezarta bi nishmati b'chemla, raba emunatecha",
+    "translation": "I offer thanks to You, living and eternal King, for You have returned my soul within me with compassion — great is Your faithfulness.",
+    "source": "Morning prayer (Modeh Ani)",
+    "moods": ["tired", "grateful", "distracted"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-shema-line1",
+    "hebrewText": "שְׁמַע יִשְׂרָאֵל ה' אֱלֹקֵינוּ ה' אֶחָד",
+    "transliteration": "Shema Yisrael, Hashem Elokeinu, Hashem Echad",
+    "translation": "Hear, O Israel: Hashem is our G-d, Hashem is One.",
+    "source": "Devarim 6:4 (Shema)",
+    "moods": ["stressed", "anxious", "distracted"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-shema-line2",
+    "hebrewText": "בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד",
+    "transliteration": "Baruch shem kevod malchuto l'olam va'ed",
+    "translation": "Blessed is the name of His glorious kingdom forever and ever.",
+    "source": "Recited after the Shema",
+    "moods": ["distracted", "grateful"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-veahavta",
+    "hebrewText": "וְאָהַבְתָּ אֵת ה' אֱלֹקֶיךָ בְּכָל לְבָבְךָ וּבְכָל נַפְשְׁךָ וּבְכָל מְאֹדֶךָ",
+    "transliteration": "V'ahavta et Hashem Elokecha b'chol l'vav'cha uv'chol nafsh'cha uv'chol me'odecha",
+    "translation": "You shall love Hashem your G-d with all your heart, with all your soul, and with all your might.",
+    "source": "Devarim 6:5 (Ve'ahavta)",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["daily_prayers"],
+    "length": "medium"
+  },
+  {
+    "id": "prayer-adon-olam-close",
+    "hebrewText": "בְּיָדוֹ אַפְקִיד רוּחִי בְּעֵת אִישָׁן וְאָעִירָה",
+    "transliteration": "B'yado afkid ruchi, b'et ishan v'a'ira",
+    "translation": "Into His hand I entrust my spirit, when I sleep and when I wake.",
+    "source": "Adon Olam (closing lines)",
+    "moods": ["tired", "anxious"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-oseh-shalom",
+    "hebrewText": "עֹשֶׂה שָׁלוֹם בִּמְרוֹמָיו הוּא יַעֲשֶׂה שָׁלוֹם עָלֵינוּ וְעַל כָּל יִשְׂרָאֵל",
+    "transliteration": "Oseh shalom bimromav, hu ya'aseh shalom aleinu v'al kol Yisrael",
+    "translation": "He who makes peace in His heights, may He make peace upon us and upon all Israel.",
+    "source": "Closing prayer line (Oseh Shalom)",
+    "moods": ["stressed", "anxious", "lonely"],
+    "contentTypes": ["daily_prayers"],
+    "length": "medium"
+  },
+  {
+    "id": "prayer-elokai-neshama",
+    "hebrewText": "אֱלֹקַי נְשָׁמָה שֶׁנָּתַתָּ בִּי טְהוֹרָה הִיא",
+    "transliteration": "Elokai, neshama shenatata bi t'hora hi",
+    "translation": "My G-d, the soul You have given me is pure.",
+    "source": "Morning prayer (Elokai Neshama)",
+    "moods": ["grateful", "tired"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-mah-tovu",
+    "hebrewText": "מַה טֹּבוּ אֹהָלֶיךָ יַעֲקֹב מִשְׁכְּנֹתֶיךָ יִשְׂרָאֵל",
+    "transliteration": "Ma tovu ohalecha Ya'akov, mishk'notecha Yisrael",
+    "translation": "How goodly are your tents, Jacob; your dwelling places, Israel.",
+    "source": "Bamidbar 24:5 (Mah Tovu)",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-ashrei-open",
+    "hebrewText": "אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁה' אֱלֹקָיו",
+    "transliteration": "Ashrei ha'am shekacha lo, ashrei ha'am she'Hashem Elokav",
+    "translation": "Happy is the people for whom this is so; happy is the people whose G-d is Hashem.",
+    "source": "Tehillim 144:15 (Ashrei introduction)",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["daily_prayers"],
+    "length": "medium"
+  },
+  {
+    "id": "prayer-hashkiveinu",
+    "hebrewText": "הַשְׁכִּיבֵנוּ ה' אֱלֹקֵינוּ לְשָׁלוֹם",
+    "transliteration": "Hashkiveinu Hashem Elokeinu l'shalom",
+    "translation": "Help us lie down, Hashem our G-d, in peace.",
+    "source": "Evening prayer (Hashkiveinu)",
+    "moods": ["tired", "anxious"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-refaeinu",
+    "hebrewText": "רְפָאֵנוּ ה' וְנֵרָפֵא הוֹשִׁיעֵנוּ וְנִוָּשֵׁעָה",
+    "transliteration": "Refa'einu Hashem v'nerafe, hoshi'einu v'nivashe'a",
+    "translation": "Heal us, Hashem, and we shall be healed; save us and we shall be saved.",
+    "source": "Amidah (Refa'einu blessing)",
+    "moods": ["stressed", "tired", "anxious"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-sim-shalom",
+    "hebrewText": "שִׂים שָׁלוֹם טוֹבָה וּבְרָכָה",
+    "transliteration": "Sim shalom, tova uv'racha",
+    "translation": "Grant peace, goodness, and blessing.",
+    "source": "Amidah (Sim Shalom)",
+    "moods": ["stressed", "grateful"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-hodu",
+    "hebrewText": "הוֹדוּ לַה' כִּי טוֹב כִּי לְעוֹלָם חַסְדּוֹ",
+    "transliteration": "Hodu laHashem ki tov, ki l'olam chasdo",
+    "translation": "Give thanks to Hashem, for He is good; His kindness endures forever.",
+    "source": "Tehillim 118:1 (Pesukei D'Zimra)",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-vetaher-libeinu",
+    "hebrewText": "וְטַהֵר לִבֵּנוּ לְעָבְדְּךָ בֶּאֱמֶת",
+    "transliteration": "V'taher libeinu l'ovdecha be'emet",
+    "translation": "Purify our hearts to serve You in truth.",
+    "source": "Amidah / holiday liturgy",
+    "moods": ["distracted", "grateful"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-birkat-cohanim-1",
+    "hebrewText": "יְבָרֶכְךָ ה' וְיִשְׁמְרֶךָ",
+    "transliteration": "Y'varechecha Hashem v'yishmerecha",
+    "translation": "May Hashem bless you and guard you.",
+    "source": "Bamidbar 6:24 (Birkat Kohanim)",
+    "moods": ["anxious", "grateful", "lonely"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-birkat-cohanim-2",
+    "hebrewText": "יָאֵר ה' פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ",
+    "transliteration": "Ya'er Hashem panav eilecha vichuneka",
+    "translation": "May Hashem shine His face upon you and be gracious to you.",
+    "source": "Bamidbar 6:25 (Birkat Kohanim)",
+    "moods": ["lonely", "anxious", "tired"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  },
+  {
+    "id": "prayer-tefilat-haderech",
+    "hebrewText": "יְהִי רָצוֹן מִלְּפָנֶיךָ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם",
+    "transliteration": "Y'hi ratzon milfanecha shetolichenu l'shalom",
+    "translation": "May it be Your will to lead us in peace.",
+    "source": "Tefilat HaDerech (Traveler's Prayer, opening)",
+    "moods": ["anxious", "stressed"],
+    "contentTypes": ["daily_prayers"],
+    "length": "short"
+  }
+]

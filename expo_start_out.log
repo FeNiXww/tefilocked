@@ -1,0 +1,224 @@
+Starting project at C:\Users\admin\Projects\tefillah-lock
+Logs: C:\Users\admin\Projects\tefillah-lock\.expo\dev\logs\start.log
+Starting Metro Bundler
+
+Waiting on http://localhost:8081
+An update for expo is available: 57.0.2 → ~57.0.9
+9 other packages may need updating. Run npx expo install --check for details.
+Logs for your project will appear below.
+| (node:20040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:20040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web Bundled 5231ms index.ts (1306 modules)
+Web Bundled 93ms node_modules\expo-sqlite\web\worker.ts (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  WARN  Using synchronous SQLite operations can cause significant performance impact. Consider using async operations instead.
+Web  WARN  [tefillah-lock] expo-sqlite unavailable (Expo Go?) — using in-memory storage fallback.
+Web  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web  WARN  [tefillah-lock] expo-app-blocker unavailable (Expo Go?) — app-locking features are mocked.
+Web  LOG  Web platform detected. Using RevenueCat in Browser Mode.
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Web  WARN  props.pointerEvents is deprecated. Use style.pointerEvents
+ ERROR  SyntaxError: C:\Users\admin\Projects\tefillah-lock\src\screens\Home\index.tsx: Expected corresponding JSX closing tag for <ScrollView>. (101:4)
+
+   99 |         <HanukkiahStreakRow candles={streakCandles} streak={streak} onStartToday={() => setShowingFlow(true)} />
+  100 |       </View>
+> 101 |     </View>
+      |     ^
+  102 |   );
+  103 | }
+  104 |
+    at constructor (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:365:19)
+    at TypeScriptParserMixin.raise (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6616:19)
+    at TypeScriptParserMixin.jsxParseElementAt (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4739:16)
+    at TypeScriptParserMixin.jsxParseElementAt (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4710:32)
+    at TypeScriptParserMixin.jsxParseElement (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4761:17)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4771:19)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11098:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11083:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11063:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9854:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10916:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10921:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10898:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10848:21)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9792:39
+    at TypeScriptParserMixin.tryParse (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6924:20)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9792:18)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10817:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12443:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10817:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12510:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11692:28)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11348:23)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4776:20)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11098:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11083:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11063:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9854:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10916:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10921:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10898:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10848:21)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9803:20)
+    at TypeScriptParserMixin.parseExpressionBase (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10801:23)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10797:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12438:16)
+    at TypeScriptParserMixin.parseExpression (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10797:17)
+    at TypeScriptParserMixin.parseReturnStatement (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13159:28)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12815:21)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9525:18)
+    at TypeScriptParserMixin.parseStatementLike (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12784:17)
+    at TypeScriptParserMixin.parseStatementListItem (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12764:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13333:61)
+    at TypeScriptParserMixin.parseBlockBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13326:10)
+    at TypeScriptParserMixin.parseBlock (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13314:10)
+    at TypeScriptParserMixin.parseFunctionBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12117:24)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12103:10)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9189:18)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13462:12
+    at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12420:14)
+Web  ERROR  [TransformError: SyntaxError: C:\Users\admin\Projects\tefillah-lock\src\screens\Home\index.tsx: Expected corresponding JSX closing tag for <ScrollView>. (101:4)
+
+   99 |         <HanukkiahStreakRow candles={streakCandles} streak={streak} onStartToday={() => setShowingFlow(true)} />
+  100 |       </View>
+> 101 |     </View>
+      |     ^
+  102 |   );
+  103 | }
+  104 |]
+ ERROR  SyntaxError: C:\Users\admin\Projects\tefillah-lock\src\components\HanukkiahStreakRow.tsx: Unexpected token, expected "}" (329:6)
+
+  327 |
+  328 | const styles = StyleSheet.create({
+> 329 |   base: {
+      |       ^
+  330 |     alignSelf: 'stretch',
+  331 |   },
+  332 |   row: {
+    at constructor (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:365:19)
+    at TypeScriptParserMixin.raise (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6616:19)
+    at TypeScriptParserMixin.unexpected (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6636:16)
+    at TypeScriptParserMixin.expect (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6916:12)
+    at TypeScriptParserMixin.jsxParseExpressionContainer (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4649:10)
+    at TypeScriptParserMixin.jsxParseElementAt (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4723:36)
+    at TypeScriptParserMixin.jsxParseElement (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4761:17)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4771:19)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11098:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11083:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11063:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9854:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10916:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10921:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10898:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10848:21)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9792:39
+    at TypeScriptParserMixin.tryParse (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:6924:20)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9792:18)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10817:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12443:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10817:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12510:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11692:28)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11348:23)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:4776:20)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11098:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11083:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:11063:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9854:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10916:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10921:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10898:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10848:21)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9803:20)
+    at TypeScriptParserMixin.parseExpressionBase (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10801:23)
+    at C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10797:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12438:16)
+    at TypeScriptParserMixin.parseExpression (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:10797:17)
+    at TypeScriptParserMixin.parseReturnStatement (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13159:28)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12815:21)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9525:18)
+    at TypeScriptParserMixin.parseStatementLike (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12784:17)
+    at TypeScriptParserMixin.parseStatementListItem (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12764:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13333:61)
+    at TypeScriptParserMixin.parseBlockBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13326:10)
+    at TypeScriptParserMixin.parseBlock (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:13314:10)
+    at TypeScriptParserMixin.parseFunctionBody (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12117:24)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:12103:10)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\admin\Projects\tefillah-lock\node_modules\@babel\parser\lib\index.js:9189:18)
+Web  ERROR  [TransformError: SyntaxError: C:\Users\admin\Projects\tefillah-lock\src\components\HanukkiahStreakRow.tsx: Unexpected token, expected "}" (329:6)
+
+  327 |
+  328 | const styles = StyleSheet.create({
+> 329 |   base: {
+      |       ^
+  330 |     alignSelf: 'stretch',
+  331 |   },
+  332 |   row: {]
+Android Bundled 2031ms index.ts (1794 modules)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 203ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 106ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 197ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 239ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 229ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 226ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 216ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 268ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 230ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Web Bundled 1493ms index.ts (1 module)
+Web Bundled 29ms node_modules\expo-sqlite\web\worker.ts (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  WARN  Using synchronous SQLite operations can cause significant performance impact. Consider using async operations instead.
+Web  WARN  [tefillah-lock] expo-sqlite unavailable (Expo Go?) — using in-memory storage fallback.
+Web  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web  WARN  [tefillah-lock] expo-app-blocker unavailable (Expo Go?) — app-locking features are mocked.
+Web  LOG  Web platform detected. Using RevenueCat in Browser Mode.
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  WARN  props.pointerEvents is deprecated. Use style.pointerEvents
+Web  WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Web Bundled 66ms index.ts (1 module)
+Web Bundled 8ms node_modules\expo-sqlite\web\worker.ts (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  WARN  Using synchronous SQLite operations can cause significant performance impact. Consider using async operations instead.
+Web  WARN  [tefillah-lock] expo-sqlite unavailable (Expo Go?) — using in-memory storage fallback.
+Web  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web  WARN  [tefillah-lock] expo-app-blocker unavailable (Expo Go?) — app-locking features are mocked.
+Web  LOG  Web platform detected. Using RevenueCat in Browser Mode.
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  WARN  props.pointerEvents is deprecated. Use style.pointerEvents
+Web  WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 116ms index.ts (1 module)
+ ERROR  [Error: Call to function 'NativeDatabase.prepareSync' has been rejected.
+→ Caused by: Error code : no such table: unlock_events]
+Android Bundled 70ms index.ts (1 module)
+ ERROR  [Error: Call to function 'NativeDatabase.prepareSync' has been rejected.
+→ Caused by: Error code : no such table: unlock_events]
+ ERROR  [Error: Call to function 'NativeDatabase.prepareSync' has been rejected.
+→ Caused by: Error code : no such table: unlock_events]
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.
+Android Bundled 167ms index.ts (1 module)
+ WARN  [tefillah-lock] RevenueCat API key not set — subscription features are mocked.

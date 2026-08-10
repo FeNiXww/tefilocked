@@ -1,0 +1,222 @@
+[
+  {
+    "id": "tehillim-23-1",
+    "hebrewText": "ה' רֹעִי לֹא אֶחְסָר",
+    "transliteration": "Hashem ro'i, lo echsar",
+    "translation": "Hashem is my shepherd; I shall not want.",
+    "source": "Tehillim 23:1",
+    "moods": ["anxious", "lonely", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-100-2",
+    "hebrewText": "עִבְדוּ אֶת ה' בְּשִׂמְחָה בֹּאוּ לְפָנָיו בִּרְנָנָה",
+    "transliteration": "Ivdu et Hashem b'simcha, bo'u lefanav birnana",
+    "translation": "Serve Hashem with joy; come before Him with glad song.",
+    "source": "Tehillim 100:2",
+    "moods": ["happy", "grateful"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-23-4",
+    "hebrewText": "גַּם כִּי אֵלֵךְ בְּגֵיא צַלְמָוֶת לֹא אִירָא רָע כִּי אַתָּה עִמָּדִי",
+    "transliteration": "Gam ki elech b'gei tzalmavet, lo ira ra, ki ata imadi",
+    "translation": "Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me.",
+    "source": "Tehillim 23:4",
+    "moods": ["anxious", "stressed", "lonely"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-27-1",
+    "hebrewText": "ה' אוֹרִי וְיִשְׁעִי מִמִּי אִירָא",
+    "transliteration": "Hashem ori v'yish'i, mimi ira",
+    "translation": "Hashem is my light and my salvation; whom shall I fear?",
+    "source": "Tehillim 27:1",
+    "moods": ["anxious", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-118-24",
+    "hebrewText": "זֶה הַיּוֹם עָשָׂה ה' נָגִילָה וְנִשְׂמְחָה בוֹ",
+    "transliteration": "Zeh hayom asa Hashem, nagila v'nismecha vo",
+    "translation": "This is the day Hashem has made; let us rejoice and be glad in it.",
+    "source": "Tehillim 118:24",
+    "moods": ["happy", "grateful"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-121-1",
+    "hebrewText": "אֶשָּׂא עֵינַי אֶל הֶהָרִים מֵאַיִן יָבֹא עֶזְרִי, עֶזְרִי מֵעִם ה' עֹשֵׂה שָׁמַיִם וָאָרֶץ",
+    "transliteration": "Esa einai el heharim, me'ayin yavo ezri; ezri me'im Hashem, oseh shamayim va'aretz",
+    "translation": "I lift my eyes to the mountains — from where will my help come? My help comes from Hashem, Maker of heaven and earth.",
+    "source": "Tehillim 121:1-2",
+    "moods": ["anxious", "stressed", "lonely"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-30-6",
+    "hebrewText": "בָּעֶרֶב יָלִין בֶּכִי וְלַבֹּקֶר רִנָּה",
+    "transliteration": "Ba'erev yalin bechi, v'laboker rina",
+    "translation": "Weeping may linger for the night, but joy comes in the morning.",
+    "source": "Tehillim 30:6",
+    "moods": ["stressed", "tired", "lonely"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-34-19",
+    "hebrewText": "קָרוֹב ה' לְנִשְׁבְּרֵי לֵב וְאֶת דַּכְּאֵי רוּחַ יוֹשִׁיעַ",
+    "transliteration": "Karov Hashem l'nishb'rei lev, v'et daka'ei ruach yoshia",
+    "translation": "Hashem is close to the brokenhearted, and saves those crushed in spirit.",
+    "source": "Tehillim 34:19",
+    "moods": ["lonely", "stressed", "anxious"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-37-5",
+    "hebrewText": "גּוֹל עַל ה' דַּרְכֶּךָ וּבְטַח עָלָיו וְהוּא יַעֲשֶׂה",
+    "transliteration": "Gol al Hashem darkecha, uv'tach alav v'hu ya'aseh",
+    "translation": "Commit your way to Hashem; trust in Him, and He will act.",
+    "source": "Tehillim 37:5",
+    "moods": ["stressed", "anxious", "distracted"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-16-8",
+    "hebrewText": "שִׁוִּיתִי ה' לְנֶגְדִּי תָמִיד",
+    "transliteration": "Shiviti Hashem l'negdi tamid",
+    "translation": "I have set Hashem before me always.",
+    "source": "Tehillim 16:8",
+    "moods": ["distracted", "anxious"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-73-26",
+    "hebrewText": "צוּר לְבָבִי וְחֶלְקִי אֱלֹקִים לְעוֹלָם",
+    "transliteration": "Tzur levavi v'chelki Elokim l'olam",
+    "translation": "My heart and my flesh may fail, but Hashem is the rock of my heart and my portion forever.",
+    "source": "Tehillim 73:26",
+    "moods": ["tired", "lonely", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-55-23",
+    "hebrewText": "הַשְׁלֵךְ עַל ה' יְהָבְךָ וְהוּא יְכַלְכְּלֶךָ",
+    "transliteration": "Hashlech al Hashem y'havcha, v'hu y'chalkelecha",
+    "translation": "Cast your burden upon Hashem, and He will sustain you.",
+    "source": "Tehillim 55:23",
+    "moods": ["stressed", "tired", "anxious"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-91-2",
+    "hebrewText": "אֹמַר לַה' מַחְסִי וּמְצוּדָתִי אֱלֹקַי אֶבְטַח בּוֹ",
+    "transliteration": "Omar laHashem, machsi um'tzudati, Elokai evtach bo",
+    "translation": "I say of Hashem: He is my refuge and my fortress, my G-d in whom I trust.",
+    "source": "Tehillim 91:2",
+    "moods": ["anxious", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-84-5",
+    "hebrewText": "אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה",
+    "transliteration": "Ashrei yoshvei veitecha, od y'hal'lucha sela",
+    "translation": "Happy are those who dwell in Your house; they will always praise You.",
+    "source": "Tehillim 84:5",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-126-5",
+    "hebrewText": "הַזֹּרְעִים בְּדִמְעָה בְּרִנָּה יִקְצֹרוּ",
+    "transliteration": "Hazor'im b'dim'ah, b'rina yiktzoru",
+    "translation": "Those who sow in tears will reap with joy.",
+    "source": "Tehillim 126:5",
+    "moods": ["tired", "stressed", "lonely"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-147-3",
+    "hebrewText": "הָרוֹפֵא לִשְׁבוּרֵי לֵב וּמְחַבֵּשׁ לְעַצְּבוֹתָם",
+    "transliteration": "Harofei lishvurei lev, um'chabesh l'atzvotam",
+    "translation": "He heals the brokenhearted and binds up their wounds.",
+    "source": "Tehillim 147:3",
+    "moods": ["lonely", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-145-18",
+    "hebrewText": "קָרוֹב ה' לְכָל קֹרְאָיו לְכֹל אֲשֶׁר יִקְרָאֻהוּ בֶאֱמֶת",
+    "transliteration": "Karov Hashem l'chol kor'av, l'chol asher yikra'uhu ve'emet",
+    "translation": "Hashem is close to all who call upon Him, to all who call upon Him in truth.",
+    "source": "Tehillim 145:18",
+    "moods": ["lonely", "anxious", "distracted"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-133-1",
+    "hebrewText": "הִנֵּה מַה טּוֹב וּמַה נָּעִים שֶׁבֶת אַחִים גַּם יָחַד",
+    "transliteration": "Hine ma tov uma na'im, shevet achim gam yachad",
+    "translation": "How good and pleasant it is when brothers dwell together in unity.",
+    "source": "Tehillim 133:1",
+    "moods": ["happy", "grateful", "lonely"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-4-9",
+    "hebrewText": "בְּשָׁלוֹם יַחְדָּו אֶשְׁכְּבָה וְאִישָׁן כִּי אַתָּה ה' לְבָדָד לָבֶטַח תּוֹשִׁיבֵנִי",
+    "transliteration": "B'shalom yachdav eshk'va v'ishan, ki ata Hashem l'vadad lavetach toshiveini",
+    "translation": "In peace I will both lie down and sleep, for You alone, Hashem, make me dwell in safety.",
+    "source": "Tehillim 4:9",
+    "moods": ["tired", "anxious"],
+    "contentTypes": ["tehillim"],
+    "length": "medium"
+  },
+  {
+    "id": "tehillim-118-6",
+    "hebrewText": "ה' לִי לֹא אִירָא מַה יַּעֲשֶׂה לִי אָדָם",
+    "transliteration": "Hashem li, lo ira; ma ya'aseh li adam",
+    "translation": "Hashem is with me; I will not fear. What can man do to me?",
+    "source": "Tehillim 118:6",
+    "moods": ["anxious", "stressed"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-92-2",
+    "hebrewText": "טוֹב לְהֹדוֹת לַה' וּלְזַמֵּר לְשִׁמְךָ עֶלְיוֹן",
+    "transliteration": "Tov l'hodot laHashem, ul'zamer l'shimcha elyon",
+    "translation": "It is good to give thanks to Hashem, and to sing praise to Your name, Most High.",
+    "source": "Tehillim 92:2",
+    "moods": ["grateful", "happy"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  },
+  {
+    "id": "tehillim-3-6",
+    "hebrewText": "אֲנִי שָׁכַבְתִּי וָאִישָׁנָה הֱקִיצוֹתִי כִּי ה' יִסְמְכֵנִי",
+    "transliteration": "Ani shachavti va'ishana, hekitzoti ki Hashem yismecheni",
+    "translation": "I lay down and slept; I awoke, for Hashem sustains me.",
+    "source": "Tehillim 3:6",
+    "moods": ["tired", "grateful"],
+    "contentTypes": ["tehillim"],
+    "length": "short"
+  }
+]

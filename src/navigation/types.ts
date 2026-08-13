@@ -14,6 +14,7 @@ export type SettingsStackParamList = {
   EditGender: undefined;
   About: undefined;
   Terms: undefined;
+  Privacy: undefined;
 };
 
 export type SettingsScreenProps<T extends keyof SettingsStackParamList> = CompositeScreenProps<

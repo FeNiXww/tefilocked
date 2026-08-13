@@ -10,12 +10,12 @@ export function AboutScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.logoRow}>
         <Logo variant="mark" size={72} />
-        <Text style={styles.appName}>תפילוקט</Text>
+        <Text style={styles.appName}>תפילוק</Text>
         <Text style={styles.tagline}>Put Hashem Before the Scroll</Text>
       </View>
 
       <Text style={styles.body}>
-        תפילוקט עוזרת לך לעצור לפני שאתה פותח אפליקציות שמסיחות את דעתך, ולהקדיש רגע קצר לתפילה,
+        תפילוק עוזרת לך לעצור לפני שאתה פותח אפליקציות שמסיחות את דעתך, ולהקדיש רגע קצר לתפילה,
         פרק תהלים או מחשבה יהודית — לפני שאתה ממשיך.
       </Text>
 

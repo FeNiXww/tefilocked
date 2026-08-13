@@ -28,9 +28,9 @@ function createInMemoryStorage(): MinimalStorage {
 // build always has the native module and never touches this fallback.
 export const storage: MinimalStorage = (() => {
   try {
-    return createMMKV({ id: 'tefillah-lock' });
+    return createMMKV({ id: 'tefillok' });
   } catch {
-    console.warn('[tefillah-lock] MMKV unavailable (Expo Go?) — using in-memory storage fallback.');
+    console.warn('[tefillok] MMKV unavailable (Expo Go?) — using in-memory storage fallback.');
     return createInMemoryStorage();
   }
 })();
@@ -64,7 +64,7 @@ export function getPreferredContentTypes(): ContentType[] {
   try {
     return JSON.parse(raw) as ContentType[];
   } catch {
-    console.warn('[tefillah-lock] Corrupted preferredContentTypes in storage — falling back to all content types.');
+    console.warn('[tefillok] Corrupted preferredContentTypes in storage — falling back to all content types.');
     return ALL_CONTENT_TYPES;
   }
 }
@@ -110,7 +110,7 @@ export function getOnboardingFullAnswers<T>(): T | null {
   try {
     return JSON.parse(raw) as T;
   } catch {
-    console.warn('[tefillah-lock] Corrupted onboardingFullAnswers in storage — ignoring.');
+    console.warn('[tefillok] Corrupted onboardingFullAnswers in storage — ignoring.');
     return null;
   }
 }

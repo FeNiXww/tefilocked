@@ -4,7 +4,7 @@ import UIKit
 import UserNotifications
 
 class ShieldActionExtension: ShieldActionDelegate {
-  private let appGroupIdentifier = "group.org.tefillahlock.app.blocker"
+  private let appGroupIdentifier = "group.org.tefillok.app.blocker"
   private let pendingUnlockKey = "appBlocker.pendingUnlock.v1"
   private let pendingInterceptsKey = "appBlocker.pendingIntercepts.v1"
   private let lastInterceptTsKey = "appBlocker.lastInterceptTs.v1"
@@ -14,7 +14,7 @@ class ShieldActionExtension: ShieldActionDelegate {
   // Notification copy + behavior — configurable via plugin options so apps
   // can localize without forking. Defaults preserve the original English
   // copy and the icon attachment.
-  private let notificationTitle = "תפילוקט"
+  private let notificationTitle = "תפילוק"
   private let notificationBody = "הקש כדי לחזור ולהשלים רגע של תפילה"
   private let notificationAttachIcon = true
 

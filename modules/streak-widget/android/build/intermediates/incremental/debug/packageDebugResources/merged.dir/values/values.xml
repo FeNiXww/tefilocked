@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="streak_widget_content_desc_dormant">%1$d ימי רצף. מוכן לרגע של תפילה?</string>
-    <string name="streak_widget_content_desc_lit">%1$d ימי רצף. התפילה של היום נרשמה</string>
-    <string name="streak_widget_description">הרצף היומי שלך של תפילה</string>
-    <string name="streak_widget_label">רצף תפילה</string>
-</resources>

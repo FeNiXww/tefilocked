@@ -75,7 +75,7 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
       // already prayed and the streak is already recorded (see
       // useLockContentFlow's selectDuration), so let them continue back into
       // the app regardless.
-      console.warn('[tefillah-lock] Failed to complete unlock:', error);
+      console.warn('[tefillok] Failed to complete unlock:', error);
       onUnlocked();
     } finally {
       setFinishing(false);

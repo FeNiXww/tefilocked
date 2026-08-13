@@ -106,7 +106,7 @@ export const OBSTACLES_QUESTION = (gender: Gender | null): MultiChoiceQuestion =
 
 export const GOALS_QUESTION = (gender: Gender | null): MultiChoiceQuestion => ({
   key: 'goals',
-  title: `מה ${pickG(gender, 'תרצה', 'תרצי')} להשיג עם תפילוקט?`,
+  title: `מה ${pickG(gender, 'תרצה', 'תרצי')} להשיג עם תפילוק?`,
   subtitle: pickG(gender, 'בחר עד 3', 'בחרי עד 3'),
   maxSelect: 3,
   options: [

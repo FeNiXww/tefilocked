@@ -28,7 +28,7 @@ export function ReviewPrompt({ answers, onNext }: StepComponentProps) {
     <View style={styles.container}>
       <SparkleBackground tone="accent" starCount={8} />
       <Text style={styles.emoji}>🌟</Text>
-      <Text style={styles.title}>{pickG(answers.gender, 'נהנה', 'נהנית')} מתפילוקט?</Text>
+      <Text style={styles.title}>{pickG(answers.gender, 'נהנה', 'נהנית')} מתפילוק?</Text>
       <Text style={styles.subtitle}>הדירוג שלך עוזר ליהודים נוספים למצוא את האפליקציה</Text>
       <PrimaryButton label="המשך" onPress={onNext} variant="accent" style={styles.button} />
     </View>

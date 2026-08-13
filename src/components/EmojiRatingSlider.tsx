@@ -37,6 +37,13 @@ export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: Emoj
   valueRef.current = value;
   const trackWidthRef = useRef(trackWidth);
   trackWidthRef.current = trackWidth;
+  const trackRef = useRef<View>(null);
+  // Absolute screen X of the track's left edge, captured via measure() on
+  // layout. `locationX` from the gesture event is relative to whatever view
+  // is currently under the finger and gets unreliable/jumpy on fast drags
+  // (a known RN PanResponder quirk), so we instead use the touch's stable
+  // page-absolute X (pageX) and subtract this fixed offset ourselves.
+  const trackPageXRef = useRef(0);
 
   const commitValue = (next: number) => {
     if (next === valueRef.current) return;
@@ -53,13 +60,15 @@ export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: Emoj
     if (bucket) commitValue(bucket.value);
   };
 
+  const selectFromPageX = (pageX: number) => selectFromLocalX(pageX - trackPageXRef.current);
+
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderTerminationRequest: () => false,
-      onPanResponderGrant: (evt) => selectFromLocalX(evt.nativeEvent.locationX),
-      onPanResponderMove: (evt) => selectFromLocalX(evt.nativeEvent.locationX),
+      onPanResponderGrant: (evt) => selectFromPageX(evt.nativeEvent.pageX),
+      onPanResponderMove: (evt, gestureState) => selectFromPageX(gestureState.moveX || evt.nativeEvent.pageX),
     })
   ).current;
 
@@ -77,8 +86,14 @@ export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: Emoj
     <View style={styles.container}>
       <Text style={styles.emoji}>{current.emoji}</Text>
       <View
+        ref={trackRef}
         style={styles.track}
-        onLayout={(e: LayoutChangeEvent) => setTrackWidth(e.nativeEvent.layout.width)}
+        onLayout={(e: LayoutChangeEvent) => {
+          setTrackWidth(e.nativeEvent.layout.width);
+          trackRef.current?.measure((_x, _y, _w, _h, pageX) => {
+            trackPageXRef.current = pageX;
+          });
+        }}
         {...panResponder.panHandlers}
         accessibilityRole="adjustable"
         accessibilityLabel="דירוג הקשר"

@@ -12,16 +12,16 @@ export function SocialProof({ answers, onNext }: StepComponentProps) {
     <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
       <SparkleBackground tone="accent" starCount={8} />
       <HighlightText
-        text={'תפילוקט נבנתה\n**בשבילך**'}
+        text={'תפילוק נבנתה\n**בשבילך**'}
         style={styles.title}
         emphasisStyle={styles.titleAccent}
       />
-      <Text style={styles.subtitle}>למה בנינו את תפילוקט</Text>
+      <Text style={styles.subtitle}>למה בנינו את תפילוק</Text>
 
       <TestimonialsBlock />
 
       <PrimaryButton
-        label={`${pickG(answers.gender, 'הצטרף', 'הצטרפי')} לתפילוקט 🙏`}
+        label={`${pickG(answers.gender, 'הצטרף', 'הצטרפי')} לתפילוק 🙏`}
         onPress={onNext}
         variant="accent"
         glow

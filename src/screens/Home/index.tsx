@@ -68,7 +68,7 @@ export function Home() {
 
       <View style={[styles.header, { top: insets.top + spacing.md }]}>
         <Logo variant="mark" size={30} />
-        <Text style={styles.brand}>תפילוקט</Text>
+        <Text style={styles.brand}>תפילוק</Text>
       </View>
 
       <ScrollView
@@ -78,6 +78,8 @@ export function Home() {
           { paddingTop: insets.top + spacing.xxl + 36, paddingBottom: insets.bottom + TAB_BAR_CLEARANCE },
         ]}
         showsVerticalScrollIndicator={false}
+        bounces={false}
+        overScrollMode="never"
       >
       <View style={styles.heroCard}>
         <View style={styles.starRow}>

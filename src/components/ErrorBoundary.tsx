@@ -26,7 +26,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: unknown): void {
-    console.warn('[tefillah-lock] Uncaught render error:', error);
+    console.warn('[tefillok] Uncaught render error:', error);
   }
 
   handleRetry = (): void => {

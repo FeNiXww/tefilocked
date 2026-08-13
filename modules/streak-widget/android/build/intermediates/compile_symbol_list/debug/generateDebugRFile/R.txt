@@ -1,4 +1,5 @@
 int drawable streak_widget_background 0x0
+int drawable streak_widget_preview 0x0
 int id widget_image 0x0
 int layout streak_widget 0x0
 int string streak_widget_content_desc_dormant 0x0

@@ -31,14 +31,14 @@ export function configureRevenueCat(): void {
     // configuring entirely and use the same mocked fallback as Expo Go until
     // real keys are set.
     nativeAvailable = false;
-    console.warn('[tefillah-lock] RevenueCat API key not set — subscription features are mocked.');
+    console.warn('[tefillok] RevenueCat API key not set — subscription features are mocked.');
     return;
   }
   try {
     Purchases.configure({ apiKey });
   } catch {
     nativeAvailable = false;
-    console.warn('[tefillah-lock] RevenueCat unavailable (Expo Go?) — subscription features are mocked.');
+    console.warn('[tefillok] RevenueCat unavailable (Expo Go?) — subscription features are mocked.');
   }
 }
 

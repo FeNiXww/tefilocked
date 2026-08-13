@@ -5,7 +5,7 @@ import WidgetKit
 // `new ExtensionStorage(IOS_APP_GROUP)` in src/widgets/syncStreakWidget.ts
 // (src/constants/appGroup.ts is the single source of truth for this string —
 // keep both in sync if it ever changes).
-private let appGroupIdentifier = "group.org.tefillahlock.app.blocker"
+private let appGroupIdentifier = "group.org.tefillok.app.blocker"
 
 // src/theme/colors.ts
 private let accentLight = Color(red: 0.894, green: 0.937, blue: 0.980) // #E4EFFA
@@ -284,7 +284,7 @@ struct StreakWidgetEntryView: View {
   }
 
   private var deepLinkURL: URL? {
-    URL(string: entry.litToday ? "tefillahlock://home" : "tefillahlock://pray")
+    URL(string: entry.litToday ? "tefillok://home" : "tefillok://pray")
   }
 
   private var starSize: CGFloat {

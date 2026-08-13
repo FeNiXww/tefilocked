@@ -26,7 +26,7 @@ try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   AppBlocker = require('expo-app-blocker') as AppBlockerModule;
 } catch {
-  console.warn('[tefillah-lock] expo-app-blocker unavailable (Expo Go?) — app-locking features are mocked.');
+  console.warn('[tefillok] expo-app-blocker unavailable (Expo Go?) — app-locking features are mocked.');
 }
 
 const NO_PERMISSIONS: AppBlockerNS.PermissionStatus = {
@@ -123,6 +123,12 @@ export async function grantTemporaryUnlock(minutes: number) {
 
 export function unlockAndLaunchAndroidApp(packageName: string | undefined, durationMinutes?: number): void {
   if (Platform.OS !== 'android') return;
+  if (!packageName) {
+    // The unlock grant below still applies to every blocked app either way, but with
+    // no target package the native side has nothing to foreground — the user is left
+    // on whatever's already on screen (this app) instead of the one they meant to open.
+    console.warn('[tefillok] unlockAndLaunchAndroidApp: no target package — apps will unlock but nothing will be foregrounded.');
+  }
   AppBlocker?.unlockAndLaunchAndroid(packageName ?? '', durationMinutes);
 }
 

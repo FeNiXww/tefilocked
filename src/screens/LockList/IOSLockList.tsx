@@ -25,7 +25,7 @@ export function IOSLockList() {
     getLockingPermissionStatus()
       .then((status) => setGranted(status.allGranted))
       .catch((error) => {
-        console.warn('[tefillah-lock] Failed to read iOS locking permissions:', error);
+        console.warn('[tefillok] Failed to read iOS locking permissions:', error);
         setGranted(false);
       });
   }, []);
@@ -36,7 +36,7 @@ export function IOSLockList() {
       const status = await requestLockingPermissions();
       setGranted(status.allGranted);
     } catch (error) {
-      console.warn('[tefillah-lock] Failed to request iOS locking permissions:', error);
+      console.warn('[tefillok] Failed to request iOS locking permissions:', error);
     } finally {
       setRequestingPermission(false);
     }
@@ -55,7 +55,7 @@ export function IOSLockList() {
         clearIOSLockConfiguration();
       }
     } catch (error) {
-      console.warn('[tefillah-lock] Failed to apply iOS lock configuration:', error);
+      console.warn('[tefillok] Failed to apply iOS lock configuration:', error);
     }
   };
 

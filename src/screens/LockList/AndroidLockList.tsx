@@ -39,7 +39,7 @@ function AndroidLockListContent() {
         setSelected(new Set(getAndroidLockedApps()));
       })
       .catch((error) => {
-        console.warn('[tefillah-lock] Failed to load installed apps:', error);
+        console.warn('[tefillok] Failed to load installed apps:', error);
         setApps([]);
       });
   }, []);

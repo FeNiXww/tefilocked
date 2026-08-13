@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, type ImageSourcePropType } from 'react-native';
+import { Image, Pressable, StyleSheet, type ImageSourcePropType } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import Animated, {
@@ -13,7 +13,6 @@ import { SparkleBackground } from '../../../components/SparkleBackground';
 import { colors, spacing, typography } from '../../../theme';
 import { ContinueNodeButton } from '../ContinueNodeButton';
 import { HighlightText } from '../HighlightText';
-import { OnboardingBlendedIllustration } from '../OnboardingBlendedIllustration';
 import type { PagerPageProps } from './OnboardingPager';
 import { useBreathingScale, usePageActive, usePageProgress } from './pagerAnimations';
 
@@ -71,11 +70,15 @@ export function ScreenTwo({ index, scrollX, pageWidth, illustration, onNext }: S
       </Animated.View>
 
       <Animated.View style={[styles.illustrationSlot, illustrationStyle]} pointerEvents="none">
-        <OnboardingBlendedIllustration source={illustration ?? EMBRACE_ILLUSTRATION} />
+        <Image
+          source={illustration ?? EMBRACE_ILLUSTRATION}
+          style={styles.illustrationImage}
+          resizeMode="contain"
+        />
       </Animated.View>
 
       <Pressable
-        style={styles.continueWrap}
+        style={[styles.continueWrap, { bottom: spacing.xl + insets.bottom }]}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={onNext}
@@ -105,9 +108,12 @@ const styles = StyleSheet.create({
     marginBottom: spacing.sm,
     marginHorizontal: -spacing.xl,
   },
+  illustrationImage: {
+    flex: 1,
+    width: '100%',
+  },
   continueWrap: {
     position: 'absolute',
-    bottom: spacing.xl,
     right: spacing.xl,
   },
 });

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Mood } from '../../content/types';
 import { getOnboardingFullAnswers, setOnboardingFullAnswers, setOnboardingGender, setOnboardingName } from '../../data/storage/mmkv';
 
-export type AgeRange = '10-17' | '17-24' | '25-34' | '35-44' | '45-54' | '55+';
+export type AgeRange = '10-17' | '18-24' | '25-34' | '35-44' | '45-54' | '55+';
 export type PhoneHoursRange = '1-2' | '2-3' | '3-4' | '4-5' | '5-6' | '6+';
 export type Gender = 'man' | 'woman';
 
@@ -85,7 +85,7 @@ export function useOnboardingState() {
 
 export const AGE_RANGES: { id: AgeRange; label: string }[] = [
   { id: '10-17', label: '10-17' },
-  { id: '17-24', label: '17-24' },
+  { id: '18-24', label: '18-24' },
   { id: '25-34', label: '25-34' },
   { id: '35-44', label: '35-44' },
   { id: '45-54', label: '45-54' },
@@ -103,7 +103,7 @@ export const PHONE_HOURS_RANGES: { id: PhoneHoursRange; label: string }[] = [
 
 const AGE_REMAINING_YEARS: Record<AgeRange, number> = {
   '10-17': 65,
-  '17-24': 60,
+  '18-24': 60,
   '25-34': 50,
   '35-44': 40,
   '45-54': 30,

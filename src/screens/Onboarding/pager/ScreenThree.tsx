@@ -238,7 +238,7 @@ export function ScreenThree({ index, scrollX, pageWidth, onComplete }: PagerPage
       <Image source={TABLETS_ILLUSTRATION} style={styles.tabletsImage} resizeMode="contain" />
 
       <Pressable
-        style={styles.continueWrap}
+        style={[styles.continueWrap, { bottom: spacing.xl + insets.bottom }]}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={onComplete}
@@ -351,7 +351,6 @@ const styles = StyleSheet.create({
   },
   continueWrap: {
     position: 'absolute',
-    bottom: spacing.xl,
     right: spacing.xl,
   },
 });

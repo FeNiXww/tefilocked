@@ -1,6 +1,7 @@
 R_DEF: Internal format may change without notice
 local
 drawable streak_widget_background
+drawable streak_widget_preview
 id widget_image
 layout streak_widget
 string streak_widget_content_desc_dormant

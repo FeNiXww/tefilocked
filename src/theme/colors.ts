@@ -1,4 +1,4 @@
-// Navy + light blue + parchment brand palette (from the Tefillah Lock logo)
+// Navy + light blue + parchment brand palette (from the Tefillok logo)
 // — primary/navy is kept identical to app.config.ts's native iOS shield
 // config so the native shield UI and JS screens match.
 export const colors = {
@@ -20,11 +20,13 @@ export const colors = {
   border: '#E7DFC9',
   success: '#3A8F6F',
   danger: '#C0455B',
-  // Insights chart series — kept distinct in both hue and value from
-  // `primary` (and from `accent`, used elsewhere for the mood line's own
-  // legend dot) so a two-series line chart reads clearly against it.
-  chartConnection: '#1B2A47',
-  chartMood: '#5B9E8F',
+  // Insights chart series — deliberately not `primary`/`accent` (those are
+  // UI-chrome colors used everywhere else) so the two data lines read as
+  // data, not as reused brand chrome. Connection is warm gold, mood is a
+  // calming teal-blue — opposite ends of the color wheel so the two lines
+  // never get confused even where they cross.
+  chartConnection: '#C0872A',
+  chartMood: '#3E93AE',
 } as const;
 
 export type ColorToken = keyof typeof colors;

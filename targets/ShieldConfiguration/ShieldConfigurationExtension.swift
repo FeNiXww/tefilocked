@@ -4,12 +4,12 @@ import UIKit
 
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
 
-  private let appGroupIdentifier = "group.org.tefillahlock.app.blocker"
+  private let appGroupIdentifier = "group.org.tefillok.app.blocker"
 
   // All values below are replaced by the config plugin at prebuild time
   private let shieldTitle = "רגע לפני שממשיכים"
   private let shieldSubtitle = "{appName} נעולה כרגע"
-  private let shieldPrimaryButtonLabel = "לפתוח את תפילוקט"
+  private let shieldPrimaryButtonLabel = "לפתוח את תפילוק"
   private let shieldSecondaryButtonLabel = "none"
   // Temporary-unlock state copy — shown briefly while ManagedSettings clears
   // after a successful unlock. Configurable via plugin options.

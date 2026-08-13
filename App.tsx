@@ -36,7 +36,7 @@ export default function App() {
   );
   usePendingLockTrigger(handleLockTrigger);
 
-  // The widget's "learning needed today" tap opens tefillahlock://pray —
+  // The widget's "learning needed today" tap opens tefillok://pray —
   // drop the user straight into the prayer flow, same as a locked-app bounce.
   useWidgetDeepLink(
     useCallback(() => {

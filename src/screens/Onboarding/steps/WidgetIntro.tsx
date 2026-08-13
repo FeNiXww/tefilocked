@@ -12,7 +12,7 @@ import { pickG, type StepComponentProps } from '../onboardingState';
 const IOS_STEPS = [
   'החזיקו אצבע על מסך הבית עד שהאייקונים מתחילים לרעוד',
   'הקישו על + בפינה העליונה',
-  'חפשו את תפילוקט ובחרו את הווידג׳ט',
+  'חפשו את תפילוק ובחרו את הווידג׳ט',
 ];
 
 /**
@@ -63,7 +63,7 @@ export function WidgetIntro({ answers, onNext }: StepComponentProps) {
           <Text style={styles.confirmText}>
             {requested
               ? pickG(answers.gender, 'תוכל', 'תוכלי') + ' למצוא את הבקשה להוספה בראש המסך'
-              : 'ניתן להוסיף את הווידג׳ט מאוחר יותר: החזיקו אצבע על מסך הבית ← ווידג׳טים ← תפילוקט'}
+              : 'ניתן להוסיף את הווידג׳ט מאוחר יותר: החזיקו אצבע על מסך הבית ← ווידג׳טים ← תפילוק'}
           </Text>
         )
       ) : (

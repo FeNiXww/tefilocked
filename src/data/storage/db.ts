@@ -21,9 +21,9 @@ let db: SQLite.SQLiteDatabase | null = null;
 const mockRows: StoredRow[] = [];
 
 try {
-  db = SQLite.openDatabaseSync('tefillah-lock.db');
+  db = SQLite.openDatabaseSync('tefillok.db');
 } catch {
-  console.warn('[tefillah-lock] expo-sqlite unavailable (Expo Go?) — using in-memory storage fallback.');
+  console.warn('[tefillok] expo-sqlite unavailable (Expo Go?) — using in-memory storage fallback.');
 }
 
 export function initDatabase(): void {

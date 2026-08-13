@@ -1,5 +1,5 @@
 {
-  "name": "tefillah-lock",
+  "name": "tefillok",
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {

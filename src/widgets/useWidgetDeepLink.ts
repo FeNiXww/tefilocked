@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import * as Linking from 'expo-linking';
 
 /**
- * Fires when the app is opened via `tefillahlock://pray` — the URL the home
+ * Fires when the app is opened via `tefillok://pray` — the URL the home
  * screen widget sets as its tap target while today's prayer is still
  * outstanding, so the user lands directly in the prayer flow instead of just
  * Home. Separate from `usePendingLockTrigger` (which owns the app-locking

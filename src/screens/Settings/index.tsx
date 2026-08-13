@@ -41,6 +41,7 @@ export function Settings({ navigation }: SettingsScreenProps<'SettingsHome'>) {
 
       <SettingsSection title="מידע">
         <Row label="תנאי שימוש" onPress={() => navigation.navigate('Terms')} />
+        <Row label="מדיניות פרטיות" onPress={() => navigation.navigate('Privacy')} />
         <Row label="אודות" onPress={() => navigation.navigate('About')} />
       </SettingsSection>
 

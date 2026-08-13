@@ -38,7 +38,7 @@ export function AndroidPermissionGate({ children }: AndroidPermissionGateProps) 
   useEffect(() => {
     const safeRefresh = () => {
       refresh().catch((error) => {
-        console.warn('[tefillah-lock] Failed to read Android locking permissions:', error);
+        console.warn('[tefillok] Failed to read Android locking permissions:', error);
       });
     };
     safeRefresh();

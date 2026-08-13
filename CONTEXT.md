@@ -1,4 +1,4 @@
-# Tefillah Lock
+# Tefillok
 
 ### Put Hashem Before the Scroll
 
@@ -6,7 +6,7 @@ Your phone is designed to capture your attention.
 
 Every notification, every reel, every endless scroll pulls you away from what matters most.
 
-Tefillah Lock changes that.
+Tefillok changes that.
 
 Before Instagram opens. Before TikTok loads. Before YouTube starts playing.
 
@@ -16,7 +16,7 @@ You pray.
 
 Then you unlock.
 
-Tefillah Lock is a Hebrew-first focus app built for Jews who want to strengthen their connection to Judaism while reducing mindless screen time.
+Tefillok is a Hebrew-first focus app built for Jews who want to strengthen their connection to Judaism while reducing mindless screen time.
 
 ---
 
@@ -24,7 +24,7 @@ Tefillah Lock is a Hebrew-first focus app built for Jews who want to strengthen 
 
 ### Step 1: Download the App
 
-When a new user opens Tefillah Lock for the first time, they don't immediately see a paywall.
+When a new user opens Tefillok for the first time, they don't immediately see a paywall.
 
 Instead, they experience a cinematic onboarding journey.
 
@@ -89,7 +89,7 @@ The app shows exactly how the system works.
 
 After the user understands the value of the app and has completed setup, the subscription screen appears.
 
-Tefillah Lock requires an active subscription.
+Tefillok requires an active subscription.
 
 There is no free version of the product.
 
@@ -107,7 +107,7 @@ Once subscribed, the full app becomes available.
 
 When the user tries to open a locked app:
 
-1. Tefillah Lock intercepts the launch.
+1. Tefillok intercepts the launch.
 2. A Hebrew reflection screen appears.
 3. The user selects their current mood.
 
@@ -179,11 +179,11 @@ Optional:
 
 ---
 
-## Why Tefillah Lock Exists
+## Why Tefillok Exists
 
 Most screen-time apps try to stop people from using their phones.
 
-Tefillah Lock does something different.
+Tefillok does something different.
 
 It transforms the moment before distraction into an opportunity for connection.
 
@@ -202,5 +202,5 @@ Pray.
 Connect.
 Then unlock.
 
-Tefillah Lock.
+Tefillok.
 Because your attention matters.

@@ -92,11 +92,11 @@ class StreakWidgetProvider : AppWidgetProvider() {
       )
 
       // Same scheme MainActivity's intent-filter already declares (see
-      // AndroidManifest.xml) and the same `tefillahlock://pray` /
-      // `tefillahlock://home` contract the iOS widget uses — routes through
+      // AndroidManifest.xml) and the same `tefillok://pray` /
+      // `tefillok://home` contract the iOS widget uses — routes through
       // RN Linking on the JS side (src/widgets/useWidgetDeepLink.ts) so a tap
       // while today's prayer is outstanding opens the prayer flow directly.
-      val deepLinkUri = Uri.parse(if (litToday) "tefillahlock://home" else "tefillahlock://pray")
+      val deepLinkUri = Uri.parse(if (litToday) "tefillok://home" else "tefillok://pray")
       val launchIntent = Intent(Intent.ACTION_VIEW, deepLinkUri).apply {
         setPackage(context.packageName)
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)

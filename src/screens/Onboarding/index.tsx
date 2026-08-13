@@ -70,7 +70,7 @@ function LogoIntro({ onFinish }: { onFinish: () => void }) {
       <Animated.View style={markStyle}>
         <Logo variant="mark" size={140} />
       </Animated.View>
-      <Animated.Text style={[styles.introWordmark, markStyle]}>תפילוקט</Animated.Text>
+      <Animated.Text style={[styles.introWordmark, markStyle]}>תפילוק</Animated.Text>
     </Pressable>
   );
 }

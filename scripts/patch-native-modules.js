@@ -130,6 +130,20 @@ function replaceBlock(filePath, broken, fixed, label) {
   }
 }
 
+// For pure-deletion patches where `fixed` is just a short trailing anchor
+// (not a distinctive superset of `broken`) — replaceBlock's `includes(fixed)`
+// guard would match that anchor everywhere, including on an unpatched file,
+// and silently no-op forever. Idempotency here only needs `includes(broken)`:
+// once the deletion applies, `broken` (the long removed text) is gone too.
+function removeBlock(filePath, broken, fixed, label) {
+  if (!fs.existsSync(filePath)) return;
+  const current = fs.readFileSync(filePath, 'utf8');
+  if (current.includes(broken)) {
+    fs.writeFileSync(filePath, current.replace(broken, fixed));
+    console.log(`[patch-native-modules] ${label}`);
+  }
+}
+
 const androidSrc = path.join(
   __dirname,
   '..',
@@ -441,6 +455,31 @@ replaceBlock(
       startCommand(context, intent)
     }`,
   'Renamed AppBlockerService companion action/extra constants and threaded the granted duration through unlockAndLaunch.'
+);
+
+// Bug: `getStringExtra` can return an empty string (unlockAndLaunchAndroidApp's JS
+// side coerces a missing target package to `""` rather than omitting the extra), and
+// `packageName != null` lets `""` straight through. `launchApp("")` then resolves no
+// launch intent and returns having done nothing — the grant+clearBlock above still
+// succeed, so the user just stays on whatever's already on screen (this app) instead
+// of being foregrounded into the app they meant to open, with no visible error either
+// side of the bridge. See also the JS-side warning this pairs with in
+// src/native/appLocking/index.tsx's unlockAndLaunchAndroidApp.
+replaceBlock(
+  appBlockerServiceFile,
+  `        unlockController.grant(minutes)
+        clearBlock()
+        if (packageName != null) launchApp(packageName)
+      }`,
+  `        unlockController.grant(minutes)
+        clearBlock()
+        if (!packageName.isNullOrBlank()) {
+          launchApp(packageName)
+        } else {
+          Log.w(TAG, "unlockAndLaunch: no target package name provided — skipping launch, app stays foregrounded")
+        }
+      }`,
+  'Fixed AppBlockerService.unlockAndLaunch: an empty-string target package (not just null) was silently skipping the post-unlock app launch.'
 );
 
 replaceBlock(
@@ -905,7 +944,7 @@ replaceBlock(
   'Removed the showBlockedNotification() call from AppBlockerService.enforceBlock() — no more separate "Blocked App Alerts" heads-up notification.'
 );
 
-replaceBlock(
+removeBlock(
   appBlockerServiceFile,
   `  private fun showBlockedNotification(packageName: String, reason: BlockReason) {
     val appName = try {

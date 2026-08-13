@@ -6,7 +6,7 @@ export function Solution({ answers, onNext }: StepComponentProps) {
   return (
     <TapToContinue
       variant="light"
-      headline={'תפילוקט עוזרת לך לשים את **הקדוש ברוך הוא** במקום הראשון'}
+      headline={'תפילוק עוזרת לך לשים את **הקדוש ברוך הוא** במקום הראשון'}
       body={`זה פשוט: בכל יום, ${pickG(gender, 'אתה מתפלל', 'את מתפללת')} כדי לפתוח את האפליקציות שלך.`}
       onNext={onNext}
     />

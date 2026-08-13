@@ -33,7 +33,14 @@ export function usePendingLockTrigger(onTriggered: (trigger: PendingLockTrigger)
       // package name it claims isn't trustworthy on its own — only accept it if
       // it's actually one of the user's configured locked apps.
       const claimedPackage = queryParams?.package as string | undefined;
-      const lockedAppPackage = claimedPackage && getAndroidLockedApps().includes(claimedPackage) ? claimedPackage : undefined;
+      const lockedApps = getAndroidLockedApps();
+      const lockedAppPackage = claimedPackage && lockedApps.includes(claimedPackage) ? claimedPackage : undefined;
+      if (claimedPackage && !lockedAppPackage) {
+        // If this fires, the post-prayer redirect will silently land on Tefillok's
+        // own home screen instead of the app the user meant to open — see
+        // unlockAndLaunchAndroidApp in ./index.tsx for the other half of that failure mode.
+        console.warn('[tefillok] Deep link claimed a package not in the locked-apps list, ignoring it:', claimedPackage, lockedApps);
+      }
       onTriggered({ lockedAppPackage });
     };
     const linkingSubscription = Linking.addEventListener('url', handleUrl);
@@ -42,7 +49,7 @@ export function usePendingLockTrigger(onTriggered: (trigger: PendingLockTrigger)
         if (url) handleUrl({ url });
       })
       .catch((error) => {
-        console.warn('[tefillah-lock] Failed to read initial deep link:', error);
+        console.warn('[tefillok] Failed to read initial deep link:', error);
       });
     return () => linkingSubscription.remove();
   }, [onTriggered]);

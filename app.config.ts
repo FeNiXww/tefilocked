@@ -10,8 +10,8 @@ import type { ExpoConfig } from 'expo/config';
 // Expo's config loader transpiles this file standalone and can't resolve a
 // nested .ts require — app code imports the same value from
 // src/constants/appGroup.ts instead. Keep both in sync if this ever changes.
-const IOS_BUNDLE_ID = 'org.tefillahlock.app';
-const ANDROID_PACKAGE = 'org.tefillahlock.app';
+const IOS_BUNDLE_ID = 'org.tefillok.app';
+const ANDROID_PACKAGE = 'org.tefillok.app';
 const IOS_APP_GROUP = `group.${IOS_BUNDLE_ID}.blocker`;
 
 // Required by @bacons/apple-targets (used internally by expo-app-blocker) to
@@ -19,9 +19,9 @@ const IOS_APP_GROUP = `group.${IOS_BUNDLE_ID}.blocker`;
 const APPLE_TEAM_ID = process.env.APPLE_TEAM_ID ?? 'REPLACE_WITH_APPLE_TEAM_ID';
 
 const config: ExpoConfig = {
-  name: 'תפילוקט',
+  name: 'תפילוק',
   slug: 'tefillah-lock',
-  scheme: 'tefillahlock',
+  scheme: 'tefillok',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/icon.png',
@@ -58,14 +58,14 @@ const config: ExpoConfig = {
           shield: {
             title: 'רגע לפני שממשיכים',
             subtitle: '{appName} נעולה כרגע',
-            primaryButtonLabel: 'לפתוח את תפילוקט',
+            primaryButtonLabel: 'לפתוח את תפילוק',
             secondaryButtonLabel: null,
             primaryButtonColor: '#1B2A47',
             backgroundBlurStyle: 'systemThickMaterialLight',
             icon: './assets/brand/magen-david-overlay.png',
           },
           notification: {
-            title: 'תפילוקט',
+            title: 'תפילוק',
             body: 'הקש כדי לחזור ולהשלים רגע של תפילה',
           },
         },

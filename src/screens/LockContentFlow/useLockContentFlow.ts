@@ -1,14 +1,12 @@
 import { useCallback, useRef, useState } from 'react';
 import { Platform } from 'react-native';
-import { pickPersonalizedPrayer } from '../../ai/prayerGeneration';
-import { pickPrayer } from '../../content';
+import { pickContentForMood, pickPrayer } from '../../content';
 import type { ContentItem, ContentType, Mood } from '../../content/types';
 import { getCurrentStreak, recordUnlockEvent } from '../../data/storage/db';
 import { grantTemporaryUnlock, unlockAndLaunchAndroidApp } from '../../native/appLocking';
 
 // The daily "prayer to unlock" ritual: connection check-in -> mood check-in
-// -> an AI-generated personal prayer (curated content as a fallback — see
-// src/ai/prayerGeneration.ts) -> "I've prayed today" -> pick how long the
+// -> a curated personal prayer -> "I've prayed today" -> pick how long the
 // next unlock lasts -> a completion screen with the updated streak and the
 // verse of the day -> the actual unlock.
 export type LockContentFlowStep = 'connection' | 'mood' | 'prayer' | 'duration' | 'completion' | 'unlocked';
@@ -53,16 +51,10 @@ export function useLockContentFlow({ preferredContentTypes, lockedAppPackage, on
 
   const selectMood = useCallback(
     (mood: Mood) => {
-      setState((prev) => ({ ...prev, step: 'prayer', selectedMood: mood, prayerItem: null, prayerLoading: true }));
-      pickPersonalizedPrayer(state.connectionRating ?? 3, mood, preferredContentTypes)
-        .then((prayerItem) => {
-          setState((prev) => ({ ...prev, prayerItem, prayerLoading: false }));
-        })
-        .catch(() => {
-          setState((prev) => ({ ...prev, prayerItem: null, prayerLoading: false }));
-        });
+      const prayerItem = pickContentForMood(mood, preferredContentTypes);
+      setState((prev) => ({ ...prev, step: 'prayer', selectedMood: mood, prayerItem, prayerLoading: false }));
     },
-    [state.connectionRating, preferredContentTypes]
+    [preferredContentTypes]
   );
 
   const confirmPrayed = useCallback(() => {

@@ -1,19 +1,31 @@
 import dailyPrayers from './daily_prayers.json';
 import tehillim from './tehillim.json';
+import biblicalSongs from './biblical_songs.json';
 import torahWisdom from './torah_wisdom.json';
 import chazal from './chazal.json';
 import meta from './meta.json';
 import { storage } from '../data/storage/mmkv';
-import type { ContentItem, ContentType, Mood } from './types';
+import { getCurrentDayPart } from './dayPart';
+import { isEligibleContent } from './poolSafety';
+import { buildEligibilityContext, resolveDiasporaOrIsrael } from './liturgicalEligibility';
+import { getCachedZmanimLocation } from '../native/location';
+import { getUserRegion } from '../data/storage/mmkv';
+import type { ContentItem, ContentType, DayPart, Mood } from './types';
 
 // "personal_prayers" has no bundled pack — it's user-authored content (the
 // questionnaire's "Personal prayers" option), not part of the seeded library.
 const ALL_CONTENT: ContentItem[] = [
   ...(dailyPrayers as ContentItem[]),
   ...(tehillim as ContentItem[]),
+  ...(biblicalSongs as ContentItem[]),
   ...(torahWisdom as ContentItem[]),
   ...(chazal as ContentItem[]),
 ];
+
+/** First verse's Hebrew, for a short card preview — never the full text. */
+export function previewLine(item: ContentItem): string {
+  return item.verses[0]?.hebrewText ?? '';
+}
 
 export const contentVersion = meta.contentVersion;
 
@@ -67,16 +79,49 @@ function pickRandomWithRecencyAvoidance(pool: ContentItem[], category: string): 
   return chosen;
 }
 
+/** True if `item` has no time restriction, or its restriction includes the given day part. */
+function isTimeEligible(item: ContentItem, dayPart: DayPart): boolean {
+  const windows = item.timeWindows ?? ['anytime'];
+  return windows.includes('anytime') || windows.includes(dayPart);
+}
+
+/**
+ * Filters `pool` through the Liturgical Eligibility Engine (via
+ * `poolSafety.ts`) for `now` — done at *selection* time, not at module-load
+ * time, since eligibility can genuinely change through the day
+ * (TIME_NOT_YET → available → TIME_EXPIRED) and by calendar day
+ * (CALENDAR_RESTRICTED). Reuses whatever zmanim location the user has
+ * already granted (see src/native/location.ts) — never requests it here;
+ * a pick with no granted location simply can't narrow by real zman, which
+ * `poolSafety`/the engine already handle by not fabricating one.
+ */
+function filterEligible(pool: ContentItem[], now: Date): ContentItem[] {
+  const location = getCachedZmanimLocation();
+  const region = getUserRegion();
+  // Built once per call and reused across every item in `pool` — this used
+  // to be rebuilt (Hebrew-date conversion + up to 2 full zmanim computations)
+  // inside the filter callback for every single item, which is what made
+  // mood/duration selection feel slow (see buildEligibilityContext's doc).
+  const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+  return pool.filter((item) => isEligibleContent(item, context));
+}
+
 /**
  * Picks one content item for the given mood + the user's preferred content
  * types, biased away from whatever was most recently shown for that mood.
+ * Prefers items whose `timeWindows` fit the current time of day (e.g. won't
+ * surface a morning-only prayer at night) but never lets that narrow the
+ * pool to nothing — a mood match always beats an empty result.
  */
-export function pickContentForMood(mood: Mood, preferredTypes: ContentType[]): ContentItem | null {
+export function pickContentForMood(mood: Mood, preferredTypes: ContentType[], now: Date = new Date()): ContentItem | null {
+  const dayPart = getCurrentDayPart(now);
   const preferredSet = new Set(preferredTypes);
-  const matches = ALL_CONTENT.filter(
+  const matches = filterEligible(ALL_CONTENT, now).filter(
     (item) => item.moods.includes(mood) && item.contentTypes.some((t) => preferredSet.has(t))
   );
-  return pickRandomWithRecencyAvoidance(matches, mood);
+  const timeEligible = matches.filter((item) => isTimeEligible(item, dayPart));
+  const pool = timeEligible.length > 0 ? timeEligible : matches;
+  return pickRandomWithRecencyAvoidance(pool, mood);
 }
 
 export function getAllContent(): ContentItem[] {
@@ -87,6 +132,7 @@ const PRAYER_POOL: ContentItem[] = [
   ...(tehillim as ContentItem[]),
   ...(chazal as ContentItem[]),
   ...(dailyPrayers as ContentItem[]),
+  ...(biblicalSongs as ContentItem[]),
 ];
 
 const PRAYER_RECENCY_CATEGORY = 'prayerOfTheMoment';
@@ -94,9 +140,16 @@ const PRAYER_RECENCY_CATEGORY = 'prayerOfTheMoment';
 /**
  * Picks a random prayer, biased away from whatever was most recently shown.
  * `excludeId` keeps it from matching the quote item just shown in the same
- * trigger; falls back to the full pool if excluding would empty it.
+ * trigger; falls back to the full pool if excluding would empty it. Prefers
+ * the current time-of-day's eligible items the same way `pickContentForMood`
+ * does, with the same never-return-nothing fallback.
  */
-export function pickPrayer(excludeId?: string): ContentItem | null {
-  const pool = excludeId ? PRAYER_POOL.filter((item) => item.id !== excludeId) : PRAYER_POOL;
-  return pickRandomWithRecencyAvoidance(pool.length > 0 ? pool : PRAYER_POOL, PRAYER_RECENCY_CATEGORY);
+export function pickPrayer(excludeId?: string, now: Date = new Date()): ContentItem | null {
+  const dayPart = getCurrentDayPart(now);
+  const eligible = filterEligible(PRAYER_POOL, now);
+  const pool = excludeId ? eligible.filter((item) => item.id !== excludeId) : eligible;
+  const basePool = pool.length > 0 ? pool : eligible;
+  const timeEligible = basePool.filter((item) => isTimeEligible(item, dayPart));
+  const finalPool = timeEligible.length > 0 ? timeEligible : basePool;
+  return pickRandomWithRecencyAvoidance(finalPool, PRAYER_RECENCY_CATEGORY);
 }

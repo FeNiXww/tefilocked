@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import type { Mood } from '../../content/types';
 import { getOnboardingFullAnswers, setOnboardingFullAnswers, setOnboardingGender, setOnboardingName } from '../../data/storage/mmkv';
 
 export type AgeRange = '10-17' | '18-24' | '25-34' | '35-44' | '45-54' | '55+';
-export type PhoneHoursRange = '1-2' | '2-3' | '3-4' | '4-5' | '5-6' | '6+';
+export type PhoneHoursRange = '<2' | '2-4' | '4-6' | '6+';
 export type Gender = 'man' | 'woman';
 
 export interface OnboardingAnswers {
@@ -11,19 +10,11 @@ export interface OnboardingAnswers {
   ageRange: AgeRange | null;
   phoneHoursRange: PhoneHoursRange | null;
   gender: Gender | null;
-  affiliation: string | null;
-  previousAppsUsed: string | null;
-  prayerDaysPerWeek: number;
-  struggles: string[];
-  relationshipStatus: string | null;
-  obstacles: string[];
-  goals: string[];
-  thrivingVision: string | null;
-  demoMood: Mood | null;
-  demoConnection: number | null;
-  demoContentText: string | null;
-  demoContentSource: string | null;
   commitment: string | null;
+  /** True only once the user has actually completed the press-and-hold confirmation gesture for `commitment` — selecting a level alone does not set this. */
+  commitmentConfirmed: boolean;
+  /** Whether the notification-primer screen's OS prompt was granted — informational only, never gates anything. */
+  notificationsEnabled: boolean | null;
 }
 
 export const INITIAL_ONBOARDING_ANSWERS: OnboardingAnswers = {
@@ -31,19 +22,9 @@ export const INITIAL_ONBOARDING_ANSWERS: OnboardingAnswers = {
   ageRange: null,
   phoneHoursRange: null,
   gender: null,
-  affiliation: null,
-  previousAppsUsed: null,
-  prayerDaysPerWeek: 3,
-  struggles: [],
-  relationshipStatus: null,
-  obstacles: [],
-  goals: [],
-  thrivingVision: null,
-  demoMood: null,
-  demoConnection: null,
-  demoContentText: null,
-  demoContentSource: null,
   commitment: null,
+  commitmentConfirmed: false,
+  notificationsEnabled: null,
 };
 
 /**
@@ -93,11 +74,9 @@ export const AGE_RANGES: { id: AgeRange; label: string }[] = [
 ];
 
 export const PHONE_HOURS_RANGES: { id: PhoneHoursRange; label: string }[] = [
-  { id: '1-2', label: '1-2 שעות' },
-  { id: '2-3', label: '2-3 שעות' },
-  { id: '3-4', label: '3-4 שעות' },
-  { id: '4-5', label: '4-5 שעות' },
-  { id: '5-6', label: '5-6 שעות' },
+  { id: '<2', label: 'פחות משעתיים' },
+  { id: '2-4', label: '2-4 שעות' },
+  { id: '4-6', label: '4-6 שעות' },
   { id: '6+', label: '+6 שעות' },
 ];
 
@@ -111,11 +90,9 @@ const AGE_REMAINING_YEARS: Record<AgeRange, number> = {
 };
 
 const PHONE_HOURS_MIDPOINT: Record<PhoneHoursRange, number> = {
-  '1-2': 1.5,
-  '2-3': 2.5,
-  '3-4': 3.5,
-  '4-5': 4.5,
-  '5-6': 5.5,
+  '<2': 1,
+  '2-4': 3,
+  '4-6': 5,
   '6+': 7,
 };
 
@@ -123,39 +100,30 @@ export interface PhoneTimeStats {
   hoursPerYear: number;
   daysPerYear: number;
   lifetimeYears: number;
+  /** Same projection as `lifetimeYears`, kept to one decimal place — the onboarding reveal's hero number uses this so the figure reads as a precise, personal calculation rather than a rounded guess. */
+  lifetimeYearsPrecise: number;
 }
 
 /** The "bombshell" numbers — how much of this year, and of the user's remaining life, goes to the phone. */
 export function computePhoneTimeStats(answers: OnboardingAnswers): PhoneTimeStats {
-  const dailyHours = PHONE_HOURS_MIDPOINT[answers.phoneHoursRange ?? '3-4'];
+  const dailyHours = PHONE_HOURS_MIDPOINT[answers.phoneHoursRange ?? '2-4'];
   const remainingYears = AGE_REMAINING_YEARS[answers.ageRange ?? '25-34'];
   const hoursPerYear = dailyHours * 365;
+  const lifetimeYearsRaw = (hoursPerYear * remainingYears) / 8760;
   return {
     hoursPerYear: Math.round(hoursPerYear),
     daysPerYear: Math.round(hoursPerYear / 24),
-    lifetimeYears: Math.round((hoursPerYear * remainingYears) / 8760),
+    lifetimeYears: Math.round(lifetimeYearsRaw),
+    lifetimeYearsPrecise: Math.round(lifetimeYearsRaw * 10) / 10,
   };
 }
 
-// The product's daily ritual is framed as "5 minutes a day" (Bridge screen
-// copy) — these two figures are flat projections of that commitment, not
-// derived from the user's current habit, matching the reference app's
-// paywall-adjacent stats ("30+ hours a year", "2.5 hours" monthly).
+// The product's daily ritual is framed as "5 minutes a day" (Bombshell's
+// positive-reframe beat) — these two figures are flat projections of that
+// commitment, not derived from the user's current habit.
 export const DAILY_PRAYER_MINUTES = 5;
 export const YEARLY_PRAYER_HOURS = Math.round((DAILY_PRAYER_MINUTES * 365) / 60);
 export const MONTHLY_PRAYER_HOURS = Math.round(((DAILY_PRAYER_MINUTES * 30) / 60) * 10) / 10;
-
-export const PLAN_HORIZON_DAYS = 30;
-
-export function computeTargetDate(fromDate: Date = new Date()): Date {
-  const date = new Date(fromDate);
-  date.setDate(date.getDate() + PLAN_HORIZON_DAYS);
-  return date;
-}
-
-export function formatHebrewDate(date: Date): string {
-  return date.toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' });
-}
 
 export interface CommitmentLevel {
   id: string;
@@ -184,9 +152,9 @@ const COMMITMENT_LEVELS_BASE: CommitmentLevelBase[] = [
     labelM: 'מחויב לגמרי',
     labelF: 'מחויבת לגמרי',
     affirmationM:
-      'אתה כל-כולך בפנים, וכך גם הקדוש ברוך הוא. זו עמדת הלב שמזיזה הרים — בואו נשמור על התנופה הזו יחד.',
+      'אתה כל-כולך בפנים, וכך גם ה׳. זו עמדת הלב שמזיזה הרים — בואו נשמור על התנופה הזו יחד.',
     affirmationF:
-      'את כל-כולך בפנים, וכך גם הקדוש ברוך הוא. זו עמדת הלב שמזיזה הרים — בואו נשמור על התנופה הזו יחד.',
+      'את כל-כולך בפנים, וכך גם ה׳. זו עמדת הלב שמזיזה הרים — בואו נשמור על התנופה הזו יחד.',
   },
   {
     id: 'very',

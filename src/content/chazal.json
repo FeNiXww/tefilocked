@@ -1,132 +1,702 @@
 [
   {
     "id": "avot-1-6-judge-favorably",
-    "hebrewText": "הֱוֵי דָן אֶת כָּל הָאָדָם לְכַף זְכוּת",
-    "transliteration": "Hevei dan et kol ha'adam l'chaf zechut",
-    "translation": "Judge every person favorably.",
-    "source": "Pirkei Avot 1:6 (Yehoshua ben Perachya)",
-    "moods": ["stressed", "distracted"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות א׳:ו׳",
+    "source": "פרקי אבות א׳:ו׳ (יהושע בן פרחיה)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "הֱוֵי דָן אֶת כָּל הָאָדָם לְכַף זְכוּת"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "distracted"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-1-12-ohev-shalom",
-    "hebrewText": "הֱוֵי מִתַּלְמִידָיו שֶׁל אַהֲרֹן אוֹהֵב שָׁלוֹם וְרוֹדֵף שָׁלוֹם אוֹהֵב אֶת הַבְּרִיּוֹת וּמְקָרְבָן לַתּוֹרָה",
-    "transliteration": "Hevei mitalmidav shel Aharon, ohev shalom v'rodef shalom, ohev et hab'riyot um'karvan laTorah",
-    "translation": "Be of the disciples of Aharon — loving peace, pursuing peace, loving people, and bringing them close to Torah.",
-    "source": "Pirkei Avot 1:12 (Hillel)",
-    "moods": ["lonely", "stressed"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות א׳:י״ב",
+    "source": "פרקי אבות א׳:י״ב (הלל)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "הֱוֵי מִתַּלְמִידָיו שֶׁל אַהֲרֹן אוֹהֵב שָׁלוֹם וְרוֹדֵף שָׁלוֹם אוֹהֵב אֶת הַבְּרִיּוֹת וּמְקָרְבָן לַתּוֹרָה"
+      }
+    ],
+    "moods": [
+      "lonely",
+      "stressed"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-3-14-chaviv-adam",
-    "hebrewText": "חָבִיב אָדָם שֶׁנִּבְרָא בְּצֶלֶם",
-    "transliteration": "Chaviv adam shenivra b'tzelem",
-    "translation": "Beloved is a person, for they were created in the Divine image.",
-    "source": "Pirkei Avot 3:14 (Rabbi Akiva)",
-    "moods": ["lonely", "grateful", "tired"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ג׳:י״ד",
+    "source": "פרקי אבות ג׳:י״ד (רבי עקיבא)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "חָבִיב אָדָם שֶׁנִּבְרָא בְּצֶלֶם"
+      }
+    ],
+    "moods": [
+      "lonely",
+      "grateful",
+      "tired"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-3-14-chavivin-yisrael",
-    "hebrewText": "חֲבִיבִין יִשְׂרָאֵל שֶׁנִּקְרְאוּ בָּנִים לַמָּקוֹם",
-    "transliteration": "Chavivin Yisrael shenikr'u banim laMakom",
-    "translation": "Beloved is Israel, for they are called children of the Omnipresent.",
-    "source": "Pirkei Avot 3:14 (Rabbi Akiva)",
-    "moods": ["lonely", "grateful"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ג׳:י״ד",
+    "source": "פרקי אבות ג׳:י״ד (רבי עקיבא)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "חֲבִיבִין יִשְׂרָאֵל שֶׁנִּקְרְאוּ בָּנִים לַמָּקוֹם"
+      }
+    ],
+    "moods": [
+      "lonely",
+      "grateful"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-4-3-al-tehi-vaz",
-    "hebrewText": "אַל תְּהִי בָז לְכָל אָדָם",
-    "transliteration": "Al t'hi vaz l'chol adam",
-    "translation": "Do not scorn any person.",
-    "source": "Pirkei Avot 4:3 (Ben Azzai)",
-    "moods": ["lonely", "stressed"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ד׳:ג׳",
+    "source": "פרקי אבות ד׳:ג׳ (בן עזאי)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אַל תְּהִי בָז לְכָל אָדָם"
+      }
+    ],
+    "moods": [
+      "lonely",
+      "stressed"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-1-18-din-emet-shalom",
-    "hebrewText": "עַל שְׁלֹשָׁה דְבָרִים הָעוֹלָם קַיָּם עַל הַדִּין וְעַל הָאֱמֶת וְעַל הַשָּׁלוֹם",
-    "transliteration": "Al shlosha d'varim ha'olam kayam: al hadin, v'al ha'emet, v'al hashalom",
-    "translation": "The world endures on three things: justice, truth, and peace.",
-    "source": "Pirkei Avot 1:18 (Rabban Shimon ben Gamliel)",
-    "moods": ["stressed", "grateful"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות א׳:י״ח",
+    "source": "פרקי אבות א׳:י״ח (רבן שמעון בן גמליאל)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "עַל שְׁלֹשָׁה דְבָרִים הָעוֹלָם קַיָּם עַל הַדִּין וְעַל הָאֱמֶת וְעַל הַשָּׁלוֹם"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "grateful"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "bavli-shabbat-31a-hillel",
-    "hebrewText": "מַה דְּעָלָךְ סְנֵי לְחַבְרָךְ לָא תַּעְבֵּיד",
-    "transliteration": "Ma d'alach s'nei, l'chavrach lo ta'avid",
-    "translation": "What is hateful to you, do not do to your fellow.",
-    "source": "Talmud Bavli, Shabbat 31a (Hillel)",
-    "moods": ["stressed", "lonely"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "תלמוד בבלי, שבת ל״א ע״א",
+    "source": "תלמוד בבלי, שבת ל״א ע״א (הלל)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מַה דְּעָלָךְ סְנֵי לְחַבְרָךְ לָא תַּעְבֵּיד"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "lonely"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "קטע אגדה מהתלמוד הבבלי — לימוד תורה, לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — לימוד קטע אגדה בודד מהגמרא, גם בלי כל הסוגיה סביבו, הוא דבר נפוץ ולגיטימי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/what-aggada-part-i-aggada-classical-jewish-sources",
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/halakha-and-aggada"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר — ראו src/content/research/liturgical-context-research.md. חל על 3 פריטי אגדה מהתלמוד הבבלי בספרייה (שבת ל\"א ע\"א, סנהדרין ל\"ז ע\"א, ברכות ס' ע\"ב)."
+    }
   },
   {
     "id": "bavli-sanhedrin-37a",
-    "hebrewText": "כָּל הַמְקַיֵּם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל כְּאִלּוּ קִיֵּם עוֹלָם מָלֵא",
-    "transliteration": "Kol ham'kayem nefesh achat miYisrael, k'ilu kiyem olam malei",
-    "translation": "Whoever sustains one soul, it is as if they sustained an entire world.",
-    "source": "Talmud Bavli, Sanhedrin 37a",
-    "moods": ["grateful", "lonely"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "תלמוד בבלי, סנהדרין ל״ז ע״א",
+    "source": "תלמוד בבלי, סנהדרין ל״ז ע״א",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "כָּל הַמְקַיֵּם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל כְּאִלּוּ קִיֵּם עוֹלָם מָלֵא"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "lonely"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "קטע אגדה מהתלמוד הבבלי — לימוד תורה, לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — לימוד קטע אגדה בודד מהגמרא, גם בלי כל הסוגיה סביבו, הוא דבר נפוץ ולגיטימי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/what-aggada-part-i-aggada-classical-jewish-sources",
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/halakha-and-aggada"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר — ראו src/content/research/liturgical-context-research.md. חל על 3 פריטי אגדה מהתלמוד הבבלי בספרייה (שבת ל\"א ע\"א, סנהדרין ל\"ז ע\"א, ברכות ס' ע\"ב)."
+    }
   },
   {
     "id": "bavli-berachot-60b-gam-zu",
-    "hebrewText": "גַּם זוּ לְטוֹבָה",
-    "transliteration": "Gam zu l'tova",
-    "translation": "This too is for the good.",
-    "source": "Talmud Bavli, Berachot 60b (Nachum Ish Gamzu)",
-    "moods": ["stressed", "anxious", "tired"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "תלמוד בבלי, ברכות ס׳ ע״ב",
+    "source": "תלמוד בבלי, ברכות ס׳ ע״ב (נחום איש גמזו)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "גַּם זוּ לְטוֹבָה"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "anxious",
+      "tired"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "קטע אגדה מהתלמוד הבבלי — לימוד תורה, לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — לימוד קטע אגדה בודד מהגמרא, גם בלי כל הסוגיה סביבו, הוא דבר נפוץ ולגיטימי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/what-aggada-part-i-aggada-classical-jewish-sources",
+        "https://etzion.org.il/en/talmud/studies-gemara/midrash-and-aggada/halakha-and-aggada"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר — ראו src/content/research/liturgical-context-research.md. חל על 3 פריטי אגדה מהתלמוד הבבלי בספרייה (שבת ל\"א ע\"א, סנהדרין ל\"ז ע\"א, ברכות ס' ע\"ב)."
+    }
   },
   {
     "id": "avot-4-17-sha-ah-achat",
-    "hebrewText": "יָפָה שָׁעָה אַחַת בִּתְשׁוּבָה וּמַעֲשִׂים טוֹבִים בָּעוֹלָם הַזֶּה מִכָּל חַיֵּי הָעוֹלָם הַבָּא",
-    "transliteration": "Yafa sha'ah achat bit'shuva u'ma'asim tovim ba'olam hazeh, mikol chayei ha'olam haba",
-    "translation": "Better one hour of repentance and good deeds in this world than all the life of the World to Come.",
-    "source": "Pirkei Avot 4:17 (Rabbi Yaakov)",
-    "moods": ["stressed", "distracted"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ד׳:י״ז",
+    "source": "פרקי אבות ד׳:י״ז (רבי יעקב)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "יָפָה שָׁעָה אַחַת בִּתְשׁוּבָה וּמַעֲשִׂים טוֹבִים בָּעוֹלָם הַזֶּה מִכָּל חַיֵּי הָעוֹלָם הַבָּא"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "distracted"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-4-2-mitzvah-goreret",
-    "hebrewText": "מִצְוָה גּוֹרֶרֶת מִצְוָה",
-    "transliteration": "Mitzvah goreret mitzvah",
-    "translation": "One mitzvah leads to another.",
-    "source": "Pirkei Avot 4:2 (Ben Azzai)",
-    "moods": ["grateful", "happy", "distracted"],
-    "contentTypes": ["chazal"],
-    "length": "short"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ד׳:ב׳",
+    "source": "פרקי אבות ד׳:ב׳ (בן עזאי)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מִצְוָה גּוֹרֶרֶת מִצְוָה"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy",
+      "distracted"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-6-1-lishmah",
-    "hebrewText": "כָּל הָעוֹסֵק בַּתּוֹרָה לִשְׁמָהּ זוֹכֶה לִדְבָרִים הַרְבֵּה",
-    "transliteration": "Kol ha'osek baTorah lishmah, zocheh lid'varim harbeh",
-    "translation": "Whoever engages in Torah for its own sake merits many things.",
-    "source": "Pirkei Avot 6:1",
-    "moods": ["distracted", "grateful"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ו׳:א׳",
+    "source": "פרקי אבות ו׳:א׳",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "כָּל הָעוֹסֵק בַּתּוֹרָה לִשְׁמָהּ זוֹכֶה לִדְבָרִים הַרְבֵּה"
+      }
+    ],
+    "moods": [
+      "distracted",
+      "grateful"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   },
   {
     "id": "avot-5-20-az-kanamer",
-    "hebrewText": "הֱוֵי עַז כַּנָּמֵר וְקַל כַּנֶּשֶׁר רָץ כַּצְּבִי וְגִבּוֹר כָּאֲרִי לַעֲשׂוֹת רְצוֹן אָבִיךָ שֶׁבַּשָּׁמָיִם",
-    "transliteration": "Hevei az kanamer, v'kal kanesher, ratz katzvi, v'gibor ka'ari, la'asot r'tzon avicha shebashamayim",
-    "translation": "Be bold as a leopard, light as an eagle, swift as a deer, and strong as a lion to do the will of your Father in Heaven.",
-    "source": "Pirkei Avot 5:20 (Yehuda ben Teima)",
-    "moods": ["tired", "distracted", "stressed"],
-    "contentTypes": ["chazal"],
-    "length": "medium"
+    "kind": "wisdom",
+    "isTraditional": true,
+    "title": "פרקי אבות ה׳:כ׳",
+    "source": "פרקי אבות ה׳:כ׳ (יהודה בן תימא)",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "הֱוֵי עַז כַּנָּמֵר וְקַל כַּנֶּשֶׁר רָץ כַּצְּבִי וְגִבּוֹר כָּאֲרִי לַעֲשׂוֹת רְצוֹן אָבִיךָ שֶׁבַּשָּׁמָיִם"
+      }
+    ],
+    "moods": [
+      "tired",
+      "distracted",
+      "stressed"
+    ],
+    "contentTypes": [
+      "chazal"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "other",
+      "serviceRole": "משנה בודדת מתוך פרקי אבות — לימוד תורה (מוסר וחוכמת חז\"ל), לא חלק מליטורגיית התפילה.",
+      "standaloneGuidance": "כן, בלי בעיה — פרקי אבות הן אוסף של אמרות מוסר נפרדות, לא סיפור רציף, כך שאפשר ללמוד משנה אחת בפני עצמה בכל יום. יש מנהג נפוץ, בעיקר באשכנז, ללמוד פרק שלם בכל שבת אחר הצהריים בין פסח לשבועות — אבל זה מנהג נפרד לגמרי מלימוד משנה בודדת ביום חול, ושניהם לגיטימיים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה, לא תפילה — אין חובת עמידה. עמידה היא נורמה של קריאת התורה בציבור, לא של לימוד אישי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש כיוון ללימוד תורה אישי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לימוד תורה אישי אינו דורש מניין (בשונה מקריאת התורה הפומבית, שדורשת עשרה)."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6867593/jewish/Why-Learn-Pirkei-Avot-From-Passover-and-On.htm",
+        "https://outorah.org/p/50778/",
+        "https://www.etzion.org.il/en/talmud/seder-moed/massekhet-megilla/21a-learning-torah-sitting-or-standing-1",
+        "https://dinonline.org/2012/09/05/reading-from-torah-without-minyan/"
+      ],
+      "researchNotes": "מחקר ברמת ז'אנר (לא פר-פריט) — ראו src/content/research/liturgical-context-research.md. חל על כל 25 פריטי פרקי אבות בספרייה (chazal.json + torah_wisdom.json)."
+    }
   }
 ]

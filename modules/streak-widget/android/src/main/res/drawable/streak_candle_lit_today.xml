@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Same as streak_candle_lit but with a thin ring so today's dot (rendered
+     larger by the layout) still reads as distinct once the gold fill alone
+     isn't enough at a glance. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+  <solid android:color="#00000000" />
+  <gradient
+    android:type="linear"
+    android:angle="270"
+    android:startColor="#D4A94A"
+    android:endColor="#8C6A24" />
+  <stroke android:width="1dp" android:color="#8C6A24" />
+</shape>

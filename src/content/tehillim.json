@@ -1,222 +1,2290 @@
 [
   {
-    "id": "tehillim-23-1",
-    "hebrewText": "ה' רֹעִי לֹא אֶחְסָר",
-    "transliteration": "Hashem ro'i, lo echsar",
-    "translation": "Hashem is my shepherd; I shall not want.",
-    "source": "Tehillim 23:1",
-    "moods": ["anxious", "lonely", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-1",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים א׳",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אַשְׁרֵי הָאִישׁ אֲשֶׁר לֹא הָלַךְ בַּעֲצַת רְשָׁעִים וּבְדֶרֶךְ חַטָּאִים לֹא עָמָד וּבְמוֹשַׁב לֵצִים לֹא יָשָׁב"
+      },
+      {
+        "number": 2,
+        "hebrewText": "כִּי אִם בְּתוֹרַת ה' חֶפְצוֹ וּבְתוֹרָתוֹ יֶהְגֶּה יוֹמָם וָלָיְלָה"
+      },
+      {
+        "number": 3,
+        "hebrewText": "וְהָיָה כְּעֵץ שָׁתוּל עַל פַּלְגֵי מָיִם אֲשֶׁר פִּרְיוֹ יִתֵּן בְּעִתּוֹ וְעָלֵהוּ לֹא יִבּוֹל וְכֹל אֲשֶׁר יַעֲשֶׂה יַצְלִיחַ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "לֹא כֵן הָרְשָׁעִים כִּי אִם כַּמֹּץ אֲשֶׁר תִּדְּפֶנּוּ רוּחַ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "עַל כֵּן לֹא יָקֻמוּ רְשָׁעִים בַּמִּשְׁפָּט וְחַטָּאִים בַּעֲדַת צַדִּיקִים"
+      },
+      {
+        "number": 6,
+        "hebrewText": "כִּי יוֹדֵעַ ה' דֶּרֶךְ צַדִּיקִים וְדֶרֶךְ רְשָׁעִים תֹּאבֵד"
+      }
+    ],
+    "moods": [
+      "distracted",
+      "stressed"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 1,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים א׳ (אשרי האיש) — מזמור פתיחה לספר תהלים, ללא מקום ליטורגי קבוע משלו.",
+      "standaloneGuidance": "כן, ללא הסתייגות — לא נמצא מקום ליטורגי קבוע או מנהג ייחודי לפרק זה; קריאתו כטקסט עצמאי בכל עת הולמת את השימוש הרגיל בתהלים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [],
+      "researchNotes": "ראו מסמך המחקר. לא נמצא מנהג ספציפי לפרק זה; היעדר מנהג קשה יותר לאמת בוודאות גבוהה מנוכחות מנהג."
+    }
   },
   {
-    "id": "tehillim-100-2",
-    "hebrewText": "עִבְדוּ אֶת ה' בְּשִׂמְחָה בֹּאוּ לְפָנָיו בִּרְנָנָה",
-    "transliteration": "Ivdu et Hashem b'simcha, bo'u lefanav birnana",
-    "translation": "Serve Hashem with joy; come before Him with glad song.",
-    "source": "Tehillim 100:2",
-    "moods": ["happy", "grateful"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-16",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ט״ז",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מִכְתָּם לְדָוִד שׇׁמְרֵנִי אֵל כִּי חָסִיתִי בָךְ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אָמַרְתְּ לַה' אֲדֹנָי אָתָּה טוֹבָתִי בַּל עָלֶיךָ"
+      },
+      {
+        "number": 3,
+        "hebrewText": "לִקְדוֹשִׁים אֲשֶׁר בָּאָרֶץ הֵמָּה וְאַדִּירֵי כׇּל חֶפְצִי בָם"
+      },
+      {
+        "number": 4,
+        "hebrewText": "יִרְבּוּ עַצְּבוֹתָם אַחֵר מָהָרוּ בַּל אַסִּיךְ נִסְכֵּיהֶם מִדָּם וּבַל אֶשָּׂא אֶת שְׁמוֹתָם עַל שְׂפָתָי"
+      },
+      {
+        "number": 5,
+        "hebrewText": "ה' מְנָת חֶלְקִי וְכוֹסִי אַתָּה תּוֹמִיךְ גּוֹרָלִי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "חֲבָלִים נָפְלוּ לִי בַּנְּעִמִים אַף נַחֲלָת שָׁפְרָה עָלָי"
+      },
+      {
+        "number": 7,
+        "hebrewText": "אֲבָרֵךְ אֶת ה' אֲשֶׁר יְעָצָנִי אַף לֵילוֹת יִסְּרוּנִי כִלְיוֹתָי"
+      },
+      {
+        "number": 8,
+        "hebrewText": "שִׁוִּיתִי ה' לְנֶגְדִּי תָמִיד כִּי מִימִינִי בַּל אֶמּוֹט"
+      },
+      {
+        "number": 9,
+        "hebrewText": "לָכֵן שָׂמַח לִבִּי וַיָּגֶל כְּבוֹדִי אַף בְּשָׂרִי יִשְׁכֹּן לָבֶטַח"
+      },
+      {
+        "number": 10,
+        "hebrewText": "כִּי לֹא תַעֲזֹב נַפְשִׁי לִשְׁאוֹל לֹא תִתֵּן חֲסִידְךָ לִרְאוֹת שָׁחַת"
+      },
+      {
+        "number": 11,
+        "hebrewText": "תּוֹדִיעֵנִי אֹרַח חַיִּים שֹׂבַע שְׂמָחוֹת אֶת פָּנֶיךָ נְעִמוֹת בִּימִינְךָ נֶצַח"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 16,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ט״ז (מכתם לדוד) — ללא מקום ליטורגי קבוע משלו.",
+      "standaloneGuidance": "כן, ללא הסתייגות. הערה: פסוק ח' ('שִׁוִּיתִי ה' לְנֶגְדִּי תָמִיד') נפוץ ככיתוב מעל ארונות קודש — שימוש עיצוב/חינוכי, לא חובת אמירה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6316/jewish/Chapter-16.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-23-4",
-    "hebrewText": "גַּם כִּי אֵלֵךְ בְּגֵיא צַלְמָוֶת לֹא אִירָא רָע כִּי אַתָּה עִמָּדִי",
-    "transliteration": "Gam ki elech b'gei tzalmavet, lo ira ra, ki ata imadi",
-    "translation": "Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me.",
-    "source": "Tehillim 23:4",
-    "moods": ["anxious", "stressed", "lonely"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-23",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים כ״ג",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מִזְמוֹר לְדָוִד ה' רֹעִי לֹא אֶחְסָר"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בִּנְאוֹת דֶּשֶׁא יַרְבִּיצֵנִי עַל מֵי מְנֻחוֹת יְנַהֲלֵנִי"
+      },
+      {
+        "number": 3,
+        "hebrewText": "נַפְשִׁי יְשׁוֹבֵב יַנְחֵנִי בְמַעְגְּלֵי צֶדֶק לְמַעַן שְׁמוֹ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "גַּם כִּי אֵלֵךְ בְּגֵיא צַלְמָוֶת לֹא אִירָא רָע כִּי אַתָּה עִמָּדִי שִׁבְטְךָ וּמִשְׁעַנְתֶּךָ הֵמָּה יְנַחֲמֻנִי"
+      },
+      {
+        "number": 5,
+        "hebrewText": "תַּעֲרֹךְ לְפָנַי שֻׁלְחָן נֶגֶד צֹרְרָי דִּשַּׁנְתָּ בַשֶּׁמֶן רֹאשִׁי כּוֹסִי רְוָיָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "אַךְ טוֹב וָחֶסֶד יִרְדְּפוּנִי כׇּל יְמֵי חַיָּי וְשַׁבְתִּי בְּבֵית ה' לְאֹרֶךְ יָמִים"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "lonely",
+      "stressed"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 23,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים כ״ג (מזמור לדוד, ה' רועי) — מזמור עם שתי זיקות מנהגיות מתועדות: סעודה שלישית בשבת, ואזכור הנפטר/הלוויות.",
+      "standaloneGuidance": "כן, אבל כדאי לדעת שיש לו שני הקשרים חזקים: נוהגים לשיר אותו (לעיתים שלוש פעמים) בסעודה שלישית של שבת, וגם — בימינו — לאומרו בהלוויות ואזכרות. אם המזמור הזה מעורר עבורך אסוציאציה של אבל, זה טבעי לגמרי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "אין חובת עמידה לאף אחד מהשימושים."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "סעודה שלישית של שבת",
+          "variantDescription": "מנהג נפוץ לשיר אותו (לעיתים שלוש פעמים) בסעודה שלישית — מנהג, לא חובה; אין איסור לקוראו ביום אחר."
+        }
+      ],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "לא שאלה הלכתית — שאלת ניסוח/רגישות: כיצד להציג מזמור בעל זיקה חזקה לאבלות/הלוויות כ'מזמור היום' כללי בלי ליצור אי-נוחות.",
+      "researchSources": [
+        "https://www.torahmates.org/jewish-resources/singing-mizmor-ldavid-psalm-23-at-the-third-shabbat-meal/",
+        "https://www.chabad.org/library/article_cdo/aid/367830/jewish/Selected-Psalms-to-Be-Recited-in-the-Presence-of-the-Deceased.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר. הפריט היחיד בקבוצת התהלים הראשונה עם זיקה תוכנית משמעותית שראוי לשים לב אליה בעיצוב."
+    }
   },
   {
-    "id": "tehillim-27-1",
-    "hebrewText": "ה' אוֹרִי וְיִשְׁעִי מִמִּי אִירָא",
-    "transliteration": "Hashem ori v'yish'i, mimi ira",
-    "translation": "Hashem is my light and my salvation; whom shall I fear?",
-    "source": "Tehillim 27:1",
-    "moods": ["anxious", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-27",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים כ״ז",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לְדָוִד ה' אוֹרִי וְיִשְׁעִי מִמִּי אִירָא ה' מָעוֹז חַיַּי מִמִּי אֶפְחָד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בִּקְרֹב עָלַי מְרֵעִים לֶאֱכֹל אֶת בְּשָׂרִי צָרַי וְאֹיְבַי לִי הֵמָּה כָשְׁלוּ וְנָפָלוּ"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אִם תַּחֲנֶה עָלַי מַחֲנֶה לֹא יִירָא לִבִּי אִם תָּקוּם עָלַי מִלְחָמָה בְּזֹאת אֲנִי בוֹטֵחַ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "אַחַת שָׁאַלְתִּי מֵאֵת ה' אוֹתָהּ אֲבַקֵּשׁ שִׁבְתִּי בְּבֵית ה' כׇּל יְמֵי חַיַּי לַחֲזוֹת בְּנֹעַם ה' וּלְבַקֵּר בְּהֵיכָלוֹ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "כִּי יִצְפְּנֵנִי בְּסֻכֹּה בְּיוֹם רָעָה יַסְתִּרֵנִי בְּסֵתֶר אׇהֳלוֹ בְּצוּר יְרוֹמְמֵנִי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "וְעַתָּה יָרוּם רֹאשִׁי עַל אֹיְבַי סְבִיבוֹתַי וְאֶזְבְּחָה בְאׇהֳלוֹ זִבְחֵי תְרוּעָה אָשִׁירָה וַאֲזַמְּרָה לַה'"
+      },
+      {
+        "number": 7,
+        "hebrewText": "שְׁמַע ה' קוֹלִי אֶקְרָא וְחׇנֵּנִי וַעֲנֵנִי"
+      },
+      {
+        "number": 8,
+        "hebrewText": "לְךָ אָמַר לִבִּי בַּקְּשׁוּ פָנָי אֶת פָּנֶיךָ ה' אֲבַקֵּשׁ"
+      },
+      {
+        "number": 9,
+        "hebrewText": "אַל תַּסְתֵּר פָּנֶיךָ מִמֶּנִּי אַל תַּט בְּאַף עַבְדֶּךָ עֶזְרָתִי הָיִיתָ אַל תִּטְּשֵׁנִי וְאַל תַּעַזְבֵנִי אֱלֹקֵי יִשְׁעִי"
+      },
+      {
+        "number": 10,
+        "hebrewText": "כִּי אָבִי וְאִמִּי עֲזָבוּנִי וַה' יַאַסְפֵנִי"
+      },
+      {
+        "number": 11,
+        "hebrewText": "הוֹרֵנִי ה' דַּרְכֶּךָ וּנְחֵנִי בְּאֹרַח מִישׁוֹר לְמַעַן שׁוֹרְרָי"
+      },
+      {
+        "number": 12,
+        "hebrewText": "אַל תִּתְּנֵנִי בְּנֶפֶשׁ צָרָי כִּי קָמוּ בִי עֵדֵי שֶׁקֶר וִיפֵחַ חָמָס"
+      },
+      {
+        "number": 13,
+        "hebrewText": "לוּלֵא הֶאֱמַנְתִּי לִרְאוֹת בְּטוּב ה' בְּאֶרֶץ חַיִּים"
+      },
+      {
+        "number": 14,
+        "hebrewText": "קַוֵּה אֶל ה' חֲזַק וְיַאֲמֵץ לִבֶּךָ וְקַוֵּה אֶל ה'"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 27,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים כ״ז (לדוד ה' אורי) — נאמר פעמיים ביום, במרבית הקהילות, מראש חודש אלול ועד סוף חג הסוכות (הטווח המדויק משתנה לפי מנהג).",
+      "standaloneGuidance": "כן, ללא הסתייגות — קריאתו מחוץ לתקופת אלול-סוכות אינה אסורה או בעייתית; היא פשוט אינה המנהג המיוחד, המהווה תוספת מומלצת ולא הגבלה. מקורו קבלי-מאוחר (המאה ה-16 בקירוב), לא תלמודי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה — תוספת לתפילה, לא חלק ממבנה העמידה עצמו."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "אלול עד הושענא רבה/שמיני עצרת (משתנה לפי מנהג)",
+          "variantDescription": "נאמר פעמיים ביום; טווח הסיום המדויק משתנה — ישראל/חב״ד עד הושענא רבה, קהילות אחרות עד יום כיפור, ואחרות עד שמיני עצרת/שמחת תורה בתפוצות."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "נוסח ספרד",
+          "difference": "נאמר אחרי שחרית ומנחה."
+        },
+        {
+          "community": "אשכנז",
+          "difference": "נאמר אחרי שחרית וערבית."
+        },
+        {
+          "community": "חב״ד",
+          "difference": "נאמר אחרי שיר של יום ולפני עלינו."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/holidays/JewishNewYear/template_cdo/aid/3440228/jewish/Why-Do-We-Say-LDovid-Hashem-Ori-Psalm-27-During-the-Month-of-Elul.htm",
+        "https://schechter.edu/why-do-we-recite-psalm-27-from-rosh-hodesh-elul-until-hoshanah-rabbah-responsa-for-today-volume-4-issue-no-1-october-2009/"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-118-24",
-    "hebrewText": "זֶה הַיּוֹם עָשָׂה ה' נָגִילָה וְנִשְׂמְחָה בוֹ",
-    "transliteration": "Zeh hayom asa Hashem, nagila v'nismecha vo",
-    "translation": "This is the day Hashem has made; let us rejoice and be glad in it.",
-    "source": "Tehillim 118:24",
-    "moods": ["happy", "grateful"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-30",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ל׳",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מִזְמוֹר שִׁיר חֲנֻכַּת הַבַּיִת לְדָוִד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֲרוֹמִמְךָ ה' כִּי דִלִּיתָנִי וְלֹא שִׂמַּחְתָּ אֹיְבַי לִי"
+      },
+      {
+        "number": 3,
+        "hebrewText": "ה' אֱלֹקָי שִׁוַּעְתִּי אֵלֶיךָ וַתִּרְפָּאֵנִי"
+      },
+      {
+        "number": 4,
+        "hebrewText": "ה' הֶעֱלִיתָ מִן שְׁאוֹל נַפְשִׁי חִיִּיתַנִי (מיורדי) מִיׇּרְדִי בוֹר"
+      },
+      {
+        "number": 5,
+        "hebrewText": "זַמְּרוּ לַה' חֲסִידָיו וְהוֹדוּ לְזֵכֶר קׇדְשׁוֹ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "כִּי רֶגַע בְּאַפּוֹ חַיִּים בִּרְצוֹנוֹ בָּעֶרֶב יָלִין בֶּכִי וְלַבֹּקֶר רִנָּה"
+      },
+      {
+        "number": 7,
+        "hebrewText": "וַאֲנִי אָמַרְתִּי בְשַׁלְוִי בַּל אֶמּוֹט לְעוֹלָם"
+      },
+      {
+        "number": 8,
+        "hebrewText": "ה' בִּרְצוֹנְךָ הֶעֱמַדְתָּה לְהַרְרִי עֹז הִסְתַּרְתָּ פָנֶיךָ הָיִיתִי נִבְהָל"
+      },
+      {
+        "number": 9,
+        "hebrewText": "אֵלֶיךָ ה' אֶקְרָא וְאֶל אֲדֹנָי אֶתְחַנָּן"
+      },
+      {
+        "number": 10,
+        "hebrewText": "מַה בֶּצַע בְּדָמִי בְּרִדְתִּי אֶל שָׁחַת הֲיוֹדְךָ עָפָר הֲיַגִּיד אֲמִתֶּךָ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "שְׁמַע ה' וְחׇנֵּנִי ה' הֱיֵה עֹזֵר לִי"
+      },
+      {
+        "number": 12,
+        "hebrewText": "הָפַכְתָּ מִסְפְּדִי לְמָחוֹל לִי פִּתַּחְתָּ שַׂקִּי וַתְּאַזְּרֵנִי שִׂמְחָה"
+      },
+      {
+        "number": 13,
+        "hebrewText": "לְמַעַן יְזַמֶּרְךָ כָבוֹד וְלֹא יִדֹּם ה' אֱלֹקַי לְעוֹלָם אוֹדֶךָּ"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "tired",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 30,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "'מזמור שיר חנוכת הבית לדוד' — לפי מסכת סופרים, זהו מזמור היום הקבוע של חנוכה. מקורו התלמודי/גאוני הוא כשיר שחיבר דוד לחנוכת בית המקדש בידי שלמה בנו.",
+      "standaloneGuidance": "כן — זה טקסט מקראי, ואין שום בעיה לקרוא אותו בעצמו בכל עת. שווה לדעת: הכללתו כחלק קבוע מפסוקי דזמרה היומיים היא תוספת מאוחרת יחסית (מהמאה ה-17), והוא לא מופיע ברוב מקורות התפילה הקלאסיים והמוקדמים יותר. במסורת הספרדית הוא מוכר בעיקר כמנהג לפני ׳ברוך שאמר׳ בחנוכה, לא כל השנה.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדן בחובת עמידה עבור מזמור זה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "חנוכה",
+          "variantDescription": "לפי מסכת סופרים — מזמור היום הקבוע של חנוכה. במסורת הספרדית מיקומו הקבוע (לפני 'ברוך שאמר') משויך לחנוכה בלבד, לא לכל השנה."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "ספרד",
+          "difference": "נאמר לפני 'ברוך שאמר' בחנוכה בלבד, לפי מקור אחד שנבדק."
+        },
+        {
+          "community": "כלל",
+          "difference": "הכללתו בסידורים כחלק מהתפילה היומית, מעבר לחנוכה, היא תוספת מאוחרת (מהמאה ה-17) שההיקף המדויק שלה היום לא לגמרי ברור."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "low",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "לא אומת האם ובאיזה היקף נאמר מזמור זה כיום כחלק קבוע מהתפילה היומית (מחוץ לחנוכה) בסידורים אשכנזיים מודפסים מול היותו ייחודי לחנוכה בלבד בנוסח ספרד — שני ניסיונות שליפת מקור נוספים נכשלו (404/403). דורש מקור נוסף לפני קביעה.",
+      "researchSources": [
+        "https://www.ou.org/holidays/mizmor_shir_chanukat_translation_etc/",
+        "https://jewishlink.news/when-did-mizmor-shir-chanukat-habayit-enter-daily-shacharit/"
+      ],
+      "researchNotes": "ראו src/content/research/liturgical-context-research.md. פריט זה הוחמץ בטעות מקיבוץ המחקר המקורי של פרקי תהלים ונחקר בנפרד — היקף המחקר קל יותר מהאחרים כתוצאה מכך."
+    }
   },
   {
-    "id": "tehillim-121-1",
-    "hebrewText": "אֶשָּׂא עֵינַי אֶל הֶהָרִים מֵאַיִן יָבֹא עֶזְרִי, עֶזְרִי מֵעִם ה' עֹשֵׂה שָׁמַיִם וָאָרֶץ",
-    "transliteration": "Esa einai el heharim, me'ayin yavo ezri; ezri me'im Hashem, oseh shamayim va'aretz",
-    "translation": "I lift my eyes to the mountains — from where will my help come? My help comes from Hashem, Maker of heaven and earth.",
-    "source": "Tehillim 121:1-2",
-    "moods": ["anxious", "stressed", "lonely"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-34",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ל״ד",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לְדָוִד בְּשַׁנּוֹתוֹ אֶת טַעְמוֹ לִפְנֵי אֲבִימֶלֶךְ וַיְגָרְשֵׁהוּ וַיֵּלַךְ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֲבָרְכָה אֶת ה' בְּכׇל עֵת תָּמִיד תְּהִלָּתוֹ בְּפִי"
+      },
+      {
+        "number": 3,
+        "hebrewText": "בַּה' תִּתְהַלֵּל נַפְשִׁי יִשְׁמְעוּ עֲנָוִים וְיִשְׂמָחוּ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "גַּדְּלוּ לַה' אִתִּי וּנְרוֹמְמָה שְׁמוֹ יַחְדָּו"
+      },
+      {
+        "number": 5,
+        "hebrewText": "דָּרַשְׁתִּי אֶת ה' וְעָנָנִי וּמִכׇּל מְגוּרוֹתַי הִצִּילָנִי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "הִבִּיטוּ אֵלָיו וְנָהָרוּ וּפְנֵיהֶם אַל יֶחְפָּרוּ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "זֶה עָנִי קָרָא וַה' שָׁמֵעַ וּמִכׇּל צָרוֹתָיו הוֹשִׁיעוֹ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "חֹנֶה מַלְאַךְ ה' סָבִיב לִירֵאָיו וַיְחַלְּצֵם"
+      },
+      {
+        "number": 9,
+        "hebrewText": "טַעֲמוּ וּרְאוּ כִּי טוֹב ה' אַשְׁרֵי הַגֶּבֶר יֶחֱסֶה בּוֹ"
+      },
+      {
+        "number": 10,
+        "hebrewText": "יְראוּ אֶת ה' קְדֹשָׁיו כִּי אֵין מַחְסוֹר לִירֵאָיו"
+      },
+      {
+        "number": 11,
+        "hebrewText": "כְּפִירִים רָשׁוּ וְרָעֵבוּ וְדֹרְשֵׁי ה' לֹא יַחְסְרוּ כׇל טוֹב"
+      },
+      {
+        "number": 12,
+        "hebrewText": "לְכוּ בָנִים שִׁמְעוּ לִי יִרְאַת ה' אֲלַמֶּדְכֶם"
+      },
+      {
+        "number": 13,
+        "hebrewText": "מִי הָאִישׁ הֶחָפֵץ חַיִּים אֹהֵב יָמִים לִרְאוֹת טוֹב"
+      },
+      {
+        "number": 14,
+        "hebrewText": "נְצֹר לְשׁוֹנְךָ מֵרָע וּשְׂפָתֶיךָ מִדַּבֵּר מִרְמָה"
+      },
+      {
+        "number": 15,
+        "hebrewText": "סוּר מֵרָע וַעֲשֵׂה טוֹב בַּקֵּשׁ שָׁלוֹם וְרׇדְפֵהוּ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "עֵינֵי ה' אֶל צַדִּיקִים וְאׇזְנָיו אֶל שַׁוְעָתָם"
+      },
+      {
+        "number": 17,
+        "hebrewText": "פְּנֵי ה' בְּעֹשֵׂי רָע לְהַכְרִית מֵאֶרֶץ זִכְרָם"
+      },
+      {
+        "number": 18,
+        "hebrewText": "צָעֲקוּ וַה' שָׁמֵעַ וּמִכׇּל צָרוֹתָם הִצִּילָם"
+      },
+      {
+        "number": 19,
+        "hebrewText": "קָרוֹב ה' לְנִשְׁבְּרֵי לֵב וְאֶת דַּכְּאֵי רוּחַ יוֹשִׁיעַ"
+      },
+      {
+        "number": 20,
+        "hebrewText": "רַבּוֹת רָעוֹת צַדִּיק וּמִכֻּלָּם יַצִּילֶנּוּ ה'"
+      },
+      {
+        "number": 21,
+        "hebrewText": "שֹׁמֵר כׇּל עַצְמוֹתָיו אַחַת מֵהֵנָּה לֹא נִשְׁבָּרָה"
+      },
+      {
+        "number": 22,
+        "hebrewText": "תְּמוֹתֵת רָשָׁע רָעָה וְשֹׂנְאֵי צַדִּיק יֶאְשָׁמוּ"
+      },
+      {
+        "number": 23,
+        "hebrewText": "פֹּדֶה ה' נֶפֶשׁ עֲבָדָיו וְלֹא יֶאְשְׁמוּ כׇּל הַחֹסִים בּוֹ"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 34,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ל״ד (לדוד בשנותו) — פסוק ל״ד:י״א (לא בהכרח כלול כאן) משולב בנוסחי סיום ברכת המזון בחלק מהקהילות.",
+      "standaloneGuidance": "כן, ללא הסתייגות — שילוב פסוק בודד בברכת המזון בחלק מהנוסחים הוא שימוש טקסטואלי נפרד מקריאת הפרק השלם כטקסט עצמאי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "נוסחי סידור שונים",
+          "difference": "הצירוף של הפסוק הזה לסיום ברכת המזון משתנה בין הנוסחים השונים."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://oztorah.com/2023/05/psalms-3725-and-3411-after-meal-theology/"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-30-6",
-    "hebrewText": "בָּעֶרֶב יָלִין בֶּכִי וְלַבֹּקֶר רִנָּה",
-    "transliteration": "Ba'erev yalin bechi, v'laboker rina",
-    "translation": "Weeping may linger for the night, but joy comes in the morning.",
-    "source": "Tehillim 30:6",
-    "moods": ["stressed", "tired", "lonely"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-46",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים מ״ו",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ לִבְנֵי קֹרַח עַל עֲלָמוֹת שִׁיר"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֱלֹקִים לָנוּ מַחֲסֶה וָעֹז עֶזְרָה בְצָרוֹת נִמְצָא מְאֹד"
+      },
+      {
+        "number": 3,
+        "hebrewText": "עַל כֵּן לֹא נִירָא בְּהָמִיר אָרֶץ וּבְמוֹט הָרִים בְּלֵב יַמִּים"
+      },
+      {
+        "number": 4,
+        "hebrewText": "יֶהֱמוּ יֶחְמְרוּ מֵימָיו יִרְעֲשׁוּ הָרִים בְּגַאֲוָתוֹ סֶלָה"
+      },
+      {
+        "number": 5,
+        "hebrewText": "נָהָר פְּלָגָיו יְשַׂמְּחוּ עִיר אֱלֹקִים קְדֹשׁ מִשְׁכְּנֵי עֶלְיוֹן"
+      },
+      {
+        "number": 6,
+        "hebrewText": "אֱלֹקִים בְּקִרְבָּהּ בַּל תִּמּוֹט יַעְזְרֶהָ אֱלֹקִים לִפְנוֹת בֹּקֶר"
+      },
+      {
+        "number": 7,
+        "hebrewText": "הָמוּ גוֹיִם מָטוּ מַמְלָכוֹת נָתַן בְּקוֹלוֹ תָּמוּג אָרֶץ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "ה' צְבָאוֹת עִמָּנוּ מִשְׂגָּב לָנוּ אֱלֹקֵי יַעֲקֹב סֶלָה"
+      },
+      {
+        "number": 9,
+        "hebrewText": "לְכוּ חֲזוּ מִפְעֲלוֹת ה' אֲשֶׁר שָׂם שַׁמּוֹת בָּאָרֶץ"
+      },
+      {
+        "number": 10,
+        "hebrewText": "מַשְׁבִּית מִלְחָמוֹת עַד קְצֵה הָאָרֶץ קֶשֶׁת יְשַׁבֵּר וְקִצֵּץ חֲנִית עֲגָלוֹת יִשְׂרֹף בָּאֵשׁ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "הַרְפּוּ וּדְעוּ כִּי אָנֹכִי אֱלֹקִים אָרוּם בַּגּוֹיִם אָרוּם בָּאָרֶץ"
+      },
+      {
+        "number": 12,
+        "hebrewText": "ה' צְבָאוֹת עִמָּנוּ מִשְׂגָּב לָנוּ אֱלֹקֵי יַעֲקֹב סֶלָה"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 46,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים מ״ו (אלקים לנו מחסה) — מזמור המוזכר לעיתים ברשימות תהלים למצבי מצוקה/הגנה.",
+      "standaloneGuidance": "כן — יש אתרים שמציגים אותו כ׳תהלים להגנה׳, אבל זה מבוסס על מקור לא חזק במיוחד. זה לא מגביל את השימוש הרגיל בפרק, רק כדאי לא לבנות על זה טענה הלכתית מוצקה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "low",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6346/jewish/Chapter-46.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר. טענת 'רשימת הגנה' מבוססת על מקור איכות נמוכה — לא הוצגה כעובדה בשדות המובנים."
+    }
   },
   {
-    "id": "tehillim-34-19",
-    "hebrewText": "קָרוֹב ה' לְנִשְׁבְּרֵי לֵב וְאֶת דַּכְּאֵי רוּחַ יוֹשִׁיעַ",
-    "transliteration": "Karov Hashem l'nishb'rei lev, v'et daka'ei ruach yoshia",
-    "translation": "Hashem is close to the brokenhearted, and saves those crushed in spirit.",
-    "source": "Tehillim 34:19",
-    "moods": ["lonely", "stressed", "anxious"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-84",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים פ״ד",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ עַל הַגִּתִּית לִבְנֵי קֹרַח מִזְמוֹר"
+      },
+      {
+        "number": 2,
+        "hebrewText": "מַה יְּדִידוֹת מִשְׁכְּנוֹתֶיךָ ה' צְבָאוֹת"
+      },
+      {
+        "number": 3,
+        "hebrewText": "נִכְסְפָה וְגַם כָּלְתָה נַפְשִׁי לְחַצְרוֹת ה' לִבִּי וּבְשָׂרִי יְרַנְּנוּ אֶל אֵל חָי"
+      },
+      {
+        "number": 4,
+        "hebrewText": "גַּם צִפּוֹר מָצְאָה בַיִת וּדְרוֹר קֵן לָהּ אֲשֶׁר שָׁתָה אֶפְרֹחֶיהָ אֶת מִזְבְּחוֹתֶיךָ ה' צְבָאוֹת מַלְכִּי וֵאלֹקָי"
+      },
+      {
+        "number": 5,
+        "hebrewText": "אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "אַשְׁרֵי אָדָם עוֹז לוֹ בָךְ מְסִלּוֹת בִּלְבָבָם"
+      },
+      {
+        "number": 7,
+        "hebrewText": "עֹבְרֵי בְּעֵמֶק הַבָּכָא מַעְיָן יְשִׁיתוּהוּ גַּם בְּרָכוֹת יַעְטֶה מוֹרֶה"
+      },
+      {
+        "number": 8,
+        "hebrewText": "יֵלְכוּ מֵחַיִל אֶל חָיִל יֵרָאֶה אֶל אֱלֹקִים בְּצִיּוֹן"
+      },
+      {
+        "number": 9,
+        "hebrewText": "ה' אֱלֹקִים צְבָאוֹת שִׁמְעָה תְפִלָּתִי הַאֲזִינָה אֱלֹקֵי יַעֲקֹב סֶלָה"
+      },
+      {
+        "number": 10,
+        "hebrewText": "מָגִנֵּנוּ רְאֵה אֱלֹקִים וְהַבֵּט פְּנֵי מְשִׁיחֶךָ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "כִּי טוֹב יוֹם בַּחֲצֵרֶיךָ מֵאָלֶף בָּחַרְתִּי הִסְתּוֹפֵף בְּבֵית אֱלֹקַי מִדּוּר בְּאׇהֳלֵי רֶשַׁע"
+      },
+      {
+        "number": 12,
+        "hebrewText": "כִּי שֶׁמֶשׁ וּמָגֵן ה' אֱלֹקִים חֵן וְכָבוֹד יִתֵּן ה' לֹא יִמְנַע טוֹב לַהֹלְכִים בְּתָמִים"
+      },
+      {
+        "number": 13,
+        "hebrewText": "ה' צְבָאוֹת אַשְׁרֵי אָדָם בֹּטֵחַ בָּךְ"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "lonely"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 84,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים פ״ד (מה ידידות) — פסוקו הפותח משמש כפתיחה נהוגה לתפילת ערבית בחלק מהקהילות (נאמר לעיתים שלוש פעמים), וקשור תוכנית לנושא הכניסה לבית התפילה — בדומה במאפייניו ל'מה טובו'.",
+      "standaloneGuidance": "כן — שימושו כפתיחת ערבית הוא מנהג, לא חובה; קריאת הפרק המלא כטקסט עצמאי בכל שעה הולמת את אופיו.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "חלק מהקהילות",
+          "difference": "נאמר (לעיתים שלוש פעמים) כחלק מפתיחת תפילת ערבית — לא נהוג באופן אוניברסלי."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Psalm_84",
+        "https://en.wikipedia.org/wiki/Ma_Tovu"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-37-5",
-    "hebrewText": "גּוֹל עַל ה' דַּרְכֶּךָ וּבְטַח עָלָיו וְהוּא יַעֲשֶׂה",
-    "transliteration": "Gol al Hashem darkecha, uv'tach alav v'hu ya'aseh",
-    "translation": "Commit your way to Hashem; trust in Him, and He will act.",
-    "source": "Tehillim 37:5",
-    "moods": ["stressed", "anxious", "distracted"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-91",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים צ״א",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "יֹשֵׁב בְּסֵתֶר עֶלְיוֹן בְּצֵל שַׁדַּי יִתְלוֹנָן"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֹמַר לַה' מַחְסִי וּמְצוּדָתִי אֱלֹקַי אֶבְטַח בּוֹ"
+      },
+      {
+        "number": 3,
+        "hebrewText": "כִּי הוּא יַצִּילְךָ מִפַּח יָקוּשׁ מִדֶּבֶר הַוּוֹת"
+      },
+      {
+        "number": 4,
+        "hebrewText": "בְּאֶבְרָתוֹ יָסֶךְ לָךְ וְתַחַת כְּנָפָיו תֶּחְסֶה צִנָּה וְסֹחֵרָה אֲמִתּוֹ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "לֹא תִירָא מִפַּחַד לָיְלָה מֵחֵץ יָעוּף יוֹמָם"
+      },
+      {
+        "number": 6,
+        "hebrewText": "מִדֶּבֶר בָּאֹפֶל יַהֲלֹךְ מִקֶּטֶב יָשׁוּד צׇהֳרָיִם"
+      },
+      {
+        "number": 7,
+        "hebrewText": "יִפֹּל מִצִּדְּךָ אֶלֶף וּרְבָבָה מִימִינֶךָ אֵלֶיךָ לֹא יִגָּשׁ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "רַק בְּעֵינֶיךָ תַבִּיט וְשִׁלֻּמַת רְשָׁעִים תִּרְאֶה"
+      },
+      {
+        "number": 9,
+        "hebrewText": "כִּי אַתָּה ה' מַחְסִי עֶלְיוֹן שַׂמְתָּ מְעוֹנֶךָ"
+      },
+      {
+        "number": 10,
+        "hebrewText": "לֹא תְאֻנֶּה אֵלֶיךָ רָעָה וְנֶגַע לֹא יִקְרַב בְּאׇהֳלֶךָ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "כִּי מַלְאָכָיו יְצַוֶּה לָּךְ לִשְׁמׇרְךָ בְּכׇל דְּרָכֶיךָ"
+      },
+      {
+        "number": 12,
+        "hebrewText": "עַל כַּפַּיִם יִשָּׂאוּנְךָ פֶּן תִּגֹּף בָּאֶבֶן רַגְלֶךָ"
+      },
+      {
+        "number": 13,
+        "hebrewText": "עַל שַׁחַל וָפֶתֶן תִּדְרֹךְ תִּרְמֹס כְּפִיר וְתַנִּין"
+      },
+      {
+        "number": 14,
+        "hebrewText": "כִּי בִי חָשַׁק וַאֲפַלְּטֵהוּ אֲשַׂגְּבֵהוּ כִּי יָדַע שְׁמִי"
+      },
+      {
+        "number": 15,
+        "hebrewText": "יִקְרָאֵנִי וְאֶעֱנֵהוּ עִמּוֹ אָנֹכִי בְצָרָה אֲחַלְּצֵהוּ וַאֲכַבְּדֵהוּ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "אֹרֶךְ יָמִים אַשְׂבִּיעֵהוּ וְאַרְאֵהוּ בִּישׁוּעָתִי"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "tired"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 91,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים צ״א (יושב בסתר) — מזמור הגנה מוכר, רכיב קבוע בקריאת שמע שעל המיטה (לפני השינה) בקהילות רבות.",
+      "standaloneGuidance": "כן, ללא הסתייגות — שימושו הרגיל הוא בהקשר לילי (קריאת שמע שעל המיטה), אך אין מניעה לקוראו בכל שעה כטקסט להגנה/ביטחון.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין — קריאה אישית לפני השינה."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "מוצאי שבת",
+          "difference": "יש מקורות המזכירים התייחסות מיוחדת ל'יושב בסתר' בקריאת שמע שעל המיטה במוצאי שבת (לפני חצות) — פרטים מדויקים לא אומתו לעומק."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://halachipedia.com/index.php?title=Bedtime_Shema",
+        "https://www.chabad.org/library/article_cdo/aid/387092/jewish/Psalm-91.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-16-8",
-    "hebrewText": "שִׁוִּיתִי ה' לְנֶגְדִּי תָמִיד",
-    "transliteration": "Shiviti Hashem l'negdi tamid",
-    "translation": "I have set Hashem before me always.",
-    "source": "Tehillim 16:8",
-    "moods": ["distracted", "anxious"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-100",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ק׳",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מִזְמוֹר לְתוֹדָה הָרִיעוּ לַה' כׇּל הָאָרֶץ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "עִבְדוּ אֶת ה' בְּשִׂמְחָה בֹּאוּ לְפָנָיו בִּרְנָנָה"
+      },
+      {
+        "number": 3,
+        "hebrewText": "דְּעוּ כִּי ה' הוּא אֱלֹקִים הוּא עָשָׂנוּ (ולא) וְלוֹ אֲנַחְנוּ עַמּוֹ וְצֹאן מַרְעִיתוֹ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "בֹּאוּ שְׁעָרָיו בְּתוֹדָה חֲצֵרֹתָיו בִּתְהִלָּה הוֹדוּ לוֹ בָּרְכוּ שְׁמוֹ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "כִּי טוֹב ה' לְעוֹלָם חַסְדּוֹ וְעַד דֹּר וָדֹר אֱמוּנָתוֹ"
+      }
+    ],
+    "moods": [
+      "happy",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 100,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ק׳ (מזמור לתודה) — רכיב קבוע בפסוקי דזמרה בתפילת שחרית של חול, ומושמט בשבת/יום טוב (מוחלף במזמור צ״ב, מזמור שיר ליום השבת).",
+      "standaloneGuidance": "כן, אבל שווה לדעת שיש כאן הבדל מנהג אמיתי בין העדות: באשכנז נהוג להשמיט את המזמור בערב פסח, בחול המועד פסח ובערב יום כיפור, כי הוא מזכיר קרבן תודה שלא ניתן היה להביא באותם ימים. אצל ספרדים הוא נאמר בכל הימים הללו, כי הוא נתפס כשבח כללי ולא כהנצחה ספציפית של הקרבן. האפליקציה מציגה אותו תמיד, בלי קשר ללוח השנה.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false,
+        "idealVsValidNote": "כרכיב פסוקי דזמרה, שייך לחלון הזמן הכללי של פסוקי דזמרה — לא זמן הלכתי עצמאי משלו; האפליקציה אינה מחשבת אותו."
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "אין מקור ספציפי לחובת עמידה לקטע זה לבדו, מעבר לנורמות הכלליות של פסוקי דזמרה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/יום טוב",
+          "variantDescription": "מושמט תמיד, מוחלף במזמור צ״ב."
+        },
+        {
+          "occasion": "ערב פסח, חול המועד פסח, ערב יום כיפור (מנהג אשכנז)",
+          "variantDescription": "מושמט לפי מנהג אשכנז (הקשר לקרבן התודה שלא ניתן היה להביאו בימים אלה); נאמר כרגיל לפי מנהג ספרד."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "אשכנז",
+          "difference": "מושמט בערב פסח, חוה״מ פסח וערב יום כיפור — נתפס כהנצחת קרבן התודה."
+        },
+        {
+          "community": "ספרד",
+          "difference": "נאמר בכל הימים הללו — נתפס כשבח כללי, לא כהנצחת קרבן."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "rabbinicReviewNotes": "הוסר מתור הבדיקה הרבנית (סבב חיזוק אחרון): השאלה שהצדיקה את הסימון הייתה שאלת מוצר (כיצד לאכוף ימי השמטה נוספים הנהוגים באשכנז בלבד), לא שאלה הלכתית שנויה במחלוקת. נפתרה על ידי הרחקת הפריט לחלוטין מהבחירה האקראית (EXCLUDED_FROM_POOL, ראו liturgicalEligibility.ts) עד שתהיה תמיכת נוסח — החלטה שמרנית שאינה דורשת הכרעה רבנית. מנגנון האכיפה האוניברסלי (שבת/יום טוב) ממשיך לפעול ונבדק בנפרד. ראו rabbinic-review-queue.md, קטגוריה D.",
+      "researchSources": [
+        "https://ph.yhb.org.il/en/03-15-05/",
+        "https://ph.yhb.org.il/en/02-14-02/",
+        "https://www.sefaria.org/Siddur_Ashkenaz,_Weekday,_Shacharit,_Pesukei_Dezimra,_Mizmor_Letoda"
+      ],
+      "researchNotes": "ראו מסמך המחקר. הממצא המעשי-ביותר-רלוונטי לאפליקציה מבין כל 19 פרקי התהלים שנחקרו.",
+      "omittedOn": [
+        "shabbat",
+        "yom_tov"
+      ]
+    }
   },
   {
-    "id": "tehillim-73-26",
-    "hebrewText": "צוּר לְבָבִי וְחֶלְקִי אֱלֹקִים לְעוֹלָם",
-    "transliteration": "Tzur levavi v'chelki Elokim l'olam",
-    "translation": "My heart and my flesh may fail, but Hashem is the rock of my heart and my portion forever.",
-    "source": "Tehillim 73:26",
-    "moods": ["tired", "lonely", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-103",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ק״ג",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לְדָוִד בָּרְכִי נַפְשִׁי אֶת ה' וְכׇל קְרָבַי אֶת שֵׁם קׇדְשׁוֹ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בָּרְכִי נַפְשִׁי אֶת ה' וְאַל תִּשְׁכְּחִי כׇּל גְּמוּלָיו"
+      },
+      {
+        "number": 3,
+        "hebrewText": "הַסֹּלֵחַ לְכׇל עֲוֹנֵכִי הָרֹפֵא לְכׇל תַּחֲלוּאָיְכִי"
+      },
+      {
+        "number": 4,
+        "hebrewText": "הַגּוֹאֵל מִשַּׁחַת חַיָּיְכִי הַמְעַטְּרֵכִי חֶסֶד וְרַחֲמִים"
+      },
+      {
+        "number": 5,
+        "hebrewText": "הַמַּשְׂבִּיעַ בַּטּוֹב עֶדְיֵךְ תִּתְחַדֵּשׁ כַּנֶּשֶׁר נְעוּרָיְכִי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "עֹשֵׂה צְדָקוֹת ה' וּמִשְׁפָּטִים לְכׇל עֲשׁוּקִים"
+      },
+      {
+        "number": 7,
+        "hebrewText": "יוֹדִיעַ דְּרָכָיו לְמֹשֶׁה לִבְנֵי יִשְׂרָאֵל עֲלִילוֹתָיו"
+      },
+      {
+        "number": 8,
+        "hebrewText": "רַחוּם וְחַנּוּן ה' אֶרֶךְ אַפַּיִם וְרַב חָסֶד"
+      },
+      {
+        "number": 9,
+        "hebrewText": "לֹא לָנֶצַח יָרִיב וְלֹא לְעוֹלָם יִטּוֹר"
+      },
+      {
+        "number": 10,
+        "hebrewText": "לֹא כַחֲטָאֵינוּ עָשָׂה לָנוּ וְלֹא כַעֲוֹנֹתֵינוּ גָּמַל עָלֵינוּ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "כִּי כִגְבֹהַּ שָׁמַיִם עַל הָאָרֶץ גָּבַר חַסְדּוֹ עַל יְרֵאָיו"
+      },
+      {
+        "number": 12,
+        "hebrewText": "כִּרְחֹק מִזְרָח מִמַּעֲרָב הִרְחִיק מִמֶּנּוּ אֶת פְּשָׁעֵינוּ"
+      },
+      {
+        "number": 13,
+        "hebrewText": "כְּרַחֵם אָב עַל בָּנִים רִחַם ה' עַל יְרֵאָיו"
+      },
+      {
+        "number": 14,
+        "hebrewText": "כִּי הוּא יָדַע יִצְרֵנוּ זָכוּר כִּי עָפָר אֲנָחְנוּ"
+      },
+      {
+        "number": 15,
+        "hebrewText": "אֱנוֹשׁ כֶּחָצִיר יָמָיו כְּצִיץ הַשָּׂדֶה כֵּן יָצִיץ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "כִּי רוּחַ עָבְרָה בּוֹ וְאֵינֶנּוּ וְלֹא יַכִּירֶנּוּ עוֹד מְקוֹמוֹ"
+      },
+      {
+        "number": 17,
+        "hebrewText": "וְחֶסֶד ה' מֵעוֹלָם וְעַד עוֹלָם עַל יְרֵאָיו וְצִדְקָתוֹ לִבְנֵי בָנִים"
+      },
+      {
+        "number": 18,
+        "hebrewText": "לְשֹׁמְרֵי בְרִיתוֹ וּלְזֹכְרֵי פִקֻּדָיו לַעֲשׂוֹתָם"
+      },
+      {
+        "number": 19,
+        "hebrewText": "ה' בַּשָּׁמַיִם הֵכִין כִּסְאוֹ וּמַלְכוּתוֹ בַּכֹּל מָשָׁלָה"
+      },
+      {
+        "number": 20,
+        "hebrewText": "בָּרְכוּ ה' מַלְאָכָיו גִּבֹּרֵי כֹחַ עֹשֵׂי דְבָרוֹ לִשְׁמֹעַ בְּקוֹל דְּבָרוֹ"
+      },
+      {
+        "number": 21,
+        "hebrewText": "בָּרְכוּ ה' כׇּל צְבָאָיו מְשָׁרְתָיו עֹשֵׂי רְצוֹנוֹ"
+      },
+      {
+        "number": 22,
+        "hebrewText": "בָּרְכוּ ה' כׇּל מַעֲשָׂיו בְּכׇל מְקֹמוֹת מֶמְשַׁלְתּוֹ בָּרְכִי נַפְשִׁי אֶת ה'"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 103,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ק״ג (לדוד ברכי נפשי) — ללא מקום ליטורגי קבוע משלו.",
+      "standaloneGuidance": "כן, ללא הסתייגות. הערה חשובה: יש לא לבלבל עם תהלים ק״ד ('ברכי נפשי', ללא 'לדוד'), שיש לו מנהג אמירה מסוים בראש חודש (בזיקה לפסוק על הירח) — מנהג זה שייך לפרק ק״ד ואינו חל על פרק ק״ג (הפריט הנוכחי).",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [],
+      "researchNotes": "ראו מסמך המחקר. יש לוודא באפליקציה עצמה שאין בלבול בין תהלים ק״ג לק״ד בשום מקום — הם פרקים שונים עם פתיחה כמעט זהה."
+    }
   },
   {
-    "id": "tehillim-55-23",
-    "hebrewText": "הַשְׁלֵךְ עַל ה' יְהָבְךָ וְהוּא יְכַלְכְּלֶךָ",
-    "transliteration": "Hashlech al Hashem y'havcha, v'hu y'chalkelecha",
-    "translation": "Cast your burden upon Hashem, and He will sustain you.",
-    "source": "Tehillim 55:23",
-    "moods": ["stressed", "tired", "anxious"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-121",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קכ״א",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר לַמַּעֲלוֹת אֶשָּׂא עֵינַי אֶל הֶהָרִים מֵאַיִן יָבֹא עֶזְרִי"
+      },
+      {
+        "number": 2,
+        "hebrewText": "עֶזְרִי מֵעִם ה' עֹשֵׂה שָׁמַיִם וָאָרֶץ"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אַל יִתֵּן לַמּוֹט רַגְלֶךָ אַל יָנוּם שֹׁמְרֶךָ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "הִנֵּה לֹא יָנוּם וְלֹא יִישָׁן שׁוֹמֵר יִשְׂרָאֵל"
+      },
+      {
+        "number": 5,
+        "hebrewText": "ה' שֹׁמְרֶךָ ה' צִלְּךָ עַל יַד יְמִינֶךָ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "יוֹמָם הַשֶּׁמֶשׁ לֹא יַכֶּכָּה וְיָרֵחַ בַּלָּיְלָה"
+      },
+      {
+        "number": 7,
+        "hebrewText": "ה' יִשְׁמׇרְךָ מִכׇּל רָע יִשְׁמֹר אֶת נַפְשֶׁךָ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "ה' יִשְׁמׇר צֵאתְךָ וּבוֹאֶךָ מֵעַתָּה וְעַד עוֹלָם"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed",
+      "lonely"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 121,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קכ״א (שיר למעלות אשא עיני) — השני מבין 15 'שירי המעלות'. יש לו כמה מיקומים ליטורגיים אמיתיים בחלק מהמנהגים: כחלק מתפילת הדרך, כתוספת לתפילת ערבית או מנחה בעונה מסוימת, ולעיתים נאמר יחד עם תהלים ק״ל עבור חולים.",
+      "standaloneGuidance": "כן — אין שום בעיה לקרוא אותו בעצמו בכל עת. חשוב לציין ביושר: הפרטים המדויקים על אילו עדות אומרות אותו, באיזו תפילה ובאיזו עונה, לא עקביים בין המקורות שנבדקו — טעון בירור נוסף מול סידור מקורי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "low",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "researchSources": [
+        "https://thelehrhaus.com/scholarship/psalm-121-of-pilgrims-perils-and-a-personal-god/",
+        "https://www.chabad.org/library/article_cdo/aid/217669/jewish/The-Shir-Lamaalot.htm",
+        "https://www.etzion.org.il/en/tanakh/ketuvim/sefer-tehillim/psalm-121-travelers-blessing-part-i",
+        "http://archive.hadar.org/tefillah-element/s-mi-esa-einai-el-heharim-psalm-121"
+      ],
+      "researchNotes": "ראו מסמך המחקר. עודכן (בדיקה חוזרת עצמאית): נמצאו טענות למיקומים ליטורגיים אמיתיים (תפילת הדרך, תוספת לערבית/מנחה עונתית, אמירה זוגית עם תהלים ק״ל לחולים) שאינם עקביים זה עם זה בין המקורות — טעון אימות במקור סידור ראשוני לפני קביעה.",
+      "rabbinicReviewNotes": "בדיקה חוזרת עצמאית העלתה שהפרק הזה מוצג בהערכת חסר במחקר המקורי — יש לו מיקומים ליטורגיים ממשיים בחלק מהמנהגים, אך הפרטים המדויקים (עונה, תפילה) סותרים בין מקורות שנמצאו ולא אומתו במקור סידור ראשוני."
+    }
   },
   {
-    "id": "tehillim-91-2",
-    "hebrewText": "אֹמַר לַה' מַחְסִי וּמְצוּדָתִי אֱלֹקַי אֶבְטַח בּוֹ",
-    "transliteration": "Omar laHashem, machsi um'tzudati, Elokai evtach bo",
-    "translation": "I say of Hashem: He is my refuge and my fortress, my G-d in whom I trust.",
-    "source": "Tehillim 91:2",
-    "moods": ["anxious", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-126",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קכ״ו",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר הַמַּעֲלוֹת בְּשׁוּב ה' אֶת שִׁיבַת צִיּוֹן הָיִינוּ כְּחֹלְמִים"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אָז יִמָּלֵא שְׂחוֹק פִּינוּ וּלְשׁוֹנֵנוּ רִנָּה אָז יֹאמְרוּ בַגּוֹיִם הִגְדִּיל ה' לַעֲשׂוֹת עִם אֵלֶּק"
+      },
+      {
+        "number": 3,
+        "hebrewText": "הִגְדִּיל ה' לַעֲשׂוֹת עִמָּנוּ הָיִינוּ שְׂמֵחִים"
+      },
+      {
+        "number": 4,
+        "hebrewText": "שׁוּבָה ה' אֶת שְׁבִיתֵנוּ (שבותנו) כַּאֲפִיקִים בַּנֶּגֶב"
+      },
+      {
+        "number": 5,
+        "hebrewText": "הַזֹּרְעִים בְּדִמְעָה בְּרִנָּה יִקְצֹרוּ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "הָלוֹךְ יֵלֵךְ וּבָכֹה נֹשֵׂא מֶשֶׁךְ הַזָּרַע בֹּא יָבֹא בְרִנָּה נֹשֵׂא אֲלֻמֹּתָיו"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "tired"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 126,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קכ״ו (שיר המעלות בשוב ה') — מושר במרבית הקהילות לפני ברכת המזון בשבת וביום טוב.",
+      "standaloneGuidance": "כן — מנהג האמירה לפני ברכת המזון בשבת/יו״ט מקורו בשל״ה (המאה ה-17), מנהג ולא חובה תלמודית; קריאתו ביום חול או כטקסט עצמאי אינה בעייתית.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "נאמר/מושר ליד השולחן, ללא דרישת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/יום טוב",
+          "variantDescription": "מנהג לאומרו לפני ברכת המזון בשבת/יו״ט; אין איסור הלכתי לומר ביום חול, רק שאינו המנהג הרגיל."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "חלק מהקהילות",
+          "difference": "בימות החול נאמר תהלים קל״ז ('על נהרות בבל') במקומו, לפני ברכת המזון — לא מנהג אוניברסלי."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/sheets/313976",
+        "https://etzion.org.il/en/tanakh/ketuvim/sefer-tehillim/mizmor-126-shir-hamaalot",
+        "https://outorah.org/p/46599/"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-84-5",
-    "hebrewText": "אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה",
-    "transliteration": "Ashrei yoshvei veitecha, od y'hal'lucha sela",
-    "translation": "Happy are those who dwell in Your house; they will always praise You.",
-    "source": "Tehillim 84:5",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-130",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ק״ל",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר הַמַּעֲלוֹת מִמַּעֲמַקִּים קְרָאתִיךָ ה'"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֲדֹנָי שִׁמְעָה בְקוֹלִי תִּהְיֶינָה אׇזְנֶיךָ קַשֻּׁבוֹת לְקוֹל תַּחֲנוּנָי"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אִם עֲוֹנוֹת תִּשְׁמׇר יָהּ אֲדֹנָי מִי יַעֲמֹד"
+      },
+      {
+        "number": 4,
+        "hebrewText": "כִּי עִמְּךָ הַסְּלִיחָה לְמַעַן תִּוָּרֵא"
+      },
+      {
+        "number": 5,
+        "hebrewText": "קִוִּיתִי ה' קִוְּתָה נַפְשִׁי וְלִדְבָרוֹ הוֹחָלְתִּי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "נַפְשִׁי לַאדֹנָי מִשֹּׁמְרִים לַבֹּקֶר שֹׁמְרִים לַבֹּקֶר"
+      },
+      {
+        "number": 7,
+        "hebrewText": "יַחֵל יִשְׂרָאֵל אֶל ה' כִּי עִם ה' הַחֶסֶד וְהַרְבֵּה עִמּוֹ פְדוּת"
+      },
+      {
+        "number": 8,
+        "hebrewText": "וְהוּא יִפְדֶּה אֶת יִשְׂרָאֵל מִכֹּל עֲוֹנֹתָיו"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "anxious",
+      "lonely"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 130,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ק״ל (שיר המעלות ממעמקים) — מזמור תשובה, מתווסף לשחרית בעשרת ימי תשובה בחלק מהקהילות.",
+      "standaloneGuidance": "כן — התוספת לשחרית מוגבלת לעשרת ימי תשובה (בין ראש השנה ליום כיפור), אך אין איסור לקרוא את המזמור כטקסט עצמאי בכל עת אחרת בשנה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לקריאה אישית אין דרישת עמידה; בנוסח ספרד יש מנהג ציבורי לאומרו בעמידה לפני ארון פתוח בעשרת ימי תשובה, אך זו תוספת ציבורית ולא דרישה על קריאת הפרק כשלעצמו."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין לקריאה אישית."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "עשרת ימי תשובה",
+          "variantDescription": "מתווסף לשחרית (אחרי ישתבח, לפני ברכו) בתקופה זו בחלק מהקהילות."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "נוסח ספרד",
+          "difference": "מנהג לאומרו בציבור, בשירה אנטיפונלית, לפני ארון פתוח, בעשרת ימי תשובה."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/1620809/jewish/The-Ten-Days-of-Repentance-The-Aseret-Yemay-Teshuvah.htm",
+        "https://halachipedia.com/index.php?title=Aseret_Yimei_Teshuva"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-126-5",
-    "hebrewText": "הַזֹּרְעִים בְּדִמְעָה בְּרִנָּה יִקְצֹרוּ",
-    "transliteration": "Hazor'im b'dim'ah, b'rina yiktzoru",
-    "translation": "Those who sow in tears will reap with joy.",
-    "source": "Tehillim 126:5",
-    "moods": ["tired", "stressed", "lonely"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-133",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קל״ג",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר הַמַּעֲלוֹת לְדָוִד הִנֵּה מַה טּוֹב וּמַה נָּעִים שֶׁבֶת אַחִים גַּם יָחַד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "כַּשֶּׁמֶן הַטּוֹב עַל הָרֹאשׁ יֹרֵד עַל הַזָּקָן זְקַן אַהֲרֹן שֶׁיֹּרֵד עַל פִּי מִדּוֹתָיו"
+      },
+      {
+        "number": 3,
+        "hebrewText": "כְּטַל חֶרְמוֹן שֶׁיֹּרֵד עַל הַרְרֵי צִיּוֹן כִּי שָׁם צִוָּה ה' אֶת הַבְּרָכָה חַיִּים עַד הָעוֹלָם"
+      }
+    ],
+    "moods": [
+      "happy",
+      "grateful",
+      "lonely"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 133,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קל״ג (שיר המעלות הנה מה טוב) — פסוקו הראשון הוא בסיס הפיוט העממי 'הנה מה טוב', הנפוץ בקבלת שבת ובהתכנסויות.",
+      "standaloneGuidance": "כן, ללא הסתייגות — 'הנה מה טוב' כפזמון הוא שימוש נגזר בפסוק אחד בלבד; קריאת הפרק המלא, כפי שמופיע כאן, כטקסט עצמאי אינה תלויה בשימוש הפזמוני.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "מזרחי/סורי במקור, מאומץ בהמשך בהרחבה (כולל חב״ד כניגון)",
+          "difference": "מקור השימוש בפזמון 'הנה מה טוב' — לא ליטורגיה רשמית מנוסח יחיד."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Hine_Ma_Tov",
+        "https://www.hadar.org/torah-tefillah/services/minhah/songs-of-ascent-sukkot-pesah/hineih-mah-tov-psalm-133"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "tehillim-147-3",
-    "hebrewText": "הָרוֹפֵא לִשְׁבוּרֵי לֵב וּמְחַבֵּשׁ לְעַצְּבוֹתָם",
-    "transliteration": "Harofei lishvurei lev, um'chabesh l'atzvotam",
-    "translation": "He heals the brokenhearted and binds up their wounds.",
-    "source": "Tehillim 147:3",
-    "moods": ["lonely", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-134",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קל״ד",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר הַמַּעֲלוֹת הִנֵּה בָּרְכוּ אֶת ה' כׇּל עַבְדֵי ה' הָעֹמְדִים בְּבֵית ה' בַּלֵּילוֹת"
+      },
+      {
+        "number": 2,
+        "hebrewText": "שְׂאוּ יְדֵכֶם קֹדֶשׁ וּבָרְכוּ אֶת ה'"
+      },
+      {
+        "number": 3,
+        "hebrewText": "יְבָרֶכְךָ ה' מִצִּיּוֹן עֹשֵׂה שָׁמַיִם וָאָרֶץ"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "tired"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 134,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קל״ד (שיר המעלות הנה ברכו) — האחרון מ-15 'שירי המעלות' (תהלים ק״כ-קל״ד).",
+      "standaloneGuidance": "כן, ללא הסתייגות — במנהג נוסח האר״י (ספרדים וחסידים) נאמרים 15 שירי המעלות לפני ערבית של ליל שבת, כשפרק זה חותם את הרצף; זהו מנהג עדתי ספציפי, לא כלל-ישראלי, וקריאת הפרק הבודד כטקסט עצמאי אינה תלויה בו.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה מעבר לנורמות תפילה כלליות."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "ליל שבת (במנהג ספרד/חסידי-האר״י)",
+          "variantDescription": "רצף 15 שירי המעלות נאמר לפני ערבית של ליל שבת, קשור למספר המעלות במקדש ולכניסה לשבת."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "ספרד/חסידי (נוסח האר״י)",
+          "difference": "רצף 15 שירי המעלות בליל שבת אינו נהוג באשכנז הרגיל."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Psalm_134",
+        "https://en.wikipedia.org/wiki/Song_of_Ascents"
+      ],
+      "researchNotes": "ראו מסמך המחקר. שני המקורות חולקים את אותו בסיס טענה (מהר״ל/האר״י) — להתייחס כשרשור מקור אחד מתחזק, לא שני מקורות עצמאיים."
+    }
   },
   {
-    "id": "tehillim-145-18",
-    "hebrewText": "קָרוֹב ה' לְכָל קֹרְאָיו לְכֹל אֲשֶׁר יִקְרָאֻהוּ בֶאֱמֶת",
-    "transliteration": "Karov Hashem l'chol kor'av, l'chol asher yikra'uhu ve'emet",
-    "translation": "Hashem is close to all who call upon Him, to all who call upon Him in truth.",
-    "source": "Tehillim 145:18",
-    "moods": ["lonely", "anxious", "distracted"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-139",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קל״ט",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ לְדָוִד מִזְמוֹר ה' חֲקַרְתַּנִי וַתֵּדָע"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אַתָּה יָדַעְתָּ שִׁבְתִּי וְקוּמִי בַּנְתָּה לְרֵעִי מֵרָחוֹק"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אׇרְחִי וְרִבְעִי זֵרִיתָ וְכׇל דְּרָכַי הִסְכַּנְתָּה"
+      },
+      {
+        "number": 4,
+        "hebrewText": "כִּי אֵין מִלָּה בִּלְשׁוֹנִי הֵן ה' יָדַעְתָּ כֻלָּהּ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "אָחוֹר וָקֶדֶם צַרְתָּנִי וַתָּשֶׁת עָלַי כַּפֶּכָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "(פלאיה) פְּלִיאָה דַעַת מִמֶּנִּי נִשְׂגְּבָה לֹא אוּכַל לָהּ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "אָנָה אֵלֵךְ מֵרוּחֶךָ וְאָנָה מִפָּנֶיךָ אֶבְרָח"
+      },
+      {
+        "number": 8,
+        "hebrewText": "אִם אֶסַּק שָׁמַיִם שָׁם אָתָּה וְאַצִּיעָה שְּׁאוֹל הִנֶּךָּ"
+      },
+      {
+        "number": 9,
+        "hebrewText": "אֶשָּׂא כַנְפֵי שָׁחַר אֶשְׁכְּנָה בְּאַחֲרִית יָם"
+      },
+      {
+        "number": 10,
+        "hebrewText": "גַּם שָׁם יָדְךָ תַנְחֵנִי וְתֹאחֲזֵנִי יְמִינֶךָ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "וָאֹמַר אַךְ חֹשֶׁךְ יְשׁוּפֵנִי וְלַיְלָה אוֹר בַּעֲדֵנִי"
+      },
+      {
+        "number": 12,
+        "hebrewText": "גַּם חֹשֶׁךְ לֹא יַחְשִׁיךְ מִמֶּךָּ וְלַיְלָה כַּיּוֹם יָאִיר כַּחֲשֵׁיכָה כָּאוֹרָה"
+      },
+      {
+        "number": 13,
+        "hebrewText": "כִּי אַתָּה קָנִיתָ כִלְיֹתָי תְּסֻכֵּנִי בְּבֶטֶן אִמִּי"
+      },
+      {
+        "number": 14,
+        "hebrewText": "אוֹדְךָ עַל כִּי נוֹרָאוֹת נִפְלֵיתִי נִפְלָאִים מַעֲשֶׂיךָ וְנַפְשִׁי יֹדַעַת מְאֹד"
+      },
+      {
+        "number": 15,
+        "hebrewText": "לֹא נִכְחַד עׇצְמִי מִמֶּךָּ אֲשֶׁר עֻשֵּׂיתִי בַסֵּתֶר רֻקַּמְתִּי בְּתַחְתִּיּוֹת אָרֶץ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "גׇּלְמִי רָאוּ עֵינֶיךָ וְעַל סִפְרְךָ כֻּלָּם יִכָּתֵבוּ יָמִים יֻצָּרוּ (ולא) וְלוֹ אֶחָד בָּהֶם"
+      },
+      {
+        "number": 17,
+        "hebrewText": "וְלִי מַה יָּקְרוּ רֵעֶיךָ אֵל מֶה עָצְמוּ רָאשֵׁיהֶם"
+      },
+      {
+        "number": 18,
+        "hebrewText": "אֶסְפְּרֵם מֵחוֹל יִרְבּוּן הֱקִיצֹתִי וְעוֹדִי עִמָּךְ"
+      },
+      {
+        "number": 19,
+        "hebrewText": "אִם תִּקְטֹל אֱלוֹהַּ רָשָׁע וְאַנְשֵׁי דָמִים סוּרוּ מֶנִּי"
+      },
+      {
+        "number": 20,
+        "hebrewText": "אֲשֶׁר יֹמְרוּךָ לִמְזִמָּה נָשׂוּא לַשָּׁוְא עָרֶיךָ"
+      },
+      {
+        "number": 21,
+        "hebrewText": "הֲלוֹא מְשַׂנְאֶיךָ ה' אֶשְׂנָא וּבִתְקוֹמְמֶיךָ אֶתְקוֹטָט"
+      },
+      {
+        "number": 22,
+        "hebrewText": "תַּכְלִית שִׂנְאָה שְׂנֵאתִים לְאוֹיְבִים הָיוּ לִי"
+      },
+      {
+        "number": 23,
+        "hebrewText": "חׇקְרֵנִי אֵל וְדַע לְבָבִי בְּחָנֵנִי וְדַע שַׂרְעַפָּי"
+      },
+      {
+        "number": 24,
+        "hebrewText": "וּרְאֵה אִם דֶּרֶךְ עֹצֶב בִּי וּנְחֵנִי בְּדֶרֶךְ עוֹלָם"
+      }
+    ],
+    "moods": [
+      "distracted",
+      "anxious",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 139,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קל״ט (ה' חקרתני ותדע) — מזמור הגותי-אישי, ללא מקום ליטורגי קבוע.",
+      "standaloneGuidance": "כן, ללא הסתייגות — לא נמצא מקום ליטורגי קבוע או מנהג ייחודי. זיקה חלשה לפרשת בראשית (נושא הבריאה) בהקשרי לימוד, לא בהקשר תפילתי.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/topics/psalm-139"
+      ],
+      "researchNotes": "ראו מסמך המחקר. בעיקר ממצא של היעדר מנהג ייחודי, לא ביסוס של קיומו."
+    }
   },
   {
-    "id": "tehillim-133-1",
-    "hebrewText": "הִנֵּה מַה טּוֹב וּמַה נָּעִים שֶׁבֶת אַחִים גַּם יָחַד",
-    "transliteration": "Hine ma tov uma na'im, shevet achim gam yachad",
-    "translation": "How good and pleasant it is when brothers dwell together in unity.",
-    "source": "Tehillim 133:1",
-    "moods": ["happy", "grateful", "lonely"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-142",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קמ״ב",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מַשְׂכִּיל לְדָוִד בִּהְיוֹתוֹ בַמְּעָרָה תְפִלָּה"
+      },
+      {
+        "number": 2,
+        "hebrewText": "קוֹלִי אֶל ה' אֶזְעָק קוֹלִי אֶל ה' אֶתְחַנָּן"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אֶשְׁפֹּךְ לְפָנָיו שִׂיחִי צָרָתִי לְפָנָיו אַגִּיד"
+      },
+      {
+        "number": 4,
+        "hebrewText": "בְּהִתְעַטֵּף עָלַי רוּחִי וְאַתָּה יָדַעְתָּ נְתִיבָתִי בְּאֹרַח זוּ אֲהַלֵּךְ טָמְנוּ פַח לִי"
+      },
+      {
+        "number": 5,
+        "hebrewText": "הַבֵּיט יָמִין וּרְאֵה וְאֵין לִי מַכִּיר אָבַד מָנוֹס מִמֶּנִּי אֵין דּוֹרֵשׁ לְנַפְשִׁי"
+      },
+      {
+        "number": 6,
+        "hebrewText": "זָעַקְתִּי אֵלֶיךָ ה' אָמַרְתִּי אַתָּה מַחְסִי חֶלְקִי בְּאֶרֶץ הַחַיִּים"
+      },
+      {
+        "number": 7,
+        "hebrewText": "הַקְשִׁיבָה אֶל רִנָּתִי כִּי דַלּוֹתִי מְאֹד הַצִּילֵנִי מֵרֹדְפַי כִּי אָמְצוּ מִמֶּנִּי"
+      },
+      {
+        "number": 8,
+        "hebrewText": "הוֹצִיאָה מִמַּסְגֵּר נַפְשִׁי לְהוֹדוֹת אֶת שְׁמֶךָ בִּי יַכְתִּרוּ צַדִּיקִים כִּי תִגְמֹל עָלָי"
+      }
+    ],
+    "moods": [
+      "lonely",
+      "stressed"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 142,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קמ״ב (משכיל לדוד, תפילה) — מזמור בקשה אישי, ללא מקום ליטורגי יהודי מתועד.",
+      "standaloneGuidance": "כן — לא נמצא מקום ליטורגי או מנהג יהודי ספציפי לפרק זה (בניגוד למקורות נוצריים שסווגוהו כ'מזמור וידוי', שאינם רלוונטיים למקורות יהודיים). קריאתו הולמת את השימוש הכללי בתהלים לתחינה/מצוקה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "low",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/6442/jewish/Chapter-142.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר. היעדר ראיה למנהג ספציפי, לא הוכחה שאינו קיים — טעון בדיקה נוספת אם רוצים לקבוע יותר."
+    }
   },
   {
-    "id": "tehillim-4-9",
-    "hebrewText": "בְּשָׁלוֹם יַחְדָּו אֶשְׁכְּבָה וְאִישָׁן כִּי אַתָּה ה' לְבָדָד לָבֶטַח תּוֹשִׁיבֵנִי",
-    "transliteration": "B'shalom yachdav eshk'va v'ishan, ki ata Hashem l'vadad lavetach toshiveini",
-    "translation": "In peace I will both lie down and sleep, for You alone, Hashem, make me dwell in safety.",
-    "source": "Tehillim 4:9",
-    "moods": ["tired", "anxious"],
-    "contentTypes": ["tehillim"],
-    "length": "medium"
+    "id": "tehillim-145",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קמ״ה",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "תְּהִלָּה לְדָוִד אֲרוֹמִמְךָ אֱלוֹהַי הַמֶּלֶךְ וַאֲבָרְכָה שִׁמְךָ לְעוֹלָם וָעֶד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בְּכׇל יוֹם אֲבָרְכֶךָּ וַאֲהַלְלָה שִׁמְךָ לְעוֹלָם וָעֶד"
+      },
+      {
+        "number": 3,
+        "hebrewText": "גָּדוֹל ה' וּמְהֻלָּל מְאֹד וְלִגְדֻלָּתוֹ אֵין חֵקֶר"
+      },
+      {
+        "number": 4,
+        "hebrewText": "דּוֹר לְדוֹר יְשַׁבַּח מַעֲשֶׂיךָ וּגְבוּרֹתֶיךָ יַגִּידוּ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "הֲדַר כְּבוֹד הוֹדֶךָ וְדִבְרֵי נִפְלְאֹתֶיךָ אָשִׂיחָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "וֶעֱזוּז נוֹרְאֹתֶיךָ יֹאמֵרוּ (וגדלותיך) וּגְדֻלָּתְךָ אֲסַפְּרֶנָּה"
+      },
+      {
+        "number": 7,
+        "hebrewText": "זֵכֶר רַב טוּבְךָ יַבִּיעוּ וְצִדְקָתְךָ יְרַנֵּנוּ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "חַנּוּן וְרַחוּם ה' אֶרֶךְ אַפַּיִם וּגְדׇל חָסֶד"
+      },
+      {
+        "number": 9,
+        "hebrewText": "טוֹב ה' לַכֹּל וְרַחֲמָיו עַל כׇּל מַעֲשָׂיו"
+      },
+      {
+        "number": 10,
+        "hebrewText": "יוֹדוּךָ ה' כׇּל מַעֲשֶׂיךָ וַחֲסִידֶיךָ יְבָרְכוּכָה"
+      },
+      {
+        "number": 11,
+        "hebrewText": "כְּבוֹד מַלְכוּתְךָ יֹאמֵרוּ וּגְבוּרָתְךָ יְדַבֵּרוּ"
+      },
+      {
+        "number": 12,
+        "hebrewText": "לְהוֹדִיעַ לִבְנֵי הָאָדָם גְּבוּרֹתָיו וּכְבוֹד הֲדַר מַלְכוּתוֹ"
+      },
+      {
+        "number": 13,
+        "hebrewText": "מַלְכוּתְךָ מַלְכוּת כׇּל עֹלָמִים וּמֶמְשַׁלְתְּךָ בְּכׇל דּוֹר וָדֹר"
+      },
+      {
+        "number": 14,
+        "hebrewText": "סוֹמֵךְ ה' לְכׇל הַנֹּפְלִים וְזוֹקֵף לְכׇל הַכְּפוּפִים"
+      },
+      {
+        "number": 15,
+        "hebrewText": "עֵינֵי כֹל אֵלֶיךָ יְשַׂבֵּרוּ וְאַתָּה נוֹתֵן לָהֶם אֶת אׇכְלָם בְּעִתּוֹ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "פּוֹתֵחַ אֶת יָדֶךָ וּמַשְׂבִּיעַ לְכׇל חַי רָצוֹן"
+      },
+      {
+        "number": 17,
+        "hebrewText": "צַדִּיק ה' בְּכׇל דְּרָכָיו וְחָסִיד בְּכׇל מַעֲשָׂיו"
+      },
+      {
+        "number": 18,
+        "hebrewText": "קָרוֹב ה' לְכׇל קֹרְאָיו לְכֹל אֲשֶׁר יִקְרָאֻהוּ בֶאֱמֶת"
+      },
+      {
+        "number": 19,
+        "hebrewText": "רְצוֹן יְרֵאָיו יַעֲשֶׂה וְאֶת שַׁוְעָתָם יִשְׁמַע וְיוֹשִׁיעֵם"
+      },
+      {
+        "number": 20,
+        "hebrewText": "שׁוֹמֵר ה' אֶת כׇּל אֹהֲבָיו וְאֵת כׇּל הָרְשָׁעִים יַשְׁמִיד"
+      },
+      {
+        "number": 21,
+        "hebrewText": "תְּהִלַּת ה' יְדַבֶּר פִּי וִיבָרֵךְ כׇּל בָּשָׂר שֵׁם קׇדְשׁוֹ לְעוֹלָם וָעֶד"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 145,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קמ״ה (תהלה לדוד) — הפרק המלא, ללא פסוקי המסגרת שנוספים לו כשהוא נאמר כ'אשרי' בתפילה (ראו prayer-ashrei).",
+      "standaloneGuidance": "כן, ללא הסתייגות — מעלתו העצמאית ('כל האומר תהלה לדוד בכל יום... מובטח לו שהוא בן עולם הבא', ברכות ד ע״ב) נובעת ממבנה הפרק עצמו (אקרוסטיכון אלפביתי ותוכנו), לא מפסוקי המסגרת שמצטרפים אליו ביחידת 'אשרי' הליטורגית. לכן הפרק הבודד, כפי שמופיע כאן, נושא את אותה מעלה כמו יחידת אשרי המלאה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "קריאת תהלים אישית אינה דורשת עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://etzion.org.il/en/tanakh/ketuvim/sefer-tehillim/mizmor-145-tehila-u-berakha-part-i"
+      ],
+      "researchNotes": "ראו מסמך המחקר וגם liturgicalContext של prayer-ashrei ב-daily_prayers.json, שכבר נחקר לעומק ביחס ליחידה המלאה."
+    }
   },
   {
-    "id": "tehillim-118-6",
-    "hebrewText": "ה' לִי לֹא אִירָא מַה יַּעֲשֶׂה לִי אָדָם",
-    "transliteration": "Hashem li, lo ira; ma ya'aseh li adam",
-    "translation": "Hashem is with me; I will not fear. What can man do to me?",
-    "source": "Tehillim 118:6",
-    "moods": ["anxious", "stressed"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-4",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ד׳",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ בִּנְגִינוֹת מִזְמוֹר לְדָוִד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בְּקׇרְאִי עֲנֵנִי אֱלֹהֵי צִדְקִי בַּצָּר הִרְחַבְתָּ לִּי חׇנֵּנִי וּשְׁמַע תְּפִלָּתִי"
+      },
+      {
+        "number": 3,
+        "hebrewText": "בְּנֵי אִישׁ עַד מֶה כְבוֹדִי לִכְלִמָּה תֶּאֱהָבוּן רִיק תְּבַקְשׁוּ כָזָב סֶלָה"
+      },
+      {
+        "number": 4,
+        "hebrewText": "וּדְעוּ כִּי הִפְלָה ה' חָסִיד לוֹ ה' יִשְׁמַע בְּקׇרְאִי אֵלָיו"
+      },
+      {
+        "number": 5,
+        "hebrewText": "רִגְזוּ וְאַל תֶּחֱטָאוּ אִמְרוּ בִלְבַבְכֶם עַל מִשְׁכַּבְכֶם וְדֹמּוּ סֶלָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "זִבְחוּ זִבְחֵי צֶדֶק וּבִטְחוּ אֶל ה'"
+      },
+      {
+        "number": 7,
+        "hebrewText": "רַבִּים אֹמְרִים מִי יַרְאֵנוּ טוֹב נְסָה עָלֵינוּ אוֹר פָּנֶיךָ ה'"
+      },
+      {
+        "number": 8,
+        "hebrewText": "נָתַתָּה שִׂמְחָה בְלִבִּי מֵעֵת דְּגָנָם וְתִירוֹשָׁם רָבּוּ"
+      },
+      {
+        "number": 9,
+        "hebrewText": "בְּשָׁלוֹם יַחְדָּו אֶשְׁכְּבָה וְאִישָׁן כִּי אַתָּה ה' לְבָדָד לָבֶטַח תּוֹשִׁיבֵנִי"
+      }
+    ],
+    "moods": [
+      "tired",
+      "anxious"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "timeWindows": [
+      "night"
+    ],
+    "chapter": 4,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ד׳ — מזמור אישי של דוד על ביטחון ושלווה לפני שינה. פסוק ה (״רִגְזוּ וְאַל תֶּחֱטָאוּ... וְדֹמּוּ סֶלָה״) מובא בתלמוד (ברכות ה ע״א) כמקור למנהג קריאת שמע שעל המיטה; פסוק ט (״בְּשָׁלוֹם יַחְדָּו אֶשְׁכְּבָה וְאִישָׁן״) הוא הפסוק המסיים המוכר של אותה קריאה.",
+      "standaloneGuidance": "כן, בלי שום בעיה — זהו טקסט מקראי (תהלים), לא נוסח ברכה עם שם ומלכות, כך שאין כאן שום שאלה של ברכה לבטלה. אפשר לקרוא אותו בכל עת; ההקשר הליטורגי (קריאת שמע שעל המיטה) הוא שימוש נוסף ומוכר, לא תנאי לקריאתו.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה לקריאת מזמור זה כטקסט עצמאי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/Psalms.4",
+        "https://www.sefaria.org/Berakhot.5a"
+      ],
+      "researchNotes": "נוסף כדי למלא את החלל שנוצר כשprayer-hashkiveinu הוצא מהמאגר האקראי (ראו liturgicalEligibility.ts) — מזמור מקראי בטוח לחלוטין להצגה עצמאית, ללא סיכון ברכה לבטלה, המכסה נושא דומה (שינה/ביטחון בלילה). נוסח עברי נשלף ישירות מ-Sefaria (Psalms.4, נוסח המסורה) והוסר הטעמה/פיסוק מסורה; שם ה׳ קוצר לפי מוסכמת הסידור באפליקציה."
+    }
   },
   {
-    "id": "tehillim-92-2",
-    "hebrewText": "טוֹב לְהֹדוֹת לַה' וּלְזַמֵּר לְשִׁמְךָ עֶלְיוֹן",
-    "transliteration": "Tov l'hodot laHashem, ul'zamer l'shimcha elyon",
-    "translation": "It is good to give thanks to Hashem, and to sing praise to Your name, Most High.",
-    "source": "Tehillim 92:2",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-41",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים מ״א",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ מִזְמוֹר לְדָוִד"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אַשְׁרֵי מַשְׂכִּיל אֶל דָּל בְּיוֹם רָעָה יְמַלְּטֵהוּ ה'"
+      },
+      {
+        "number": 3,
+        "hebrewText": "ה' יִשְׁמְרֵהוּ וִיחַיֵּהוּ (יאשר) וְאֻשַּׁר בָּאָרֶץ וְאַל תִּתְּנֵהוּ בְּנֶפֶשׁ אֹיְבָיו"
+      },
+      {
+        "number": 4,
+        "hebrewText": "ה' יִסְעָדֶנּוּ עַל עֶרֶשׂ דְּוָי כׇּל מִשְׁכָּבוֹ הָפַכְתָּ בְחׇלְיוֹ"
+      },
+      {
+        "number": 5,
+        "hebrewText": "אֲנִי אָמַרְתִּי ה' חׇנֵּנִי רְפָאָה נַפְשִׁי כִּי חָטָאתִי לָךְ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "אוֹיְבַי יֹאמְרוּ רַע לִי מָתַי יָמוּת וְאָבַד שְׁמוֹ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "וְאִם בָּא לִרְאוֹת שָׁוְא יְדַבֵּר לִבּוֹ יִקְבׇּץ אָוֶן לוֹ יֵצֵא לַחוּץ יְדַבֵּר"
+      },
+      {
+        "number": 8,
+        "hebrewText": "יַחַד עָלַי יִתְלַחֲשׁוּ כׇּל שֹׂנְאָי עָלַי יַחְשְׁבוּ רָעָה לִי"
+      },
+      {
+        "number": 9,
+        "hebrewText": "דְּבַר בְּלִיַּעַל יָצוּק בּוֹ וַאֲשֶׁר שָׁכַב לֹא יוֹסִיף לָקוּם"
+      },
+      {
+        "number": 10,
+        "hebrewText": "גַּם אִישׁ שְׁלוֹמִי אֲשֶׁר בָּטַחְתִּי בוֹ אוֹכֵל לַחְמִי הִגְדִּיל עָלַי עָקֵב"
+      },
+      {
+        "number": 11,
+        "hebrewText": "וְאַתָּה ה' חׇנֵּנִי וַהֲקִימֵנִי וַאֲשַׁלְּמָה לָהֶם"
+      },
+      {
+        "number": 12,
+        "hebrewText": "בְּזֹאת יָדַעְתִּי כִּי חָפַצְתָּ בִּי כִּי לֹא יָרִיעַ אֹיְבִי עָלָי"
+      },
+      {
+        "number": 13,
+        "hebrewText": "וַאֲנִי בְּתֻמִּי תָּמַכְתָּ בִּי וַתַּצִּיבֵנִי לְפָנֶיךָ לְעוֹלָם"
+      },
+      {
+        "number": 14,
+        "hebrewText": "בָּרוּךְ ה' אֱלֹהֵי יִשְׂרָאֵל מֵהָעוֹלָם וְעַד הָעוֹלָם אָמֵן וְאָמֵן"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed",
+      "tired"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 41,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים מ״א — מזמור המדבר על מי שדואג לחלש ועל תקווה להחלמה ממחלה (״ה׳ יִסְעָדֶנּוּ עַל עֶרֶשׂ דְּוָי״). אין לו מיקום ליטורגי קבוע בסידור.",
+      "standaloneGuidance": "כן, בלי שום בעיה — טקסט מקראי, לא נוסח ברכה. אין שום מניעה לקרוא אותו בפני עצמו, לרבות כתפילה אישית לחולה (מנהג מוכר ונפוץ לומר פרקי תהלים עבור חולים, ללא צורך במסגרת נוספת).",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה לקריאת מזמור זה כטקסט עצמאי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/Psalms.41"
+      ],
+      "researchNotes": "נוסף כדי למלא את החלל שנוצר כשprayer-refaeinu הוצא מהמאגר האקראי (ברכה בודדת מתוך העמידה, לא תפילה עצמאית) — מזמור מקראי בטוח לחלוטין להצגה עצמאית, המכסה את אותו נושא (רפואה) ללא סיכון ברכה לבטלה. נוסח עברי נשלף ישירות מ-Sefaria (Psalms.41, נוסח המסורה); הוסרה הטעמת מסורה; כתיב/קרי בפסוק 3 (יאשר/וְאֻשַּׁר) מוצג בפורמט הקיים באפליקציה (ראו לדוגמה prayer-eshet-chayil); שם ה׳ קוצר לפי מוסכמת הסידור באפליקציה."
+    }
   },
   {
-    "id": "tehillim-3-6",
-    "hebrewText": "אֲנִי שָׁכַבְתִּי וָאִישָׁנָה הֱקִיצוֹתִי כִּי ה' יִסְמְכֵנִי",
-    "transliteration": "Ani shachavti va'ishana, hekitzoti ki Hashem yismecheni",
-    "translation": "I lay down and slept; I awoke, for Hashem sustains me.",
-    "source": "Tehillim 3:6",
-    "moods": ["tired", "grateful"],
-    "contentTypes": ["tehillim"],
-    "length": "short"
+    "id": "tehillim-67",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים ס״ז",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "לַמְנַצֵּחַ בִּנְגִינֹת מִזְמוֹר שִׁיר"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אֱלֹהִים יְחׇנֵּנוּ וִיבָרְכֵנוּ יָאֵר פָּנָיו אִתָּנוּ סֶלָה"
+      },
+      {
+        "number": 3,
+        "hebrewText": "לָדַעַת בָּאָרֶץ דַּרְכֶּךָ בְּכׇל גּוֹיִם יְשׁוּעָתֶךָ"
+      },
+      {
+        "number": 4,
+        "hebrewText": "יוֹדוּךָ עַמִּים אֱלֹהִים יוֹדוּךָ עַמִּים כֻּלָּם"
+      },
+      {
+        "number": 5,
+        "hebrewText": "יִשְׂמְחוּ וִירַנְּנוּ לְאֻמִּים כִּי תִשְׁפֹּט עַמִּים מִישֹׁר וּלְאֻמִּים בָּאָרֶץ תַּנְחֵם סֶלָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "יוֹדוּךָ עַמִּים אֱלֹהִים יוֹדוּךָ עַמִּים כֻּלָּם"
+      },
+      {
+        "number": 7,
+        "hebrewText": "אֶרֶץ נָתְנָה יְבוּלָהּ יְבָרְכֵנוּ אֱלֹהִים אֱלֹהֵינוּ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "יְבָרְכֵנוּ אֱלֹהִים וְיִירְאוּ אוֹתוֹ כׇּל אַפְסֵי אָרֶץ"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 67,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים ס״ז — מזמור ברכה והודיה קצר. יש מנהג נפוץ לאומרו בכל ערב לאחר ספירת העומר (בין פסח לשבועות) בחלק מהעדות, אך זהו שימוש נוסף — לא ייחוד בלעדי של המזמור לאותה תקופה.",
+      "standaloneGuidance": "כן, בלי שום בעיה — טקסט מקראי, לא נוסח ברכה. השימוש הנוסף בתקופת ספירת העומר אינו הופך את קריאתו בזמנים אחרים לבעייתית, באותו אופן שנקבע כבר עבור תהלים כ״ז/קכ״א/קל׳ באפליקציה זו (שימוש עונתי נוסף אינו שולל קריאה עצמאית בכל עת).",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה לקריאת מזמור זה כטקסט עצמאי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/Psalms.67"
+      ],
+      "researchNotes": "נוסף כדי למלא את החלל שנוצר כשprayer-baruch-sheamar ו-prayer-shehecheyanu הוצאו מהמאגר האקראי (שניהם ברכות עם שם ומלכות התלויות באירוע שלא ניתן לאימות) — מזמור מקראי בטוח לחלוטין להצגה עצמאית, המכסה נושא דומה (הודיה/ברכה) ללא סיכון ברכה לבטלה. נוסח עברי נשלף ישירות מ-Sefaria (Psalms.67, נוסח המסורה); הוסרה הטעמת מסורה; שם ה׳ קוצר לפי מוסכמת הסידור באפליקציה."
+    }
+  },
+  {
+    "id": "tehillim-122",
+    "kind": "psalm",
+    "isTraditional": true,
+    "title": "תהילים קכ״ב",
+    "source": "ספר תהילים",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׁיר הַמַּעֲלוֹת לְדָוִד שָׂמַחְתִּי בְּאֹמְרִים לִי בֵּית ה' נֵלֵךְ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "עֹמְדוֹת הָיוּ רַגְלֵינוּ בִּשְׁעָרַיִךְ יְרוּשָׁלִָם"
+      },
+      {
+        "number": 3,
+        "hebrewText": "יְרוּשָׁלִַם הַבְּנוּיָה כְּעִיר שֶׁחֻבְּרָה לָּהּ יַחְדָּו"
+      },
+      {
+        "number": 4,
+        "hebrewText": "שֶׁשָּׁם עָלוּ שְׁבָטִים שִׁבְטֵי יָהּ עֵדוּת לְיִשְׂרָאֵל לְהֹדוֹת לְשֵׁם ה'"
+      },
+      {
+        "number": 5,
+        "hebrewText": "כִּי שָׁמָּה יָשְׁבוּ כִסְאוֹת לְמִשְׁפָּט כִּסְאוֹת לְבֵית דָּוִד"
+      },
+      {
+        "number": 6,
+        "hebrewText": "שַׁאֲלוּ שְׁלוֹם יְרוּשָׁלִָם יִשְׁלָיוּ אֹהֲבָיִךְ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "יְהִי שָׁלוֹם בְּחֵילֵךְ שַׁלְוָה בְּאַרְמְנוֹתָיִךְ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "לְמַעַן אַחַי וְרֵעָי אֲדַבְּרָה נָּא שָׁלוֹם בָּךְ"
+      },
+      {
+        "number": 9,
+        "hebrewText": "לְמַעַן בֵּית ה' אֱלֹהֵינוּ אֲבַקְשָׁה טוֹב לָךְ"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "grateful"
+    ],
+    "contentTypes": [
+      "tehillim"
+    ],
+    "chapter": 122,
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קכ״ב — אחד מ-15 ׳שירי המעלות׳, על השמחה בעליה לירושלים והתפילה לשלומה (״שַׁאֲלוּ שְׁלוֹם יְרוּשָׁלִָם״).",
+      "standaloneGuidance": "כן, בלי שום בעיה — טקסט מקראי, לא נוסח ברכה. אין שום מניעה לקרוא אותו בפני עצמו בכל עת.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה לקריאת מזמור זה כטקסט עצמאי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/Psalms.122"
+      ],
+      "researchNotes": "נוסף כדי למלא את החלל שנוצר כשprayer-sim-shalom הוצא מהמאגר האקראי (נוסח נוסח-אשכנז-בלבד של ברכה בודדת מתוך העמידה) — מזמור מקראי בטוח לחלוטין להצגה עצמאית, המכסה את אותו נושא (שלום) ללא סיכון ברכה לבטלה וללא תלות בנוסח. נוסח עברי נשלף ישירות מ-Sefaria (Psalms.122, נוסח המסורה); הוסרה הטעמת מסורה; שם ה׳ קוצר לפי מוסכמת הסידור באפליקציה."
+    }
   }
 ]

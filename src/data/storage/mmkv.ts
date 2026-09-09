@@ -44,11 +44,34 @@ export const StorageKeys = {
   preferredContentTypes: 'preferences.contentTypes',
   lockedAppPackages: 'locking.androidPackages',
   lockedAppSelectionData: 'locking.iosSelectionData',
+  pendingLockedApp: 'locking.pendingTarget',
   entitlementActive: 'subscription.entitlementActive',
   calendarIntegrationEnabled: 'preferences.calendarIntegrationEnabled',
+  trialPlan: 'subscription.trialPlan',
+  trialStartedAt: 'subscription.trialStartedAt',
+  trialEndsAt: 'subscription.trialEndsAt',
+  trialReminderScheduled: 'subscription.trialReminderScheduled',
+  reviewPrompted: 'preferences.reviewPrompted',
+  lastKnownStreak: 'streak.lastKnown',
+  pendingHanukkiahCompletionCelebration: 'streak.pendingHanukkiahCompletionCelebration',
+  zmanimLocation: 'zmanim.location',
+  zmanimLocationDenied: 'zmanim.locationDenied',
+  userNusach: 'preferences.nusach',
+  userRegion: 'preferences.region',
+  themeMode: 'preferences.themeMode',
 } as const;
 
 export type StoredGender = 'man' | 'woman';
+export type StoredThemeMode = 'light' | 'dark' | 'system';
+
+export function getStoredThemeMode(): StoredThemeMode {
+  const raw = storage.getString(StorageKeys.themeMode);
+  return raw === 'light' || raw === 'dark' || raw === 'system' ? raw : 'system';
+}
+
+export function setStoredThemeMode(mode: StoredThemeMode): void {
+  storage.set(StorageKeys.themeMode, mode);
+}
 
 export function isOnboardingComplete(): boolean {
   return storage.getBoolean(StorageKeys.onboardingComplete) ?? false;
@@ -56,6 +79,48 @@ export function isOnboardingComplete(): boolean {
 
 export function setOnboardingComplete(complete: boolean): void {
   storage.set(StorageKeys.onboardingComplete, complete);
+}
+
+export function isReviewPrompted(): boolean {
+  return storage.getBoolean(StorageKeys.reviewPrompted) ?? false;
+}
+
+export function markReviewPrompted(): void {
+  storage.set(StorageKeys.reviewPrompted, true);
+}
+
+/**
+ * The last streak count Home actually displayed, persisted across app
+ * restarts/backgrounding — the Home screen compares this against a freshly
+ * computed `getCurrentStreak()` on every focus to detect a real streak break
+ * (a positive last-known value that just dropped to zero) so it can play the
+ * חנוכייה "goes dark" cinematic instead of silently resetting the row.
+ */
+export function getLastKnownStreak(): number {
+  return Number(storage.getString(StorageKeys.lastKnownStreak) ?? '0');
+}
+
+export function setLastKnownStreak(streak: number): void {
+  storage.set(StorageKeys.lastKnownStreak, String(streak));
+}
+
+/**
+ * A חנוכייה-just-became-fully-lit event that hasn't been shown to the user
+ * yet — set atomically by db.ts's `recordUnlockEvent` at the exact moment
+ * that transition happens (not derived from "is the חנוכייה currently
+ * complete", which would replay on every app open). Most completions happen
+ * while the user is mid-way through an app-lock interception (see
+ * App.tsx/LockContentFlow) with nowhere to present a celebration screen, so
+ * this survives background/force-close/process death until whichever
+ * Tefillok screen next checks it — see Home's tryShowPendingCelebration —
+ * can actually show it and clear it.
+ */
+export function isPendingHanukkiahCompletionCelebration(): boolean {
+  return storage.getBoolean(StorageKeys.pendingHanukkiahCompletionCelebration) ?? false;
+}
+
+export function setPendingHanukkiahCompletionCelebration(pending: boolean): void {
+  storage.set(StorageKeys.pendingHanukkiahCompletionCelebration, pending);
 }
 
 export function getPreferredContentTypes(): ContentType[] {
@@ -113,4 +178,121 @@ export function getOnboardingFullAnswers<T>(): T | null {
     console.warn('[tefillok] Corrupted onboardingFullAnswers in storage — ignoring.');
     return null;
   }
+}
+
+export interface PendingLockedApp {
+  packageName: string;
+  timestamp: number;
+}
+
+// How long a captured interception target stays valid for resuming. Bounds
+// the blast radius of resuming a flow the user has long since walked away
+// from (e.g. reopening the app days later) while still surviving a realistic
+// "backgrounded mid-prayer, process reclaimed, user comes back" gap.
+const PENDING_LOCKED_APP_MAX_AGE_MS = 30 * 60 * 1000;
+
+/**
+ * Durable record of which app the current lock interception is for. React
+ * state alone (the LockContentFlow prop chain) doesn't survive the host
+ * process being killed while backgrounded mid-prayer — this is the fallback
+ * App.tsx reads on startup to resume the same interception instead of
+ * dropping the user on the normal Home screen. Cleared once the flow
+ * actually finishes (see useLockContentFlow's finishAndUnlock).
+ */
+export function setPendingLockedApp(packageName: string): void {
+  storage.set(StorageKeys.pendingLockedApp, JSON.stringify({ packageName, timestamp: Date.now() } satisfies PendingLockedApp));
+}
+
+export function getPendingLockedApp(): PendingLockedApp | null {
+  const raw = storage.getString(StorageKeys.pendingLockedApp);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as PendingLockedApp;
+    if (Date.now() - parsed.timestamp > PENDING_LOCKED_APP_MAX_AGE_MS) return null;
+    return parsed;
+  } catch {
+    console.warn('[tefillok] Corrupted pendingLockedApp in storage — ignoring.');
+    return null;
+  }
+}
+
+export function clearPendingLockedApp(): void {
+  storage.set(StorageKeys.pendingLockedApp, '');
+}
+
+export interface StoredZmanimLocation {
+  latitude: number;
+  longitude: number;
+  /** Meters above sea level, when the device fix included it — 0 (sea level) is the honest default otherwise, not a guess. */
+  elevation: number;
+  timestamp: number;
+}
+
+/**
+ * A one-time-fetched, cached coordinate for zmanim calculation — see
+ * src/native/location.ts, which is the only place that writes this. A home
+ * location doesn't meaningfully change minute-to-minute, so this is reused
+ * across app opens rather than re-requesting GPS every time.
+ */
+export function getStoredZmanimLocation(): StoredZmanimLocation | null {
+  const raw = storage.getString(StorageKeys.zmanimLocation);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as StoredZmanimLocation;
+  } catch {
+    console.warn('[tefillok] Corrupted zmanimLocation in storage — ignoring.');
+    return null;
+  }
+}
+
+export function setStoredZmanimLocation(location: StoredZmanimLocation): void {
+  storage.set(StorageKeys.zmanimLocation, JSON.stringify(location));
+}
+
+/** Set once the user has declined the zmanim location prompt, so the app doesn't re-prompt every time a time-sensitive item is opened — only a deliberate re-ask (e.g. from Settings) should clear this. */
+export function isZmanimLocationDenied(): boolean {
+  return storage.getBoolean(StorageKeys.zmanimLocationDenied) ?? false;
+}
+
+export function setZmanimLocationDenied(denied: boolean): void {
+  storage.set(StorageKeys.zmanimLocationDenied, denied);
+}
+
+export type UserNusach = 'ashkenaz' | 'sefard' | 'edot_hamizrach' | 'unknown';
+
+/**
+ * Defaults to `'unknown'` — the app has never asked, and per the nusach UX
+ * decision (src/content/research/nusach-ux-decision.md) should not infer
+ * this from weak signals or force a choice during onboarding without a real
+ * product reason. Present only as a future explicit Settings choice.
+ */
+export function getUserNusach(): UserNusach {
+  const stored = storage.getString(StorageKeys.userNusach);
+  if (stored === 'ashkenaz' || stored === 'sefard' || stored === 'edot_hamizrach') return stored;
+  return 'unknown';
+}
+
+export function setUserNusach(nusach: UserNusach): void {
+  storage.set(StorageKeys.userNusach, nusach);
+}
+
+export type UserRegion = 'israel' | 'diaspora' | 'unknown';
+
+/**
+ * Defaults to `'unknown'` — never inferred from GPS or silently assumed.
+ * The eligibility engine's calendar math needs *some* value to resolve
+ * Yom Tov Sheni Shel Galuyot-dependent dates (the extra diaspora day on
+ * Sukkot/Pesach/Shavuot/Simchat Torah) even when this is `'unknown'` — see
+ * `liturgicalEligibility.ts`'s `buildEligibilityContext`, which documents
+ * exactly what it falls back to and why that specific fallback is the safe
+ * direction, not a guess presented as fact.
+ */
+export function getUserRegion(): UserRegion {
+  const stored = storage.getString(StorageKeys.userRegion);
+  if (stored === 'israel' || stored === 'diaspora') return stored;
+  return 'unknown';
+}
+
+export function setUserRegion(region: UserRegion): void {
+  storage.set(StorageKeys.userRegion, region);
 }

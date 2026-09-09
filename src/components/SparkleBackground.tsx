@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useReducedMotion,
@@ -12,7 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Polygon } from 'react-native-svg';
 import { AnimatedStarsBackground } from './AnimatedStarsBackground';
-import { colors } from '../theme';
+import { useTheme } from '../theme';
 
 /** Two triangles offset 180° apart trace the classic hexagram/Magen David outline. */
 function hexagramPoints(cx: number, cy: number, r: number, startAngleDeg: number): string {
@@ -64,6 +65,17 @@ function GlowStar({
       )
     );
     rotate.value = withRepeat(withTiming(360, { duration: spinDuration, easing: Easing.linear }), -1, false);
+
+    // These loop forever (-1) and, unlike a normal screen transition, aren't
+    // implicitly stopped by a JS-only reload (e.g. the Settings dev "reset
+    // onboarding" button) — that tears down the JS context without giving
+    // React's usual unmount path a chance to run, so the UI-thread animation
+    // keeps ticking against a view tag that's being torn down underneath it
+    // and floods the log. Cancelling explicitly here covers both cases.
+    return () => {
+      cancelAnimation(opacity);
+      cancelAnimation(rotate);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion]);
 
@@ -108,6 +120,7 @@ interface SparkleBackgroundProps {
  */
 export function SparkleBackground({ tone = 'navy', starCount = 10 }: SparkleBackgroundProps) {
   const { width, height } = useWindowDimensions();
+  const { colors } = useTheme();
   const glowColor = tone === 'accent' ? colors.accent : colors.primary;
   const starColor = tone === 'accent' ? colors.accent : colors.primary;
 

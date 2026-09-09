@@ -12,6 +12,7 @@ module.exports = (config) => {
     name: 'StreakWidget',
     displayName: 'רצף תפילה',
     deploymentTarget: '16.0',
+    bundleIdentifier: '.StreakWidget',
     frameworks: ['SwiftUI', 'WidgetKit'],
     colors: {
       // See the Colors table in @bacons/apple-targets' README — these two

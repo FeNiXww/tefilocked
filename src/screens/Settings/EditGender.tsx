@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { haptics } from '../../haptics';
 import { PrimaryButton } from '../../components/PrimaryButton';
 import { getOnboardingGender, setOnboardingGender, type StoredGender } from '../../data/storage/mmkv';
 import { GENDER_QUESTION } from '../Onboarding/questionBank';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 interface EditGenderProps {
   onComplete: () => void;
@@ -12,10 +12,12 @@ interface EditGenderProps {
 
 /** Settings' gender editor — same options as the onboarding gender step, so the change also affects gendered copy (e.g. the prayer mood picker) going forward. */
 export function EditGender({ onComplete }: EditGenderProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [selected, setSelected] = useState<StoredGender | null>(() => getOnboardingGender());
 
   const handleSelect = (id: StoredGender) => {
-    Haptics.selectionAsync().catch(() => {});
+    haptics.selection();
     setSelected(id);
   };
 
@@ -56,7 +58,8 @@ export function EditGender({ onComplete }: EditGenderProps) {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     padding: spacing.xl,
@@ -122,4 +125,5 @@ const styles = StyleSheet.create({
   button: {
     marginTop: spacing.xl,
   },
-});
+  });
+}

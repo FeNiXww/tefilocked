@@ -8,3 +8,4 @@ export const spacing = {
 } as const;
 
 export type SpacingToken = keyof typeof spacing;
+export type Spacing = typeof spacing;

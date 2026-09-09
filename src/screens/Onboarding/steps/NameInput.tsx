@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput } from 'react-native';
 import { PrimaryButton } from '../../../components/PrimaryButton';
-import { colors, spacing, typography } from '../../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 import type { StepComponentProps } from '../onboardingState';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
 
 export function NameInput({ answers, update, onNext, onBack, progress }: StepComponentProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [name, setName] = useState(answers.name);
 
   const handleContinue = () => {
@@ -35,26 +37,28 @@ export function NameInput({ answers, update, onNext, onBack, progress }: StepCom
   );
 }
 
-const styles = StyleSheet.create({
-  eyebrow: {
-    ...typography.eyebrow,
-    marginBottom: spacing.sm,
-  },
-  title: {
-    ...typography.hero,
-    fontSize: 26,
-    textAlign: 'right',
-    marginBottom: spacing.xl,
-  },
-  input: {
-    ...typography.body,
-    fontSize: 20,
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-  },
-  button: {
-    marginTop: spacing.xl,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    eyebrow: {
+      ...typography.eyebrow,
+      marginBottom: spacing.sm,
+    },
+    title: {
+      ...typography.hero,
+      fontSize: 26,
+      textAlign: 'right',
+      marginBottom: spacing.xl,
+    },
+    input: {
+      ...typography.body,
+      fontSize: 20,
+      backgroundColor: colors.surface,
+      borderRadius: 16,
+      paddingVertical: spacing.md,
+      paddingHorizontal: spacing.lg,
+    },
+    button: {
+      marginTop: spacing.xl,
+    },
+  });
+}

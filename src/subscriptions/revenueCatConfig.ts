@@ -5,8 +5,8 @@ import { storage, StorageKeys } from '../data/storage/mmkv';
 // Get these from the RevenueCat dashboard once the project is created there
 // (Project settings -> API keys). Separate keys per platform.
 const REVENUECAT_API_KEYS = {
-  ios: 'REPLACE_WITH_REVENUECAT_IOS_KEY',
-  android: 'REPLACE_WITH_REVENUECAT_ANDROID_KEY',
+  ios: 'appl_SCfBEZpsxfOPpLDdQiYqUSlzmTF',
+  android: 'goog_FerVquisyruWzCGINGmeoQMIioB',
 };
 
 // Configure this entitlement identifier to match the one product tier in

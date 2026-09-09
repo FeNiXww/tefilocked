@@ -8,7 +8,7 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import { colors } from '../../theme';
+import { useTheme } from '../../theme';
 
 /** Duration of each word's pop-in animation, ms — exported so callers sequencing multiple HighlightTexts (e.g. FadeInLines) know when a given block's reveal actually finishes. */
 export const WORD_POP_DURATION_MS = 420;
@@ -60,10 +60,12 @@ function Word({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, delay, reduceMotion]);
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    opacity: progress.value,
-    transform: [{ scale: 0.72 + progress.value * 0.28 }, { translateY: (1 - progress.value) * 6 }],
-  }));
+  // Opacity-only: a `transform`-ed nested Text can't be flattened into the
+  // parent's text layout on Android, so it renders as its own independent
+  // inline-view fragment — which breaks bidi reordering at RTL line-wrap
+  // boundaries (a word, or trailing punctuation, can visibly land on the
+  // wrong side of the wrap).
+  const animatedStyle = useAnimatedStyle(() => ({ opacity: progress.value }));
 
   // Whitespace tokens don't need to animate or carry emphasis styling.
   if (text.trim().length === 0) return <Text>{text}</Text>;
@@ -82,11 +84,6 @@ interface HighlightTextProps {
   startDelayMs?: number;
 }
 
-const DEFAULT_EMPHASIS: TextStyle = {
-  color: colors.accentDark,
-  fontWeight: '800',
-};
-
 /**
  * Drop-in replacement for a plain headline `<Text>` — reveals word by word
  * with a soft pop, and lets specific phrases (wrapped in `**...**`) stand out
@@ -99,6 +96,8 @@ export function countRevealSteps(text: string): number {
 }
 
 export function HighlightText({ text, style, emphasisStyle, staggerMs = 42, startDelayMs = 0 }: HighlightTextProps) {
+  const { colors } = useTheme();
+  const defaultEmphasis: TextStyle = { color: colors.accentDark, fontWeight: '800' };
   const words = parseSegments(text);
   return (
     <Text style={style}>
@@ -108,7 +107,7 @@ export function HighlightText({ text, style, emphasisStyle, staggerMs = 42, star
           text={word.text}
           emphasis={word.emphasis}
           delay={startDelayMs + index * staggerMs}
-          emphasisStyle={emphasisStyle ?? DEFAULT_EMPHASIS}
+          emphasisStyle={emphasisStyle ?? defaultEmphasis}
         />
       ))}
     </Text>

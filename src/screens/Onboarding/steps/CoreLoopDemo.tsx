@@ -1,40 +1,39 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { MagenDavidStreak } from '../../../components/MagenDavidStreak';
 import { PrimaryButton } from '../../../components/PrimaryButton';
 import { SparkleBackground } from '../../../components/SparkleBackground';
-import { pickContentForMood } from '../../../content/index';
+import { pickContentForMood, previewLine } from '../../../content/index';
 import { ALL_CONTENT_TYPES } from '../../../content/types';
 import type { ContentItem, Mood } from '../../../content/types';
-import { colors, spacing, typography } from '../../../theme';
+import { HighlightText } from '../HighlightText';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 import { pickG, type StepComponentProps } from '../onboardingState';
 import { ConnectionCheckIn } from '../../LockContentFlow/ConnectionCheckIn';
 import { ContentDisplay } from '../../LockContentFlow/ContentDisplay';
 import { MoodPicker } from '../../LockContentFlow/MoodPicker';
 
-type DemoStep = 'intro' | 'connection' | 'mood' | 'content';
+type DemoStep = 'intro' | 'connection' | 'mood' | 'content' | 'streakReveal';
 
 /**
  * The onboarding "climax": the user actually does the core loop (check in,
  * pick a mood, read real curated content) instead of watching a mock of it.
- * Reuses the exact same components the daily lock-intercept flow uses.
+ * Reuses the exact same components the daily lock-intercept flow uses, then
+ * closes with a first-streak reveal — the emotional payoff for having just
+ * completed a real prayer, before moving on to the commitment moment.
  */
-export function CoreLoopDemo({ answers, update, onNext }: StepComponentProps) {
+export function CoreLoopDemo({ answers, onNext }: StepComponentProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [step, setStep] = useState<DemoStep>('intro');
   const [content, setContent] = useState<ContentItem | null>(null);
 
-  const handleConnection = (rating: number) => {
-    update({ demoConnection: rating });
+  const handleConnection = (_rating: number) => {
     setStep('mood');
   };
 
   const handleMood = (mood: Mood) => {
-    const picked = pickContentForMood(mood, ALL_CONTENT_TYPES);
-    update({
-      demoMood: mood,
-      demoContentText: picked?.hebrewText ?? null,
-      demoContentSource: picked?.source ?? null,
-    });
-    setContent(picked);
+    setContent(pickContentForMood(mood, ALL_CONTENT_TYPES));
     setStep('content');
   };
 
@@ -57,18 +56,41 @@ export function CoreLoopDemo({ answers, update, onNext }: StepComponentProps) {
 
       {step === 'mood' && <MoodPicker onSelect={handleMood} gender={answers.gender} />}
 
-      {step === 'content' && content && <ContentDisplay content={content} onContinue={onNext} continuing={false} />}
+      {step === 'content' && content && (
+        <ContentDisplay content={content} onContinue={() => setStep('streakReveal')} continuing={false} />
+      )}
       {step === 'content' && !content && (
         <View style={styles.introContent}>
           <Text style={styles.body}>{pickG(answers.gender, 'קח', 'קחי')} רגע לנשום עמוק לפני שממשיכים.</Text>
-          <PrimaryButton label="המשך" onPress={onNext} style={styles.button} />
+          <PrimaryButton label="המשך" onPress={() => setStep('streakReveal')} style={styles.button} />
+        </View>
+      )}
+
+      {step === 'streakReveal' && (
+        <View style={styles.introContent}>
+          <HighlightText text="**יישר כוח!**" style={styles.streakTitle} emphasisStyle={styles.streakTitleEmphasis} />
+          <Text style={styles.body}>השלמת את התפילה הראשונה שלך</Text>
+          <View style={styles.starWrap}>
+            <MagenDavidStreak streak={1} litToday size={140} />
+          </View>
+          <Text style={styles.eyebrow}>יום 1 ברצף</Text>
+          {content && (
+            <View style={styles.card}>
+              <Text style={styles.cardText} numberOfLines={3}>
+                {previewLine(content)}
+              </Text>
+              <Text style={styles.cardSource}>{content.source}</Text>
+            </View>
+          )}
+          <PrimaryButton label="המשך" onPress={onNext} variant="accent" style={styles.button} />
         </View>
       )}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -93,5 +115,35 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: spacing.lg,
+    alignSelf: 'stretch',
   },
-});
+  streakTitle: {
+    ...typography.hero,
+    fontSize: 28,
+    color: colors.accentDark,
+  },
+  streakTitleEmphasis: {
+    color: colors.primary,
+  },
+  starWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: spacing.xs,
+  },
+  card: {
+    backgroundColor: colors.surface,
+    borderRadius: 16,
+    padding: spacing.lg,
+    alignSelf: 'stretch',
+    gap: spacing.xs,
+  },
+  cardText: {
+    ...typography.body,
+    textAlign: 'right',
+  },
+  cardSource: {
+    ...typography.caption,
+    textAlign: 'right',
+  },
+  });
+}

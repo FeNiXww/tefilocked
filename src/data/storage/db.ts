@@ -1,6 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 import type { Mood } from '../../content/types';
 import { MOOD_VALENCE } from '../moodValence';
+import { setPendingHanukkiahCompletionCelebration } from './mmkv';
 
 export type Platform = 'ios' | 'android';
 
@@ -62,7 +63,21 @@ export interface UnlockEventInput {
   platform: Platform;
 }
 
+/**
+ * Records the unlock event and, atomically alongside it, detects the
+ * false→true "the חנוכייה just became fully lit" transition — the ONE place
+ * this is ever computed, since this is the ONE place that ever changes the
+ * data that decides it (see isHanukkiahFullyLit). This runs identically
+ * whether the prayer came from the normal Home flow or from an app-lock
+ * interception (App.tsx renders the same LockContentFlow either way), so a
+ * completion reached via TikTok/Instagram/etc.'s lock screen is captured
+ * exactly the same as one reached from inside Tefillok itself — see
+ * setPendingHanukkiahCompletionCelebration for why that matters and how it's
+ * consumed.
+ */
 export function recordUnlockEvent(event: UnlockEventInput): void {
+  const wasFullyLit = isHanukkiahFullyLit(event.occurredAt);
+
   if (!db) {
     mockRows.push({
       occurredAt: event.occurredAt.getTime(),
@@ -73,22 +88,38 @@ export function recordUnlockEvent(event: UnlockEventInput): void {
       platform: event.platform,
       connectionRating: event.connectionRating,
     });
-    return;
+  } else {
+    db.runSync(
+      `INSERT INTO unlock_events (occurred_at, day, mood, content_id, locked_app_package, platform, connection_rating)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        event.occurredAt.getTime(),
+        toDayString(event.occurredAt),
+        event.mood,
+        event.contentId,
+        event.lockedAppPackage ?? null,
+        event.platform,
+        event.connectionRating,
+      ]
+    );
   }
 
-  db.runSync(
-    `INSERT INTO unlock_events (occurred_at, day, mood, content_id, locked_app_package, platform, connection_rating)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [
-      event.occurredAt.getTime(),
-      toDayString(event.occurredAt),
-      event.mood,
-      event.contentId,
-      event.lockedAppPackage ?? null,
-      event.platform,
-      event.connectionRating,
-    ]
-  );
+  if (!wasFullyLit && isHanukkiahFullyLit(event.occurredAt)) {
+    setPendingHanukkiahCompletionCelebration(true);
+  }
+}
+
+/**
+ * Wipes every recorded unlock event — used only by the Settings screen's
+ * `__DEV__`-gated streak-loss simulator, to make `getCurrentStreak()`
+ * compute back to 0 on demand without waiting on real elapsed days.
+ */
+export function devDeleteAllUnlockEvents(): void {
+  if (!db) {
+    mockRows.length = 0;
+    return;
+  }
+  db.runSync(`DELETE FROM unlock_events`);
 }
 
 function getDistinctDays(): string[] {
@@ -136,7 +167,7 @@ export function hasCompletedToday(referenceDate: Date = new Date()): boolean {
   return getDistinctDays().includes(toDayString(referenceDate));
 }
 
-const MAX_HANUKKIAH_CANDLES = 9;
+export const MAX_HANUKKIAH_CANDLES = 9;
 
 export interface StreakCandle {
   /** 1-based day-of-streak number this candle represents (not its slot position). */
@@ -169,6 +200,17 @@ export function getStreakCandles(referenceDate: Date = new Date()): StreakCandle
   }));
 
   return [...history, { dayNumber: todayDayNumber, completed: litToday, isToday: true }];
+}
+
+/**
+ * Whether every one of the חנוכייה's 9 branches is currently lit — the exact
+ * same definition HanukkiahStreakRow/Home render from, kept in one place so
+ * the completion-transition check in recordUnlockEvent can never drift from
+ * what the UI actually considers "complete".
+ */
+export function isHanukkiahFullyLit(referenceDate: Date = new Date()): boolean {
+  const candles = getStreakCandles(referenceDate);
+  return candles.length === MAX_HANUKKIAH_CANDLES && candles.every((c) => c.completed);
 }
 
 export interface AnalyticsSummary {

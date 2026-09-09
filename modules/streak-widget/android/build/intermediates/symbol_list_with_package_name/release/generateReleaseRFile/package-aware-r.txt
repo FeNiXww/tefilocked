@@ -1,0 +1,10 @@
+expo.modules.streakwidget
+drawable streak_widget_background
+drawable streak_widget_preview
+id widget_image
+layout streak_widget
+string streak_widget_content_desc_dormant
+string streak_widget_content_desc_lit
+string streak_widget_description
+string streak_widget_label
+xml streak_widget_info

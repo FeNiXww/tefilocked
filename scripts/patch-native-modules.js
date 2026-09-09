@@ -457,6 +457,21 @@ replaceBlock(
   'Renamed AppBlockerService companion action/extra constants and threaded the granted duration through unlockAndLaunch.'
 );
 
+// Product decision: the ongoing foreground-service notification (Android's
+// mandatory indicator that the app-blocking monitor is running — it can't be
+// removed while blocking is active, see start()/stop() above) had stock
+// copy ("Monitoring blocked apps") that read like leftover debug text.
+// "Apps are locked" says the one thing the user actually cares about from
+// their side. (Also see setAndroidLockedApps in src/native/appLocking/index.tsx,
+// which now starts/stops this service based on whether there's anything to
+// monitor, so the notification only appears while it's true.)
+replaceBlock(
+  appBlockerServiceFile,
+  '      .setContentText("Monitoring blocked apps")',
+  '      .setContentText("Apps are locked")',
+  'Reworded expo-app-blocker Android foreground-service notification from "Monitoring blocked apps" to "Apps are locked".'
+);
+
 // Bug: `getStringExtra` can return an empty string (unlockAndLaunchAndroidApp's JS
 // side coerces a missing target package to `""` rather than omitting the extra), and
 // `packageName != null` lets `""` straight through. `launchApp("")` then resolves no
@@ -1055,6 +1070,53 @@ replaceBlock(
     private const val NOTIFICATION_ID = 9001
     private const val POLL_INTERVAL_MS = 500L`,
   'Removed the now-unused BLOCKED_CHANNEL_ID/BLOCKED_NOTIFICATION_ID constants from AppBlockerService.'
+);
+
+// getCurrentForegroundPackage() polls every 500ms for as long as the service
+// runs, but Usage Access can be revoked from system Settings at any moment
+// while it's running — queryEvents() then throws SecurityException instead
+// of returning an empty result, which was uncaught and crashed the app on
+// the very next tick. A fresh install never hits this (the service isn't
+// started until both permissions are granted — see useAndroidLockingPermissions),
+// but any later revocation did.
+replaceBlock(
+  appBlockerServiceFile,
+  `    val endTime = System.currentTimeMillis()
+    val beginTime = endTime - LOOKBACK_WINDOW_MS
+    val events = usageStatsManager.queryEvents(beginTime, endTime)
+    val event = UsageEvents.Event()`,
+  `    val endTime = System.currentTimeMillis()
+    val beginTime = endTime - LOOKBACK_WINDOW_MS
+    val events = try {
+      usageStatsManager.queryEvents(beginTime, endTime)
+    } catch (e: SecurityException) {
+      return null
+    }
+    val event = UsageEvents.Event()`,
+  'Guarded AppBlockerService.getCurrentForegroundPackage() against SecurityException when Usage Access is revoked mid-session.'
+);
+
+// Bug: Tefillok's own package can never be *selected* as a locked app (the
+// picker's getInstalledApps() already excludes context.packageName), but
+// isBlocked() trusted the stored `blocked_packages` set as-is with no
+// self-exclusion of its own. SharedPreferences persist across app updates
+// (only a fresh install/uninstall clears them), so a set saved before that
+// picker-level exclusion existed — or written by any future bug — leaves
+// Tefillok's own package sitting in `blocked_packages` forever after. Since
+// tick() polls the foreground app every 500ms regardless of the unlock
+// timer, simply opening Tefillok itself then reads as "a blocked app just
+// came to the foreground" and redirects straight into the prayer flow,
+// every single time, independent of any active unlock grant — matching the
+// reported symptom exactly. Guarding isBlocked() itself (not just the
+// picker) fixes this unconditionally, including any stale value already on
+// a device, with no need for the user to touch their locked-apps list.
+replaceBlock(
+  appBlockerServiceFile,
+  `  private fun isBlocked(packageName: String): Boolean =
+    packageName in AppBlockerPrefs.getBlockedPackages(this)`,
+  `  private fun isBlocked(packageName: String): Boolean =
+    packageName != this.packageName && packageName in AppBlockerPrefs.getBlockedPackages(this)`,
+  "Guarded AppBlockerService.isBlocked() to never treat Tefillok's own package as blocked, even if a stale/buggy value is sitting in the stored blocked_packages set."
 );
 
 // iOS: fire one clean haptic the instant the user taps through Apple's own

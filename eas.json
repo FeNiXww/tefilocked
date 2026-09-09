@@ -17,10 +17,24 @@
     },
     "production": {
       "autoIncrement": true,
-      "channel": "production"
+      "channel": "production",
+      "ios": {
+        "credentialsSource": "local"
+      }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "ascApiKeyPath": "./ios-credentials/AuthKey_F3FR9VV3RH.p8",
+        "ascApiKeyIssuerId": "250b9e02-acaf-4b5d-a20f-552a4bb1384f",
+        "ascApiKeyId": "F3FR9VV3RH",
+        "ascAppId": "6808556665"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./ios-credentials/eas-play-publisher-service-account.json",
+        "track": "internal"
+      }
+    }
   }
 }

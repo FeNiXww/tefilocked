@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { getAnalyticsSummary, getCurrentStreak, getUnlockTrend } from '../../data/storage/db';
 import type { TrendRange } from '../../data/storage/db';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { LineChart } from './LineChart';
 import { MoodBreakdown } from './MoodBreakdown';
 import { RangeToggle } from './RangeToggle';
@@ -17,6 +17,8 @@ function formatAvg(value: number | null): string {
 }
 
 export function Insights() {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const insets = useSafeAreaInsets();
   const [range, setRange] = useState<TrendRange>('30D');
   // Bumped on every focus so the memos below recompute — this tab can stay
@@ -59,22 +61,24 @@ export function Insights() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.xl,
-    gap: spacing.xl,
-  },
-  title: {
-    ...typography.title,
-  },
-  tileGrid: {
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: spacing.md,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    content: {
+      padding: spacing.xl,
+      gap: spacing.xl,
+    },
+    title: {
+      ...typography.title,
+    },
+    tileGrid: {
+      flexDirection: 'row-reverse',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      gap: spacing.md,
+    },
+  });
+}

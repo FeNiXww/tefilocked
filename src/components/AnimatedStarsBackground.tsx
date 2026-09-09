@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useReducedMotion,
@@ -11,7 +12,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Polygon } from 'react-native-svg';
-import { colors } from '../theme';
+import { useTheme } from '../theme';
 
 interface StarConfig {
   id: number;
@@ -150,6 +151,15 @@ const FloatingStar = memo(function FloatingStar({
         false
       )
     );
+
+    // These loop forever (-1) and, unlike a normal screen transition, aren't
+    // implicitly stopped by a JS-only reload (e.g. the Settings dev "reset
+    // onboarding" button) — see the matching comment in SparkleBackground's
+    // GlowStar for why that leaves them ticking against a torn-down surface.
+    return () => {
+      cancelAnimation(translateX);
+      cancelAnimation(bob);
+    };
     // Animation is (re)started only when reduceMotion changes; startX/endX/delay/duration are fixed per star instance.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion]);
@@ -172,7 +182,7 @@ const FloatingStar = memo(function FloatingStar({
  */
 export function AnimatedStarsBackground({
   count = 14,
-  color = colors.primary,
+  color,
   minSize = 16,
   maxSize = 34,
   minOpacity = 0.12,
@@ -182,6 +192,8 @@ export function AnimatedStarsBackground({
   style,
 }: AnimatedStarsBackgroundProps) {
   const { width, height } = useWindowDimensions();
+  const { colors } = useTheme();
+  const resolvedColor = color ?? colors.primary;
   const reduceMotion = useReducedMotion();
 
   const stars = useMemo(
@@ -197,7 +209,7 @@ export function AnimatedStarsBackground({
       importantForAccessibility="no-hide-descendants"
     >
       {stars.map((star) => (
-        <FloatingStar key={star.id} config={star} width={width} color={color} reduceMotion={reduceMotion} />
+        <FloatingStar key={star.id} config={star} width={width} color={resolvedColor} reduceMotion={reduceMotion} />
       ))}
     </View>
   );

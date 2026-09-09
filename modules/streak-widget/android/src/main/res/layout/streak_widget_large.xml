@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  LARGE: the one composition with room to tell the whole story — star,
+  count, status, the week's candles, and the current tier name — generously
+  spaced instead of cramming Medium's content into more space.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/widget_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layoutDirection="rtl"
+  android:background="@drawable/streak_widget_background">
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <FrameLayout
+      android:layout_width="100dp"
+      android:layout_height="100dp">
+
+      <ImageView
+        android:id="@+id/widget_star_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/streak_star_dormant" />
+
+      <ImageView
+        android:id="@+id/widget_celebrate_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/streak_celebrate_overlay"
+        android:visibility="gone" />
+    </FrameLayout>
+
+    <TextView
+      android:id="@+id/widget_streak_number"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:fontFamily="sans-serif-black"
+      android:textSize="38sp"
+      android:textColor="#16202E"
+      android:text="0" />
+
+    <TextView
+      android:id="@+id/widget_streak_caption"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif-medium"
+      android:textSize="12sp"
+      android:textColor="#57616F"
+      android:text="@string/streak_widget_caption" />
+
+    <TextView
+      android:id="@+id/widget_status_line"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:fontFamily="sans-serif-medium"
+      android:textSize="14sp"
+      android:textColor="#3E6E99"
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:text="" />
+
+    <LinearLayout
+      android:id="@+id/widget_candle_row"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:orientation="horizontal"
+      android:gravity="center" />
+
+    <TextView
+      android:id="@+id/widget_tier_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:fontFamily="sans-serif-medium"
+      android:textStyle="bold"
+      android:textSize="12sp"
+      android:letterSpacing="0.08"
+      android:textColor="#3E6E99"
+      android:text="" />
+
+  </LinearLayout>
+</FrameLayout>

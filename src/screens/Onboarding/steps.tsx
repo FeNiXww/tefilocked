@@ -1,82 +1,58 @@
 import type { ReactElement } from 'react';
-import { MultiChoiceStep } from './MultiChoiceStep';
+import { Platform } from 'react-native';
+import { AutoAdvanceChoiceStep } from './AutoAdvanceChoiceStep';
 import type { StepComponentProps } from './onboardingState';
-import {
-  AFFILIATION_QUESTION,
-  AGE_QUESTION,
-  COMMITMENT_QUESTION,
-  GENDER_QUESTION,
-  GOALS_QUESTION,
-  OBSTACLES_QUESTION,
-  PHONE_USAGE_QUESTION,
-  PREVIOUS_APPS_QUESTION,
-  RELATIONSHIP_STATUS_QUESTION,
-  STRUGGLES_QUESTION,
-  THRIVING_VISION_QUESTION,
-} from './questionBank';
-import { SingleChoiceStep } from './SingleChoiceStep';
+import { AGE_QUESTION, COMMITMENT_QUESTION, GENDER_QUESTION, PHONE_USAGE_QUESTION } from './questionBank';
+import { AppSelectionStep } from './steps/AppSelectionStep';
 import { Bombshell } from './steps/Bombshell';
-import { Bridge } from './steps/Bridge';
+import { CommitmentStep } from './steps/CommitmentStep';
 import { CoreLoopDemo } from './steps/CoreLoopDemo';
-import { FaithSnapshot } from './steps/FaithSnapshot';
 import { IntroPager } from './steps/IntroPager';
-import { JourneyChart } from './steps/JourneyChart';
-import { JourneySummary } from './steps/JourneySummary';
-import { BuildingPlanLoader } from './steps/BuildingPlanLoader';
 import { NameInput } from './steps/NameInput';
-import { PlanSummary } from './steps/PlanSummary';
-import { PrayerFrequencyStep } from './steps/PrayerFrequencyStep';
-import { Problem } from './steps/Problem';
-import { ReviewPrompt } from './steps/ReviewPrompt';
-import { SocialProof } from './steps/SocialProof';
-import { Solution } from './steps/Solution';
-import { StreakCelebration } from './steps/StreakCelebration';
-import { StrugglesReflection } from './steps/StrugglesReflection';
-import { WidgetIntro } from './steps/WidgetIntro';
+import { NotificationPrimer } from './steps/NotificationPrimer';
+import { PermissionSetup } from './steps/PermissionSetup';
+import { Purpose } from './steps/Purpose';
+import { WidgetPrimer } from './steps/WidgetPrimer';
 
 export interface OnboardingStepDef {
   key: string;
   render: (props: StepComponentProps) => ReactElement;
 }
 
-// The full onboarding sequence, in order — see the plan's "Screen Map" for
-// how each beat maps back to the reference app's 29-screen structure.
-// Reordering or removing a step is a one-line change here.
+// The full onboarding sequence, in order. Reordering or removing a step is a
+// one-line change here. See the redesign plan for the psychology behind this
+// ordering: intro pager → fast personalization → emotional payoff → hands-on
+// proof → commitment → setup → paywall.
 export const ONBOARDING_STEPS: OnboardingStepDef[] = [
-  // Swipeable "Embrace" + "Lockdown" pair — demonstrates the core mechanic
-  // as the very first beat of onboarding.
+  // The swipeable "Embrace" + "Lockdown" pair — original opening beats, kept
+  // as-is per product direction rather than replaced.
   { key: 'introPager', render: (p) => <IntroPager {...p} /> },
-  // Asked right up front, before any other copy needs a pronoun — every
-  // gendered string below (את/אתה, מחויב/ת, etc.) reads off this answer.
-  { key: 'gender', render: (p) => <SingleChoiceStep {...p} question={GENDER_QUESTION} /> },
-  { key: 'problem', render: (p) => <Problem {...p} /> },
-  { key: 'solution', render: (p) => <Solution {...p} /> },
   { key: 'name', render: (p) => <NameInput {...p} /> },
-  { key: 'age', render: (p) => <SingleChoiceStep {...p} question={AGE_QUESTION(p.answers.gender)} /> },
-  { key: 'phoneUsage', render: (p) => <SingleChoiceStep {...p} question={PHONE_USAGE_QUESTION(p.answers.gender)} /> },
+  // Asked right after name, before any other copy needs a pronoun — every
+  // gendered string below (את/אתה, מחויב/ת, etc.) reads off this answer.
+  { key: 'gender', render: (p) => <AutoAdvanceChoiceStep {...p} question={GENDER_QUESTION} /> },
+  { key: 'age', render: (p) => <AutoAdvanceChoiceStep {...p} question={AGE_QUESTION(p.answers.gender)} /> },
+  { key: 'phoneUsage', render: (p) => <AutoAdvanceChoiceStep {...p} question={PHONE_USAGE_QUESTION(p.answers.gender)} /> },
+  // Right after the phone-usage answer, while it's freshest — the "years of
+  // your life" reveal is computed directly from age + this answer.
   { key: 'bombshell', render: (p) => <Bombshell {...p} /> },
-  { key: 'bridge', render: (p) => <Bridge {...p} /> },
-  { key: 'previousApps', render: (p) => <SingleChoiceStep {...p} question={PREVIOUS_APPS_QUESTION} /> },
-  { key: 'affiliation', render: (p) => <SingleChoiceStep {...p} question={AFFILIATION_QUESTION(p.answers.gender)} /> },
-  { key: 'prayerFrequency', render: (p) => <PrayerFrequencyStep {...p} /> },
-  { key: 'struggles', render: (p) => <MultiChoiceStep {...p} question={STRUGGLES_QUESTION(p.answers.gender)} /> },
-  { key: 'strugglesReflection', render: (p) => <StrugglesReflection {...p} /> },
-  {
-    key: 'relationshipStatus',
-    render: (p) => <SingleChoiceStep {...p} question={RELATIONSHIP_STATUS_QUESTION(p.answers.gender)} />,
-  },
-  { key: 'obstacles', render: (p) => <MultiChoiceStep {...p} question={OBSTACLES_QUESTION(p.answers.gender)} /> },
-  { key: 'goals', render: (p) => <MultiChoiceStep {...p} question={GOALS_QUESTION(p.answers.gender)} /> },
-  { key: 'thrivingVision', render: (p) => <SingleChoiceStep {...p} question={THRIVING_VISION_QUESTION} /> },
-  { key: 'journeySummary', render: (p) => <JourneySummary {...p} /> },
-  { key: 'journeyChart', render: (p) => <JourneyChart {...p} /> },
+  // The payoff beat immediately after the reveal — reframes that same figure
+  // as reclaimable time before the flow moves on to unrelated questions.
+  { key: 'purpose', render: (p) => <Purpose {...p} /> },
+  // The hands-on "aha" moment — the user actually does the core loop once,
+  // ending with their first streak lighting.
   { key: 'coreLoopDemo', render: (p) => <CoreLoopDemo {...p} /> },
-  { key: 'streakCelebration', render: (p) => <StreakCelebration {...p} /> },
-  { key: 'widgetIntro', render: (p) => <WidgetIntro {...p} /> },
-  { key: 'reviewPrompt', render: (p) => <ReviewPrompt {...p} /> },
-  { key: 'buildingPlan', render: (p) => <BuildingPlanLoader {...p} /> },
-  { key: 'planSummary', render: (p) => <PlanSummary {...p} /> },
-  { key: 'commitment', render: (p) => <SingleChoiceStep {...p} question={COMMITMENT_QUESTION(p.answers.gender)} /> },
-  { key: 'faithSnapshot', render: (p) => <FaithSnapshot {...p} /> },
-  { key: 'socialProof', render: (p) => <SocialProof {...p} /> },
+  { key: 'commitment', render: (p) => <CommitmentStep {...p} question={COMMITMENT_QUESTION(p.answers.gender)} /> },
+  // Android-only: iOS's Screen Time permission is a single FamilyControls
+  // runtime prompt (IOSLockList), not a two-step Settings walkthrough, and
+  // its app picker is a native SwiftUI view that doesn't fit this list-row
+  // UI — iOS keeps deferring both to the first Home visit.
+  ...(Platform.OS === 'android'
+    ? [
+        { key: 'appSelection', render: (p: StepComponentProps) => <AppSelectionStep {...p} /> },
+        { key: 'permissionSetup', render: (p: StepComponentProps) => <PermissionSetup {...p} /> },
+      ]
+    : []),
+  { key: 'notificationPrimer', render: (p) => <NotificationPrimer {...p} /> },
+  { key: 'widgetPrimer', render: (p) => <WidgetPrimer {...p} /> },
 ];

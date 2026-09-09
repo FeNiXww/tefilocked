@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Static stand-in for the OS "Add to Home screen" preview thumbnail — the
+  real widget face is composited at runtime by StreakWidgetRenderer.kt, but
+  the system picker needs android:previewImage to point at something it can
+  draw without running app code, or it shows "Couldn't add widget."
+  Geometry mirrors hexagramPoints() or a 100x100 viewport (cx=50, cy=40, r=20).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="240dp"
+  android:height="240dp"
+  android:viewportWidth="100"
+  android:viewportHeight="100">
+
+  <path
+    android:fillColor="#FFFDF9"
+    android:pathData="M8,0 H92 A8,8 0 0 1 100,8 V92 A8,8 0 0 1 92,100 H8 A8,8 0 0 1 0,92 V8 A8,8 0 0 1 8,0 Z" />
+
+  <path
+    android:strokeColor="#7FB2E5"
+    android:strokeWidth="2.4"
+    android:strokeLineJoin="round"
+    android:pathData="M50,20 L67.32,50 L32.68,50 Z" />
+
+  <path
+    android:strokeColor="#3E6E99"
+    android:strokeWidth="2.4"
+    android:strokeLineJoin="round"
+    android:pathData="M50,60 L32.68,30 L67.32,30 Z" />
+
+</vector>

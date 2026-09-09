@@ -12,10 +12,12 @@ import {
   requestLockingPermissions,
   setIOSLockConfiguration,
 } from '../../native/appLocking';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 export function IOSLockList() {
   const insets = useSafeAreaInsets();
+  const { colors, typography, scheme } = useTheme();
+  const styles = createStyles(colors, typography);
   const [granted, setGranted] = useState<boolean | null>(null);
   const [selectionData, setSelectionData] = useState(() => getPersistedIOSSelectionData());
   const [blockedItems, setBlockedItems] = useState<IOSBlockedItem[]>([]);
@@ -89,8 +91,8 @@ export function IOSLockList() {
       <FamilyActivityPickerView
         initialSelection={selectionData}
         onSelectionChange={handleSelectionChange}
-        theme="light"
-        style={styles.picker}
+        theme={scheme}
+        style={blockedItems.length > 0 ? styles.pickerWithSelection : styles.picker}
       />
       {blockedItems.length > 0 && (
         <View style={styles.currentSection}>
@@ -102,16 +104,14 @@ export function IOSLockList() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
   },
   loading: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  picker: {
-    height: 400,
   },
   permissionContainer: {
     flex: 1,
@@ -133,7 +133,14 @@ const styles = StyleSheet.create({
   permissionButtonText: {
     ...typography.button,
   },
+  picker: {
+    flex: 1,
+  },
+  pickerWithSelection: {
+    flex: 2,
+  },
   currentSection: {
+    flex: 1,
     padding: spacing.lg,
     gap: spacing.sm,
   },
@@ -141,6 +148,8 @@ const styles = StyleSheet.create({
     ...typography.heading,
   },
   blockedList: {
+    flex: 1,
     minHeight: 100,
   },
-});
+  });
+}

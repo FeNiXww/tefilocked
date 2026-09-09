@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { EmojiRatingSlider } from '../../components/EmojiRatingSlider';
 import { PrimaryButton } from '../../components/PrimaryButton';
-import { spacing, typography } from '../../theme';
+import { spacing, useTheme, type Typography } from '../../theme';
 import { CONNECTION_BUCKETS } from './connectionLabels';
 
 interface ConnectionCheckInProps {
@@ -10,6 +10,8 @@ interface ConnectionCheckInProps {
 }
 
 export function ConnectionCheckIn({ onSubmit }: ConnectionCheckInProps) {
+  const { typography } = useTheme();
+  const styles = createStyles(typography);
   const [rating, setRating] = useState(3);
 
   return (
@@ -21,16 +23,19 @@ export function ConnectionCheckIn({ onSubmit }: ConnectionCheckInProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: spacing.xl,
-    alignItems: 'center',
-    gap: spacing.xl,
-  },
-  prompt: {
-    ...typography.heading,
-  },
-  button: {
-    marginTop: spacing.md,
-  },
-});
+function createStyles(typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      padding: spacing.xl,
+      alignItems: 'center',
+      gap: spacing.xl,
+    },
+    prompt: {
+      ...typography.heading,
+      textAlign: 'center',
+    },
+    button: {
+      marginTop: spacing.md,
+    },
+  });
+}

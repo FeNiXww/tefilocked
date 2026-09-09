@@ -31,7 +31,15 @@ export function syncStreakWidget(streak: number, litToday: boolean, candles: boo
     return;
   }
   if (Platform.OS === 'android') {
-    updateAndroid(streak, litToday, candlesCsv, celebrating);
+    // `updateAndroid` bridges synchronously, so a native-side rejection
+    // (e.g. the OS refusing an oversized widget bitmap) throws here rather
+    // than rejecting a promise — this is a best-effort background sync, not
+    // something that should ever crash the screen that triggered it.
+    try {
+      updateAndroid(streak, litToday, candlesCsv, celebrating);
+    } catch {
+      // Ignored — the widget just misses this update; the next sync retries.
+    }
   }
 }
 

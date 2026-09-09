@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -11,7 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Polygon, RadialGradient, Circle as SvgCircle, Stop } from 'react-native-svg';
-import { colors } from '../theme';
+import { lightColors, useTheme } from '../theme';
 import { Flame } from './Flame';
 import { tierForStreak } from './streakTiers';
 
@@ -139,14 +139,15 @@ export interface MagenDavidStreakProps {
  * lighting moment.
  */
 export function MagenDavidStreak({ streak, litToday, size = 96 }: MagenDavidStreakProps) {
+  const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const tier = tierForStreak(streak);
+  const { width: windowWidth } = useWindowDimensions();
 
   const glow = useSharedValue(litToday ? 1 : 0);
   const pop = useSharedValue(1);
   const breathe = useSharedValue(1);
   const idleBreathe = useSharedValue(1);
-  const rotate = useSharedValue(0);
   const wasLit = useRef(litToday);
 
   useEffect(() => {
@@ -205,20 +206,14 @@ export function MagenDavidStreak({ streak, litToday, size = 96 }: MagenDavidStre
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [litToday, reduceMotion]);
 
-  useEffect(() => {
-    // The top tier earns a slow shimmer rotation — a full 360° loop reads as
-    // seamless (start and end orientation are identical), so no easing trick
-    // is needed to hide the restart.
-    if (reduceMotion || !litToday || !tier.sparkles) {
-      rotate.value = 0;
-      return;
-    }
-    rotate.value = withRepeat(withTiming(360, { duration: 26000, easing: Easing.linear }), -1, false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [litToday, reduceMotion, tier.sparkles]);
-
+  // The top tier's "leveled up" flourish is the orbiting sparkles alone
+  // (below) — the star itself never rotates, at any tier: a hexagram reads as
+  // "askew" at almost every angle other than dead upright (it doesn't have
+  // hexagonal 60°-rotation symmetry the way a plain hexagon would, since the
+  // two overlaid triangles are each only 3-fold symmetric), so any spin only
+  // reads as the star tipping over rather than as a polished shimmer.
   const starAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: pop.value * breathe.value * idleBreathe.value }, { rotate: `${rotate.value}deg` }],
+    transform: [{ scale: pop.value * breathe.value * idleBreathe.value }],
   }));
 
   const cx = size / 2;
@@ -228,7 +223,15 @@ export function MagenDavidStreak({ streak, litToday, size = 96 }: MagenDavidStre
   const fillGradientId = 'magenDavidStreakFill';
   const highlightGradientId = 'magenDavidStreakHighlight';
 
-  const haloBase = size * tier.haloReach;
+  // Uncapped, the halo grows past the hero card's available width on narrow
+  // phones at high streak tiers (up to 2.9x `size`) — since the halo is now
+  // this component's only footprint in its parent's flex row (see Home's
+  // STAR_SIZE comment), that would still center itself correctly, but would
+  // visibly bleed past the card's rounded edges. 112 is Home's two stacked
+  // horizontal paddings (scroll content + hero card, spacing.xl each side)
+  // plus a small safety margin, so the halo stays inside the card on any
+  // screen instead of assuming one specific device width.
+  const haloBase = Math.min(size * tier.haloReach, Math.max(size, windowWidth - 112));
   const showSparkles = litToday && tier.sparkles;
 
   return (
@@ -272,7 +275,13 @@ export function MagenDavidStreak({ streak, litToday, size = 96 }: MagenDavidStre
             <LinearGradient id={fillGradientId} gradientUnits="userSpaceOnUse" x1={cx} y1={cy - r} x2={cx} y2={cy + r}>
               <Stop offset="0" stopColor={colors.accentLight} />
               <Stop offset="0.55" stopColor={colors.accent} />
-              <Stop offset="1" stopColor={colors.accentDark} />
+              {/* Fixed (not theme-reactive): dark mode's `accentDark` is
+                  deliberately inverted to a light tone for text-on-dark
+                  contrast elsewhere, which would flatten this into an
+                  all-light gradient and read as too bright/glary. Pinning to
+                  the light-mode value keeps the light-to-dark "lit ember"
+                  falloff this gradient is designed around, in both themes. */}
+              <Stop offset="1" stopColor={lightColors.accentDark} />
             </LinearGradient>
             <RadialGradient id={highlightGradientId} cx="50%" cy="50%" r="60%">
               <Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.5} />

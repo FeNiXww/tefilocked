@@ -12,7 +12,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
-import { colors } from '../theme';
+import { useTheme } from '../theme';
 
 // A teardrop/flame silhouette (viewBox 0-100) plus a smaller, lighter inner
 // "core" flame nested inside it for a two-tone hot-center look — cheaper and
@@ -104,20 +104,24 @@ export interface FlameProps {
  *
  * The sway is two layered wobbles — a slow directional lean plus a quicker,
  * smaller jitter on top — rather than one clean back-and-forth sweep, so it
- * doesn't read as a metronome. Both pivot from the flame's base
- * (`transformOrigin: bottom`), like a real flame anchored to a wick: the
- * base stays put and the tip is what actually moves.
+ * doesn't read as a metronome. Both pivot from the flame's base, like a real
+ * flame anchored to a wick: the base stays put and the tip is what actually
+ * moves.
  */
 export function Flame({
   size = 48,
   active = true,
   opacity = 1,
-  outerColor = colors.accent,
-  outerColorDark = colors.accentDark,
-  innerColor = colors.accentLight,
+  outerColor,
+  outerColorDark,
+  innerColor,
   particles = false,
   burst,
 }: FlameProps) {
+  const { colors } = useTheme();
+  const resolvedOuterColor = outerColor ?? colors.accent;
+  const resolvedOuterColorDark = outerColorDark ?? colors.accentDark;
+  const resolvedInnerColor = innerColor ?? colors.accentLight;
   const lean = useSharedValue(0);
   const jitter = useSharedValue(0);
   const stretch = useSharedValue(1);
@@ -210,13 +214,24 @@ export function Flame({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, reduceMotion]);
 
+  // Pivoting from the base is done with an explicit translate/…/translate
+  // around the view's own center — not the `transformOrigin` style prop, whose
+  // native support has been inconsistent across platforms (it rendered the
+  // pivot in the wrong place on Android, making the flame read as tilted).
+  // The non-uniform scales (scaleX != scaleY) must happen BEFORE rotate, not
+  // after: scaling along axes that are already rotated shears the shape
+  // instead of stretching it, which is what actually produced the skewed,
+  // tilted-looking flame — rotate must be the last, purely-rigid step.
+  const halfSize = size / 2;
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity * flicker.value,
     transform: [
-      { rotate: `${lean.value * 3.2 + jitter.value * 1.8}deg` },
+      { translateY: halfSize },
       { scaleY: stretch.value },
       { scaleX: 2 - stretch.value * 0.6 },
       { scale: burst ? burst.value : 1 },
+      { rotate: `${lean.value * 3.2 + jitter.value * 1.8}deg` },
+      { translateY: -halfSize },
     ],
   }));
 
@@ -235,21 +250,21 @@ export function Flame({
             size={size}
             active={active}
             reduceMotion={reduceMotion}
-            color={i % 2 === 0 ? innerColor : outerColor}
+            color={i % 2 === 0 ? resolvedInnerColor : resolvedOuterColor}
             tempo={tempo}
             startDelay={startDelay}
           />
         ))}
-      <Animated.View style={[styles.pivotBottom, animatedStyle]}>
+      <Animated.View style={animatedStyle}>
         <Svg width={size} height={size} viewBox="0 0 100 100">
           <Defs>
             <LinearGradient id={outerGradientId} x1="0" y1="0" x2="0" y2="1">
-              <Stop offset="0" stopColor={outerColor} />
-              <Stop offset="1" stopColor={outerColorDark} />
+              <Stop offset="0" stopColor={resolvedOuterColor} />
+              <Stop offset="1" stopColor={resolvedOuterColorDark} />
             </LinearGradient>
             <LinearGradient id={innerGradientId} x1="0" y1="0" x2="0" y2="1">
               <Stop offset="0" stopColor="#FFFFFF" />
-              <Stop offset="1" stopColor={innerColor} />
+              <Stop offset="1" stopColor={resolvedInnerColor} />
             </LinearGradient>
           </Defs>
           <Path d={FLAME_OUTER} fill={`url(#${outerGradientId})`} />
@@ -264,9 +279,6 @@ const styles = StyleSheet.create({
   wrap: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  pivotBottom: {
-    transformOrigin: 'bottom',
   },
   ember: {
     position: 'absolute',

@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, {
   Easing,
@@ -9,8 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SparkleBackground } from '../../components/SparkleBackground';
-import { colors, spacing } from '../../theme';
-import { OnboardingHeroMedia } from './OnboardingHeroMedia';
+import { spacing, useTheme, type ThemeColors } from '../../theme';
 import { ProgressBar } from './ProgressBar';
 
 interface OnboardingScreenShellProps {
@@ -18,33 +17,30 @@ interface OnboardingScreenShellProps {
   progress?: { current: number; total: number };
   tone?: 'accent' | 'navy';
   scroll?: boolean;
-  /** Full-bleed artwork behind the sparkle layer, see OnboardingHeroMedia. */
-  heroMedia?: ImageSourcePropType;
   children: ReactNode;
 }
 
 /**
- * Shared chrome for most onboarding steps: background, optional back arrow,
- * optional question-bank progress bar, and a content area. Full-bleed
- * "tap to continue" narrative beats (Welcome/Problem/Solution/Bridge) skip
- * this entirely in favor of `TapToContinue`, which has no back affordance.
+ * Shared chrome for every onboarding step: background, optional back arrow,
+ * optional question-bank progress bar, and a content area.
  *
  * The content settles in with a soft rise-and-fade every time the step
  * changes — keyed on `progress.current` rather than mount, since several
- * steps in a row reuse the same component (SingleChoiceStep, MultiChoiceStep)
- * with different props, and React won't remount a same-typed component just
+ * steps in a row reuse the same component (AutoAdvanceChoiceStep) with
+ * different props, and React won't remount a same-typed component just
  * because its props changed.
  */
 export function OnboardingScreenShell({
   onBack,
   progress,
   tone = 'navy',
-  scroll = false,
-  heroMedia,
+  scroll = true,
   children,
 }: OnboardingScreenShellProps) {
   const Content = scroll ? ScrollView : View;
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   const reveal = useSharedValue(0);
   const reduceMotion = useReducedMotion();
@@ -64,13 +60,12 @@ export function OnboardingScreenShell({
 
   return (
     <View style={styles.container}>
-      {heroMedia && <OnboardingHeroMedia source={heroMedia} />}
       <SparkleBackground tone={tone} starCount={8} />
 
       <View style={[styles.topBar, { paddingTop: insets.top }]}>
         {onBack ? (
           <Pressable onPress={onBack} hitSlop={12}>
-            <Text style={[styles.backArrow, !!heroMedia && styles.backArrowOnMedia]}>←</Text>
+            <Text style={styles.backArrow}>←</Text>
           </Pressable>
         ) : (
           <View style={styles.backArrowSpacer} />
@@ -91,7 +86,8 @@ export function OnboardingScreenShell({
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
@@ -109,9 +105,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: colors.textPrimary,
   },
-  backArrowOnMedia: {
-    color: colors.background,
-  },
   backArrowSpacer: {
     height: 24,
   },
@@ -128,4 +121,5 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl,
     flexGrow: 1,
   },
-});
+  });
+}

@@ -7,7 +7,9 @@ import WidgetKit
 // keep both in sync if it ever changes).
 private let appGroupIdentifier = "group.org.tefillok.app.blocker"
 
-// src/theme/colors.ts
+// src/theme/colors.ts — the app's real light/parchment/navy brand, not a
+// bespoke "widget theme". A user should recognize this as the same surface
+// the app itself sits on, just purpose-composed for a home-screen tile.
 private let accentLight = Color(red: 0.894, green: 0.937, blue: 0.980) // #E4EFFA
 private let accent = Color(red: 0.498, green: 0.698, blue: 0.898) // #7FB2E5
 private let accentDark = Color(red: 0.243, green: 0.431, blue: 0.600) // #3E6E99
@@ -15,16 +17,23 @@ private let textPrimary = Color(red: 0.086, green: 0.125, blue: 0.180) // #16202
 private let textSecondary = Color(red: 0.341, green: 0.380, blue: 0.435) // #57616F
 private let textMuted = Color(red: 0.400, green: 0.412, blue: 0.439) // #666970
 private let surfacePressed = Color(red: 0.918, green: 0.878, blue: 0.788) // #EAE0C9
-private let widgetBackground = Color(red: 1.0, green: 0.992, blue: 0.976) // #FFFDF9
+private let border = Color(red: 0.906, green: 0.875, blue: 0.788) // #E7DFC9
+private let widgetBackgroundTop = Color(red: 1.0, green: 0.992, blue: 0.976) // #FFFDF9
+private let widgetBackgroundBottom = Color(red: 0.965, green: 0.945, blue: 0.902) // #F6F1E6
 // src/components/HanukkiahStreakRow.tsx METAL — the app's one "warm gold"
 // accent (the חנוכייה's brass), reused here for the large widget's weekly dots.
 private let gold = Color(red: 0.831, green: 0.663, blue: 0.290) // #D4A94A
 private let goldDark = Color(red: 0.549, green: 0.416, blue: 0.145) // #8C6A24
 
 // MARK: - Streak tiers
-// Mirrors STREAK_TIERS in src/components/streakTiers.ts — same thresholds,
-// same halo growth curve, same tier names — so a given streak reads at the
-// same intensity on the widget as it does on the in-app hero star.
+// Thresholds/labels mirror STREAK_TIERS in src/components/streakTiers.ts.
+// `haloReach` is deliberately smaller than the in-app hero's (up to 2.9x
+// there) — that value was tuned for a big card with generous surrounding
+// whitespace; on a widget tile the same reach would bleed the glow into the
+// rounded corners, which is exactly the "excessive glow" this redesign is
+// meant to avoid. These are the same dialed-down reach values the Android
+// widget's tier artwork uses, so a given streak reads at the same visual
+// intensity on both platforms.
 
 private struct WidgetTier {
   let minStreak: Int
@@ -35,11 +44,11 @@ private struct WidgetTier {
 }
 
 private let widgetTiers: [WidgetTier] = [
-  WidgetTier(minStreak: 0, glowLayers: 1, haloOpacity: 0.35, haloReach: 1.7, label: "התחלה"),
-  WidgetTier(minStreak: 3, glowLayers: 2, haloOpacity: 0.40, haloReach: 1.95, label: "התמדה"),
-  WidgetTier(minStreak: 7, glowLayers: 2, haloOpacity: 0.48, haloReach: 2.2, label: "יציבות"),
-  WidgetTier(minStreak: 14, glowLayers: 3, haloOpacity: 0.52, haloReach: 2.5, label: "להט"),
-  WidgetTier(minStreak: 30, glowLayers: 3, haloOpacity: 0.60, haloReach: 2.9, label: "זוהר"),
+  WidgetTier(minStreak: 0, glowLayers: 1, haloOpacity: 0.35, haloReach: 1.5, label: "התחלה"),
+  WidgetTier(minStreak: 3, glowLayers: 2, haloOpacity: 0.40, haloReach: 1.7, label: "התמדה"),
+  WidgetTier(minStreak: 7, glowLayers: 2, haloOpacity: 0.48, haloReach: 1.85, label: "יציבות"),
+  WidgetTier(minStreak: 14, glowLayers: 3, haloOpacity: 0.52, haloReach: 2.0, label: "להט"),
+  WidgetTier(minStreak: 30, glowLayers: 3, haloOpacity: 0.60, haloReach: 2.15, label: "זוהר"),
 ]
 
 private func tier(forStreak streak: Int) -> WidgetTier {
@@ -174,15 +183,15 @@ private struct MagenDavidView: View {
   var body: some View {
     GeometryReader { geo in
       let size = min(geo.size.width, geo.size.height)
-      let strokeWidth = max(size * 0.05, 1.5)
+      let strokeWidth = max(size * 0.052, 1.6)
       let haloOpacity = celebrating ? min(tier.haloOpacity * 1.35, 0.85) : tier.haloOpacity
 
       ZStack {
         if litToday {
           // The same oversized, stacked, semi-transparent Flame silhouettes
           // MagenDavidStreak.tsx's GlowLayer uses behind the star — layer
-          // count and peak opacity scale with the streak tier exactly like
-          // the in-app hero (see STREAK_TIERS.glowLayers/haloOpacity).
+          // count scales with the streak tier exactly like the in-app hero,
+          // just with a tighter reach (see widgetTiers above).
           ForEach(0..<tier.glowLayers, id: \.self) { i in
             let scale = tier.haloReach * (1 - CGFloat(i) * 0.28)
             FlameGlyph()
@@ -197,14 +206,14 @@ private struct MagenDavidView: View {
           // before the widget settles back to the plain lit state).
           if celebrating {
             Circle()
-              .stroke(gold.opacity(0.55), lineWidth: strokeWidth * 0.9)
-              .frame(width: size * 1.1, height: size * 1.1)
+              .stroke(gold.opacity(0.55), lineWidth: strokeWidth * 0.85)
+              .frame(width: size * 1.15, height: size * 1.15)
             ForEach(Array(sparkleAngles.enumerated()), id: \.offset) { _, angleDeg in
               let angle = angleDeg * .pi / 180
               Circle()
                 .fill(Color.white)
-                .frame(width: size * 0.045, height: size * 0.045)
-                .offset(x: cos(angle) * size * 0.62, y: sin(angle) * size * 0.62)
+                .frame(width: size * 0.05, height: size * 0.05)
+                .offset(x: cos(angle) * size * 0.66, y: sin(angle) * size * 0.66)
             }
           }
         }
@@ -220,11 +229,13 @@ private struct MagenDavidView: View {
               LinearGradient(colors: [accentLight, accent, accentDark], startPoint: .top, endPoint: .bottom),
               style: StrokeStyle(lineWidth: strokeWidth * 1.9, lineJoin: .round)
             )
-          // Faint glossy highlight filling the hollow center.
+          // Faint glossy highlight filling the hollow center — the widget's
+          // one "soft inner lighting" touch, scaled by tier like the in-app
+          // hero's highlightOpacity so higher streaks read as more radiant.
           Circle()
             .fill(
               RadialGradient(
-                colors: [Color.white.opacity(0.45), Color.white.opacity(0)],
+                colors: [Color.white.opacity(0.1 + Double(tier.glowLayers) * 0.05), Color.white.opacity(0)],
                 center: .center,
                 startRadius: 0,
                 endRadius: size * 0.28
@@ -234,7 +245,7 @@ private struct MagenDavidView: View {
         } else {
           ForEach([-90, 90] as [CGFloat], id: \.self) { angle in
             HexagramShape(startAngleDeg: angle)
-              .fill(surfacePressed.opacity(0.6))
+              .fill(surfacePressed.opacity(0.55))
             HexagramShape(startAngleDeg: angle)
               .stroke(textMuted, style: StrokeStyle(lineWidth: strokeWidth, lineJoin: .round))
           }
@@ -248,17 +259,22 @@ private struct MagenDavidView: View {
 }
 
 // MARK: - Weekly candle row (large widget only)
+// Deliberately plain gold dots rather than the full ornate חנוכייה geometry
+// (metal arms, individual wax candles) — that much detail doesn't survive
+// being shrunk to widget scale without turning into visual noise; the star
+// stays the one "hero" glyph, and this row evokes the week's rhythm without
+// competing with it.
 
 private struct CandleRow: View {
   let candles: [Bool]
 
   var body: some View {
-    HStack(spacing: 5) {
+    HStack(spacing: 6) {
       ForEach(Array(candles.enumerated()), id: \.offset) { index, completed in
         let isToday = index == candles.count - 1
         Circle()
-          .fill(completed ? AnyShapeStyle(LinearGradient(colors: [gold, goldDark], startPoint: .top, endPoint: .bottom)) : AnyShapeStyle(surfacePressed.opacity(0.7)))
-          .frame(width: isToday ? 9 : 7, height: isToday ? 9 : 7)
+          .fill(completed ? AnyShapeStyle(LinearGradient(colors: [gold, goldDark], startPoint: .top, endPoint: .bottom)) : AnyShapeStyle(surfacePressed.opacity(0.65)))
+          .frame(width: isToday ? 10 : 7, height: isToday ? 10 : 7)
           .overlay(
             Circle().stroke(isToday ? goldDark.opacity(0.5) : Color.clear, lineWidth: 1)
           )
@@ -279,72 +295,120 @@ struct StreakWidgetEntryView: View {
     entry.litToday ? "התפילה של היום נרשמה" : "מוכן לרגע של תפילה?"
   }
 
-  private var motivationLine: String {
-    entry.litToday ? "כל יום מחזק את הקשר שלך" : "שמור על הרצף שלך"
-  }
-
   private var deepLinkURL: URL? {
     URL(string: entry.litToday ? "tefillok://home" : "tefillok://pray")
   }
 
-  private var starSize: CGFloat {
+  private var numberColor: Color { entry.litToday ? accentDark : textPrimary }
+  private var secondaryColor: Color { entry.litToday ? accentDark : textSecondary }
+
+  private var streakNumber: some View {
+    Text("\(entry.streak)")
+      .font(.system(size: numberSize, weight: .heavy, design: .rounded))
+      .foregroundColor(numberColor)
+  }
+
+  private var caption: some View {
+    Text("ימי רצף")
+      .font(.system(size: 12, weight: .medium))
+      .foregroundColor(secondaryColor)
+  }
+
+  private var numberSize: CGFloat {
     switch family {
-    case .systemLarge: return 108
-    default: return 74
+    case .systemLarge: return 44
+    case .systemMedium: return 30
+    default: return 32
+    }
+  }
+
+  // SMALL: the glanceable minimum — star + count, nothing else. Answers
+  // "where am I right now" in under a second.
+  private var smallLayout: some View {
+    VStack(spacing: 6) {
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+        .frame(width: 62, height: 62)
+      streakNumber
+      caption
+    }
+  }
+
+  // MEDIUM: the extra width buys a horizontal composition, not a bigger
+  // Small — star leads (SwiftUI auto-mirrors leading/trailing under the
+  // forced RTL environment below, so it lands on the right), number +
+  // status trail it in natural Hebrew reading order.
+  private var mediumLayout: some View {
+    HStack(spacing: 16) {
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+        .frame(width: 72, height: 72)
+      VStack(alignment: .trailing, spacing: 3) {
+        HStack(alignment: .lastTextBaseline, spacing: 5) {
+          streakNumber
+          caption
+        }
+        Text(statusLine)
+          .font(.system(size: 13, weight: .semibold))
+          .foregroundColor(secondaryColor)
+          .lineLimit(1)
+          .minimumScaleFactor(0.85)
+      }
+    }
+  }
+
+  // LARGE: the one composition with room to tell the whole story — star,
+  // count, status, the week's candles, and the current tier name —
+  // generously spaced rather than Medium's content stretched taller.
+  private var largeLayout: some View {
+    VStack(spacing: 10) {
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+        .frame(width: 112, height: 112)
+      VStack(spacing: 2) {
+        streakNumber
+        caption
+      }
+      Text(statusLine)
+        .font(.system(size: 14, weight: .semibold))
+        .foregroundColor(secondaryColor)
+        .lineLimit(1)
+        .minimumScaleFactor(0.85)
+      if !entry.candles.isEmpty {
+        CandleRow(candles: entry.candles)
+          .padding(.top, 4)
+      }
+      Text(tierInfo.label)
+        .font(.system(size: 12, weight: .bold))
+        .tracking(0.6)
+        .foregroundColor(accentDark)
+        .padding(.top, 2)
     }
   }
 
   private var content: some View {
-    VStack(spacing: family == .systemLarge ? 8 : 6) {
-      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
-        .frame(width: starSize, height: starSize)
-
-      VStack(spacing: 0) {
-        Text("\(entry.streak)")
-          .font(.system(size: family == .systemLarge ? 36 : 30, weight: .bold, design: .rounded))
-          .foregroundColor(entry.litToday ? accentDark : textPrimary)
-        Text("ימי רצף")
-          .font(.system(size: 12))
-          .foregroundColor(entry.litToday ? accentDark : textSecondary)
-      }
-
-      if family != .systemSmall {
-        Text(statusLine)
-          .font(.system(size: 13, weight: .semibold))
-          .foregroundColor(entry.litToday ? accentDark : textSecondary)
-          .multilineTextAlignment(.center)
-          .lineLimit(1)
-          .minimumScaleFactor(0.85)
-      }
-
-      if family == .systemLarge {
-        if !entry.candles.isEmpty {
-          CandleRow(candles: entry.candles)
-        }
-        Text(tierInfo.label)
-          .font(.system(size: 11, weight: .bold))
-          .tracking(0.5)
-          .foregroundColor(accentDark)
-        Text(motivationLine)
-          .font(.system(size: 12))
-          .foregroundColor(textSecondary)
-          .multilineTextAlignment(.center)
-          .lineLimit(2)
+    Group {
+      switch family {
+      case .systemLarge: largeLayout
+      case .systemMedium: mediumLayout
+      default: smallLayout
       }
     }
-    .padding(family == .systemLarge ? 16 : 10)
+    .padding(.horizontal, family == .systemSmall ? 12 : 18)
+    .padding(.vertical, family == .systemLarge ? 20 : 14)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .environment(\.layoutDirection, .rightToLeft) // App is Hebrew-first/RTL throughout.
+    .environment(\.layoutDirection, .rightToLeft) // App is Hebrew-first/RTL throughout, regardless of device locale.
     .accessibilityElement(children: .ignore)
     .accessibilityLabel("\(entry.streak) ימי רצף. \(statusLine)")
+  }
+
+  private var background: some View {
+    LinearGradient(colors: [widgetBackgroundTop, widgetBackgroundBottom], startPoint: .top, endPoint: .bottom)
   }
 
   var body: some View {
     Group {
       if #available(iOS 17.0, *) {
-        content.containerBackground(widgetBackground, for: .widget)
+        content.containerBackground(for: .widget) { background }
       } else {
-        content.background(widgetBackground)
+        content.background(background)
       }
     }
     .widgetURL(deepLinkURL)

@@ -11,7 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
-import { colors } from '../theme';
+import { lightColors, useTheme } from '../theme';
 
 // A two-layer flame silhouette (bigger outer tongue + smaller hotter core),
 // same anatomy as a real candle flame. Drawn in a 100x100 box so `size` scales
@@ -90,11 +90,12 @@ export interface FlameIconProps {
  * this app's fire, not a generic icon.
  *
  * Sway is two layered wobbles — a slow lean plus a quicker, smaller jitter —
- * pivoting from the flame's base (`transformOrigin: bottom`) so the tip is
- * what actually flickers, like a flame anchored to a wick, rather than the
- * whole shape swinging like a pendulum.
+ * pivoting from the flame's base so the tip is what actually flickers, like a
+ * flame anchored to a wick, rather than the whole shape swinging like a
+ * pendulum.
  */
 export const FlameIcon = memo(function FlameIcon({ size = 32, lit = true, tiltDeg = 0 }: FlameIconProps) {
+  const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
   const flicker = useSharedValue(1);
   const lean = useSharedValue(0);
@@ -146,11 +147,21 @@ export const FlameIcon = memo(function FlameIcon({ size = 32, lit = true, tiltDe
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lit, reduceMotion]);
 
+  // Pivoting from the base is done with an explicit translate/…/translate
+  // around the view's own center — not the `transformOrigin` style prop, whose
+  // native support has been inconsistent across platforms (it rendered the
+  // pivot in the wrong place on Android, making the flames read as tilted).
+  // scaleY must happen BEFORE either rotate, not sandwiched between them:
+  // scaling along an axis that's already rotated shears the shape instead of
+  // stretching it, which reads as an extra, unwanted tilt — the two rotates
+  // (combined into one) must be the last, purely-rigid step.
+  const halfSize = size / 2;
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
-      { rotate: `${tiltDeg}deg` },
+      { translateY: halfSize },
       { scaleY: flicker.value },
-      { rotate: `${lean.value * 4 + jitter.value * 2.2}deg` },
+      { rotate: `${tiltDeg + lean.value * 4 + jitter.value * 2.2}deg` },
+      { translateY: -halfSize },
     ],
   }));
 
@@ -160,13 +171,17 @@ export const FlameIcon = memo(function FlameIcon({ size = 32, lit = true, tiltDe
         Array.from({ length: EMBER_COUNT }).map((_, i) => (
           <Ember key={i} index={i} size={size} lit={lit} reduceMotion={reduceMotion} />
         ))}
-      <Animated.View style={[styles.pivotBottom, animatedStyle]}>
+      <Animated.View style={animatedStyle}>
         <Svg width={size} height={size} viewBox="0 0 100 100">
           <Defs>
             <LinearGradient id="flameOuter" x1="0" y1="0" x2="0" y2="1">
               <Stop offset="0" stopColor={lit ? colors.accentLight : colors.surfacePressed} />
               <Stop offset="0.55" stopColor={lit ? colors.accent : colors.textMuted} stopOpacity={lit ? 1 : 0.5} />
-              <Stop offset="1" stopColor={lit ? colors.accentDark : colors.textMuted} stopOpacity={lit ? 1 : 0.35} />
+              {/* Fixed (not theme-reactive) for the lit state, like
+                  MagenDavidStreak's fill gradient: dark mode's `accentDark`
+                  is deliberately inverted to a light tone elsewhere, which
+                  would flatten this into an all-light gradient. */}
+              <Stop offset="1" stopColor={lit ? lightColors.accentDark : colors.textMuted} stopOpacity={lit ? 1 : 0.35} />
             </LinearGradient>
             <LinearGradient id="flameInner" x1="0" y1="0" x2="0" y2="1">
               <Stop offset="0" stopColor="#FFFFFF" stopOpacity={lit ? 0.95 : 0.25} />
@@ -186,11 +201,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  pivotBottom: {
-    transformOrigin: 'bottom',
-  },
   ember: {
     position: 'absolute',
-    backgroundColor: colors.accentLight,
+    // `accentLight` is the same fixed value in both themes (see colors.ts).
+    backgroundColor: lightColors.accentLight,
   },
 });

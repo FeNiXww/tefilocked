@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { haptics } from '../../haptics';
 import { ALL_MOODS } from '../../content/types';
 import type { Mood } from '../../content/types';
 import { pickG, type Gender } from '../Onboarding/onboardingState';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { moodLabel } from './moodLabels';
 
 interface MoodPickerProps {
@@ -12,8 +12,10 @@ interface MoodPickerProps {
 }
 
 export function MoodPicker({ onSelect, gender }: MoodPickerProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const handleSelect = (mood: Mood) => {
-    Haptics.selectionAsync().catch(() => {});
+    haptics.selection();
     onSelect(mood);
   };
 
@@ -35,31 +37,33 @@ export function MoodPicker({ onSelect, gender }: MoodPickerProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: spacing.xl,
-    alignItems: 'center',
-  },
-  prompt: {
-    ...typography.heading,
-    marginBottom: spacing.xl,
-  },
-  grid: {
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: spacing.md,
-  },
-  chip: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.xl,
-    borderRadius: 24,
-    backgroundColor: colors.surface,
-  },
-  chipPressed: {
-    backgroundColor: colors.surfacePressed,
-  },
-  chipText: {
-    ...typography.body,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      padding: spacing.xl,
+      alignItems: 'center',
+    },
+    prompt: {
+      ...typography.heading,
+      marginBottom: spacing.xl,
+    },
+    grid: {
+      flexDirection: 'row-reverse',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: spacing.md,
+    },
+    chip: {
+      paddingVertical: spacing.md,
+      paddingHorizontal: spacing.xl,
+      borderRadius: 24,
+      backgroundColor: colors.surface,
+    },
+    chipPressed: {
+      backgroundColor: colors.surfacePressed,
+    },
+    chipText: {
+      ...typography.body,
+    },
+  });
+}

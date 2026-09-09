@@ -1,0 +1,92 @@
+import { StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { PrimaryButton } from '../../../components/PrimaryButton';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
+import { HighlightText } from '../HighlightText';
+import { computePhoneTimeStats, type StepComponentProps } from '../onboardingState';
+import { OnboardingScreenShell } from '../OnboardingScreenShell';
+
+const HEADLINE_START_DELAY_MS = 250;
+const BODY_START_DELAY_MS = HEADLINE_START_DELAY_MS + 900;
+
+/**
+ * The payoff beat right after Bombshell — reframes the years the user just
+ * saw as time that can still be reclaimed. Echoes that same number, small
+ * and muted, so the two screens read as one continuous realization → hope
+ * story rather than an unrelated statistic followed by a pitch.
+ */
+export function Purpose({ answers, onNext, onBack, progress }: StepComponentProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
+  const stats = computePhoneTimeStats(answers);
+
+  return (
+    <OnboardingScreenShell onBack={onBack} progress={progress}>
+      <View style={styles.stage}>
+        <Animated.View entering={FadeIn.duration(450)} style={styles.echo}>
+          <Text style={styles.echoText}>
+            {stats.lifetimeYearsPrecise.toFixed(1)} <Text style={styles.echoUnit}>שנים</Text>
+          </Text>
+        </Animated.View>
+
+        <HighlightText
+          text="**מה אם חלק מהזמן הזה** יחזור אליך?"
+          style={styles.headline}
+          startDelayMs={HEADLINE_START_DELAY_MS}
+        />
+
+        <HighlightText
+          text="בכל פעם שהטלפון קורא לך, **תפילוק עוצר אותך לרגע של תפילה** — ומחזיר לך חלק מהזמן שהיה הולך לאיבוד"
+          style={styles.body}
+          startDelayMs={BODY_START_DELAY_MS}
+        />
+      </View>
+
+      <PrimaryButton label="המשך" onPress={onNext} style={styles.button} />
+    </OnboardingScreenShell>
+  );
+}
+
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    stage: {
+      flex: 1,
+      minHeight: 420,
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: spacing.xl,
+    },
+    echo: {
+      opacity: 0.55,
+    },
+    echoText: {
+      ...typography.title,
+      fontSize: 22,
+      fontWeight: '700',
+      color: colors.textSecondary,
+      textAlign: 'center',
+    },
+    echoUnit: {
+      ...typography.body,
+      fontWeight: '600',
+      color: colors.textSecondary,
+    },
+    headline: {
+      ...typography.hero,
+      fontSize: 28,
+      textAlign: 'center',
+      paddingHorizontal: spacing.lg,
+    },
+    body: {
+      ...typography.heading,
+      fontSize: 18,
+      fontWeight: '500',
+      textAlign: 'center',
+      color: colors.textSecondary,
+      paddingHorizontal: spacing.lg,
+    },
+    button: {
+      marginTop: spacing.xxl,
+    },
+  });
+}

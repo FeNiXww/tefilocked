@@ -1,5 +1,8 @@
 R_DEF: Internal format may change without notice
 local
+color widget_accent_dark
+color widget_text_primary
+color widget_text_secondary
 drawable streak_candle_dormant
 drawable streak_candle_dormant_today
 drawable streak_candle_lit

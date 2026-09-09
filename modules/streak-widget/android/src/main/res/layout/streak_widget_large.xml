@@ -44,7 +44,7 @@
       android:layout_marginTop="8dp"
       android:fontFamily="sans-serif-black"
       android:textSize="38sp"
-      android:textColor="#16202E"
+      android:textColor="@color/widget_text_primary"
       android:text="0" />
 
     <TextView
@@ -53,7 +53,7 @@
       android:layout_height="wrap_content"
       android:fontFamily="sans-serif-medium"
       android:textSize="12sp"
-      android:textColor="#57616F"
+      android:textColor="@color/widget_text_secondary"
       android:text="@string/streak_widget_caption" />
 
     <TextView
@@ -63,7 +63,7 @@
       android:layout_marginTop="10dp"
       android:fontFamily="sans-serif-medium"
       android:textSize="14sp"
-      android:textColor="#3E6E99"
+      android:textColor="@color/widget_accent_dark"
       android:maxLines="1"
       android:ellipsize="end"
       android:text="" />
@@ -85,7 +85,7 @@
       android:textStyle="bold"
       android:textSize="12sp"
       android:letterSpacing="0.08"
-      android:textColor="#3E6E99"
+      android:textColor="@color/widget_accent_dark"
       android:text="" />
 
   </LinearLayout>

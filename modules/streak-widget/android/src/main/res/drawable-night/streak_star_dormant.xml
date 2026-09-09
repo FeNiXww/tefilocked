@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark counterpart of ../drawable/streak_star_dormant.xml — mirrors
+     MagenDavidStreak.tsx's dormant fill/stroke (colors.surfacePressed /
+     colors.textMuted), which unlike the lit-tier gradient IS theme-reactive. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:width="200dp"
+  android:height="200dp"
+  android:viewportWidth="200"
+  android:viewportHeight="200">
+
+  <path
+    android:fillColor="#22304A"
+    android:fillAlpha="0.55"
+    android:strokeColor="#8C93A0"
+    android:strokeWidth="4"
+    android:strokeLineJoin="round"
+    android:pathData="M100,66 L129.44,117 L70.56,117 Z" />
+
+  <path
+    android:fillColor="#22304A"
+    android:fillAlpha="0.55"
+    android:strokeColor="#8C93A0"
+    android:strokeWidth="4"
+    android:strokeLineJoin="round"
+    android:pathData="M100,134 L70.56,83 L129.44,83 Z" />
+</vector>

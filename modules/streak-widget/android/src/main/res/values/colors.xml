@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mirrors src/theme/colors.ts `lightColors` — the dark counterparts live in
+     values-night/colors.xml (darkColors). Referenced both from the layout
+     XMLs' static defaults and from StreakWidgetRenderer.kt, so there's one
+     source of truth for "which theme is this widget in" instead of the
+     renderer duplicating hex ints. -->
+<resources>
+  <color name="widget_text_primary">#16202E</color>
+  <color name="widget_text_secondary">#57616F</color>
+  <color name="widget_accent_dark">#3E6E99</color>
+</resources>

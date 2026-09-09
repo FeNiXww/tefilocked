@@ -10,20 +10,70 @@ private let appGroupIdentifier = "group.org.tefillok.app.blocker"
 // src/theme/colors.ts — the app's real light/parchment/navy brand, not a
 // bespoke "widget theme". A user should recognize this as the same surface
 // the app itself sits on, just purpose-composed for a home-screen tile.
+//
+// `accentLight`/`accent`/the star's lit-gradient `accentDark`/gold are
+// deliberately fixed across both themes — mirrors colors.ts's own comment
+// ("primaryLight/accentLight are deliberately NOT inverted for dark mode...
+// several decorative gradients reuse these as bright highlight tints") and
+// MagenDavidStreak.tsx pinning `lightColors.accentDark` for the same lit-star
+// gradient. Everything else below has a dark counterpart because, unlike
+// the Android RemoteViews widget (colors baked at update time), a SwiftUI
+// widget's body re-evaluates live against `colorScheme` on every appearance
+// change — no stale-render caveat here.
 private let accentLight = Color(red: 0.894, green: 0.937, blue: 0.980) // #E4EFFA
 private let accent = Color(red: 0.498, green: 0.698, blue: 0.898) // #7FB2E5
-private let accentDark = Color(red: 0.243, green: 0.431, blue: 0.600) // #3E6E99
-private let textPrimary = Color(red: 0.086, green: 0.125, blue: 0.180) // #16202E
-private let textSecondary = Color(red: 0.341, green: 0.380, blue: 0.435) // #57616F
-private let textMuted = Color(red: 0.400, green: 0.412, blue: 0.439) // #666970
-private let surfacePressed = Color(red: 0.918, green: 0.878, blue: 0.788) // #EAE0C9
-private let border = Color(red: 0.906, green: 0.875, blue: 0.788) // #E7DFC9
-private let widgetBackgroundTop = Color(red: 1.0, green: 0.992, blue: 0.976) // #FFFDF9
-private let widgetBackgroundBottom = Color(red: 0.965, green: 0.945, blue: 0.902) // #F6F1E6
+private let accentDark = Color(red: 0.243, green: 0.431, blue: 0.600) // #3E6E99 — fixed, star gradient only
 // src/components/HanukkiahStreakRow.tsx METAL — the app's one "warm gold"
 // accent (the חנוכייה's brass), reused here for the large widget's weekly dots.
 private let gold = Color(red: 0.831, green: 0.663, blue: 0.290) // #D4A94A
 private let goldDark = Color(red: 0.549, green: 0.416, blue: 0.145) // #8C6A24
+
+// Theme-reactive pairs — light value first, dark counterpart second (see
+// darkColors in src/theme/colors.ts).
+private func textPrimary(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.933, green: 0.949, blue: 0.969) // #EEF2F7
+    : Color(red: 0.086, green: 0.125, blue: 0.180) // #16202E
+}
+
+private func textSecondary(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.663, green: 0.706, blue: 0.761) // #A9B4C2
+    : Color(red: 0.341, green: 0.380, blue: 0.435) // #57616F
+}
+
+private func textMuted(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.549, green: 0.576, blue: 0.627) // #8C93A0
+    : Color(red: 0.400, green: 0.412, blue: 0.439) // #666970
+}
+
+private func surfacePressed(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.133, green: 0.188, blue: 0.290) // #22304A
+    : Color(red: 0.918, green: 0.878, blue: 0.788) // #EAE0C9
+}
+
+// `colors.accentDark` as used reactively for lit-state text (see
+// styles.streakNumberLit/streakLabelLit in src/screens/Home/index.tsx) —
+// distinct from the fixed `accentDark` above used only in the star gradient.
+private func accentDarkText(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.561, green: 0.773, blue: 0.949) // #8FC5F2
+    : accentDark // #3E6E99
+}
+
+private func widgetBackgroundTop(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.043, green: 0.071, blue: 0.110) // #0B121C
+    : Color(red: 1.0, green: 0.992, blue: 0.976) // #FFFDF9
+}
+
+private func widgetBackgroundBottom(_ scheme: ColorScheme) -> Color {
+  scheme == .dark
+    ? Color(red: 0.086, green: 0.122, blue: 0.188) // #161F30
+    : Color(red: 0.965, green: 0.945, blue: 0.902) // #F6F1E6
+}
 
 // MARK: - Streak tiers
 // Thresholds/labels mirror STREAK_TIERS in src/components/streakTiers.ts.
@@ -179,6 +229,7 @@ private struct MagenDavidView: View {
   let litToday: Bool
   let tier: WidgetTier
   let celebrating: Bool
+  let colorScheme: ColorScheme
 
   var body: some View {
     GeometryReader { geo in
@@ -245,9 +296,9 @@ private struct MagenDavidView: View {
         } else {
           ForEach([-90, 90] as [CGFloat], id: \.self) { angle in
             HexagramShape(startAngleDeg: angle)
-              .fill(surfacePressed.opacity(0.55))
+              .fill(surfacePressed(colorScheme).opacity(0.55))
             HexagramShape(startAngleDeg: angle)
-              .stroke(textMuted, style: StrokeStyle(lineWidth: strokeWidth, lineJoin: .round))
+              .stroke(textMuted(colorScheme), style: StrokeStyle(lineWidth: strokeWidth, lineJoin: .round))
           }
         }
       }
@@ -267,13 +318,14 @@ private struct MagenDavidView: View {
 
 private struct CandleRow: View {
   let candles: [Bool]
+  let colorScheme: ColorScheme
 
   var body: some View {
     HStack(spacing: 6) {
       ForEach(Array(candles.enumerated()), id: \.offset) { index, completed in
         let isToday = index == candles.count - 1
         Circle()
-          .fill(completed ? AnyShapeStyle(LinearGradient(colors: [gold, goldDark], startPoint: .top, endPoint: .bottom)) : AnyShapeStyle(surfacePressed.opacity(0.65)))
+          .fill(completed ? AnyShapeStyle(LinearGradient(colors: [gold, goldDark], startPoint: .top, endPoint: .bottom)) : AnyShapeStyle(surfacePressed(colorScheme).opacity(0.65)))
           .frame(width: isToday ? 10 : 7, height: isToday ? 10 : 7)
           .overlay(
             Circle().stroke(isToday ? goldDark.opacity(0.5) : Color.clear, lineWidth: 1)
@@ -288,6 +340,7 @@ private struct CandleRow: View {
 struct StreakWidgetEntryView: View {
   var entry: StreakProvider.Entry
   @Environment(\.widgetFamily) private var family
+  @Environment(\.colorScheme) private var colorScheme
 
   private var tierInfo: WidgetTier { tier(forStreak: entry.streak) }
 
@@ -299,8 +352,8 @@ struct StreakWidgetEntryView: View {
     URL(string: entry.litToday ? "tefillok://home" : "tefillok://pray")
   }
 
-  private var numberColor: Color { entry.litToday ? accentDark : textPrimary }
-  private var secondaryColor: Color { entry.litToday ? accentDark : textSecondary }
+  private var numberColor: Color { entry.litToday ? accentDarkText(colorScheme) : textPrimary(colorScheme) }
+  private var secondaryColor: Color { entry.litToday ? accentDarkText(colorScheme) : textSecondary(colorScheme) }
 
   private var streakNumber: some View {
     Text("\(entry.streak)")
@@ -326,7 +379,7 @@ struct StreakWidgetEntryView: View {
   // "where am I right now" in under a second.
   private var smallLayout: some View {
     VStack(spacing: 6) {
-      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating, colorScheme: colorScheme)
         .frame(width: 62, height: 62)
       streakNumber
       caption
@@ -339,7 +392,7 @@ struct StreakWidgetEntryView: View {
   // status trail it in natural Hebrew reading order.
   private var mediumLayout: some View {
     HStack(spacing: 16) {
-      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating, colorScheme: colorScheme)
         .frame(width: 72, height: 72)
       VStack(alignment: .trailing, spacing: 3) {
         HStack(alignment: .lastTextBaseline, spacing: 5) {
@@ -360,7 +413,7 @@ struct StreakWidgetEntryView: View {
   // generously spaced rather than Medium's content stretched taller.
   private var largeLayout: some View {
     VStack(spacing: 10) {
-      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating)
+      MagenDavidView(litToday: entry.litToday, tier: tierInfo, celebrating: entry.celebrating, colorScheme: colorScheme)
         .frame(width: 112, height: 112)
       VStack(spacing: 2) {
         streakNumber
@@ -372,13 +425,13 @@ struct StreakWidgetEntryView: View {
         .lineLimit(1)
         .minimumScaleFactor(0.85)
       if !entry.candles.isEmpty {
-        CandleRow(candles: entry.candles)
+        CandleRow(candles: entry.candles, colorScheme: colorScheme)
           .padding(.top, 4)
       }
       Text(tierInfo.label)
         .font(.system(size: 12, weight: .bold))
         .tracking(0.6)
-        .foregroundColor(accentDark)
+        .foregroundColor(accentDarkText(colorScheme))
         .padding(.top, 2)
     }
   }
@@ -400,7 +453,7 @@ struct StreakWidgetEntryView: View {
   }
 
   private var background: some View {
-    LinearGradient(colors: [widgetBackgroundTop, widgetBackgroundBottom], startPoint: .top, endPoint: .bottom)
+    LinearGradient(colors: [widgetBackgroundTop(colorScheme), widgetBackgroundBottom(colorScheme)], startPoint: .top, endPoint: .bottom)
   }
 
   var body: some View {

@@ -1,3 +1,6 @@
+int color widget_accent_dark 0x0
+int color widget_text_primary 0x0
+int color widget_text_secondary 0x0
 int drawable streak_candle_dormant 0x0
 int drawable streak_candle_dormant_today 0x0
 int drawable streak_candle_lit 0x0

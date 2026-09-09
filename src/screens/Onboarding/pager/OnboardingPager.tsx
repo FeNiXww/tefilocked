@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { useEffect, useState } from 'react';
+import { BackHandler, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, {
   Extrapolation,
@@ -9,7 +10,7 @@ import Animated, {
   useScrollViewOffset,
   type SharedValue,
 } from 'react-native-reanimated';
-import { colors, spacing } from '../../../theme';
+import { spacing, useTheme, type ThemeColors } from '../../../theme';
 
 export interface PagerPageProps {
   index: number;
@@ -38,14 +39,32 @@ const DOT_MAX_WIDTH = 26;
  * rather than reacting after the fact to a settled page index.
  */
 export function OnboardingPager({ pages, onComplete }: OnboardingPagerProps) {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollX = useScrollViewOffset(scrollRef);
+  const [pageIndex, setPageIndex] = useState(0);
 
   const goToPage = (targetIndex: number) => {
     scrollRef.current?.scrollTo({ x: targetIndex * width, animated: true });
+    setPageIndex(targetIndex);
   };
+
+  // Mirrors OnboardingFlow's own hardwareBackPress handling (see index.tsx):
+  // this pager renders as onboarding's first step, so Android's back button
+  // would otherwise exit the app instead of returning to the previous page
+  // once the user has swiped forward.
+  useEffect(() => {
+    if (pageIndex === 0) return;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      goToPage(pageIndex - 1);
+      return true;
+    });
+    return () => subscription.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageIndex]);
 
   return (
     <View style={styles.root}>
@@ -56,6 +75,10 @@ export function OnboardingPager({ pages, onComplete }: OnboardingPagerProps) {
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
         scrollEventThrottle={16}
+        onMomentumScrollEnd={(event) => {
+          const index = Math.round(event.nativeEvent.contentOffset.x / width);
+          setPageIndex(index);
+        }}
       >
         {pages.map((renderPage, index) => (
           <View key={index} style={{ width }}>
@@ -89,6 +112,8 @@ function PagerDot({
   scrollX: SharedValue<number>;
   pageWidth: number;
 }) {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const style = useAnimatedStyle(() => {
     const progress = pageWidth > 0 ? scrollX.value / pageWidth : 0;
     const width = interpolate(
@@ -109,7 +134,8 @@ function PagerDot({
   return <Animated.View style={[styles.dot, style]} />;
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors) {
+  return StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: colors.background,
@@ -128,5 +154,8 @@ const styles = StyleSheet.create({
     height: DOT_SIZE,
     borderRadius: DOT_SIZE / 2,
     backgroundColor: colors.primary,
+    borderWidth: 1.5,
+    borderColor: '#000000',
   },
-});
+  });
+}

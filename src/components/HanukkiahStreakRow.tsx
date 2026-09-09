@@ -1,6 +1,6 @@
-import { Fragment, memo, useCallback, useEffect, useRef } from 'react';
+import { Fragment, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { haptics } from '../haptics';
 import Animated, {
   Easing,
   runOnJS,
@@ -16,6 +16,7 @@ import Animated, {
 import Svg, { Defs, Ellipse, LinearGradient, Path, Stop } from 'react-native-svg';
 import type { StreakCandle } from '../data/storage/db';
 import { Flame } from './Flame';
+import { FLARE_STAGGER_MS } from './menorahCinematic';
 import { tierForStreak } from './streakTiers';
 import { colors } from '../theme';
 
@@ -35,19 +36,15 @@ const WAX_DARK = '#1E3860';
 const WAX_HIGHLIGHT = '#5C82BD';
 
 const STEM_WIDTH = 7;
+// Uniform across all 8 nightly candles — today's candle is told apart by its
+// gold ring + inviting pulse (see stemToday/invite below), not by height, so
+// the row's only height accent is the shamash in the middle.
 const STEM_HEIGHT = 24;
-// Today is always the row's candle-in-progress — visually raised like a
-// shamash, the "helper" candle a hanukkiah uses to light the others, since
-// tapping it is literally what lights the next one. Independent of the
-// structural shamash branch below (a real hanukkiah's 9th branch is always
-// physically elevated on the right regardless of which of the 8 nightly
-// candles is currently being lit).
-const TODAY_STEM_HEIGHT = 33;
-// The centermost candle stands a touch above its neighbors — a small,
-// purely decorative accent so the row doesn't read as a flat, uniform line
-// of wax. Shorter than today's raise (which always wins if the two ever
-// coincide) so it stays a subtle detail, not a competing focal point.
-const MIDDLE_STEM_HEIGHT = 28;
+// The centermost branch is the shamash — the tallest candle in the row,
+// standing clearly above the 8 nightly candles on either side (which are all
+// the same height as each other), matching the traditional hanukkiah layout
+// where the shamash sits raised in the middle.
+const SHAMASH_STEM_HEIGHT = 32;
 // Smaller than the candle itself — a real flame tip is a fraction of the
 // candle's height, not a halo that swallows it, and small flames read as
 // more numerous/varied when nine of them are flickering independently.
@@ -75,16 +72,26 @@ const BODY_COMPRESS_PX = 4;
 const BODY_COMPRESS_DOWN_MS = 70;
 const BODY_COMPRESS_SPRING = { stiffness: 900, damping: 18, mass: 0.5 };
 
+// Extinguish choreography (streak-lost) — the mirror of ignition above: a
+// short decreasing flicker rather than a straight fade, so a candle visibly
+// gutters out instead of being switched off (see the justExtinguished branch
+// below). Both the flame's own burst scale and its aura glow drain on the
+// same staged timeline so the two read as one physical light fading
+// together rather than two independently-timed properties.
+const EXTINGUISH_STEP1_MS = 130;
+const EXTINGUISH_STEP2_MS = 90;
+const EXTINGUISH_STEP3_MS = 130;
+const EXTINGUISH_FINAL_MS = 220;
+
 // A hanukkiah is a fixed nine-branch object — showing only the candles lit
 // so far reads as a handful of unrelated bars, not a menorah. The full
 // structure is always on screen; slots beyond the current streak render as
 // dim, unlit placeholder candles with no cup interaction and no flame.
 const TOTAL_CANDLES = 9;
-// The far-right branch is the shamash — structurally fixed and always
-// physically raised, independent of which slot happens to be "today."
-const SHAMASH_INDEX = TOTAL_CANDLES - 1;
 // The visually centered branch — same slot whether you count from the data
-// array or the row's flipped (RTL) visual order, since 9 is odd.
+// array or the row's flipped (RTL) visual order, since 9 is odd. This is the
+// shamash's branch: structurally fixed and always physically raised,
+// independent of which of the 8 nightly slots happens to be "today."
 const MIDDLE_INDEX = Math.floor(TOTAL_CANDLES / 2);
 
 // ---- Unified menorah body geometry -----------------------------------
@@ -105,6 +112,7 @@ const BODY_CENTER_X = BODY_VBW / 2;
 // much higher, its arm rising far more steeply to get there.
 const REGULAR_CUP_Y = 20;
 const SHAMASH_CUP_Y = 6;
+
 // y where every arm's underside gathers into the stem's neck.
 const COLLAR_Y = 46;
 // How widely the arms' bottoms fan out across the stem's neck as they leave
@@ -119,12 +127,12 @@ const ARM_UNDER_STROKE = 5;
 const BODY_METAL_ID = 'hanukkiahBodyMetal';
 const CUP_METAL_ID = 'hanukkiahCupMetal';
 
-/** The 9 columns are evenly spaced across the body's width — this is a candle's (and its arm's) x position for a given left-to-right visual slot (0 = leftmost, 8 = the shamash on the far right). */
+/** The 9 columns are evenly spaced across the body's width — this is a candle's (and its arm's) x position for a given left-to-right visual slot (0 = leftmost, 8 = rightmost, 4 = the shamash in the middle). */
 function cupX(v: number): number {
   return (v + 0.5) * (BODY_VBW / TOTAL_CANDLES);
 }
 function cupY(v: number): number {
-  return v === SHAMASH_INDEX ? SHAMASH_CUP_Y : REGULAR_CUP_Y;
+  return v === MIDDLE_INDEX ? SHAMASH_CUP_Y : REGULAR_CUP_Y;
 }
 function collarX(v: number): number {
   return BODY_CENTER_X + (cupX(v) - BODY_CENTER_X) * COLLAR_SPREAD;
@@ -284,8 +292,8 @@ const CupLayer = memo(function CupLayer({ completed }: { completed: boolean[] })
 const CANDLE_COLUMN_WIDTH = 34;
 /** Room above the cup for shamash + flame (plus its outer aura rings) so Android doesn't clip the tips. */
 const FLAME_HEADROOM = FLAME_SIZE * MAX_HALO_MULTIPLE + 14;
-/** Fixed per-column box tall enough for the tallest possible candle (today, raised) sitting in the tallest possible seat (the shamash's, raised even further) plus flame headroom — shared by every column so the row stays evenly aligned regardless of which slot happens to be tall today. */
-const WICK_AREA_HEIGHT = seatFromBodyBottom(SHAMASH_INDEX) + TODAY_STEM_HEIGHT + FLAME_HEADROOM;
+/** Fixed per-column box tall enough for the shamash — the tallest candle, sitting in the tallest seat — plus flame headroom, shared by every column so the row stays evenly aligned. */
+const WICK_AREA_HEIGHT = seatFromBodyBottom(MIDDLE_INDEX) + SHAMASH_STEM_HEIGHT + FLAME_HEADROOM;
 /** Distance from the body/cup layers' own bottom edge up to the row's own bottom edge — must match the day-label's height so it lines up with each candle's cup seat. */
 const BODY_SLOT_BOTTOM = 20;
 
@@ -293,7 +301,7 @@ interface CandleProps {
   dayNumber: number;
   completed: boolean;
   isToday: boolean;
-  /** The structurally centered branch — stands a touch taller, independent of streak state. */
+  /** The shamash's branch — structurally centered, always the tallest candle, independent of streak state. */
   isMiddle: boolean;
   /** A future day beyond the current streak — the branch and cup are real, but the candle is a dim, unlit placeholder. */
   placeholder: boolean;
@@ -304,6 +312,10 @@ interface CandleProps {
   pulseScale: number;
   /** How many concentric aura rings glow behind the flame — from the streak tier, richer at longer streaks. */
   glowLayers: number;
+  /** This candle's chronological position (0 = oldest day shown) — only used to stagger the completion flare below, a small wave through the row rather than nine synced pulses. */
+  index: number;
+  /** Bumped by Home once per completion celebration — see the flare effect below. 0/unset means "no flare yet". */
+  flareTrigger: number;
   onPress?: () => void;
   /** Fires the instant this candle's ignition burst peaks, so the whole hanukkiah body can react physically. */
   onIgnite?: () => void;
@@ -320,11 +332,18 @@ const Candle = memo(function Candle({
   haloReach,
   pulseScale,
   glowLayers,
+  index,
+  flareTrigger,
   onPress,
   onIgnite,
 }: CandleProps) {
   const reduceMotion = useReducedMotion();
   const glow = useSharedValue(completed ? 1 : 0);
+  // Mirrors `completed`, except it lags behind on extinguish: the flame stays
+  // mounted (and burning down) through the whole gutter-out sequence below,
+  // only unmounting once that's actually finished — the fix for the flame
+  // otherwise just vanishing the instant `completed` flips false.
+  const [flameActive, setFlameActive] = useState(completed);
   const breathe = useSharedValue(1);
   const invite = useSharedValue(1);
   // Breathing opacity for the aura + halo — separate from `breathe` (which
@@ -345,27 +364,34 @@ const Candle = memo(function Candle({
   const prevCompleted = useRef(completed);
 
   const handleIgnitionPeak = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy).catch(() => {});
+    haptics.heavy();
     onIgnite?.();
   };
 
   const handleIgnitionSettle = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+    haptics.light();
+  };
+
+  const handleExtinguished = () => {
+    setFlameActive(false);
   };
 
   useEffect(() => {
     const justIgnited = completed && !prevCompleted.current;
+    const justExtinguished = !completed && prevCompleted.current;
     prevCompleted.current = completed;
 
     if (reduceMotion) {
       glow.value = completed ? 1 : 0;
       burstScale.value = completed ? 1 : 0;
       windup.value = 0;
+      setFlameActive(completed);
       return;
     }
 
     if (justIgnited) {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+      setFlameActive(true);
+      haptics.light();
       windup.value = withSequence(
         withTiming(1, { duration: IGNITION_WINDUP_MS, easing: Easing.out(Easing.quad) }),
         withTiming(0, { duration: 120 })
@@ -384,12 +410,53 @@ const Candle = memo(function Candle({
           })
         )
       );
+    } else if (justExtinguished) {
+      // A candle going dark guts out rather than switching off: it dims,
+      // flickers (each flicker weaker than the last), flickers once or twice
+      // more, then fades — flameActive only flips to false once that's
+      // actually finished, not the instant `completed` does.
+      burstScale.value = withSequence(
+        withTiming(0.78, { duration: EXTINGUISH_STEP1_MS, easing: Easing.out(Easing.quad) }),
+        withTiming(0.92, { duration: EXTINGUISH_STEP2_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0.45, { duration: EXTINGUISH_STEP3_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0.6, { duration: EXTINGUISH_STEP2_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0, { duration: EXTINGUISH_FINAL_MS, easing: Easing.in(Easing.quad) }, (finished) => {
+          'worklet';
+          if (finished) runOnJS(handleExtinguished)();
+        })
+      );
+      glow.value = withSequence(
+        withTiming(0.6, { duration: EXTINGUISH_STEP1_MS, easing: Easing.out(Easing.quad) }),
+        withTiming(0.5, { duration: EXTINGUISH_STEP2_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0.22, { duration: EXTINGUISH_STEP3_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0.3, { duration: EXTINGUISH_STEP2_MS, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0, { duration: EXTINGUISH_FINAL_MS, easing: Easing.in(Easing.quad) })
+      );
     } else {
       glow.value = withTiming(completed ? 1 : 0, { duration: 450, easing: Easing.out(Easing.cubic) });
       burstScale.value = completed ? 1 : 0;
+      setFlameActive(completed);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completed, reduceMotion]);
+
+  // The completion "flare" — once the whole חנוכייה is lit, every already-lit
+  // candle brightens and settles in a small staggered wave (via `index`),
+  // driven by the same burstScale the flame/aura already scale with, so no
+  // separate glow/particle layer is needed. `flareTrigger` is a counter Home
+  // bumps once per celebration — a fresh value here (not a boolean) so a
+  // repeat completion on a later day replays it too.
+  useEffect(() => {
+    if (!flareTrigger || reduceMotion || !completed) return;
+    burstScale.value = withDelay(
+      index * FLARE_STAGGER_MS,
+      withSequence(
+        withTiming(1.12, { duration: 180, easing: Easing.out(Easing.quad) }),
+        withTiming(1, { duration: 260, easing: Easing.inOut(Easing.quad) })
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flareTrigger]);
 
   useEffect(() => {
     if (reduceMotion || !completed) {
@@ -454,7 +521,7 @@ const Candle = memo(function Candle({
     transform: [{ scale: breathe.value * invite.value }],
   }));
 
-  const stemHeight = isToday ? TODAY_STEM_HEIGHT : isMiddle ? MIDDLE_STEM_HEIGHT : STEM_HEIGHT;
+  const stemHeight = isMiddle ? SHAMASH_STEM_HEIGHT : STEM_HEIGHT;
   const haloSize = FLAME_SIZE * Math.min(haloReach, MAX_HALO_MULTIPLE);
   const interactive = isToday && !completed && !!onPress;
 
@@ -475,7 +542,7 @@ const Candle = memo(function Candle({
                   waxy cylinder instead of a flat tinted bar. */}
               {!placeholder && <View style={styles.stemSheen} />}
             </View>
-            {!completed && !placeholder && <View style={styles.wick} />}
+            {!flameActive && !placeholder && <View style={styles.wick} />}
             {!placeholder && <Animated.View pointerEvents="none" style={[styles.windupShade, windupStyle]} />}
           </Animated.View>
           {!placeholder && (
@@ -506,7 +573,7 @@ const Candle = memo(function Candle({
                 })}
               </Animated.View>
               <Animated.View style={stemAnimatedStyle}>
-                <Flame size={haloSize} active={completed} particles burst={burstScale} />
+                <Flame size={haloSize} active={flameActive} particles burst={burstScale} />
               </Animated.View>
             </View>
           )}
@@ -531,7 +598,7 @@ const Candle = memo(function Candle({
       accessibilityRole="button"
       accessibilityLabel={`יום מספר ${dayNumber}, הקש כדי להתחיל`}
       onPress={() => {
-        Haptics.selectionAsync().catch(() => {});
+        haptics.selection();
         onPress?.();
       }}
       hitSlop={10}
@@ -548,6 +615,8 @@ export interface HanukkiahStreakRowProps {
   streak: number;
   /** Tapping today's candle before it's lit starts the prayer flow. */
   onStartToday?: () => void;
+  /** Bumped by Home once the חנוכייה cinematic wants every lit candle to flare together — see Candle's flare effect. */
+  flareTrigger?: number;
 }
 
 /**
@@ -563,7 +632,7 @@ export interface HanukkiahStreakRowProps {
  * sculpted piece (MenorahBody + CupLayer) rather than nine independent boxes,
  * so it reads as a single handcrafted object.
  */
-export function HanukkiahStreakRow({ candles, streak, onStartToday }: HanukkiahStreakRowProps) {
+export function HanukkiahStreakRow({ candles, streak, onStartToday, flareTrigger = 0 }: HanukkiahStreakRowProps) {
   const tier = tierForStreak(streak);
   const todayDayNumber = candles[candles.length - 1]?.dayNumber ?? 1;
 
@@ -605,11 +674,6 @@ export function HanukkiahStreakRow({ candles, streak, onStartToday }: HanukkiahS
 
   return (
     <Animated.View style={[styles.base, bodyAnimatedStyle]}>
-      {/* A soft ambient contact shadow to ground the whole object on the
-          screen — two stacked, decreasingly-opaque blobs fake the blur a
-          single flat shadow can't give without a real blur filter. */}
-      <View pointerEvents="none" style={styles.groundShadowOuter} />
-      <View pointerEvents="none" style={styles.groundShadowInner} />
       <View style={styles.rowFrame}>
         <View style={styles.bodySlot} pointerEvents="none">
           <MenorahBody />
@@ -630,6 +694,8 @@ export function HanukkiahStreakRow({ candles, streak, onStartToday }: HanukkiahS
                 haloReach={tier.haloReach}
                 pulseScale={tier.pulseScale}
                 glowLayers={tier.glowLayers}
+                index={i}
+                flareTrigger={flareTrigger}
                 onPress={slot.isToday ? onStartToday : undefined}
                 onIgnite={handleIgnite}
               />
@@ -649,26 +715,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignSelf: 'stretch',
     overflow: 'visible',
-  },
-  groundShadowOuter: {
-    position: 'absolute',
-    bottom: -6,
-    left: '18%',
-    right: '18%',
-    height: 14,
-    borderRadius: 7,
-    backgroundColor: colors.primaryDark,
-    opacity: 0.1,
-  },
-  groundShadowInner: {
-    position: 'absolute',
-    bottom: -3,
-    left: '32%',
-    right: '32%',
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.primaryDark,
-    opacity: 0.16,
   },
   rowFrame: {
     position: 'relative',

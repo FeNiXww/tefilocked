@@ -12,6 +12,7 @@ export type MainTabParamList = {
 export type SettingsStackParamList = {
   SettingsHome: undefined;
   EditGender: undefined;
+  EditRegion: undefined;
   About: undefined;
   Terms: undefined;
   Privacy: undefined;

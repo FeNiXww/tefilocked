@@ -12,7 +12,7 @@ import Animated, {
 import { Logo } from '../../components/Logo';
 import { SparkleBackground } from '../../components/SparkleBackground';
 import { setOnboardingComplete } from '../../data/storage/mmkv';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { useOnboardingState } from './onboardingState';
 import { ONBOARDING_STEPS } from './steps';
 
@@ -28,6 +28,8 @@ interface OnboardingFlowProps {
  * rather than dropping straight into question content.
  */
 function LogoIntro({ onFinish }: { onFinish: () => void }) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const scale = useSharedValue(0.7);
   const opacity = useSharedValue(0);
   const glow = useSharedValue(0.3);
@@ -77,6 +79,8 @@ function LogoIntro({ onFinish }: { onFinish: () => void }) {
 
 /** Linear, data-driven onboarding: LogoIntro, then every step in ONBOARDING_STEPS in order, sharing one persisted answers object. */
 export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [showIntro, setShowIntro] = useState(true);
   const [stepIndex, setStepIndex] = useState(0);
   const { answers, update } = useOnboardingState();
@@ -129,7 +133,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
@@ -154,4 +159,5 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     color: colors.primary,
   },
-});
+  });
+}

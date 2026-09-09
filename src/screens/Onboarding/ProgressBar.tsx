@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import { colors, spacing } from '../../theme';
+import { spacing, useTheme, type ThemeColors } from '../../theme';
 
 interface ProgressBarProps {
   current: number;
@@ -8,6 +8,8 @@ interface ProgressBarProps {
 
 /** Thin top progress line shown through the question-bank section — replaces the old carousel's dot indicator, which doesn't scale to ~15 steps. */
 export function ProgressBar({ current, total }: ProgressBarProps) {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const ratio = total > 0 ? Math.min(1, Math.max(0, current / total)) : 0;
 
   return (
@@ -17,18 +19,20 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  track: {
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: colors.primaryLight,
-    marginHorizontal: spacing.xl,
-    marginBottom: spacing.md,
-    overflow: 'hidden',
-  },
-  fill: {
-    height: '100%',
-    borderRadius: 2,
-    backgroundColor: colors.accent,
-  },
-});
+function createStyles(colors: ThemeColors) {
+  return StyleSheet.create({
+    track: {
+      height: 4,
+      borderRadius: 2,
+      backgroundColor: colors.primaryLight,
+      marginHorizontal: spacing.xl,
+      marginBottom: spacing.md,
+      overflow: 'hidden',
+    },
+    fill: {
+      height: '100%',
+      borderRadius: 2,
+      backgroundColor: colors.accent,
+    },
+  });
+}

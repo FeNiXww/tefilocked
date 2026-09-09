@@ -1,4 +1,15 @@
+<!-- Card surface: a very soft top-to-bottom warmth shift (cream -> parchment,
+     the app's own background/surface pair) instead of one flat fill, so the
+     card reads as a lit surface rather than a plain colored rectangle. The
+     border is one hairline at the app's own `colors.border` — depth from
+     tone, not from a drawn shadow (widgets can't cast one reliably across
+     launchers anyway). -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-  <solid android:color="#FFFDF9" />
-  <corners android:radius="20dp" />
+  <gradient
+    android:type="linear"
+    android:angle="270"
+    android:startColor="#FFFDF9"
+    android:endColor="#F6F1E6" />
+  <corners android:radius="24dp" />
+  <stroke android:width="1dp" android:color="#33E7DFC9" />
 </shape>

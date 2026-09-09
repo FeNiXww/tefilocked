@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  MEDIUM: the extra width buys a horizontal composition, not a bigger Small.
+  Star leads (rightmost in RTL — first child of a horizontal LinearLayout
+  sits at the layout-direction start edge), streak number + status trail it,
+  reading in natural Hebrew order.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/widget_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layoutDirection="rtl"
+  android:background="@drawable/streak_widget_background">
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="16dp">
+
+    <FrameLayout
+      android:layout_width="68dp"
+      android:layout_height="68dp"
+      android:layout_marginEnd="14dp">
+
+      <ImageView
+        android:id="@+id/widget_star_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/streak_star_dormant" />
+
+      <ImageView
+        android:id="@+id/widget_celebrate_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/streak_celebrate_overlay"
+        android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:gravity="end">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|end"
+        android:baselineAligned="false">
+
+        <TextView
+          android:id="@+id/widget_streak_number"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="sans-serif-black"
+          android:textSize="26sp"
+          android:textColor="#16202E"
+          android:text="0" />
+
+        <TextView
+          android:id="@+id/widget_streak_caption"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="6dp"
+          android:layout_marginBottom="4dp"
+          android:layout_gravity="bottom"
+          android:fontFamily="sans-serif-medium"
+          android:textSize="11sp"
+          android:textColor="#57616F"
+          android:text="@string/streak_widget_caption" />
+      </LinearLayout>
+
+      <TextView
+        android:id="@+id/widget_status_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="12sp"
+        android:textColor="#3E6E99"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="" />
+
+    </LinearLayout>
+  </LinearLayout>
+</FrameLayout>

@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { PlatformPressable } from '@react-navigation/elements';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../theme';
+import { haptics } from '../haptics';
+import { useTheme } from '../theme';
 import { Home } from '../screens/Home';
 import { Insights } from '../screens/Insights';
 import { LockList } from '../screens/LockList';
@@ -24,17 +26,28 @@ const TAB_LABELS: Record<keyof MainTabParamList, string> = {
 };
 
 export function MainTabs() {
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textMuted,
+        tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
         tabBarIcon: ({ color, size }) => <Ionicons name={ICONS[route.name]} color={color} size={size} />,
         // Built-in shift transition instead of the default instant switch —
         // no extra dependency (bottom-tabs animates this with the core
         // Animated API, not Reanimated).
         animation: 'shift',
+        tabBarButton: (props) => (
+          <PlatformPressable
+            {...props}
+            onPress={(e) => {
+              haptics.light();
+              props.onPress?.(e);
+            }}
+          />
+        ),
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{ title: TAB_LABELS.Home }} />

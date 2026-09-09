@@ -72,6 +72,18 @@ export function setAndroidLockedApps(packages: string[]): void {
     mockLockedPackages = packages;
   }
   storage.set(StorageKeys.lockedAppPackages, JSON.stringify(packages));
+
+  // The monitoring service is what shows Android's mandatory "foreground
+  // service running" notification — only worth keeping alive while there's
+  // actually something to watch for. Reaching this function at all implies
+  // the locking permissions are already granted (the Locked Apps screen sits
+  // behind AndroidPermissionGate), so no extra permission check is needed
+  // here; useAndroidLockingPermissions handles the initial-grant case.
+  if (packages.length > 0) {
+    startMonitoring();
+  } else {
+    stopMonitoring();
+  }
 }
 
 export function getAndroidLockedApps(): string[] {
@@ -130,6 +142,23 @@ export function unlockAndLaunchAndroidApp(packageName: string | undefined, durat
     console.warn('[tefillok] unlockAndLaunchAndroidApp: no target package — apps will unlock but nothing will be foregrounded.');
   }
   AppBlocker?.unlockAndLaunchAndroid(packageName ?? '', durationMinutes);
+}
+
+// --- Both platforms: replace the active unlock grant with a brand-new duration, without launching any app. ---
+// This is the single write path for "set the timer to exactly N minutes from
+// now" — used by both the post-prayer flow's initial grant (indirectly, via
+// unlockAndLaunchAndroidApp/grantTemporaryUnlock above) and the Home screen's
+// timer editor. It replaces any existing grant outright; it never adds to it.
+
+export async function setUnlockDuration(durationMinutes: number): Promise<void> {
+  if (Platform.OS === 'android') {
+    // Same native grant path as unlockAndLaunchAndroidApp, just with no
+    // target package — the service skips the foreground-launch step and
+    // only applies the new grant (see AppBlockerService.onStartCommand).
+    AppBlocker?.unlockAndLaunchAndroid('', Math.max(1, Math.round(durationMinutes)));
+  } else {
+    await AppBlocker?.temporaryUnlock(durationMinutes);
+  }
 }
 
 export async function relockNow() {

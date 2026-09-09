@@ -1,24 +1,10 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { haptics } from '../../haptics';
 import Slider from '@react-native-community/slider';
 import { PrimaryButton } from '../../components/PrimaryButton';
-import { colors, spacing, typography } from '../../theme';
-
-interface DurationOption {
-  id: string;
-  label: string;
-  minutes: number;
-}
-
-const PRESETS: DurationOption[] = [
-  { id: '15min', label: '15 דקות', minutes: 15 },
-  { id: '30min', label: '30 דקות', minutes: 30 },
-  { id: '1hour', label: 'שעה', minutes: 60 },
-  { id: '3hours', label: '3 שעות', minutes: 180 },
-  { id: '24hours', label: '24 שעות', minutes: 1440 },
-  { id: 'custom', label: 'מותאם אישית', minutes: -1 },
-];
+import { DURATION_PRESETS as PRESETS, type DurationOption } from '../../native/appLocking/durationPresets';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 interface DurationPickerProps {
   onSelect: (minutes: number) => void;
@@ -26,11 +12,13 @@ interface DurationPickerProps {
 
 /** Lets the user choose how long the next unlock lasts before the apps lock again. */
 export function DurationPicker({ onSelect }: DurationPickerProps) {
-  const [selectedId, setSelectedId] = useState(PRESETS[0].id);
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
+  const [selectedId, setSelectedId] = useState('24hours');
   const [customMinutes, setCustomMinutes] = useState(30);
 
   const handlePick = (option: DurationOption) => {
-    Haptics.selectionAsync().catch(() => {});
+    haptics.selection();
     setSelectedId(option.id);
   };
 
@@ -81,60 +69,62 @@ export function DurationPicker({ onSelect }: DurationPickerProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: spacing.xl,
-    alignItems: 'center',
-    gap: spacing.lg,
-  },
-  prompt: {
-    ...typography.heading,
-    textAlign: 'center',
-  },
-  subtitle: {
-    ...typography.bodySecondary,
-    textAlign: 'center',
-    marginTop: -spacing.sm,
-  },
-  options: {
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: spacing.md,
-  },
-  option: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-    borderRadius: 24,
-    backgroundColor: colors.surface,
-    borderWidth: 1.5,
-    borderColor: 'transparent',
-  },
-  optionSelected: {
-    borderColor: colors.accent,
-    backgroundColor: colors.accentLight,
-  },
-  optionLabel: {
-    ...typography.body,
-  },
-  optionLabelSelected: {
-    color: colors.primary,
-    fontWeight: '700',
-  },
-  customWrap: {
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    gap: spacing.xs,
-  },
-  customValue: {
-    ...typography.heading,
-    color: colors.primary,
-  },
-  slider: {
-    width: '100%',
-    height: 40,
-  },
-  button: {
-    marginTop: spacing.md,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      padding: spacing.xl,
+      alignItems: 'center',
+      gap: spacing.lg,
+    },
+    prompt: {
+      ...typography.heading,
+      textAlign: 'center',
+    },
+    subtitle: {
+      ...typography.bodySecondary,
+      textAlign: 'center',
+      marginTop: -spacing.sm,
+    },
+    options: {
+      flexDirection: 'row-reverse',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: spacing.md,
+    },
+    option: {
+      paddingVertical: spacing.md,
+      paddingHorizontal: spacing.lg,
+      borderRadius: 24,
+      backgroundColor: colors.surface,
+      borderWidth: 1.5,
+      borderColor: 'transparent',
+    },
+    optionSelected: {
+      borderColor: colors.accent,
+      backgroundColor: colors.accentLight,
+    },
+    optionLabel: {
+      ...typography.body,
+    },
+    optionLabelSelected: {
+      color: colors.primary,
+      fontWeight: '700',
+    },
+    customWrap: {
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      gap: spacing.xs,
+    },
+    customValue: {
+      ...typography.heading,
+      color: colors.primary,
+    },
+    slider: {
+      width: '100%',
+      height: 40,
+    },
+    button: {
+      marginTop: spacing.md,
+    },
+  });
+}

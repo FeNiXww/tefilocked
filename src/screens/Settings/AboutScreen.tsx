@@ -1,9 +1,11 @@
 import Constants from 'expo-constants';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Logo } from '../../components/Logo';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 export function AboutScreen() {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const version = Constants.expoConfig?.version ?? '1.0.0';
 
   return (
@@ -11,7 +13,7 @@ export function AboutScreen() {
       <View style={styles.logoRow}>
         <Logo variant="mark" size={72} />
         <Text style={styles.appName}>תפילוק</Text>
-        <Text style={styles.tagline}>Put Hashem Before the Scroll</Text>
+        <Text style={styles.tagline}>שים את ה' לפני הגלילה</Text>
       </View>
 
       <Text style={styles.body}>
@@ -24,34 +26,36 @@ export function AboutScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.xl,
-    alignItems: 'center',
-    gap: spacing.lg,
-  },
-  logoRow: {
-    alignItems: 'center',
-    gap: spacing.xs,
-    marginTop: spacing.xl,
-  },
-  appName: {
-    ...typography.title,
-  },
-  tagline: {
-    ...typography.bodySecondary,
-  },
-  body: {
-    ...typography.body,
-    textAlign: 'center',
-    lineHeight: 24,
-  },
-  version: {
-    ...typography.caption,
-    marginTop: spacing.xl,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    content: {
+      padding: spacing.xl,
+      alignItems: 'center',
+      gap: spacing.lg,
+    },
+    logoRow: {
+      alignItems: 'center',
+      gap: spacing.xs,
+      marginTop: spacing.xl,
+    },
+    appName: {
+      ...typography.title,
+    },
+    tagline: {
+      ...typography.bodySecondary,
+    },
+    body: {
+      ...typography.body,
+      textAlign: 'center',
+      lineHeight: 24,
+    },
+    version: {
+      ...typography.caption,
+      marginTop: spacing.xl,
+    },
+  });
+}

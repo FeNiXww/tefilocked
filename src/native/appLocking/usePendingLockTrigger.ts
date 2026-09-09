@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
 import * as Linking from 'expo-linking';
+import { setPendingLockedApp } from '../../data/storage/mmkv';
 import { addPendingUnlockListener, checkAndClearPendingUnlock, getAndroidLockedApps } from './index';
 
 export interface PendingLockTrigger {
@@ -40,6 +41,13 @@ export function usePendingLockTrigger(onTriggered: (trigger: PendingLockTrigger)
         // own home screen instead of the app the user meant to open — see
         // unlockAndLaunchAndroidApp in ./index.tsx for the other half of that failure mode.
         console.warn('[tefillok] Deep link claimed a package not in the locked-apps list, ignoring it:', claimedPackage, lockedApps);
+      }
+      if (lockedAppPackage) {
+        console.log('[tefillok] Locked app detected:', lockedAppPackage);
+        // Written to durable storage (not just React state) so the target survives
+        // the host process being killed while backgrounded mid-prayer — see
+        // App.tsx's startup read of getPendingLockedApp().
+        setPendingLockedApp(lockedAppPackage);
       }
       onTriggered({ lockedAppPackage });
     };

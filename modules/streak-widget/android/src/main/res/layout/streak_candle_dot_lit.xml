@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One child of widget_candle_row, added at runtime via RemoteViews.addView.
+     Four baked variants (lit/dormant x regular/today) instead of one view
+     re-styled at runtime, since a dynamically-added RemoteViews child is
+     simplest to target by picking its whole layout resource up front. -->
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="8dp"
+  android:layout_height="8dp"
+  android:layout_marginStart="2.5dp"
+  android:layout_marginEnd="2.5dp"
+  android:background="@drawable/streak_candle_lit" />

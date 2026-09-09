@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 interface StatTileProps {
   emoji: string;
@@ -11,6 +11,8 @@ interface StatTileProps {
 }
 
 export function StatTile({ emoji, value, label, index = 0 }: StatTileProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const progress = useSharedValue(0);
 
   useEffect(() => {
@@ -33,22 +35,24 @@ export function StatTile({ emoji, value, label, index = 0 }: StatTileProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  tile: {
-    width: '47%',
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    padding: spacing.lg,
-    alignItems: 'center',
-    gap: spacing.xs,
-  },
-  emoji: {
-    fontSize: 28,
-  },
-  value: {
-    ...typography.heading,
-  },
-  label: {
-    ...typography.caption,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    tile: {
+      width: '47%',
+      backgroundColor: colors.surface,
+      borderRadius: 16,
+      padding: spacing.lg,
+      alignItems: 'center',
+      gap: spacing.xs,
+    },
+    emoji: {
+      fontSize: 28,
+    },
+    value: {
+      ...typography.heading,
+    },
+    label: {
+      ...typography.caption,
+    },
+  });
+}

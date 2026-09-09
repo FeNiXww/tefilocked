@@ -10,9 +10,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SparkleBackground } from '../../../components/SparkleBackground';
-import { colors, spacing, typography } from '../../../theme';
+import { headlineFontFamily, useTheme, type ThemeColors, type Spacing, type Typography } from '../../../theme';
 import { ContinueNodeButton } from '../ContinueNodeButton';
 import { HighlightText } from '../HighlightText';
+import { ThemeToggleButton } from '../ThemeToggleButton';
 import type { PagerPageProps } from './OnboardingPager';
 import { useBreathingScale, usePageActive, usePageProgress } from './pagerAnimations';
 
@@ -32,6 +33,8 @@ interface ScreenTwoProps extends PagerPageProps {
 /** Screen 2 — "The Embrace": the solution beat, swiped in right after the Welcome page. */
 export function ScreenTwo({ index, scrollX, pageWidth, illustration, onNext }: ScreenTwoProps) {
   const insets = useSafeAreaInsets();
+  const { colors, spacing, typography } = useTheme();
+  const styles = createStyles(colors, spacing, typography);
   const progress = usePageProgress(scrollX, index, pageWidth);
   const isActive = usePageActive(scrollX, index, pageWidth);
   const breathingScale = useBreathingScale(isActive);
@@ -61,10 +64,11 @@ export function ScreenTwo({ index, scrollX, pageWidth, illustration, onNext }: S
   return (
     <Animated.View style={[styles.root, { paddingTop: insets.top + 56 }]}>
       <SparkleBackground tone="navy" starCount={8} />
+      <ThemeToggleButton />
 
       <Animated.View style={textStyle}>
         <HighlightText
-          text="התמכרות לרשתות החברתיות מרחיקה אותך **מקדוש ברוך הוא**"
+          text="התמכרות לרשתות החברתיות מרחיקה אותך **מ ה׳**"
           style={styles.headline}
         />
       </Animated.View>
@@ -89,31 +93,33 @@ export function ScreenTwo({ index, scrollX, pageWidth, illustration, onNext }: S
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background,
-    paddingHorizontal: spacing.xl,
-  },
-  headline: {
-    ...typography.hero,
-    fontSize: 30,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  illustrationSlot: {
-    flex: 1,
-    alignSelf: 'stretch',
-    marginTop: spacing.xs,
-    marginBottom: spacing.sm,
-    marginHorizontal: -spacing.xl,
-  },
-  illustrationImage: {
-    flex: 1,
-    width: '100%',
-  },
-  continueWrap: {
-    position: 'absolute',
-    right: spacing.xl,
-  },
-});
+function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typography) {
+  return StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: colors.background,
+      paddingHorizontal: spacing.xl,
+    },
+    headline: {
+      ...typography.hero,
+      fontFamily: headlineFontFamily,
+      fontSize: 30,
+      textAlign: 'center',
+    },
+    illustrationSlot: {
+      flex: 1,
+      alignSelf: 'stretch',
+      marginTop: spacing.xs,
+      marginBottom: spacing.sm,
+      marginHorizontal: -spacing.xl,
+    },
+    illustrationImage: {
+      flex: 1,
+      width: '100%',
+    },
+    continueWrap: {
+      position: 'absolute',
+      right: spacing.xl,
+    },
+  });
+}

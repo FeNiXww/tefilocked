@@ -1,9 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 import { Platform } from 'react-native';
-import { pickContentForMood, pickPrayer } from '../../content';
+import { getAllContent, pickContentForMood, pickPrayer } from '../../content';
 import type { ContentItem, ContentType, Mood } from '../../content/types';
 import { getCurrentStreak, recordUnlockEvent } from '../../data/storage/db';
+import { clearPendingLockedApp } from '../../data/storage/mmkv';
 import { grantTemporaryUnlock, unlockAndLaunchAndroidApp } from '../../native/appLocking';
+import { getDevForcedContentId } from '../../dev/devContentOverride';
 
 // The daily "prayer to unlock" ritual: connection check-in -> mood check-in
 // -> a curated personal prayer -> "I've prayed today" -> pick how long the
@@ -51,7 +53,15 @@ export function useLockContentFlow({ preferredContentTypes, lockedAppPackage, on
 
   const selectMood = useCallback(
     (mood: Mood) => {
-      const prayerItem = pickContentForMood(mood, preferredContentTypes);
+      // __DEV__-only escape hatch (see src/dev/devContentOverride.ts) so a
+      // specific item — Shema, in particular, whose eligibility depends on
+      // time/location and is otherwise hard to hit by chance — can be
+      // opened deterministically for testing. `getDevForcedContentId`
+      // itself already no-ops outside __DEV__, but the explicit check here
+      // keeps this code path visibly dead in a production bundle too.
+      const forcedId = __DEV__ ? getDevForcedContentId() : null;
+      const forcedItem = forcedId ? getAllContent().find((item) => item.id === forcedId) : undefined;
+      const prayerItem = forcedItem ?? pickContentForMood(mood, preferredContentTypes);
       setState((prev) => ({ ...prev, step: 'prayer', selectedMood: mood, prayerItem, prayerLoading: false }));
     },
     [preferredContentTypes]
@@ -87,12 +97,19 @@ export function useLockContentFlow({ preferredContentTypes, lockedAppPackage, on
   );
 
   const finishAndUnlock = useCallback(async () => {
+    // This interception is done being tracked either way from here — clear the
+    // durable record so a future process restart doesn't try to resume it.
+    clearPendingLockedApp();
+
     // Both platforms unlock every blocked app for the chosen duration, then
     // re-lock together. Android additionally foregrounds the specific app
     // that triggered the lock directly, since there's no OS-level "just
-    // opened" signal to rely on the way iOS's shield removal has.
+    // opened" signal to rely on the way iOS's shield removal has. This call
+    // must stay unconditional and un-awaited-on — anything gating it (extra
+    // native round-trips, etc.) risks the launch never firing at all.
     const minutes = pendingUnlockMinutesRef.current;
     if (Platform.OS === 'android') {
+      console.log('[tefillok] Authorizing and launching target package:', lockedAppPackage ?? '(none)');
       unlockAndLaunchAndroidApp(lockedAppPackage, minutes);
     } else {
       await grantTemporaryUnlock(minutes);

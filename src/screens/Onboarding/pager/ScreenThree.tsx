@@ -17,8 +17,9 @@ import Animated, {
   type SharedValue,
 } from 'react-native-reanimated';
 import { SparkleBackground } from '../../../components/SparkleBackground';
-import { colors, spacing, typography } from '../../../theme';
+import { headlineFontFamily, useTheme, type ThemeColors, type Spacing, type Typography } from '../../../theme';
 import { ContinueNodeButton } from '../ContinueNodeButton';
+import { ThemeToggleButton } from '../ThemeToggleButton';
 import type { PagerPageProps } from './OnboardingPager';
 import { usePageActive, usePageProgress } from './pagerAnimations';
 
@@ -82,6 +83,8 @@ const hit = (style: Haptics.ImpactFeedbackStyle) => Haptics.impactAsync(style).c
  */
 export function ScreenThree({ index, scrollX, pageWidth, onComplete }: PagerPageProps) {
   const insets = useSafeAreaInsets();
+  const { colors, spacing, typography } = useTheme();
+  const styles = createStyles(colors, spacing, typography);
   const progress = usePageProgress(scrollX, index, pageWidth);
   const isActive = usePageActive(scrollX, index, pageWidth);
   const reducedMotion = useReducedMotion();
@@ -223,6 +226,7 @@ export function ScreenThree({ index, scrollX, pageWidth, onComplete }: PagerPage
   return (
     <View style={[styles.root, { paddingTop: insets.top + 56 }]}>
       <SparkleBackground tone="navy" starCount={8} />
+      <ThemeToggleButton />
 
       <Animated.View style={[styles.headlineWrap, containerStyle]}>
         <Animated.Text style={[styles.headline, headline1Style]}>{PHASE_1_TEXT}</Animated.Text>
@@ -250,6 +254,8 @@ export function ScreenThree({ index, scrollX, pageWidth, onComplete }: PagerPage
 }
 
 function LockedSocialIcon({ brand, slot }: { brand: BrandConfig; slot: LockSlot }) {
+  const { colors, spacing, typography } = useTheme();
+  const styles = createStyles(colors, spacing, typography);
   const iconStyle = useAnimatedStyle(() => ({
     opacity: slot.iconOpacity.value * slot.iconDim.value,
     transform: [{ scale: slot.iconScale.value }],
@@ -287,70 +293,72 @@ function LockedSocialIcon({ brand, slot }: { brand: BrandConfig; slot: LockSlot 
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: 'center',
-    paddingHorizontal: spacing.xl,
-  },
-  headlineWrap: {
-    height: 100,
-    width: '100%',
-  },
-  headline: {
-    ...typography.hero,
-    fontSize: 26,
-    fontWeight: '800',
-    textAlign: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-  iconsRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: spacing.lg,
-    marginTop: spacing.xxl * 2,
-  },
-  tabletsImage: {
-    flex: 1,
-    width: '100%',
-    marginTop: spacing.xl,
-  },
-  iconSlot: {
-    width: 64,
-    alignItems: 'center',
-  },
-  iconBadge: {
-    width: 60,
-    height: 60,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  lockShadowWrap: {
-    position: 'absolute',
-    top: -16,
-    width: 34,
-    height: 34,
-    shadowColor: colors.primaryDark,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.35,
-    shadowRadius: 6,
-    elevation: 8,
-  },
-  lockBadgeInner: {
-    flex: 1,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  continueWrap: {
-    position: 'absolute',
-    right: spacing.xl,
-  },
-});
+function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typography) {
+  return StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: colors.background,
+      alignItems: 'center',
+      paddingHorizontal: spacing.xl,
+    },
+    headlineWrap: {
+      height: 100,
+      width: '100%',
+    },
+    headline: {
+      ...typography.hero,
+      fontFamily: headlineFontFamily,
+      fontSize: 26,
+      textAlign: 'center',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+    },
+    iconsRow: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: spacing.lg,
+      marginTop: spacing.xxl * 2,
+    },
+    tabletsImage: {
+      flex: 1,
+      width: '100%',
+      marginTop: spacing.xl,
+    },
+    iconSlot: {
+      width: 64,
+      alignItems: 'center',
+    },
+    iconBadge: {
+      width: 60,
+      height: 60,
+      borderRadius: 18,
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    },
+    lockShadowWrap: {
+      position: 'absolute',
+      top: -16,
+      width: 34,
+      height: 34,
+      shadowColor: colors.primaryDark,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.35,
+      shadowRadius: 6,
+      elevation: 8,
+    },
+    lockBadgeInner: {
+      flex: 1,
+      borderRadius: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    },
+    continueWrap: {
+      position: 'absolute',
+      right: spacing.xl,
+    },
+  });
+}

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { LayoutChangeEvent, PanResponder, StyleSheet, Text, View } from 'react-native';
-import { colors, spacing, typography } from '../theme';
+import { haptics } from '../haptics';
+import { useTheme, type ThemeColors, type Spacing, type Typography } from '../theme';
 
 export interface RatingBucket {
   value: number;
@@ -26,6 +27,8 @@ const TRACK_INSET = 14;
  * keeps the whole gesture in JS where tap-anywhere and drag both just work.
  */
 export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: EmojiRatingSliderProps) {
+  const { colors, spacing, typography } = useTheme();
+  const styles = createStyles(colors, spacing, typography);
   const sorted = [...buckets].sort((a, b) => a.value - b.value);
   const [value, setValue] = useState(initialValue ?? sorted[Math.floor(sorted.length / 2)].value);
   const [trackWidth, setTrackWidth] = useState(0);
@@ -47,6 +50,7 @@ export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: Emoj
 
   const commitValue = (next: number) => {
     if (next === valueRef.current) return;
+    haptics.selection();
     setValue(next);
     onValueChange?.(next);
   };
@@ -115,7 +119,8 @@ export function EmojiRatingSlider({ buckets, initialValue, onValueChange }: Emoj
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typography) {
+  return StyleSheet.create({
   container: {
     alignItems: 'center',
     gap: spacing.md,
@@ -169,4 +174,5 @@ const styles = StyleSheet.create({
     ...typography.body,
     fontWeight: '600',
   },
-});
+  });
+}

@@ -11,7 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle, Defs, G, Line, LinearGradient, Path, Stop } from 'react-native-svg';
 import type { TrendBucket } from '../../data/storage/db';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 const AnimatedG = Animated.createAnimatedComponent(G);
 
@@ -119,6 +119,7 @@ function Marker({
   selected: boolean;
   dimmed: boolean;
 }) {
+  const { colors } = useTheme();
   const progress = useSharedValue(0);
   useEffect(() => {
     progress.value = 0;
@@ -223,6 +224,8 @@ function trimToDataRange(buckets: TrendBucket[]): TrendBucket[] {
 }
 
 export function LineChart({ buckets: allBuckets }: LineChartProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const buckets = trimToDataRange(allBuckets);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -462,7 +465,8 @@ export function LineChart({ buckets: allBuckets }: LineChartProps) {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   card: {
     width: '100%',
     gap: spacing.md,
@@ -598,4 +602,5 @@ const styles = StyleSheet.create({
     ...typography.caption,
     textAlign: 'center',
   },
-});
+  });
+}

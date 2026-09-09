@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { haptics } from '../../haptics';
 import { restorePurchases } from '../../subscriptions/revenueCatConfig';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 const SUBSCRIPTION_MANAGEMENT_URL =
   Platform.OS === 'ios'
@@ -9,9 +10,17 @@ const SUBSCRIPTION_MANAGEMENT_URL =
     : 'https://play.google.com/store/account/subscriptions';
 
 export function SubscriptionRow() {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [restoring, setRestoring] = useState(false);
 
+  const handleManage = () => {
+    haptics.selection();
+    Linking.openURL(SUBSCRIPTION_MANAGEMENT_URL);
+  };
+
   const handleRestore = async () => {
+    haptics.selection();
     setRestoring(true);
     try {
       await restorePurchases();
@@ -24,7 +33,7 @@ export function SubscriptionRow() {
 
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.row, styles.firstRow]} onPress={() => Linking.openURL(SUBSCRIPTION_MANAGEMENT_URL)}>
+      <Pressable style={[styles.row, styles.firstRow]} onPress={handleManage}>
         <Text style={styles.rowText}>ניהול מנוי</Text>
       </Pressable>
       <Pressable style={styles.row} onPress={handleRestore} disabled={restoring}>
@@ -34,21 +43,23 @@ export function SubscriptionRow() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    gap: 0,
-  },
-  row: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.border,
-  },
-  firstRow: {
-    borderTopWidth: 0,
-  },
-  rowText: {
-    ...typography.body,
-    textAlign: 'right',
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
+    container: {
+      gap: 0,
+    },
+    row: {
+      paddingVertical: spacing.md,
+      paddingHorizontal: spacing.lg,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: colors.border,
+    },
+    firstRow: {
+      borderTopWidth: 0,
+    },
+    rowText: {
+      ...typography.body,
+      textAlign: 'right',
+    },
+  });
+}

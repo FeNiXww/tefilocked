@@ -16,16 +16,16 @@ const IOS_APP_GROUP = `group.${IOS_BUNDLE_ID}.blocker`;
 
 // Required by @bacons/apple-targets (used internally by expo-app-blocker) to
 // register the extension targets. Get this from developer.apple.com/account.
-const APPLE_TEAM_ID = process.env.APPLE_TEAM_ID ?? 'REPLACE_WITH_APPLE_TEAM_ID';
+const APPLE_TEAM_ID = process.env.APPLE_TEAM_ID ?? 'DTRK84FRFD';
 
 const config: ExpoConfig = {
   name: 'תפילוק',
   slug: 'tefillah-lock',
   scheme: 'tefillok',
-  version: '1.0.0',
+  version: '1.6.2',
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'light',
+  userInterfaceStyle: 'automatic',
   ios: {
     supportsTablet: false,
     bundleIdentifier: IOS_BUNDLE_ID,
@@ -33,6 +33,12 @@ const config: ExpoConfig = {
     entitlements: {
       'com.apple.developer.family-controls': true,
       'com.apple.security.application-groups': [IOS_APP_GROUP],
+      'com.apple.developer.usernotifications.time-sensitive': true,
+    },
+    // No custom/non-standard cryptography — only relies on the OS-provided
+    // HTTPS/TLS, which is export-exempt.
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
     },
   },
   android: {
@@ -50,6 +56,26 @@ const config: ExpoConfig = {
   },
   plugins: [
     'expo-sqlite',
+    'expo-status-bar',
+    'expo-system-ui',
+    [
+      'expo-build-properties',
+      {
+        ios: {
+          deploymentTarget: '16.4',
+        },
+      },
+    ],
+    [
+      // Foreground-only, on-demand — never requested at launch. Used solely
+      // to compute the day's halachic zmanim (e.g. Shema's window) when a
+      // user opts into that specific feature; see src/native/location.
+      'expo-location',
+      {
+        locationWhenInUsePermission:
+          'תפילוק משתמש במיקום שלך רק כדי לחשב זמני תפילה הלכתיים (כגון זמן קריאת שמע) עבור המיקום שלך, ורק כשאתה מבקש זאת.',
+      },
+    ],
     [
       'expo-app-blocker',
       {

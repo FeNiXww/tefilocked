@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, BackHandler, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, AppState, BackHandler, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import type { ContentType } from '../../content/types';
@@ -7,7 +7,7 @@ import { PrimaryButton } from '../../components/PrimaryButton';
 import { SparkleBackground } from '../../components/SparkleBackground';
 import { getOnboardingGender } from '../../data/storage/mmkv';
 import { pickG } from '../Onboarding/onboardingState';
-import { colors, spacing, typography } from '../../theme';
+import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { CompletionScreen } from './CompletionScreen';
 import { ConnectionCheckIn } from './ConnectionCheckIn';
 import { ContentDisplay } from './ContentDisplay';
@@ -29,6 +29,8 @@ interface LockContentFlowProps {
  */
 export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnlocked }: LockContentFlowProps) {
   const insets = useSafeAreaInsets();
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [finishing, setFinishing] = useState(false);
   const [gender] = useState(() => getOnboardingGender());
   const { state, submitConnection, selectMood, confirmPrayed, selectDuration, finishAndUnlock } = useLockContentFlow({
@@ -48,6 +50,35 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
     fade.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.step]);
+
+  // If this screen is pushed by the Android lock timer expiring while the
+  // phone is asleep, the overlay's deep link can mount this whole tree
+  // before the user ever wakes the device — Android resumes the Activity
+  // (confirmed via AppState going 'active') and Reanimated genuinely
+  // finishes the fade above (`fade.value` reaches 1) well before the screen
+  // physically turns back on. Despite that, the native view that started
+  // life off-screen keeps painting as if still at opacity 0 for a long,
+  // unpredictable stretch afterward — everything is mounted, laid out, and
+  // interactive (a blind tap on the hidden button works), it just never gets
+  // a correctly composited frame on its own. Restarting the animation value
+  // doesn't fix an already-stale view, so instead force one full remount —
+  // fresh native views always paint their current (already-correct) style
+  // immediately — the first time the app is genuinely foregrounded after a
+  // flow that started this way. Scoped to a single one-shot recovery (not
+  // every future background/foreground toggle) so it can never wipe out
+  // mid-flow progress like VerseReader's scroll position; safe to fire here
+  // regardless because the user can't have interacted with an invisible step.
+  const startedInBackground = useRef(AppState.currentState !== 'active');
+  const [instanceKey, setInstanceKey] = useState(0);
+  useEffect(() => {
+    if (!startedInBackground.current) return;
+    const subscription = AppState.addEventListener('change', (next) => {
+      if (next !== 'active') return;
+      startedInBackground.current = false;
+      setInstanceKey((k) => k + 1);
+    });
+    return () => subscription.remove();
+  }, []);
 
   // This is the core prayer ritual the whole app exists to enforce — the
   // Android hardware back button must not be a silent escape hatch out of it
@@ -83,9 +114,9 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
   };
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+    <View key={instanceKey} style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <SparkleBackground tone="navy" starCount={6} />
-      <Animated.View style={fadeStyle}>
+      <Animated.View style={[styles.stepWrap, fadeStyle]}>
         {state.step === 'connection' && <ConnectionCheckIn onSubmit={submitConnection} />}
 
         {state.step === 'mood' && <MoodPicker onSelect={selectMood} gender={gender} />}
@@ -101,7 +132,7 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
             content={state.prayerItem}
             onContinue={confirmPrayed}
             continuing={false}
-            continueLabel="התפללתי היום 🙏"
+            continueLabel="סיימתי 🙏"
           />
         )}
         {state.step === 'prayer' && !state.prayerLoading && !state.prayerItem && (
@@ -109,7 +140,7 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
           // preferences yet (small seed content pool) — don't dead-end.
           <View style={styles.fallback}>
             <Text style={styles.fallbackText}>{`${pickG(gender, 'קח', 'קחי')} רגע לנשום עמוק לפני שממשיכים`}</Text>
-            <PrimaryButton label="התפללתי היום 🙏" onPress={confirmPrayed} />
+            <PrimaryButton label="סיימתי 🙏" onPress={confirmPrayed} />
           </View>
         )}
 
@@ -129,11 +160,21 @@ export function LockContentFlow({ preferredContentTypes, lockedAppPackage, onUnl
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: colors.background,
+  },
+  // The 'prayer' step's ContentDisplay is flex:1 (a full-height reading
+  // screen, not a small centered card) and needs this wrapper to actually
+  // stretch to fill the available space; every other step is a compact
+  // block that doesn't set flex:1, so `justifyContent: 'center'` here still
+  // centers those exactly as before.
+  stepWrap: {
+    flex: 1,
+    justifyContent: 'center',
   },
   fallback: {
     padding: spacing.xl,
@@ -145,4 +186,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-});
+  });
+}

@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Haptics from 'expo-haptics';
+import { haptics } from '../haptics';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -12,18 +12,25 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { colors, typography } from '../theme';
+import { lightColors, useTheme, type ThemeColors, type Typography } from '../theme';
 
-const GRADIENTS = {
-  navy: [colors.primary, colors.primaryDark] as const,
-  accent: [colors.accent, colors.accentDark] as const,
-};
+function getGradients(colors: ThemeColors) {
+  return {
+    // Navy is a fixed dark-navy-to-near-black CTA regardless of the active
+    // theme. `colors.primary` intentionally inverts to a light blue in dark
+    // mode for decorative reuse elsewhere (glows, badges) — reusing that
+    // here would turn this gradient into a light-to-near-black diagonal,
+    // which no single label color can stay readable against.
+    navy: [lightColors.primary, lightColors.primaryDark] as const,
+    accent: [colors.accent, colors.accentDark] as const,
+  };
+}
 
 interface PrimaryButtonProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
-  variant?: keyof typeof GRADIENTS;
+  variant?: keyof ReturnType<typeof getGradients>;
   /** Slow idle breathing glow — used sparingly, e.g. the paywall's purchase CTA. */
   glow?: boolean;
   icon?: ReactNode;
@@ -41,6 +48,9 @@ export function PrimaryButton({
   icon,
   style,
 }: PrimaryButtonProps) {
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography, variant);
+  const gradients = getGradients(colors);
   const scale = useSharedValue(1);
   const glowOpacity = useSharedValue(0.55);
   const reduceMotion = useReducedMotion();
@@ -82,7 +92,7 @@ export function PrimaryButton({
 
   const handlePress = () => {
     if (disabled) return;
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+    haptics.light();
     onPress();
   };
 
@@ -99,7 +109,7 @@ export function PrimaryButton({
     >
       <Animated.View style={animatedStyle}>
         <LinearGradient
-          colors={GRADIENTS[variant]}
+          colors={gradients[variant]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.button}
@@ -112,23 +122,29 @@ export function PrimaryButton({
   );
 }
 
-const styles = StyleSheet.create({
-  shadowWrap: {
-    alignSelf: 'stretch',
-    borderRadius: 26,
-    shadowColor: colors.accent,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 4 },
-  },
-  button: {
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingVertical: 16,
-    borderRadius: 26,
-  },
-  label: {
-    ...typography.button,
-  },
-});
+function createStyles(colors: ThemeColors, typography: Typography, variant: keyof ReturnType<typeof getGradients>) {
+  return StyleSheet.create({
+    shadowWrap: {
+      alignSelf: 'stretch',
+      borderRadius: 26,
+      shadowColor: colors.accent,
+      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 4 },
+    },
+    button: {
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 8,
+      paddingVertical: 16,
+      borderRadius: 26,
+    },
+    label: {
+      ...typography.button,
+      // Navy's gradient is the fixed chrome from `getGradients` above, not
+      // theme-reactive, so its label must stay fixed too instead of
+      // following typography.button's theme-reactive background token.
+      ...(variant === 'navy' ? { color: lightColors.background } : null),
+    },
+  });
+}

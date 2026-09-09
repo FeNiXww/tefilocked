@@ -1,172 +1,1531 @@
 [
   {
     "id": "prayer-modeh-ani",
-    "hebrewText": "מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ",
-    "transliteration": "Modeh ani lefanecha melech chai v'kayam, shehechezarta bi nishmati b'chemla, raba emunatecha",
-    "translation": "I offer thanks to You, living and eternal King, for You have returned my soul within me with compassion — great is Your faithfulness.",
-    "source": "Morning prayer (Modeh Ani)",
-    "moods": ["tired", "grateful", "distracted"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "מודה אני",
+    "source": "תפילת הבוקר",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ"
+      }
+    ],
+    "moods": [
+      "tired",
+      "grateful",
+      "distracted"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "timeWindows": [
+      "morning"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "complete_prayer",
+      "serviceRole": "הצהרת הודיה קצרה ועצמאית, נאמרת מיד עם היקיצה, לפני נטילת ידיים ולפני כל ברכה אחרת.",
+      "standaloneGuidance": "יש לה משמעות כהבעת תודה בכל שעה, אבל במקור היא נועדה להיות המחשבה הראשונה עם היקיצה — אמירתה מאוחר יותר ביום עדיין יפה, פשוט לא באותו הקשר.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "custom",
+        "explanation": "נוהגים לאומרה מיד עם ההתעוררות, בישיבה או אפילו בשכיבה במיטה — לא בעמידה. זו הנחיה ממקור מעשי (סדר היום, כפי שמובא במשנה ברורה א:ח), לא איסור הלכתי במובן הרגיל. אין צורך ליטול ידיים לפני כן, כי הנוסח אינו כולל שם ה׳."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדן בכיוון עבור אמירה זו."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "הצהרה אישית, אינה תלויה במניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "חב״ד",
+          "difference": "מנהג ייחודי של הנחת כפות הידיים זו על זו והרכנת הראש באמירתה, לפי ספר המנהגים — הבדל במחווה גופנית, לא בטקסט או בזמן."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://www.sefaria.org/Mishnah_Berurah.1.12?with=all&lang2=en",
+        "https://www.chabad.org/library/article_cdo/aid/548239/jewish/Modeh-Ani.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר. אומת מול מקור ראשוני (משנה ברורה א:ח, בשם סדר היום) — שדרוג ממקור משני בלבד."
+    }
   },
   {
-    "id": "prayer-shema-line1",
-    "hebrewText": "שְׁמַע יִשְׂרָאֵל ה' אֱלֹקֵינוּ ה' אֶחָד",
-    "transliteration": "Shema Yisrael, Hashem Elokeinu, Hashem Echad",
-    "translation": "Hear, O Israel: Hashem is our G-d, Hashem is One.",
-    "source": "Devarim 6:4 (Shema)",
-    "moods": ["stressed", "anxious", "distracted"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-shema",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "קריאת שמע",
+    "source": "דברים ו׳:ד׳-ט׳",
+    "verses": [
+      {
+        "number": 4,
+        "hebrewText": "שְׁמַע יִשְׂרָאֵל ה' אֱלֹקֵינוּ ה' אֶחָד"
+      },
+      {
+        "number": 5,
+        "hebrewText": "וְאָהַבְתָּ אֵת ה' אֱלֹקֶיךָ בְּכׇל לְבָבְךָ וּבְכׇל נַפְשְׁךָ וּבְכׇל מְאֹדֶךָ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "וְהָיוּ הַדְּבָרִים הָאֵלֶּק אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם עַל לְבָבֶךָ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "וְשִׁנַּנְתָּם לְבָנֶיךָ וְדִבַּרְתָּ בָּם בְּשִׁבְתְּךָ בְּבֵיתֶךָ וּבְלֶכְתְּךָ בַדֶּרֶךְ וּבְשׇׁכְבְּךָ וּבְקוּמֶךָ"
+      },
+      {
+        "number": 8,
+        "hebrewText": "וּקְשַׁרְתָּם לְאוֹת עַל יָדֶךָ וְהָיוּ לְטֹטָפֹת בֵּין עֵינֶיךָ"
+      },
+      {
+        "number": 9,
+        "hebrewText": "וּכְתַבְתָּם עַל מְזֻזוֹת בֵּיתֶךָ וּבִשְׁעָרֶיךָ"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "anxious",
+      "distracted",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "chapter": 6,
+    "timeWindows": [
+      "morning",
+      "night"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "complete_prayer",
+      "serviceRole": "מצווה עצמאית מדאורייתא (קריאת שמע), הנאמרת בסמוך לפני תפילת שחרית וערבית; אינה חלק ממנחה, ואינה תלויה בתפילה מסודרת.",
+      "standaloneGuidance": "קריאת שמע היא מצווה עצמאית שאינה תלויה בתפילה מסודרת או במניין, ולכן קריאתה כקטע עצמאי הולמת ומקובלת. עם זאת, יש לה זמן הלכתי מדויק (התלוי בזריחה/שקיעה, לא בשעון), שאינו זהה לחלוקת הבוקר/צהריים/לילה הגסה של האפליקציה.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": true,
+        "relevantZmanim": [
+          "misheyakir",
+          "netz_hachama",
+          "sof_zman_krias_shema",
+          "tzeit_hakochavim",
+          "chatzot_halailah"
+        ],
+        "idealVsValidNote": "לקריאת שמע יש זמן הלכתי מוגדר. בבוקר: עד סוף שעה שלישית (בשעות זמניות) מקיימים את המצווה במלואה; עד סוף שעה רביעית עדיין אומרים אותה עם הברכות, אך בשכר מופחת; אחרי שעה רביעית אפשר לקרוא את הפסוקים כלימוד בלבד, בלי ברכות. בערב: הזמן לכתחילה הוא מצאת הכוכבים ועד חצות הלילה, ובדיעבד (אם נשכח) — עד עלות השחר. האפליקציה מחשבת זמנים הלכתיים אמיתיים כשאתה משתף מיקום; בלעדיו היא לא מנחשת, ומעדיפה שלא להציג מידע זמן מדויק."
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "אין חובת עמידה — אפשר לקרוא בישיבה, עמידה, הליכה או רכיבה, לפי פסיקת בית הלל. אין לקרוא בשכיבה מלאה על הגב או הבטן (מי שחולה יכול להטות לצד). יש אפילו טעם שלא לקום דווקא בשביל קריאת שמע: מי שעושה זאת נחשב כדוחה את פסיקת בית הלל לטובת עמדת בית שמאי, שנדחתה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור המחייב או ממליץ על פנייה לירושלים לקריאת שמע עצמה; חובת הכיוון שייכת לתפילת העמידה, לא לקריאת שמע."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "קריאת שמע היא מצווה אישית שאינה תלויה במניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "כלל העדות",
+          "difference": "מנהג עטיפת העיניים ביד ימין בפסוק הראשון מוסכם; יש מחלוקת (האר״י מול המהרי״ל) האם להמשיך לכסות עד סיום 'ברוך שם' — הבדל מנהגי, לא הלכה מהותית."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "יש לאמת מול רב שהניסוח על זמן קריאת שמע (משיכיר עד סוף 3 שעות זמניות; ערב עד חצות/עלות) מדויק דיו למשתמש הרגיל. עודכן: האפליקציה כיום מחשבת זמנים הלכתיים אמיתיים (לא רק שעון מכשיר) כאשר יש מיקום זמין, ומציגה סטטוס זמינות בהתאם — השאלה שנותרה פתוחה לרב היא (א) האם החישוב האסטרונומי (ללא אימות מול לוח שנה רבני מקומי) מספיק מדויק להצגה כ\"זמן הלכתי\", ו-(ב) האם הניסוח וה\"why?\" panel מבהירים כראוי למשתמש שבהיעדר מיקום האפליקציה אינה יודעת את הזמן המדויק כלל.",
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/3291745",
+        "https://www.chabad.org/library/article_cdo/aid/3292059",
+        "https://shulchanaruchharav.com/halacha/until-what-time-may-the-morning-shema-be-recited-understanding-the-luach-of-sof-zman-kerias-shema/",
+        "https://ph.yhb.org.il/en/02-25-05/",
+        "https://www.chabad.org/library/article_cdo/aid/3299180",
+        "https://www.chabad.org/library/article_cdo/aid/1047775"
+      ],
+      "researchNotes": "ראו src/content/research/liturgical-context-research.md#קריאת-שמע. הפריט היחיד בספרייה עם זמן הלכתי אמיתי; hasRealHalachicZman=true נועד לאפשר לממשק להימנע מרמז שקריאה באפליקציה בשעה שרירותית מקיימת את הזמן ההלכתי. עודכן (בדיקה חוזרת עצמאית): אומת ישירות מול Chabad.org (פרקים נ״ח, ס״ג של השולחן ערוך, שליפה ישירה לא רק תקציר חיפוש) — נמצאו שני ניואנסים חדשים: (א) שלוש דרגות זמן בבוקר, לא שתיים; (ב) מי שקם דווקא לשם קריאת שמע נחשב עבריין (דוחה את פסיקת בית הלל) — לא רק שאין חובת עמידה, אלא שיש טעם שלא לקום ביוזמתו. חלון הערב לכתחילה הורחב מ\"חצי שעה\" ל\"עד חצות\", עם ציון שחצי השעה היא מנהג מחמיר נפרד."
+    }
   },
   {
-    "id": "prayer-shema-line2",
-    "hebrewText": "בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד",
-    "transliteration": "Baruch shem kevod malchuto l'olam va'ed",
-    "translation": "Blessed is the name of His glorious kingdom forever and ever.",
-    "source": "Recited after the Shema",
-    "moods": ["distracted", "grateful"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
-  },
-  {
-    "id": "prayer-veahavta",
-    "hebrewText": "וְאָהַבְתָּ אֵת ה' אֱלֹקֶיךָ בְּכָל לְבָבְךָ וּבְכָל נַפְשְׁךָ וּבְכָל מְאֹדֶךָ",
-    "transliteration": "V'ahavta et Hashem Elokecha b'chol l'vav'cha uv'chol nafsh'cha uv'chol me'odecha",
-    "translation": "You shall love Hashem your G-d with all your heart, with all your soul, and with all your might.",
-    "source": "Devarim 6:5 (Ve'ahavta)",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["daily_prayers"],
-    "length": "medium"
-  },
-  {
-    "id": "prayer-adon-olam-close",
-    "hebrewText": "בְּיָדוֹ אַפְקִיד רוּחִי בְּעֵת אִישָׁן וְאָעִירָה",
-    "transliteration": "B'yado afkid ruchi, b'et ishan v'a'ira",
-    "translation": "Into His hand I entrust my spirit, when I sleep and when I wake.",
-    "source": "Adon Olam (closing lines)",
-    "moods": ["tired", "anxious"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
-  },
-  {
-    "id": "prayer-oseh-shalom",
-    "hebrewText": "עֹשֶׂה שָׁלוֹם בִּמְרוֹמָיו הוּא יַעֲשֶׂה שָׁלוֹם עָלֵינוּ וְעַל כָּל יִשְׂרָאֵל",
-    "transliteration": "Oseh shalom bimromav, hu ya'aseh shalom aleinu v'al kol Yisrael",
-    "translation": "He who makes peace in His heights, may He make peace upon us and upon all Israel.",
-    "source": "Closing prayer line (Oseh Shalom)",
-    "moods": ["stressed", "anxious", "lonely"],
-    "contentTypes": ["daily_prayers"],
-    "length": "medium"
-  },
-  {
-    "id": "prayer-elokai-neshama",
-    "hebrewText": "אֱלֹקַי נְשָׁמָה שֶׁנָּתַתָּ בִּי טְהוֹרָה הִיא",
-    "transliteration": "Elokai, neshama shenatata bi t'hora hi",
-    "translation": "My G-d, the soul You have given me is pure.",
-    "source": "Morning prayer (Elokai Neshama)",
-    "moods": ["grateful", "tired"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-birkat-kohanim",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "ברכת כהנים",
+    "source": "במדבר ו׳:כ״ד-כ״ו",
+    "verses": [
+      {
+        "number": 24,
+        "hebrewText": "יְבָרֶכְךָ ה' וְיִשְׁמְרֶךָ"
+      },
+      {
+        "number": 25,
+        "hebrewText": "יָאֵר ה' פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ"
+      },
+      {
+        "number": 26,
+        "hebrewText": "יִשָּׂא ה' פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "grateful",
+      "lonely"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "chapter": 6,
+    "liturgicalContext": {
+      "serviceRoleKind": "blessing",
+      "serviceRole": "פסוקי הברכה מהתורה (במדבר ו׳:כ״ד-כ״ו), הנאמרים על ידי כהנים בבית הכנסת (נשיאת כפיים/דוכנן); מצוטטים גם בהקשרים נוספים כמו ברכת הורים לילדים בליל שבת.",
+      "standaloneGuidance": "קריאת הפסוקים כטקסט שונה מהותית מביצוע מצוות נשיאת כפיים בפועל, שנעשית על ידי כהן מול הציבור. הבעיה היחידה הייתה אם מישהו מתכוון לקיים את המצווה עצמה ולחקות את פעולת הכהן — קריאה רגילה, או ברכת הורים לילד, אינה כפופה לדיני נשיאת כפיים כלל.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "אין חובת עמידה לקריאת הפסוקים כטקסט. בנשיאת כפיים בפועל הכהנים עומדים וידיהם מורמות — אך זה חל על הכהן המבצע את המצווה, לא על קריאת הטקסט."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור לדרישת כיוון בקריאת הפסוקים כטקסט; בנשיאת כפיים הכהנים פונים אל הציבור, לא בהכרח לירושלים."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "componentOnly": true,
+        "explanation": "לקריאת הפסוקים כטקסט אישי או ברכת הורים לילד אין דרישת מניין. מניין נדרש רק לנשיאת כפיים בפועל בציבור (component בלבד, לא לקריאת הטקסט כפי שהאפליקציה עושה)."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "תדירות נשיאת כפיים",
+          "variantDescription": "תדירות הדוכנן בפועל משתנה משמעותית בין קהילות ומקומות (ראו הבדלי נוסח) — אינה רלוונטית לקריאת הפסוקים כטקסט באפליקציה."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "ישראל",
+          "difference": "בירושלים ורוב הקהילות הספרדיות — דוכנן יומי; חלק מהקהילות האשכנזיות בישראל — רק בשבת/יו״ט."
+        },
+        {
+          "community": "תפוצות",
+          "difference": "קהילות ספרדיות לרוב מדכינות מדי שבת; קהילות אשכנזיות לרוב רק בחגים במוסף (עם יוצאים מהכלל כמו שמחת תורה)."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "לוודא שהצגת הטקסט באפליקציה אינה יוצרת רושם מוטעה של קיום מצוות נשיאת כפיים.",
+      "researchSources": [
+        "https://www.halachipedia.com/index.php?title=Birkat_Cohanim",
+        "https://www.chabad.org/library/article_cdo/aid/894571/jewish/When-is-the-Blessing-Administered.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
     "id": "prayer-mah-tovu",
-    "hebrewText": "מַה טֹּבוּ אֹהָלֶיךָ יַעֲקֹב מִשְׁכְּנֹתֶיךָ יִשְׂרָאֵל",
-    "transliteration": "Ma tovu ohalecha Ya'akov, mishk'notecha Yisrael",
-    "translation": "How goodly are your tents, Jacob; your dwelling places, Israel.",
-    "source": "Bamidbar 24:5 (Mah Tovu)",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "מה טובו",
+    "source": "במדבר כ״ד:ה׳",
+    "verses": [
+      {
+        "number": 5,
+        "hebrewText": "מַה טֹּבוּ אֹהָלֶיךָ יַעֲקֹב מִשְׁכְּנֹתֶיךָ יִשְׂרָאֵל"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "chapter": 24,
+    "liturgicalContext": {
+      "serviceRoleKind": "piyut",
+      "serviceRole": "פסוק פתיחה (במדבר כ״ד:ה, מברכת בלעם) בצירוף פסוקי תהלים נוספים, הנאמר מסורתית עם הכניסה בפועל לבית הכנסת. מקור מתועד לראשונה בסידור רב עמרם גאון (המאה ה-9).",
+      "standaloneGuidance": "קריאתו כטקסט כללי מחוץ להקשר כניסה לבית כנסת אפשרית להתעוררות רוחנית, אך אינה 'קיום המנהג המקורי'. יש מחלוקת היסטורית מתועדת: המהרש״ל (המאה ה-16) התנגד לפתוח בפסוק הראשון בשל מקורו בברכת בלעם, ונהג לדלג עליו — דעת יחיד מחמירה מול מנהג מקובל.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור המחייב או ממליץ עמידה ספציפית לקטע זה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [
+        {
+          "topic": "אמירת הפסוק הראשון (ממקור ברכת בלעם)",
+          "positions": "מנהג מקובל כולל אותו; המהרש״ל (רבי שלמה לוריא) נהג לדלג עליו ולפתוח בפסוק השני, בשל מקורו הבעייתי."
+        }
+      ],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "המקורות שנבדקו אנציקלופדיים/תיאוריים ולא פסיקה הלכתית ראשונית ישירה; טעון בדיקה מול מקור הלכתי ראשוני, כולל שאלת המהרש״ל.",
+      "researchSources": [
+        "https://reformjudaism.org/learning/torah-study/torah-commentary/mah-tovu-torah-prayer",
+        "https://en.wikipedia.org/wiki/Ma_Tovu"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   },
   {
-    "id": "prayer-ashrei-open",
-    "hebrewText": "אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁה' אֱלֹקָיו",
-    "transliteration": "Ashrei ha'am shekacha lo, ashrei ha'am she'Hashem Elokav",
-    "translation": "Happy is the people for whom this is so; happy is the people whose G-d is Hashem.",
-    "source": "Tehillim 144:15 (Ashrei introduction)",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["daily_prayers"],
-    "length": "medium"
+    "id": "prayer-veshamru",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "ושמרו",
+    "source": "שמות ל״א:ט״ז-י״ז",
+    "verses": [
+      {
+        "number": 16,
+        "hebrewText": "וְשָׁמְרוּ בְנֵי יִשְׂרָאֵל אֶת הַשַּׁבָּת לַעֲשׂוֹת אֶת הַשַּׁבָּת לְדֹרֹתָם בְּרִית עוֹלָם"
+      },
+      {
+        "number": 17,
+        "hebrewText": "בֵּינִי וּבֵין בְּנֵי יִשְׂרָאֵל אוֹת הִוא לְעֹלָם כִּי שֵׁשֶׁת יָמִים עָשָׂה ה' אֶת הַשָּׁמַיִם וְאֶת הָאָרֶץ וּבַיּוֹם הַשְּׁבִיעִי שָׁבַת וַיִּנָּפַשׁ"
+      }
+    ],
+    "moods": [
+      "tired",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "chapter": 31,
+    "liturgicalContext": {
+      "serviceRoleKind": "biblical_passage",
+      "serviceRole": "פסוקים משמות ל״א:ט״ז-י״ז, חלק מהברכה האמצעית (קדושת היום) של תפילת ערבית לשבת, ונאמרים גם בפתיחת קידוש שחרית של שבת.",
+      "standaloneGuidance": "אלו פסוקי תנ״ך; קריאתם כטקסט עצמאי ביום חול אינה אסורה הלכתית, אך אינה המקום הליטורגי הרגיל שלהם — הזיקה לשבת היא תוכנית ומסורתית (הפסוקים עוסקים ב'ברית עולם' של שמירת שבת), לא איסור על אמירתם ביום אחר. יש לשים לב: מנהג חב״ד הוא שלא לאומרם כלל בתפילה, גם כשהציבור אומר — כלומר יש שוני מנהגי גם באמירה עצמה בתוך שבת, לא רק בזמן.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "unknown",
+        "explanation": "לא נמצא מקור המחייב עמידה ל'ושמרו' עצמו (בשונה מ'ויכולו' הסמוך לו, שיש לו מקור נפרד לעמידה) — אין לערבב בין השניים."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת",
+          "variantDescription": "הטקסט מזוהה ייחודית עם שבת (עוסק ב'ברית עולם' של שמירת שבת), אך אין איסור הלכתי לקוראו ביום אחר — רק אינו ההקשר המקורי."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "חב״ד/ליובאוויטש",
+          "difference": "מנהג שלא לאומרו כלל בתפילה, גם כשהציבור אומר אותו."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "לא אומת מקור ישיר לשאלת עמידה עבור 'ושמרו' עצמו; יש להיזהר לא לערבב עם דין 'ויכולו'.",
+      "researchSources": [
+        "https://halachipedia.com/index.php?title=Shabbat_Davening",
+        "https://en.wikipedia.org/wiki/Kiddush"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
+  },
+  {
+    "id": "prayer-eshet-chayil",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אשת חיל",
+    "source": "משלי ל״א:י׳-ל״א",
+    "verses": [
+      {
+        "number": 10,
+        "hebrewText": "אֵשֶׁת חַיִל מִי יִמְצָא וְרָחֹק מִפְּנִינִים מִכְרָהּ"
+      },
+      {
+        "number": 11,
+        "hebrewText": "בָּטַח בָּהּ לֵב בַּעְלָהּ וְשָׁלָל לֹא יֶחְסָר"
+      },
+      {
+        "number": 12,
+        "hebrewText": "גְּמָלַתְהוּ טוֹב וְלֹא רָע כֹּל יְמֵי חַיֶּיהָ"
+      },
+      {
+        "number": 13,
+        "hebrewText": "דָּרְשָׁה צֶמֶר וּפִשְׁתִּים וַתַּעַשׂ בְּחֵפֶץ כַּפֶּיהָ"
+      },
+      {
+        "number": 14,
+        "hebrewText": "הָיְתָה כׇּאֳנִיּוֹת סוֹחֵר מִמֶּרְחָק תָּבִיא לַחְמָהּ"
+      },
+      {
+        "number": 15,
+        "hebrewText": "וַתָּקׇם בְּעוֹד לַיְלָה וַתִּתֵּן טֶרֶף לְבֵיתָהּ וְחֹק לְנַעֲרֹתֶיהָ"
+      },
+      {
+        "number": 16,
+        "hebrewText": "זָמְמָה שָׂדֶה וַתִּקָּחֵהוּ מִפְּרִי כַפֶּיהָ (נטע) נָטְעָה כָּרֶם"
+      },
+      {
+        "number": 17,
+        "hebrewText": "חָגְרָה בְעוֹז מׇתְנֶיהָ וַתְּאַמֵּץ זְרוֹעֹתֶיהָ"
+      },
+      {
+        "number": 18,
+        "hebrewText": "טָעֲמָה כִּי טוֹב סַחְרָהּ לֹא יִכְבֶּה (בליל) בַלַּיְלָה נֵרָהּ"
+      },
+      {
+        "number": 19,
+        "hebrewText": "יָדֶיהָ שִׁלְּחָה בַכִּישׁוֹר וְכַפֶּיהָ תָּמְכוּ פָלֶךְ"
+      },
+      {
+        "number": 20,
+        "hebrewText": "כַּפָּהּ פָּרְשָׂה לֶעָנִי וְיָדֶיהָ שִׁלְּחָה לָאֶבְיוֹן"
+      },
+      {
+        "number": 21,
+        "hebrewText": "לֹא תִירָא לְבֵיתָהּ מִשָּׁלֶג כִּי כׇל בֵּיתָהּ לָבֻשׁ שָׁנִים"
+      },
+      {
+        "number": 22,
+        "hebrewText": "מַרְבַדִּים עָשְׂתָה לָּהּ שֵׁשׁ וְאַרְגָּמָן לְבוּשָׁהּ"
+      },
+      {
+        "number": 23,
+        "hebrewText": "נוֹדָע בַּשְּׁעָרִים בַּעְלָהּ בְּשִׁבְתּוֹ עִם זִקְנֵי אָרֶץ"
+      },
+      {
+        "number": 24,
+        "hebrewText": "סָדִין עָשְׂתָה וַתִּמְכֹּר וַחֲגוֹר נָתְנָה לַכְּנַעֲנִי"
+      },
+      {
+        "number": 25,
+        "hebrewText": "עֹז וְהָדָר לְבוּשָׁהּ וַתִּשְׂחַק לְיוֹם אַחֲרוֹן"
+      },
+      {
+        "number": 26,
+        "hebrewText": "פִּיהָ פָּתְחָה בְחׇכְמָה וְתוֹרַת חֶסֶד עַל לְשׁוֹנָהּ"
+      },
+      {
+        "number": 27,
+        "hebrewText": "צוֹפִיָּה (הילכות) הֲלִיכוֹת בֵּיתָהּ וְלֶחֶם עַצְלוּת לֹא תֹאכֵל"
+      },
+      {
+        "number": 28,
+        "hebrewText": "קָמוּ בָנֶיהָ וַיְאַשְּׁרוּהָ בַּעְלָהּ וַיְהַלְלָהּ"
+      },
+      {
+        "number": 29,
+        "hebrewText": "רַבּוֹת בָּנוֹת עָשׂוּ חָיִל וְאַתְּ עָלִית עַל כֻּלָּנָה"
+      },
+      {
+        "number": 30,
+        "hebrewText": "שֶׁקֶר הַחֵן וְהֶבֶל הַיֹּפִי אִשָּׁה יִרְאַת ה' הִיא תִתְהַלָּל"
+      },
+      {
+        "number": 31,
+        "hebrewText": "תְּנוּ לָהּ מִפְּרִי יָדֶיהָ וִיהַלְלוּהָ בַשְּׁעָרִים מַעֲשֶׂיהָ"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "chapter": 31,
+    "liturgicalContext": {
+      "serviceRoleKind": "biblical_passage",
+      "serviceRole": "משלי ל״א:י׳-ל״א, מושר בבית בליל שבת בין 'שלום עליכם' לקידוש. אינו חלק מתפילת בית הכנסת כלל — מנהג ביתי.",
+      "standaloneGuidance": "כטקסט מקראי אין שום מניעה לקרוא אותו בכל עת, אבל יש לו זיהוי חזק עם ליל שבת. חשוב לדעת: יש לו כמה רבדים של פרשנות שכולם לגיטימיים — כבוד לאישה ולאם המשפחה, פנייה מיסטית לשכינה, ואלגוריה לשבת עצמה או לתורה. אין פירוש אחד ׳נכון׳.",
+      "standaloneLevel": "valid_not_ideal",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור לדרישת עמידה — מנהג שירה ליד השולחן."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא רלוונטי."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "מנהג ביתי, לא ליטורגיה ציבורית."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "ליל שבת",
+          "variantDescription": "הקשר לשבת הוא מנהגי-תוכני (מקורו במנהג מקובלי צפת, תלמידי האר״י), לא איסור הלכתי לומר ביום אחר."
+        }
+      ],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "בעיקר על ניסוח פרשני מאוזן בממשק (איזו שכבת משמעות להציג — אישה קונקרטית מול שכינה/שבת/תורה), לא על היתר/איסור. גם לא אומתה טענת הבדל מנהגי בין עדות — נותרה פתוחה.",
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/3390021/jewish/Why-Sing-Eishet-Chayil-on-Friday-Night.htm",
+        "https://jwa.org/article/background-information-on-eshet-chayil",
+        "https://www.myjewishlearning.com/article/how-to-read-eshet-hayil/"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
+  },
+  {
+    "id": "prayer-adon-olam",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אדון עולם",
+    "source": "פיוט מסורתי",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אֲדוֹן עוֹלָם אֲשֶׁר מָלַךְ, בְּטֶרֶם כָּל יְצִיר נִבְרָא"
+      },
+      {
+        "number": 2,
+        "hebrewText": "לְעֵת נַעֲשָׂה בְחֶפְצוֹ כֹּל, אֲזַי מֶלֶךְ שְׁמוֹ נִקְרָא"
+      },
+      {
+        "number": 3,
+        "hebrewText": "וְאַחֲרֵי כִּכְלוֹת הַכֹּל, לְבַדּוֹ יִמְלֹךְ נוֹרָא"
+      },
+      {
+        "number": 4,
+        "hebrewText": "וְהוּא הָיָה וְהוּא הֹוֶה, וְהוּא יִהְיֶה בְּתִפְאָרָה"
+      },
+      {
+        "number": 5,
+        "hebrewText": "וְהוּא אֶחָד וְאֵין שֵׁנִי, לְהַמְשִׁיל לוֹ לְהַחְבִּירָה"
+      },
+      {
+        "number": 6,
+        "hebrewText": "בְּלִי רֵאשִׁית בְּלִי תַכְלִית, וְלוֹ הָעֹז וְהַמִּשְׂרָה"
+      },
+      {
+        "number": 7,
+        "hebrewText": "וְהוּא אֵלִי וְחַי גּוֹאֲלִי, וְצוּר חֶבְלִי בְּעֵת צָרָה"
+      },
+      {
+        "number": 8,
+        "hebrewText": "וְהוּא נִסִּי וּמָנוֹס לִי, מְנָת כּוֹסִי בְּיוֹם אֶקְרָא"
+      },
+      {
+        "number": 9,
+        "hebrewText": "בְּיָדוֹ אַפְקִיד רוּחִי, בְּעֵת אִישַׁן וְאָעִירָה"
+      },
+      {
+        "number": 10,
+        "hebrewText": "וְעִם רוּחִי גְּוִיָּתִי, ה' לִי וְלֹא אִירָא"
+      }
+    ],
+    "moods": [
+      "tired",
+      "anxious",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "piyut",
+      "serviceRole": "פיוט שבח שאין לו מעמד הלכתי מחייב ואינו חלק מנוסח התפילה הפורמלי. נאמר במיקומים שונים לגמרי בין קהילות (ראו הבדלי נוסח).",
+      "standaloneGuidance": "כן, ללא הסתייגות — שיר דבקות גמיש מטבעו; העובדה שהוא כבר נאמר במספר מקומות שונים ומנותקים (פתיחת שחרית, סיום ערבית של שבת, קריאת שמע שעל המיטה) מאששת שזהו טקסט בעל תזמון גמיש מיסודו.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "unknown",
+        "explanation": "לא נמצא מקור הקובע מנהג עמידה או ישיבה ספציפי לפיוט זה — יש להשאיר כלא ידוע ולא לקבוע כלל."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "פיוט אישי-דבקותי, אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "אשכנז (מנהג כללי)",
+          "difference": "פותח את תפילת שחרית של חול (מנהג מתועד מהמאה ה-15)."
+        },
+        {
+          "community": "ספרד ומנהג בריטי-ספרדי",
+          "difference": "מושר בציבור בסיום תפילת שחרית של שבת/חג."
+        },
+        {
+          "community": "אשכנז (שבת/חג)",
+          "difference": "מחליף את 'יגדל' בסיום תפילת ערבית של שבת/חג."
+        },
+        {
+          "community": "כלל עדות",
+          "difference": "נכלל גם בקריאת שמע שעל המיטה בקהילות רבות, מה שתומך בהשערה שמקורו כפיוט לפני השינה."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Adon_Olam",
+        "https://www.sefaria.org/Siddur_Ashkenaz,_Weekday,_Shacharit,_Preparatory_Prayers,_Adon_Olam"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
+  },
+  {
+    "id": "prayer-ana-bekoach",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אנא בכח",
+    "source": "תפילה קבלית מסורתית",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אָנָּא בְּכֹחַ גְּדֻלַּת יְמִינְךָ תַּתִּיר צְרוּרָה"
+      },
+      {
+        "number": 2,
+        "hebrewText": "קַבֵּל רִנַּת עַמְּךָ שַׂגְּבֵנוּ טַהֲרֵנוּ נוֹרָא"
+      },
+      {
+        "number": 3,
+        "hebrewText": "נָא גִבּוֹר דּוֹרְשֵׁי יִחוּדְךָ כְּבָבַת שָׁמְרֵם"
+      },
+      {
+        "number": 4,
+        "hebrewText": "בָּרְכֵם טַהֲרֵם רַחֲמֵם צִדְקָתְךָ תָּמִיד גָּמְלֵם"
+      },
+      {
+        "number": 5,
+        "hebrewText": "חֲסִין קָדוֹשׁ בְּרֹב טוּבְךָ נַהֵל עֲדָתֶךָ"
+      },
+      {
+        "number": 6,
+        "hebrewText": "יָחִיד גֵּאֶה לְעַמְּךָ פְּנֵה, זוֹכְרֵי קְדֻשָּׁתֶךָ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "שַׁוְעָתֵנוּ קַבֵּל וּשְׁמַע צַעֲקָתֵנוּ יוֹדֵעַ תַּעֲלוּמוֹת"
+      },
+      {
+        "number": 8,
+        "hebrewText": "בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "piyut",
+      "serviceRole": "פיוט קבלי, מיוחס (באופן לא ודאי) לתנא נחוניה בן הקנה; אין חובה הלכתית לאומרו. מוזכר לראשונה בכתב יד ספרדי מהמאה ה-15.",
+      "standaloneGuidance": "כן, ברוב המקרים — הוא כבר נאמר במסורת בכמה הקשרים שונים (לפני קריאת שמע שעל המיטה, בקבלת שבת, ובחב״ד גם לפני שחרית ומנחה). שווה לדעת: ראשי התיבות של הפיוט מרכיבים אקרוסטיכון המכונה ׳שם בן 42׳, שלפי מקור אחד נועד להתבוננות בעיניים בלבד ולא לאמירה בקול — אבל זה נוגע לאותיות הראשי-תיבות עצמן אם הן מוצגות בנפרד, לא לטקסט הרגיל של הפיוט שנאמר בקול.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "unknown",
+        "explanation": "לא נמצא מקור הקובע מנהג עמידה או ישיבה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "פיוט דבקותי אישי, אין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "קבלת שבת",
+          "variantDescription": "זיקה מתועדת לקבלת שבת (שבועית, לא שנתית), אך הטקסט עצמו אינו משתנה ונאמר גם בהקשרים נוספים."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "חב״ד",
+          "difference": "מנהג מורחב לאומרו מספר פעמים ביום (לפני שחרית, מנחה, קריאת שמע שעל המיטה, בקבלת שבת, בספירת העומר ובהקפות שמחת תורה) — הרחבה מעבר למנהג הכללי המוקדם."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "יש לאמת (א) מקור שני להתבוננות באקרוסטיכון לעומת אמירתו בקול, ו-(ב) לבדוק בפועל שאין ברשימת ה-verses של prayer-ana-bekoach בקובץ הנתונים הצגה נפרדת של ראשי התיבות/השם עצמו.",
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/7348971/jewish/The-Origin-and-Meaning-Behind-the-Ana-Bekoach-Prayer.htm"
+      ],
+      "researchNotes": "ראו מסמך המחקר. יש לבדוק את verses של פריט זה בקובץ הנתונים כדי לוודא שאין הצגה נפרדת של ראשי התיבות."
+    }
+  },
+  {
+    "id": "prayer-asher-yatzar",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אשר יצר",
+    "source": "ברכות השחר",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה וּבָרָא בוֹ נְקָבִים נְקָבִים חֲלוּלִים חֲלוּלִים גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם אוֹ יִסָּתֵם אֶחָד מֵהֶם אִי אֶפְשַׁר לְהִתְקַיֵּם וְלַעֲמֹד לְפָנֶיךָ אֲפִילוּ שָׁעָה אֶחָת. בָּרוּךְ אַתָּה ה' רוֹפֵא כָל בָּשָׂר וּמַפְלִיא לַעֲשׂוֹת"
+      }
+    ],
+    "moods": [
+      "tired",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "blessing",
+      "serviceRole": "ברכה הנאמרת בכל פעם שאדם עושה צרכיו, לאורך היום כולו — לא רק כחלק מברכות השחר של הבוקר.",
+      "standaloneGuidance": "נבדק מחדש והמסקנה התהפכה: זוהי ברכה מלאה עם שם ומלכות ('בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם...'), שתוקנה לומר מיד לאחר עשיית צרכים ונטילת ידיים בפועל — לא 'מתישהו היום'. העובדה שהמצווה חוזרת הרבה פעמים ביום אינה הופכת את אמירתה לתקינה בכל רגע נתון; היא רק אומרת שההזדמנות לאומרה כהלכה חוזרת הרבה. האפליקציה אין לה שום דרך לדעת אם המשתמש אכן עשה זאת ממש לפני שהוצג לו הטקסט. הצגתה כ'תפילת היום' למישהו שלא בהכרח עשה צרכיו זה עתה נושאת סיכון אמיתי של ברכה לבטלה/שאינה צריכה — אותו מנגנון בדיוק כמו שהחיינו ותפילת הדרך, רק עם טריגר גופני יומיומי במקום אירוע נדיר. ההנמקה הקודמת ('אפשר לקרוא בכל שעה כי זה קורה הרבה') התבססה על בלבול בין 'סוג האירוע חוזר הרבה' לבין 'מותר לומר בלי קשר לאירוע בפועל' — אלה לא אותו דבר.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "customary",
+        "explanation": "המנהג האשכנזי הרווח הוא לעמוד באמירת ברכות השחר (כולל ברכה זו) בהקשר הבוקר; ישיבה מותרת אם עמידה פוגעת בכוונה. מחוץ לרצף ברכות השחר (למשל אמירתה בהמשך היום) לא נמצא מקור למנהג עמידה ספציפי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדן בכיוון."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "ברכה אישית; גם כששליח ציבור אומרה בקול, יש לאומרה בעצמו ולא להסתמך על שמיעה בלבד."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "הפריט הועבר ל-EXCLUDED_FROM_POOL עקב סיכון ברכה לבטלה/שאינה צריכה כשמוצג ללא אירוע מפעיל מאומת (ראו standaloneGuidance) — יש לאמת מסקנה זו מול רב לפני כל הצגה חוזרת כטקסט עצמאי.",
+      "researchSources": [
+        "https://halachipedia.com/index.php?title=Asher_Yatzar",
+        "https://halachipedia.com/index.php?title=Birchot_HaShachar"
+      ],
+      "researchNotes": "ראו מסמך המחקר. עודכן: המסקנה הקודמת ('preferred', קריאה חופשית בכל שעה) הוחלפה — ברכה זו הועברה ל-EXCLUDED_FROM_POOL באפליקציה (liturgicalEligibility.ts), מאותה סיבה הלכתית כמו שהחיינו/תפילת הדרך/ברוך שאמר: ברכה עם שם ומלכות שתוקנה לאירוע מפעיל ספציפי (עשיית צרכים) שהאפליקציה לא יכולה לאמת."
+    }
+  },
+  {
+    "id": "prayer-elokai-neshama",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אלהי נשמה",
+    "source": "ברכות השחר",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אֱלֹקַי נְשָׁמָה שֶׁנָּתַתָּ בִּי טְהוֹרָה הִיא אַתָּה בְרָאתָהּ אַתָּה יְצַרְתָּהּ אַתָּה נְפַחְתָּהּ בִּי וְאַתָּה מְשַׁמְּרָהּ בְּקִרְבִּי וְאַתָּה עָתִיד לִטְּלָהּ מִמֶּנִּי וּלְהַחֲזִירָהּ בִּי לֶעָתִיד לָבֹא, כָּל זְמַן שֶׁהַנְּשָׁמָה בְקִרְבִּי מוֹדֶה אֲנִי לְפָנֶיךָ ה' אֱלֹקַי וֵאלֹקֵי אֲבוֹתַי רִבּוֹן כָּל הַמַּעֲשִׂים אֲדוֹן כָּל הַנְּשָׁמוֹת"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' הַמַּחֲזִיר נְשָׁמוֹת לִפְגָרִים מֵתִים"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "tired"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "prayer_component",
+      "serviceRole": "חלק מרצף ברכות השחר, נאמרת בדרך כלל בסמוך לברכת אשר יצר, כחלק מהקשר בוקר קבוע.",
+      "standaloneGuidance": "נחקר מחדש ונמצא הבדל מהותי מקטעים כמו השכיבנו: גם אלהי נשמה לא פותחת ב'בָּרוּךְ אַתָּה ה׳' משלה, אך הראשונים נחלקו בטעם לכך — יש שכתבו שזו 'ברכת הודאה' (קטגוריה שממילא פטורה מפתיחה עצמאית) ויש שכתבו שהיא סמוכה לברכת 'אשר יצר' שלפניה. בניגוד להשכיבנו, כאן קיים מנהג יומיומי מתועד ובלתי חולק של אמירתה ביחיד מיד עם ההתעוררות — גם כשלא נאמרה בסמיכות ממשית ל'אשר יצר' (למשל מי שכבר נטל ידיים/יצא לשירותים קודם) — כך שהלכה למעשה היא כן נאמרת כטקסט עצמאי בפועל, בניגוד להשכיבנו שאין לו מקבילה כזו. עדיין קיימת מחלוקת נפרדת (ראו disagreements) לגבי השלמתה אם נשכחה עד אחרי התפילה, שלא נוגעת לשאלת האמירה העצמאית עצמה.",
+      "standaloneLevel": "common_practice",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "customary",
+        "explanation": "אותו מנהג עמידה כללי כמו בברכות השחר האחרות, למשל ׳אשר יצר׳ — לא נמצאה הבחנה מיוחדת לברכה הזאת."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין להסתמך על שליח ציבור; יש לאומרה בעצמו."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [
+        {
+          "topic": "אמירת אלהי נשמה אם נשכחה עד אחרי התפילה",
+          "positions": "הלכיפדיה מציינת מחלוקת פוסקים בשאלה האם ניתן להשלימה אחרי התפילה; העמדות המדויקות לא אותרו במחקר זה."
+        }
+      ],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "המסקנה שהאמירה העצמאית תקינה נשענת על מנהג מתועד ורציף, לא על פסק ישיר לשאלת האפליקציה הזאת — יש לאמת מול רב. בנוסף, עדיין יש לברר את פרטי המחלוקת על אמירת הברכה אם נשכחה עד אחרי התפילה, ומה המשמעות (אם בכלל) לשימוש בה כטקסט עצמאי באפליקציה בשעה מאוחרת ביום.",
+      "researchSources": [
+        "https://halachipedia.com/index.php?title=Birchot_HaShachar",
+        "https://he.wikisource.org/wiki/%D7%91%D7%A8%D7%9B%D7%AA_%D7%90%D7%9C%D7%94%D7%99_%D7%A0%D7%A9%D7%9E%D7%94",
+        "https://he.wikipedia.org/wiki/%D7%91%D7%A8%D7%9B%D7%AA_%D7%90%D7%9C%D7%95%D7%94%D7%99_%D7%A0%D7%A9%D7%9E%D7%94"
+      ],
+      "researchNotes": "ראו מסמך המחקר. עודכן: הושווה במפורש להשכיבנו (ראו liturgicalEligibility.ts) — כאן, בשונה משם, יש מנהג יומיומי ובלתי חולק של אמירה עצמאית, ולכן הקטע נשאר זמין (לא הועבר ל-EXCLUDED_FROM_POOL)."
+    }
   },
   {
     "id": "prayer-hashkiveinu",
-    "hebrewText": "הַשְׁכִּיבֵנוּ ה' אֱלֹקֵינוּ לְשָׁלוֹם",
-    "transliteration": "Hashkiveinu Hashem Elokeinu l'shalom",
-    "translation": "Help us lie down, Hashem our G-d, in peace.",
-    "source": "Evening prayer (Hashkiveinu)",
-    "moods": ["tired", "anxious"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "השכיבנו",
+    "source": "תפילת ערבית",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "הַשְׁכִּיבֵנוּ ה' אֱלֹקֵינוּ לְשָׁלוֹם וְהַעֲמִידֵנוּ מַלְכֵּנוּ לְחַיִּים וּפְרוֹשׂ עָלֵינוּ סֻכַּת שְׁלוֹמֶךָ וְתַקְּנֵנוּ בְּעֵצָה טוֹבָה מִלְּפָנֶיךָ וְהוֹשִׁיעֵנוּ לְמַעַן שְׁמֶךָ וְהָגֵן בַּעֲדֵנוּ וְהָסֵר מֵעָלֵינוּ אוֹיֵב דֶּבֶר וְחֶרֶב וְרָעָב וְיָגוֹן וְהָסֵר שָׂטָן מִלְּפָנֵינוּ וּמֵאַחֲרֵינוּ וּבְצֵל כְּנָפֶיךָ תַּסְתִּירֵנוּ כִּי אֵל שׁוֹמְרֵנוּ וּמַצִּילֵנוּ אָתָּה כִּי אֵל מֶלֶךְ חַנּוּן וְרַחוּם אָתָּה וּשְׁמוֹר צֵאתֵנוּ וּבוֹאֵנוּ לְחַיִּים וּלְשָׁלוֹם מֵעַתָּה וְעַד עוֹלָם"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' שׁוֹמֵר עַמּוֹ יִשְׂרָאֵל לָעַד"
+      }
+    ],
+    "moods": [
+      "tired",
+      "anxious"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "timeWindows": [
+      "night"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "prayer_component",
+      "serviceRole": "הברכה השנייה אחרי ברכות קריאת שמע בתפילת ערבית, בתוך רצף קבוע (לפני חצי קדיש ותפילת העמידה של ערבית).",
+      "standaloneGuidance": "נחקר מחדש ונמצא מקור ישיר: הקטע פותח ישר ב'הַשְׁכִּיבֵנוּ' בלי 'בָּרוּךְ אַתָּה ה׳' משלו, כי הוא 'ברכה הסמוכה לחברתה' (סמוכה לברכת 'אמת ואמונה' שלפניה) — וכלל הגמרא (ברכות מו ע\"א) הוא שברכה כזו רשאית להשמיט פתיחה משלה רק אם היא לעולם לא נאמרת בפני עצמה; ברכה שלפעמים כן נאמרת לבד (הדוגמה של הגמרא עצמה: 'אשר בחר בנו' לעולה לתורה) חייבת בפתיחת 'ברוך' משלה בדיוק משום שהיא יכולה לעמוד לבד. הפתרון ההלכתי לברכה עצמאית ליחיד לפני שינה הוא טקסט אחר לגמרי — ברכת המפיל ('הַמַּפִּיל חֶבְלֵי שֵׁנָה...') — הפותחת ב'בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם' משלה בדיוק כי היא נועדה להיאמר לבד. אין תיעוד למנהג של אמירת השכיבנו כטקסט עצמאי מחוץ לערבית. המסקנה: זו לא עניין של 'תלוי בזמן' — היעדר הפתיחה הוא עדות הלכתית לכך שהקטע לא נועד להיאמר מנותק מהרצף שבין 'גאל ישראל' לעמידה, בדומה מבנית ל'שים שלום'/'רפאנו'.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "unknown",
+        "explanation": "אין מקור הקובע חובת עמידה לקטע הזה. באופן כללי הציבור יושב לאורך ברכות קריאת שמע (כולל השכיבנו) וקם רק עם חצי קדיש שאחריו. יש גם אזכור, לא מאומת מספיק, למנהג לקום דווקא בליל שבת מתוך יראת קבלת שבת — שונה מהישיבה הרגילה בימות החול."
+      },
+      "facingJerusalem": {
+        "level": "unknown",
+        "explanation": "הכלל הכללי הוא לפנות לירושלים 'בתפילה'; המקורות שנמצאו אינם מבהירים אם הכלל חל גם על קטע זה או רק על העמידה עצמה."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש מניין לקטע זה עצמו."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/יום טוב",
+          "variantDescription": "ברכת הסיום משתנה: בימות החול ׳שומר עמו ישראל לעד׳, ובשבת/יום טוב ׳הפורש סכת שלום עלינו ועל כל עמו ישראל ועל ירושלים׳ — מקורה בתלמוד הירושלמי. האפליקציה מזהה שבת לפי יום השבוע במכשיר; חג שאינו שבת עדיין לא מזוהה אוטומטית."
+        }
+      ],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "המסקנה שהקטע אינו נאמר כטקסט עצמאי נשענת על עיקרון הלכתי מבורר (ברכות מו ע\"א, ברכה סמוכה לחברתה) ועל ההשוואה לברכת המפיל, אך זהו עדיין מחקר AI ולא פסק — יש לאמת מול רב לפני כל הצגה חוזרת של הקטע כטקסט עצמאי. עמידה/כיוון עבור קטע זה ספציפית עדיין לא בורר. נוסח שבת יושם (ראו calendarVariantVerses) — יש לאמת את הנוסח המדויק מול סידור מודפס/רב לפני הצגה סופית למשתמשים, ולשקול הרחבה ליום טוב, ככל שהקטע ישוב להיות מוצג אי פעם.",
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Hashkiveinu",
+        "https://outorah.org/p/36503/",
+        "https://www.sefaria.org/api/texts/Siddur_Ashkenaz,_Shabbat,_Maariv,_Blessings_of_the_Shema,_Second_Blessing_after_Shema_1?lang=he",
+        "https://he.wikisource.org/wiki/%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%9E%D7%95_%D7%90",
+        "https://he.wikisource.org/wiki/%D7%91%D7%A8%D7%9B%D7%AA_%D7%94%D7%9E%D7%A4%D7%99%D7%9C"
+      ],
+      "researchNotes": "ראו מסמך המחקר וההרחבה בסבב המחקר העדכני: הקטע הועבר ל-EXCLUDED_FROM_POOL באפליקציה (liturgicalEligibility.ts) — לא יוצג עוד כ'תפילת היום' באקראי, מאותה סיבה בדיוק כמו 'רפאנו' ו'שים שלום'."
+    },
+    "calendarVariantVerses": {
+      "shabbat": [
+        {
+          "number": 1,
+          "hebrewText": "הַשְׁכִּיבֵנוּ ה' אֱלֹקֵינוּ לְשָׁלוֹם וְהַעֲמִידֵנוּ מַלְכֵּנוּ לְחַיִּים וּפְרוֹשׂ עָלֵינוּ סֻכַּת שְׁלוֹמֶךָ וְתַקְּנֵנוּ בְּעֵצָה טוֹבָה מִלְּפָנֶיךָ וְהוֹשִׁיעֵנוּ לְמַעַן שְׁמֶךָ וְהָגֵן בַּעֲדֵנוּ וְהָסֵר מֵעָלֵינוּ אוֹיֵב דֶּבֶר וְחֶרֶב וְרָעָב וְיָגוֹן וְהָסֵר שָׂטָן מִלְּפָנֵינוּ וּמֵאַחֲרֵינוּ וּבְצֵל כְּנָפֶיךָ תַּסְתִּירֵנוּ כִּי אֵל שׁוֹמְרֵנוּ וּמַצִּילֵנוּ אָתָּה כִּי אֵל מֶלֶךְ חַנּוּן וְרַחוּם אָתָּה וּשְׁמוֹר צֵאתֵנוּ וּבוֹאֵנוּ לְחַיִּים וּלְשָׁלוֹם מֵעַתָּה וְעַד עוֹלָם"
+        },
+        {
+          "number": 2,
+          "hebrewText": "בָּרוּךְ אַתָּה ה' הַפּוֹרֵשׂ סֻכַּת שָׁלוֹם עָלֵינוּ וְעַל כָּל עַמּוֹ יִשְׂרָאֵל וְעַל יְרוּשָׁלָיִם"
+        }
+      ]
+    }
   },
   {
     "id": "prayer-refaeinu",
-    "hebrewText": "רְפָאֵנוּ ה' וְנֵרָפֵא הוֹשִׁיעֵנוּ וְנִוָּשֵׁעָה",
-    "transliteration": "Refa'einu Hashem v'nerafe, hoshi'einu v'nivashe'a",
-    "translation": "Heal us, Hashem, and we shall be healed; save us and we shall be saved.",
-    "source": "Amidah (Refa'einu blessing)",
-    "moods": ["stressed", "tired", "anxious"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "רפאנו",
+    "source": "תפילת העמידה",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "רְפָאֵנוּ ה' וְנֵרָפֵא הוֹשִׁיעֵנוּ וְנִוָּשֵׁעָה כִּי תְהִלָּתֵנוּ אָתָּה וְהַעֲלֵה רְפוּאָה שְׁלֵמָה לְכָל מַכּוֹתֵינוּ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "כִּי אֵל מֶלֶךְ רוֹפֵא נֶאֱמָן וְרַחֲמָן אָתָּה"
+      },
+      {
+        "number": 3,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' רוֹפֵא חוֹלֵי עַמּוֹ יִשְׂרָאֵל"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "tired",
+      "anxious"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "prayer_component",
+      "serviceRole": "הברכה השמינית בתפילת העמידה של ימות החול (אינה נאמרת בעמידת שבת/יום טוב). קטע מתוך רצף קבוע של תשע עשרה ברכות, לא יחידה עצמאית.",
+      "standaloneGuidance": "לפי הפוסקים, אמירת ברכה בודדת מתוך העמידה לא נחשבת כקיום מצוות תפילה בפני עצמה. נהוג להוסיף בתוכה בקשה אישית עבור חולה כשאומרים את העמידה במלואה, אבל אין תיעוד לשימוש בה כתפילה עצמאית. הכי נכון להתייחס אליה כקטע למחשבה והתעוררות — לא כ׳תפילה׳ שלמה.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "עמידה היא חובה בתפילת העמידה כמכלול; לא נמצא מקור ישיר הדן בקריאת ברכה בודדת זו כקטע נפרד מחוץ לעמידה בפועל."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "פנייה לירושלים היא חובה בתפילת העמידה כמכלול; אותה הסתייגות כמו בעמידה."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "ברכה זו אינה דורשת מניין (בשונה מקדושה/חזרת הש״ץ)."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/יום טוב",
+          "variantDescription": "אינה נאמרת כלל בעמידת שבת/יום טוב, המחליפה את שלוש עשרה הברכות האמצעיות בברכה מרכזית אחת."
+        }
+      ],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "כמו שים שלום — לא נמצא מקור ישיר לשאלת חובת עמידה/כיוון בקריאה עצמאית ומנותקת של ברכה בודדת מהעמידה.",
+      "researchSources": [
+        "https://ph.yhb.org.il/en/02-17-11/",
+        "https://sheilot.com/en/answers/cycle-of-the-day/shemoneh-esreh/view/15736/"
+      ],
+      "researchNotes": "ראו מסמך המחקר. אותה מסקנה מתודולוגית כמו שים שלום — פרגמנט מהעמידה, לא תפילה עצמאית."
+    }
   },
   {
     "id": "prayer-sim-shalom",
-    "hebrewText": "שִׂים שָׁלוֹם טוֹבָה וּבְרָכָה",
-    "transliteration": "Sim shalom, tova uv'racha",
-    "translation": "Grant peace, goodness, and blessing.",
-    "source": "Amidah (Sim Shalom)",
-    "moods": ["stressed", "grateful"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "שים שלום",
+    "source": "תפילת העמידה",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "שִׂים שָׁלוֹם טוֹבָה וּבְרָכָה חֵן וָחֶסֶד וְרַחֲמִים עָלֵינוּ וְעַל כָּל יִשְׂרָאֵל עַמֶּךָ. בָּרְכֵנוּ אָבִינוּ כֻּלָּנוּ כְּאֶחָד בְּאוֹר פָּנֶיךָ. כִּי בְאוֹר פָּנֶיךָ נָתַתָּ לָּנוּ ה' אֱלֹקֵינוּ תּוֹרַת חַיִּים וְאַהֲבַת חֶסֶד וּצְדָקָה וּבְרָכָה וְרַחֲמִים וְחַיִּים וְשָׁלוֹם. וְטוֹב בְּעֵינֶיךָ לְבָרֵךְ אֶת עַמְּךָ יִשְׂרָאֵל בְּכָל עֵת וּבְכָל שָׁעָה בִּשְׁלוֹמֶךָ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' הַמְבָרֵךְ אֶת עַמּוֹ יִשְׂרָאֵל בַּשָּׁלוֹם"
+      }
+    ],
+    "moods": [
+      "stressed",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "prayer_component",
+      "serviceRole": "הברכה התשע-עשרה (האחרונה) בתפילת העמידה של שחרית — הנוסח המדויק המוצג כאן הוא נוסח אשכנז בלבד. זוהי אינה הגרסה האוניברסלית של הברכה: בנוסח אשכנז עצמו נאמרת ברכה שונה לגמרי (\"שלום רב\", לא גרסה דומה) במנחה/ערבית של חול, ובנוסח ספרד/עדות המזרח נאמרת גרסה ממשפחת \"שים שלום\" בשלוש התפילות — אך הטקסט המדויק שלה אינו זמין כרגע באפליקציה. קטע מתוך רצף קבוע של 19 ברכות, לא יחידה עצמאית.",
+      "standaloneGuidance": "אמירת ברכה בודדת מתוך העמידה לא נחשבת כקיום מצוות תפילה בפני עצמה — עדיף להתייחס אליה כקטע למחשבה והתעוררות. חשוב לדעת: הנוסח שמוצג כאן הוא נוסח אשכנז לשחרית בלבד. אם אתה רגיל לנוסח אחר — למשל ׳שלום רב׳ במנחה/ערבית, או נוסח ספרד/עדות המזרח — זה לא הטקסט שאתה מכיר, ואל תניח שהוא זהה.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "עמידה היא חובה בתפילת העמידה כמכלול; לא נמצא מקור ישיר הדן בקריאת ברכה בודדת זו כקטע נפרד מחוץ לעמידה בפועל."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "פנייה לירושלים היא חובה בתפילת העמידה כמכלול; אותה הסתייגות כמו בעמידה."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "ברכה זו כשלעצמה אינה דורשת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [
+        {
+          "community": "אשכנז",
+          "difference": "נאמרת 'שים שלום' בשחרית, במנחה של שבת, ובמנחה של ימי תענית (לא רק שבת כפי שצוין קודם) — 'נוסח אשכנז המערבי' משמש באופן ספציפי למנחה של שבת, מה שמרמז שגם זה אינו אחיד לחלוטין בתוך אשכנז עצמה. במנחה/ערבית רגילים של חול נאמרת גרסה קצרה יותר, 'שלום רב', במקומה."
+        },
+        {
+          "community": "ספרד/עדות המזרח, נוסח ספרד, נוסח האר״י, איטלקי ורומניוטי",
+          "difference": "נאמרת גרסה ממשפחת 'שים שלום' בשלוש התפילות, ללא ההבחנה של נוסח אשכנז."
+        },
+        {
+          "community": "נוסח פרובנס (היסטורי)",
+          "difference": "השתמש ב'שלום רב' בכל התפילות — דפוס שלישי, שונה משני האחרים, שלא תועד במחקר המקורי."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "השאלה הספציפית לאפליקציה (חובת עמידה/כיוון בקריאה עצמאית ומנותקת) אינה נדונה במקורות שנמצאו ברמת פוסק — פתוחה לבירור רבני.",
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Sim_Shalom",
+        "https://en.wikipedia.org/wiki/Shalom_Rav",
+        "https://oztorah.com/2010/06/sim-shalom-vs-shalom-rav-ask-the-rabbi/",
+        "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.94",
+        "https://www.chabad.org/library/article_cdo/aid/3299180",
+        "https://www.ohr.edu/this_week/counting_our_blessings/9987",
+        "https://www.hadar.org/torah-tefillah/resources/end-amidah-blessing-god"
+      ],
+      "researchNotes": "ראו src/content/research/liturgical-context-research.md#שים-שלום. עודכן (בדיקה חוזרת עצמאית): נמצא ניואנס נוסף (מנחה של תעניות באשכנז, ונוסח פרובנס ההיסטורי) שלא היה במחקר המקורי. פער תוכן מתועד במפורש (עודכן בסבב חיזוק זה): לאפליקציה אין עדיין את נוסח \"שלום רב\" (אשכנז, מנחה/ערבית של חול) ולא את נוסח שים שלום של ספרד/עדות המזרח — שני טקסטים אלה לא הומצאו/נוחשו וגם לא ימומשו עד שיאותרו ויאומתו במקור אמין, בהתאם לעיקרון \"לא לנחש\". ראו nusach-content-gaps.md."
+    }
   },
   {
-    "id": "prayer-hodu",
-    "hebrewText": "הוֹדוּ לַה' כִּי טוֹב כִּי לְעוֹלָם חַסְדּוֹ",
-    "transliteration": "Hodu laHashem ki tov, ki l'olam chasdo",
-    "translation": "Give thanks to Hashem, for He is good; His kindness endures forever.",
-    "source": "Tehillim 118:1 (Pesukei D'Zimra)",
-    "moods": ["grateful", "happy"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-aleinu",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "עלינו לשבח",
+    "source": "תפילת עלינו",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "עָלֵינוּ לְשַׁבֵּחַ לַאֲדוֹן הַכֹּל לָתֵת גְּדֻלָּה לְיוֹצֵר בְּרֵאשִׁית שֶׁלֹּא עָשָׂנוּ כְּגוֹיֵי הָאֲרָצוֹת וְלֹא שָׂמָנוּ כְּמִשְׁפְּחוֹת הָאֲדָמָה שֶׁלֹּא שָׂם חֶלְקֵנוּ כָּהֶם וְגוֹרָלֵנוּ כְּכָל הֲמוֹנָם"
+      },
+      {
+        "number": 2,
+        "hebrewText": "שֶׁהֵם מִשְׁתַּחֲוִים לָהֶבֶל וָרִיק וּמִתְפַּלְּלִים אֶל אֵל לֹא יוֹשִׁיעַ, וַאֲנַחְנוּ כּוֹרְעִים וּמִשְׁתַּחֲוִים וּמוֹדִים לִפְנֵי מֶלֶךְ מַלְכֵי הַמְּלָכִים הַקָּדוֹשׁ בָּרוּךְ הוּא, שֶׁהוּא נוֹטֶה שָׁמַיִם וְיוֹסֵד אָרֶץ, וּמוֹשַׁב יְקָרוֹ בַּשָּׁמַיִם מִמַּעַל, וּשְׁכִינַת עֻזּוֹ בְּגָבְהֵי מְרוֹמִים, הוּא אֱלֹקֵינוּ אֵין עוֹד, אֱמֶת מַלְכֵּנוּ אֶפֶס זוּלָתוֹ כַּכָּתוּב בְּתוֹרָתוֹ וְיָדַעְתָּ הַיּוֹם וַהֲשֵׁבֹתָ אֶל לְבָבֶךָ כִּי ה' הוּא הָאֱלֹקִים בַּשָּׁמַיִם מִמַּעַל וְעַל הָאָרֶץ מִתָּחַת אֵין עוֹד"
+      },
+      {
+        "number": 3,
+        "hebrewText": "עַל כֵּן נְקַוֶּה לְךָ ה' אֱלֹקֵינוּ לִרְאוֹת מְהֵרָה בְּתִפְאֶרֶת עֻזֶּךָ לְהַעֲבִיר גִּלּוּלִים מִן הָאָרֶץ וְהָאֱלִילִים כָּרוֹת יִכָּרֵתוּן לְתַקֵּן עוֹלָם בְּמַלְכוּת שַׁדַּי וְכָל בְּנֵי בָשָׂר יִקְרְאוּ בִשְׁמֶךָ, לְהַפְנוֹת אֵלֶיךָ כָּל רִשְׁעֵי אָרֶץ, יַכִּירוּ וְיֵדְעוּ כָּל יוֹשְׁבֵי תֵבֵל כִּי לְךָ תִכְרַע כָּל בֶּרֶךְ תִּשָּׁבַע כָּל לָשׁוֹן"
+      },
+      {
+        "number": 4,
+        "hebrewText": "לְפָנֶיךָ ה' אֱלֹקֵינוּ יִכְרְעוּ וְיִפֹּלוּ, וְלִכְבוֹד שִׁמְךָ יְקָר יִתֵּנוּ, וִיקַבְּלוּ כֻלָּם אֶת עֹל מַלְכוּתֶךָ, וְתִמְלֹךְ עֲלֵיהֶם מְהֵרָה לְעוֹלָם וָעֶד, כִּי הַמַּלְכוּת שֶׁלְּךָ הִיא וּלְעוֹלְמֵי עַד תִּמְלוֹךְ בְּכָבוֹד, כַּכָּתוּב בְּתוֹרָתֶךָ ה' יִמְלֹךְ לְעֹלָם וָעֶד"
+      },
+      {
+        "number": 5,
+        "hebrewText": "וְנֶאֱמַר וְהָיָה ה' לְמֶלֶךְ עַל כָּל הָאָרֶץ בַּיּוֹם הַהוּא יִהְיֶה ה' אֶחָד וּשְׁמוֹ אֶחָד"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "distracted"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "complete_prayer",
+      "serviceRole": "תפילת סיום הנאמרת בסוף כל אחת משלוש התפילות (שחרית, מנחה, ערבית); בראש השנה וביום כיפור נאמרת גם במוסף בנוסח מורחב עם השתחוויה מלאה.",
+      "standaloneGuidance": "אפשר לומר אותה גם ביחיד, שלא כחלק מתפילה בציבור — היא לא מופיעה ברשימת התפילות שמושמטות כשמתפללים לבד. יש טענה שהזוהר מתנגד לאמירתה ביחיד, אבל לא נמצא לה שום מקור מבוסס — כדאי להתייחס אליה כטענה לא מאומתת, לא כמחלוקת אמיתית. הכי טבעי לראות בה רגע אישי של קבלת עול מלכות שמים.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "customary",
+        "explanation": "נהוג לאומרה מעומד מתוך יראה (קיצור שולחן ערוך כ״ו:ו; בן איש חי; חיד״א). ההשתחוויה ב'ואנחנו כורעים' נוהגת בהיקף חלקי ביום-יום, ומשתנה לפי עדה במוסף ימים נוראים."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור המחייב או ממליץ פנייה לירושלים באמירת עלינו, בשונה מהעמידה."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "המקורות שנבדקו אינם כוללים עלינו ברשימת התפילות המושמטות כשמתפללים ביחיד."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "ראש השנה ויום כיפור (מוסף)",
+          "variantDescription": "נאמרת בנוסח מורחב עם השתחוויה מלאה (התכופפות עד הרצפה), לעומת השתחוויה חלקית ביום-יום; מנגנון ההשתחוויה משתנה לפי עדה — אשכנזים ב'כורעים', ספרדים בשלב אחר, תימנים אינם משתחווים כלל במוסף."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "אשכנז/ספרד/תימן",
+          "difference": "ראו calendarVariants — הבדלי מנגנון ההשתחוויה במוסף ימים נוראים."
+        },
+        {
+          "community": "מקור חלש, לא מאומת",
+          "difference": "יש דיווח לא-מאומת במלואו שחלק מהקהילות האשכנזיות מדלגות על עלינו במנחה כשהיא סמוכה לערבית, ושבמנהגי איטליה ותימן היא לא נאמרת במנחה כלל."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": false,
+      "rabbinicReviewNotes": "הוסר מתור הבדיקה הרבנית (סבב חיזוק אחרון): הדעה המחמירה שיוחסה בעבר לזוהר נבדקה בבירור עצמאי ולא אותרה בשום מקור — אין עוד שאלה הלכתית פתוחה המשפיעה על התנהגות המוצר. נקודה משנית שנותרה (מנהג דילוג במנחה-סמוכה-לערבית, מקור משני יחיד) אינה מוצגת כיום בממשק ואינה מצדיקה החזרה לתור. ראו rabbinic-review-queue.md, קטגוריה D.",
+      "researchSources": [
+        "https://halachipedia.com/index.php?title=Tachanun,_Ashrei,_Aleinu,_Shir_Shel_Yom",
+        "https://ph.yhb.org.il/en/15-07-14/",
+        "https://www.chabad.org/library/article_cdo/aid/541770/jewish/Which-prayers-are-omitted-when-praying-alone.htm"
+      ],
+      "researchNotes": "ראו src/content/research/liturgical-context-research.md#עלינו-לשבח. עודכן (בדיקה חוזרת עצמאית): הדעה המחמירה בעניין אמירה ביחיד נבדקה שוב במיוחד ולא נמצא לה שום מקור — שונתה מ-disputed ל-preferred, וה-disagreement הוסר. עמידה, היעדר חובת כיוון, והבדלי מנגנון ההשתחוויה בימים נוראים אושרו מחדש ללא שינוי; נמצא פרט חדש: איסור להשתחוות ישירות על רצפת אבן (יש להניח דבר-מה בין הראש לרצפה) — לא ממודל בנתונים."
+    }
   },
   {
-    "id": "prayer-vetaher-libeinu",
-    "hebrewText": "וְטַהֵר לִבֵּנוּ לְעָבְדְּךָ בֶּאֱמֶת",
-    "transliteration": "V'taher libeinu l'ovdecha be'emet",
-    "translation": "Purify our hearts to serve You in truth.",
-    "source": "Amidah / holiday liturgy",
-    "moods": ["distracted", "grateful"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-ein-keloheinu",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אין כאלהינו",
+    "source": "פיוט מסורתי",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אֵין קָדושׁ כַּה'. כִּי אֵין בִּלְתֶּךָ. וְאֵין צוּר כֵּאלקֵינוּ"
+      },
+      {
+        "number": 2,
+        "hebrewText": "כִּי מִי אֱלוהַּ מִבַּלְעֲדֵי ה'. וּמִי צוּר זוּלָתִי אֱלקֵינוּ"
+      },
+      {
+        "number": 3,
+        "hebrewText": "אֵין כֵּאלקֵינוּ. אֵין כַּאדונֵינוּ. אֵין כְּמַלְכֵּנוּ. אֵין כְּמושִׁיעֵנוּ. מִי כֵאלקֵינוּ. מִי כַאדונֵינוּ. מִי כְמַלְכֵּנוּ. מִי כְמושִׁיעֵנוּ. נודֶה לֵאלקֵינוּ. נודֶה לַאדונֵינוּ. נודֶה לְמַלְכֵּנוּ. נודֶה לְמושִׁיעֵנוּ. בָּרוּךְ אֱלקֵינוּ. בָּרוּךְ אֲדונֵינוּ. בָּרוּךְ מַלְכֵּנוּ. בָּרוּךְ מושִׁיעֵנוּ. אַתָּה הוּא אֱלקֵינוּ. אַתָּה הוּא אֲדונֵינוּ. אַתָּה הוּא מַלְכֵּנוּ. אַתָּה הוּא מושִׁיעֵנוּ. אַתָּה הוּא. שֶׁהִקְטִירוּ אֲבותֵינוּ לְפָנֶיךָ. אֶת קְטרֶת הַסַּמִּים"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "piyut",
+      "serviceRole": "רשימת שבח ליטורגית שנועדה, בין היתר, לסייע להשלים מאה ברכות ביום; ממוקמת לקראת סוף תפילת שחרית.",
+      "standaloneGuidance": "כן — יש קהילות שמתייחסות לטקסט הזה כלא-קריטי, ונוהגות לאומרו בלחש וביחידות. זו נקודה שנמצא לה מקור אחד בלבד, אז כדאי להתייחס אליה בזהירות.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הקובע מנהג עמידה ספציפי."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "יש עדות לאמירה יחידנית ובלחש בחלק מהקהילות — תומך בכך שאין דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/חג בתפוצות (מנהג אשכנזי)",
+          "variantDescription": "קהילות אשכנזיות בתפוצות אומרות אותו רק בסיום תפילות שבת וחג, לפני שיעור הקטורת. ברוב הקהילות בישראל, וכן אצל כלל הספרדים והחסידים, הוא נאמר כל יום בשחרית."
+        }
+      ],
+      "nusachDifferences": [
+        {
+          "community": "אשכנז בתפוצות מול ישראל/שאר העדות",
+          "difference": "ראו calendarVariants — הבדל בתדירות האמירה עצמה, לא רק בנוסח."
+        }
+      ],
+      "disagreements": [],
+      "confidence": "high",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "התדירות (יומי/שבת בלבד) אושרה במספר מקורות תיאוריים, אך עדיין לא נמצא מקור הלכתי ראשוני (למשל שולחן ערוך/משנה ברורה ישיר) — רצוי אימות נוסף.",
+      "researchSources": [
+        "https://en.wikipedia.org/wiki/Ein_Keloheinu",
+        "https://www.jewishvirtuallibrary.org/ein-keloheinu",
+        "https://sephardicu.com/traditions/"
+      ],
+      "researchNotes": "ראו מסמך המחקר. שדרוג ממקור בודד לשלושה מקורות תיאוריים מסכימים."
+    }
   },
   {
-    "id": "prayer-birkat-cohanim-1",
-    "hebrewText": "יְבָרֶכְךָ ה' וְיִשְׁמְרֶךָ",
-    "transliteration": "Y'varechecha Hashem v'yishmerecha",
-    "translation": "May Hashem bless you and guard you.",
-    "source": "Bamidbar 6:24 (Birkat Kohanim)",
-    "moods": ["anxious", "grateful", "lonely"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-baruch-sheamar",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "ברוך שאמר",
+    "source": "פסוקי דזמרה",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "בָּרוּךְ שֶׁאָמַר וְהָיָה הָעוֹלָם. בָּרוּךְ הוּא. בָּרוּךְ עוֹשֶׂה בְרֵאשִׁית. בָּרוּךְ אוֹמֵר וְעוֹשֶׂה. בָּרוּךְ גּוֹזֵר וּמְקַיֵּם. בָּרוּךְ מְרַחֵם עַל הָאָרֶץ. בָּרוּךְ מְרַחֵם עַל הַבְּרִיּוֹת. בָּרוּךְ מְשַׁלֵּם שָׂכָר טוֹב לִירֵאָיו. בָּרוּךְ חַי לָעַד וְקַיָּם לָנֶצַח. בָּרוּךְ פּוֹדֶה וּמַצִּיל. בָּרוּךְ שְׁמוֹ. בָּרוּךְ אַתָּה ה' אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם הָאֵל הָאָב הָרַחֲמָן הַמְהֻלָּל בְּפִי עַמּוֹ מְשֻׁבָּח וּמְפֹאָר בִּלְשׁוֹן חֲסִידָיו וַעֲבָדָיו וּבְשִׁירֵי דָוִד עַבְדֶּךָ. נְהַלֶּלְךָ ה' אֱלֹקֵינוּ בִּשְׁבָחוֹת וּבִזְמִירוֹת נְגַדֶּלְךָ וּנְשַׁבֵּחֲךָ וּנְפָאֶרְךָ וְנַזְכִּיר שִׁמְךָ וְנַמְלִיכְךָ מַלְכֵּנוּ אֱלֹקֵינוּ. יָחִיד חֵי הָעוֹלָמִים. מֶלֶךְ מְשֻׁבָּח וּמְפֹאָר עֲדֵי עַד שְׁמוֹ הַגָּדוֹל. בָּרוּךְ אַתָּה ה' מֶלֶךְ מְהֻלָּל בַּתִּשְׁבָּחוֹת"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "distracted"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "timeWindows": [
+      "morning"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "prayer_component",
+      "serviceRole": "ברכת הפתיחה של פסוקי דזמרה בתפילת שחרית — קטע מתוך מסגרת גדולה יותר, אינה מוזכרת בתלמוד עצמו.",
+      "standaloneGuidance": "נבדק מחדש מזווית שלא נבדקה קודם (סיכון ברכה, לא רק שאלת עמידה/נוסח): זוהי ברכה מלאה עם שם ומלכות, פעמיים ('בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם...' וחתימה 'בָּרוּךְ אַתָּה ה׳ מֶלֶךְ מְהֻלָּל בַּתִּשְׁבָּחוֹת'), שתוקנה על ידי חז״ל במפורש כפתיחה לפסוקי דזמרה — לא כברכת שבח כללית שאפשר לומר מתי שבא. בניגוד לאלהי נשמה (שיש לה מנהג יומיומי מתועד ובלתי חולק של אמירה עצמאית), לא נמצא שום תיעוד למנהג של אמירת ברוך שאמר מנותקת מפתיחת פסוקי דזמרה בפועל. הצגתה כ'תפילת היום' באפליקציה, מנותקת מההקשר שלה, נושאת סיכון אמיתי של ברכה שאינה צריכה — אותו מנגנון בדיוק כמו שהחיינו/תפילת הדרך/אשר יצר, הפעם עם טריגר של פתיחת רצף תפילה קבוע במקום אירוע אישי.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false,
+        "idealVsValidNote": "פסוקי דזמרה (שברכה זו פותחת) יש לומר, לכתחילה, מעלות השחר עד סוף שעה רביעית זמנית של היום — חלון זה שייך למסגרת הגדולה, לא לברכה הבודדת כשלעצמה, והאפליקציה אינה מחשבת אותו."
+      },
+      "standing": {
+        "level": "custom",
+        "explanation": "נהוג לעמוד באמירתה, אבל זה מנהג ולא חובה הלכתית מפורשת — הברכה בכלל לא מוזכרת בתלמוד, ומקורה מאוחר יותר, מתקופת הגאונים. מי שחולה או זקן רשאי לשבת."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור לדרישת כיוון."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "לא נמצאה דרישת מניין."
+      },
+      "calendarVariants": [
+        {
+          "occasion": "שבת/יום טוב",
+          "variantDescription": "פסוקי דזמרה מתארכים, אך נוסח ברוך שאמר עצמו אינו משתנה."
+        }
+      ],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "הפריט הועבר ל-EXCLUDED_FROM_POOL עקב סיכון ברכה שאינה צריכה כשמוצג מנותק מפתיחת פסוקי דזמרה (ראו standaloneGuidance) — יש לאמת מסקנה זו מול רב. השאלה הקודמת (האם חובת העמידה חלה גם על קריאה מנותקת) נותרת פתוחה אך הפכה משנית כעת שהפריט אינו מוצג עוד באקראי.",
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/3285916",
+        "https://halachipedia.com/index.php?title=Pesukei_DeZimrah"
+      ],
+      "researchNotes": "ראו מסמך המחקר. עודכן (בדיקה חוזרת עצמאית): רמת העמידה הופחתה מ-required ל-custom — הניסוח המקורי ('יש קבלה לאומרו מעומד') הציג חוזק הלכתי גבוה מדי; מקור עברי עצמאי (ויקיפדיה עברית) מנסח זאת כ'נהוג' (מנהג), לא כחובה. עודכן שוב: זוהתה שאלה נפרדת וחמורה יותר שלא נבדקה קודם — סיכון ברכה שאינה צריכה כשהברכה (יש בה שם ומלכות) מוצגת מנותקת מפתיחת פסוקי דזמרה שלה תוקנה. הפריט הועבר ל-EXCLUDED_FROM_POOL מסיבה זו."
+    }
   },
   {
-    "id": "prayer-birkat-cohanim-2",
-    "hebrewText": "יָאֵר ה' פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ",
-    "transliteration": "Ya'er Hashem panav eilecha vichuneka",
-    "translation": "May Hashem shine His face upon you and be gracious to you.",
-    "source": "Bamidbar 6:25 (Birkat Kohanim)",
-    "moods": ["lonely", "anxious", "tired"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "id": "prayer-shehecheyanu",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "שהחיינו",
+    "source": "ברכה מסורתית",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "בָּרוּךְ אַתָּה ה' אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם שֶׁהֶחֱיָנוּ וְקִיְּמָנוּ וְהִגִּיעָנוּ לַזְמַן הַזֶּה"
+      }
+    ],
+    "moods": [
+      "happy",
+      "grateful"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "occasion_triggered",
+      "serviceRole": "ברכת הודאה קצרה, הנאמרת רק במעמד אמיתי של דבר חדש/ראשוני בפועל (מצווה חדשה, פרי עונתי חדש, אירוע שמח חד-פעמי) — אינה טקסט הנאמר 'סתם'.",
+      "standaloneGuidance": "זו הנקודה החשובה ביותר להיזהר ממנה כאן: ברכה שנאמרת בלי אירוע אמיתי שמצדיק אותה נחשבת ׳ברכה לבטלה׳ — הזכרת שם ה׳ לריק, שרוב הפוסקים אוסרים אותה מדרבנן, ויש ראשונים שאוסרים אותה מהתורה. יש היתר לברכה שנאמרת לצורך לימוד, אבל לא ברור שקריאת הטקסט כאן נכנסת לגדר הזה. עדיף להתייחס לטקסט הזה כקטע ללימוד ולא לברך אותו בפועל, עד שתבדוק את זה מול רב.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור הדורש עמידה."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "ברכה אישית, אינה תלויה במניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [
+        {
+          "topic": "היקף חריג ה'לימוד' לברכות שאינן לצורך מיידי אמיתי",
+          "positions": "שולחן ערוך מתיר באופן פשוט לימוד עם קטנים; הרב משה פיינשטיין הרחיב את ההיתר גם ללימוד עם מבוגרים — אף אחת מהעמדות אינה עוסקת במפורש בהקשר של קריאת תוכן באפליקציה."
+        }
+      ],
+      "confidence": "needs_review",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "עדיפות גבוהה: יש לקבוע מול רב האם הצגת טקסט שהחיינו באפליקציה (ללא אירוע מזמן אמיתי) עלולה לעודד משתמשים לומר ברכה לבטלה, ומה הניסוח/ההצגה הראויים (למשל הצגה כטקסט לימוד בלבד, ללא הנחיה לברך). זהו הממצא ההלכתי המשמעותי ביותר בכל מחקר זה — ראו הדוח הסופי.",
+      "researchSources": [
+        "https://www.chabad.org/library/article_cdo/aid/91120/jewish/Shehecheyanu.htm",
+        "https://dinonline.org/2012/12/25/brachos-said-in-vain-and-unnecessary-brachos/",
+        "https://shulchanaruchharav.com/article/the-prohibition-of-saying-a-bracha-levatala-or-hashems-name-in-vain"
+      ],
+      "researchNotes": "ראו מסמך המחקר. הפריט היחיד בכל מחקר הפיילוט שבו נמצאה בעיה הלכתית ממשית ומתועדת (לא רק חוסר ודאות) בשימוש הרגיל שהאפליקציה עושה בטקסט."
+    }
   },
   {
     "id": "prayer-tefilat-haderech",
-    "hebrewText": "יְהִי רָצוֹן מִלְּפָנֶיךָ שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם",
-    "transliteration": "Y'hi ratzon milfanecha shetolichenu l'shalom",
-    "translation": "May it be Your will to lead us in peace.",
-    "source": "Tefilat HaDerech (Traveler's Prayer, opening)",
-    "moods": ["anxious", "stressed"],
-    "contentTypes": ["daily_prayers"],
-    "length": "short"
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "תפילת הדרך",
+    "source": "תפילה מסורתית",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "יְהִי רָצוֹן מִלְפָנֶיךָ ה' אֱלֹקֵינוּ וֵאלֹקֵי אֲבוֹתֵינוּ, שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם, וְתִסְמְכֵנִי לְשָׁלוֹם, וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים לְשִׂמְחָה וּלְשָׁלוֹם, וְתַחְזִירֵנִי לְשָׁלוֹם וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב וְלִסְטִים וְחַיּוֹת רָעוֹת בַּדֶּרֶךְ, וּמִכָּל מִינֵי פֻרְעָנִיּוֹת הַמִּתְרַגְּשׁוֹת וּבָאוֹת לָעוֹלָם וְתִשְׁלַח בְּרָכָה וְהַצְלָחָה בְּכָל מַעֲשֵׂה יָדֵינוּ, וְתִתְּנֵנוּ לְחֵן וּלְחֶסֶד וּלְרַחֲמִים בְּעֵינֶיךָ וּבְעֵינֵי כָל רֹאֵינוּ, וְתִגְמְלֵינוּ חֲסָדִים טוֹבִים וְתִשְׁמַע קוֹל תַּחֲנוּנֵינוּ, כִּי אֵל שֹׁמֵעַ תְּפִלָּה וְתַחֲנוּן אָתָּה"
+      },
+      {
+        "number": 2,
+        "hebrewText": "בָּרוּךְ אַתָּה ה', שׁוֹמֵעַ תְּפִלָה"
+      }
+    ],
+    "moods": [
+      "anxious",
+      "stressed"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "occasion_triggered",
+      "serviceRole": "תפילת הדרך, הנאמרת ביציאה למסע מחוץ לעיר (מעבר למרחק של כ-70 אמה מהעיר), בתוך הפרסה הראשונה (כ-72 דקות/כ-3.8 ק״מ) של הנסיעה.",
+      "standaloneGuidance": "בשונה משהחיינו, זו ברכה של בקשה (׳שומע תפילה׳), לא הודאה על משהו שקרה עכשיו — ולכן החשש מ׳ברכה לבטלה׳ חלש יותר כאן. עם זאת, לא נמצא מקור שמאשר במפורש שמותר לאומרה שלא בזמן נסיעה בפועל — כדאי להתייחס לזה כשאלה פתוחה, לא כהיתר ודאי.",
+      "standaloneLevel": "requires_review",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "preferred",
+        "explanation": "הולכי רגל/נהגים — עדיף לעצור אם ניתן באופן סביר; אין חובה אם הדבר גורם לעיכוב או אינו בטוח. עמידה מועדפת (לא חובה) בתחבורה ציבורית."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "תפילה אישית, אינה תלויה במניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "יש לברר האם קריאת הטקסט באפליקציה שלא בעת נסיעה בפועל מקובלת הלכתית — שאלה שלא נענתה במקורות שנמצאו.",
+      "researchSources": [
+        "https://dinonline.org/2012/05/31/halacha-talk-tefilas-haderech/",
+        "https://shulchanaruchharav.com/article/when-on-the-road-is-tefilas-haderech-to-be-said"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
+  },
+  {
+    "id": "prayer-ashrei",
+    "kind": "prayer",
+    "isTraditional": true,
+    "title": "אשרי",
+    "source": "תהילים פ״ד:ה׳, קמ״ד:ט״ו, קמ״ה, קט״ו:י״ח",
+    "verses": [
+      {
+        "number": 1,
+        "hebrewText": "אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה"
+      },
+      {
+        "number": 2,
+        "hebrewText": "אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁה' אֱלֹקָיו"
+      },
+      {
+        "number": 3,
+        "hebrewText": "תְּהִלָּה לְדָוִד אֲרוֹמִמְךָ אֱלוֹהַי הַמֶּלֶךְ וַאֲבָרְכָה שִׁמְךָ לְעוֹלָם וָעֶד"
+      },
+      {
+        "number": 4,
+        "hebrewText": "בְּכָל יוֹם אֲבָרְכֶךָּ וַאֲהַלְלָה שִׁמְךָ לְעוֹלָם וָעֶד"
+      },
+      {
+        "number": 5,
+        "hebrewText": "גָּדוֹל ה' וּמְהֻלָּל מְאֹד וְלִגְדֻלָּתוֹ אֵין חֵקֶר"
+      },
+      {
+        "number": 6,
+        "hebrewText": "דּוֹר לְדוֹר יְשַׁבַּח מַעֲשֶׂיךָ וּגְבוּרֹתֶיךָ יַגִּידוּ"
+      },
+      {
+        "number": 7,
+        "hebrewText": "הֲדַר כְּבוֹד הוֹדֶךָ וְדִבְרֵי נִפְלְאֹתֶיךָ אָשִׂיחָה"
+      },
+      {
+        "number": 8,
+        "hebrewText": "וֶעֱזוּז נוֹרְאֹתֶיךָ יֹאמֵרוּ וּגְדֻלָּתְךָ אֲסַפְּרֶנָּה"
+      },
+      {
+        "number": 9,
+        "hebrewText": "זֵכֶר רַב טוּבְךָ יַבִּיעוּ וְצִדְקָתְךָ יְרַנֵּנוּ"
+      },
+      {
+        "number": 10,
+        "hebrewText": "חַנּוּן וְרַחוּם ה' אֶרֶךְ אַפַּיִם וּגְדָל חָסֶד"
+      },
+      {
+        "number": 11,
+        "hebrewText": "טוֹב ה' לַכֹּל וְרַחֲמָיו עַל כָּל מַעֲשָׂיו"
+      },
+      {
+        "number": 12,
+        "hebrewText": "יוֹדוּךָ ה' כָּל מַעֲשֶׂיךָ וַחֲסִידֶיךָ יְבָרְכוּכָה"
+      },
+      {
+        "number": 13,
+        "hebrewText": "כְּבוֹד מַלְכוּתְךָ יֹאמֵרוּ וּגְבוּרָתְךָ יְדַבֵּרוּ"
+      },
+      {
+        "number": 14,
+        "hebrewText": "לְהוֹדִיעַ לִבְנֵי הָאָדָם גְּבוּרֹתָיו וּכְבוֹד הֲדַר מַלְכוּתוֹ"
+      },
+      {
+        "number": 15,
+        "hebrewText": "מַלְכוּתְךָ מַלְכוּת כָּל עֹלָמִים וּמֶמְשַׁלְתְּךָ בְּכָל דּוֹר וָדֹר"
+      },
+      {
+        "number": 16,
+        "hebrewText": "סוֹמֵךְ ה' לְכָל הַנֹּפְלִים וְזוֹקֵף לְכָל הַכְּפוּפִים"
+      },
+      {
+        "number": 17,
+        "hebrewText": "עֵינֵי כֹל אֵלֶיךָ יְשַׂבֵּרוּ וְאַתָּה נוֹתֵן לָהֶם אֶת אָכְלָם בְּעִתּוֹ"
+      },
+      {
+        "number": 18,
+        "hebrewText": "פּוֹתֵחַ אֶת יָדֶךָ וּמַשְׂבִּיעַ לְכָל חַי רָצוֹן"
+      },
+      {
+        "number": 19,
+        "hebrewText": "צַדִּיק ה' בְּכָל דְּרָכָיו וְחָסִיד בְּכָל מַעֲשָׂיו"
+      },
+      {
+        "number": 20,
+        "hebrewText": "קָרוֹב ה' לְכָל קֹרְאָיו לְכֹל אֲשֶׁר יִקְרָאֻהוּ בֶאֱמֶת"
+      },
+      {
+        "number": 21,
+        "hebrewText": "רְצוֹן יְרֵאָיו יַעֲשֶׂה וְאֶת שַׁוְעָתָם יִשְׁמַע וְיוֹשִׁיעֵם"
+      },
+      {
+        "number": 22,
+        "hebrewText": "שׁוֹמֵר ה' אֶת כָּל אֹהֲבָיו וְאֵת כָּל הָרְשָׁעִים יַשְׁמִיד"
+      },
+      {
+        "number": 23,
+        "hebrewText": "תְּהִלַּת ה' יְדַבֶּר פִּי וִיבָרֵךְ כָּל בָּשָׂר שֵׁם קָדְשׁוֹ לְעוֹלָם וָעֶד"
+      },
+      {
+        "number": 24,
+        "hebrewText": "וַאֲנַחְנוּ נְבָרֵךְ יָהּ מֵעַתָּה וְעַד עוֹלָם הַלְלוּיָהּ"
+      }
+    ],
+    "moods": [
+      "grateful",
+      "happy"
+    ],
+    "contentTypes": [
+      "daily_prayers"
+    ],
+    "timeWindows": [
+      "morning",
+      "afternoon"
+    ],
+    "liturgicalContext": {
+      "serviceRoleKind": "psalm",
+      "serviceRole": "תהלים קמ״ה עם פסוקי מסגרת, נאמר שלוש פעמים ביום (בתוך פסוקי דזמרה, לקראת סוף שחרית, ולפני תפילת מנחה).",
+      "standaloneGuidance": "כן, ללא הסתייגות משמעותית — יש לו ערך עצמאי מוכר ('כל האומר תהלה לדוד בכל יום... מובטח לו שהוא בן עולם הבא', ברכות ד ע״ב), ואינו תלוי במסגרת תפילה מלאה כדי להיות בעל משמעות.",
+      "standaloneLevel": "preferred",
+      "timeContext": {
+        "hasRealHalachicZman": false
+      },
+      "standing": {
+        "level": "disputed",
+        "explanation": "אין חובה הלכתית ברורה לעמידה. יש דיון מתועד, בלי הכרעה חד-משמעית, על השאלה אם לעמוד ל׳אשרי׳ השני בסוף שחרית — נהוג בכמה דרכים שונות."
+      },
+      "facingJerusalem": {
+        "level": "not_applicable",
+        "explanation": "לא נמצא מקור."
+      },
+      "minyan": {
+        "level": "not_applicable",
+        "explanation": "אין דרישת מניין."
+      },
+      "calendarVariants": [],
+      "nusachDifferences": [],
+      "disagreements": [
+        {
+          "topic": "עמידה או ישיבה לאשרי השני בסוף שחרית",
+          "positions": "מחלוקת מנהגית מתועדת (Jewish Press) ללא הכרעה אחידה בין הקהילות."
+        }
+      ],
+      "confidence": "medium",
+      "reviewStatus": "ai_researched_unverified",
+      "requiresRabbinicReview": true,
+      "rabbinicReviewNotes": "שאלת העמידה נותרת פתוחה למחלוקת מנהגים; מומלץ להיזהר בניסוח.",
+      "researchSources": [
+        "https://www.deracheha.org/prayer-9-end-and-priorities/",
+        "https://www.jewishpress.com/judaism/ask-the-rabbi/q-a-should-we-stand-or-sit-for-the-second-ashrei-part-i/2021/05/27/"
+      ],
+      "researchNotes": "ראו מסמך המחקר."
+    }
   }
 ]

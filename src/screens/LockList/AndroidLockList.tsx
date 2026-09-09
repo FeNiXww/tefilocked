@@ -7,7 +7,7 @@ import {
   setAndroidLockedApps,
 } from '../../native/appLocking';
 import { PrimaryButton } from '../../components/PrimaryButton';
-import { colors, spacing, typography } from '../../theme';
+import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { AndroidPermissionGate } from './AndroidPermissionGate';
 import { AppListRow } from './AppListRow';
 
@@ -27,6 +27,8 @@ export function AndroidLockList() {
 
 function AndroidLockListContent() {
   const insets = useSafeAreaInsets();
+  const { colors, typography } = useTheme();
+  const styles = createStyles(colors, typography);
   const [apps, setApps] = useState<AndroidApp[] | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [dirty, setDirty] = useState(false);
@@ -131,7 +133,8 @@ function AndroidLockListContent() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemeColors, typography: Typography) {
+  return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
@@ -161,9 +164,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
   },
+  // `lockAllButton`'s `primaryLight` fill is a fixed light tone in both
+  // themes (see colors.ts), so this text is fixed to match — `colors.primary`
+  // would turn light pastel-blue in dark mode against it.
   lockAllText: {
     ...typography.bodySecondary,
-    color: colors.primary,
+    color: lightColors.primary,
     fontWeight: '600',
   },
   subtitle: {
@@ -200,4 +206,5 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.xl,
     marginBottom: spacing.xl,
   },
-});
+  });
+}

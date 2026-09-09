@@ -46,11 +46,6 @@ object StreakWidgetRenderer {
 
   private fun tierForStreak(streak: Int): Tier = TIERS.lastOrNull { streak >= it.minStreak } ?: TIERS[0]
 
-  // src/theme/colors.ts
-  private const val COLOR_ACCENT_DARK = 0xFF3E6E99.toInt()
-  private const val COLOR_TEXT_PRIMARY = 0xFF16202E.toInt()
-  private const val COLOR_TEXT_SECONDARY = 0xFF57616F.toInt()
-
   private const val STATUS_LIT = "התפילה של היום נרשמה"
   private const val STATUS_DORMANT = "מוכן לרגע של תפילה?"
 
@@ -72,8 +67,14 @@ object StreakWidgetRenderer {
     val views = RemoteViews(context.packageName, LAYOUT_FOR_SIZE.getValue(sizeBucket))
     val tier = tierForStreak(streak)
 
-    val primaryColor = if (litToday) COLOR_ACCENT_DARK else COLOR_TEXT_PRIMARY
-    val secondaryColor = if (litToday) COLOR_ACCENT_DARK else COLOR_TEXT_SECONDARY
+    // Resolved from values/colors.xml + values-night/colors.xml (mirrors
+    // src/theme/colors.ts light/dark) rather than hardcoded ints, so this
+    // follows the system's day/night setting the same way the app does.
+    val accentDarkColor = context.getColor(R.color.widget_accent_dark)
+    val textPrimaryColor = context.getColor(R.color.widget_text_primary)
+    val textSecondaryColor = context.getColor(R.color.widget_text_secondary)
+    val primaryColor = if (litToday) accentDarkColor else textPrimaryColor
+    val secondaryColor = if (litToday) accentDarkColor else textSecondaryColor
 
     views.setTextViewText(R.id.widget_streak_number, streak.toString())
     views.setTextColor(R.id.widget_streak_number, primaryColor)

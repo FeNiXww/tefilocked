@@ -7,6 +7,9 @@ import { PermissionCard } from '../../../components/PermissionCard';
 import { PrimaryButton } from '../../../components/PrimaryButton';
 import { useAndroidLockingPermissions } from '../../../native/appLocking/useAndroidLockingPermissions';
 import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
+import { FocalLight } from '../motion/OnboardingLight';
+import { WORLD } from '../motion/tokens';
+import { useWorldTransition } from '../motion/useWorldTransition';
 import type { StepComponentProps } from '../onboardingState';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
 
@@ -56,8 +59,14 @@ export function PermissionSetup({ onNext, onBack, progress }: StepComponentProps
     transform: [{ translateY: successTranslate.value }],
   }));
 
+  // The atmosphere itself warms the moment both permissions land — setup
+  // completing is a small rewarded moment, not just a checkbox flipping.
+  const world = useWorldTransition(WORLD.permissionSetup, granted ? WORLD.permissionSetup + 0.3 : WORLD.permissionSetup, {
+    durationMs: 900,
+  });
+
   return (
-    <OnboardingScreenShell onBack={onBack} progress={progress} tone="accent">
+    <OnboardingScreenShell onBack={onBack} progress={progress} world={world}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>הגדרה חד-פעמית</Text>
@@ -97,8 +106,11 @@ export function PermissionSetup({ onNext, onBack, progress }: StepComponentProps
         {granted && (
           <>
             <Animated.View style={[styles.successRow, successStyle]}>
-              <View style={styles.successBadge}>
-                <Ionicons name="checkmark" size={18} color={colors.background} />
+              <View style={styles.successBadgeWrap}>
+                <FocalLight size={90} tone="warm" peakOpacity={0.4} revealDurationMs={400} style={styles.successGlow} />
+                <View style={styles.successBadge}>
+                  <Ionicons name="checkmark" size={18} color={colors.background} />
+                </View>
               </View>
               <Text style={styles.successText}>הכול מוכן</Text>
             </Animated.View>
@@ -153,6 +165,13 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     alignItems: 'center',
     gap: spacing.sm,
     marginTop: spacing.sm,
+  },
+  successBadgeWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  successGlow: {
+    position: 'absolute',
   },
   successBadge: {
     width: 32,

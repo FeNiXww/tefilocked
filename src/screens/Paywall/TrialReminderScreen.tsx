@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PrimaryButton } from '../../components/PrimaryButton';
+import { getOnboardingGender } from '../../data/storage/mmkv';
+import { pickG } from '../Onboarding/onboardingState';
 import { TRIAL_LENGTH_DAYS } from '../../subscriptions/trialConfig';
 import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
@@ -8,6 +10,7 @@ import { lightColors, spacing, useTheme, type ThemeColors, type Typography } fro
 export function TrialReminderScreen({ onNext }: { onNext: () => void }) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
+  const gender = getOnboardingGender();
   return (
     <View style={styles.container}>
       <View style={styles.bellWrap}>
@@ -21,7 +24,7 @@ export function TrialReminderScreen({ onNext }: { onNext: () => void }) {
         </View>
       </View>
 
-      <Text style={styles.title}>לא תחויב עד שתחליט</Text>
+      <Text style={styles.title}>{pickG(gender, 'לא תחויב עד שתחליט', 'לא תחויבי עד שתחליטי')}</Text>
       <Text style={styles.body}>
         {`יום לפני שתקופת הניסיון החינמי בת ${TRIAL_LENGTH_DAYS} הימים מסתיימת, נשלח לך תזכורת עדינה — כדי שזה לעולם לא יפתיע אותך.`}
       </Text>

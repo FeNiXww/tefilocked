@@ -3,9 +3,10 @@ import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, TextInput, Vi
 import { getAndroidInstalledApps, getAndroidLockedApps, setAndroidLockedApps } from '../../../native/appLocking';
 import { PrimaryButton } from '../../../components/PrimaryButton';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
+import { WORLD } from '../motion/tokens';
 import { pickG, type StepComponentProps } from '../onboardingState';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
-import { AppListRow } from '../../LockList/AppListRow';
+import { AppSealRow } from './AppSealRow';
 
 interface AndroidApp {
   packageName: string;
@@ -91,12 +92,12 @@ export function AppSelectionStep({ answers, onNext, onBack, progress }: StepComp
   };
 
   return (
-    <OnboardingScreenShell onBack={onBack} progress={progress} scroll={false}>
+    <OnboardingScreenShell onBack={onBack} progress={progress} scroll={false} world={WORLD.appSelection}>
       <View style={styles.container}>
         <Text style={styles.title}>{`על מה ${pickG(answers.gender, 'אתה רוצה', 'את רוצה')} לשמור?`}</Text>
         <Text style={styles.subtitle}>
           {selected.size > 0
-            ? `${selected.size} אפליקציות נבחרו`
+            ? `${selected.size} אפליקציות נחתמו — ${pickG(answers.gender, 'אתה מחליט', 'את מחליטה')} מתי`
             : `${pickG(answers.gender, 'בחר', 'בחרי')} את האפליקציות שתפילוק תעצור אותך לפני שהן נפתחות`}
         </Text>
         <TextInput
@@ -124,7 +125,7 @@ export function AppSelectionStep({ answers, onNext, onBack, progress }: StepComp
               keyExtractor={(item) => item.packageName}
               keyboardShouldPersistTaps="handled"
               renderItem={({ item }) => (
-                <AppListRow
+                <AppSealRow
                   name={item.name}
                   iconBase64={item.iconBase64}
                   selected={selected.has(item.packageName)}

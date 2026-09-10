@@ -1,9 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useDerivedValue,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { haptics } from '../../../haptics';
-import { FingerprintConfirmButton } from '../FingerprintConfirmButton';
+import { HoldToCommitButton } from '../HoldToCommitButton';
 import { headlineFontFamily, lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 import { HighlightText } from '../HighlightText';
+import { FocalLight } from '../motion/OnboardingLight';
+import { WORLD } from '../motion/tokens';
 import type { StepComponentProps } from '../onboardingState';
 import type { SingleChoiceQuestion } from '../questionBank';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
@@ -20,10 +30,12 @@ const SUCCESS_HOLD_MS = 550;
 
 /**
  * The commitment question, but the generic "המשך" continue button is replaced
- * with a press-and-hold fingerprint gesture: choosing a level only *selects*
- * it, holding the fingerprint circle is what actually *confirms* it (see
- * `commitmentConfirmed` in onboardingState.ts). This is a decorative, purely
- * in-app gesture — no OS biometric API or real fingerprint check is involved.
+ * with a press-and-hold gesture: choosing a level only *selects* it, holding
+ * the circle is what actually *confirms* it (see `commitmentConfirmed` in
+ * onboardingState.ts). This is a decorative, purely in-app gesture — no OS
+ * biometric API is involved — and the scene's own light warms in step with
+ * the hold, so the physical act of holding is what visibly transforms the
+ * screen rather than a scripted animation running alongside it.
  */
 export function CommitmentStep({ answers, update, onNext, onBack, progress, question }: CommitmentStepProps) {
   const { colors, typography } = useTheme();
@@ -31,6 +43,13 @@ export function CommitmentStep({ answers, update, onNext, onBack, progress, ques
   const selected = answers.commitment;
   const [confirmed, setConfirmed] = useState(false);
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Drives both the ring in HoldToCommitButton and, via `world` below, the
+  // whole scene's ambient light — holding the gesture is what visibly warms
+  // the atmosphere, not a scripted timer running alongside it.
+  const holdProgress = useSharedValue(0);
+  const world = useDerivedValue(
+    () => WORLD.commitmentSelect + holdProgress.value * (WORLD.commitmentHold - WORLD.commitmentSelect)
+  );
 
   useEffect(() => {
     return () => {
@@ -51,7 +70,7 @@ export function CommitmentStep({ answers, update, onNext, onBack, progress, ques
   };
 
   return (
-    <OnboardingScreenShell onBack={confirmed ? undefined : onBack} progress={progress}>
+    <OnboardingScreenShell onBack={confirmed ? undefined : onBack} progress={progress} world={world} richness="balanced" vignette>
       {question.eyebrow ? <Text style={styles.eyebrow}>{question.eyebrow}</Text> : null}
       <HighlightText text={question.title} style={styles.title} />
       {question.subtitle ? <Text style={styles.subtitle}>{question.subtitle}</Text> : null}
@@ -61,31 +80,80 @@ export function CommitmentStep({ answers, update, onNext, onBack, progress, ques
           const isSelected = option.id === selected;
           return (
             <StaggerItem key={option.id} index={index}>
-              <Pressable
-                style={[styles.option, isSelected && styles.optionSelected]}
-                onPress={() => handleSelect(option.id)}
+              <CommitmentOptionCard
+                label={option.label}
+                isSelected={isSelected}
+                anySelected={!!selected}
                 disabled={confirmed}
-                accessibilityRole="radio"
-                accessibilityState={{ selected: isSelected }}
-                accessibilityLabel={option.label}
-              >
-                <Text style={[styles.optionLabel, isSelected && styles.optionLabelSelected]}>{option.label}</Text>
-                <View style={[styles.radio, isSelected && styles.radioSelected]}>
-                  {isSelected && <View style={styles.radioDot} />}
-                </View>
-              </Pressable>
+                onPress={() => handleSelect(option.id)}
+                styles={styles}
+              />
             </StaggerItem>
           );
         })}
       </View>
 
-      <FingerprintConfirmButton disabled={!selected} onConfirmed={handleConfirmed} />
+      <View style={styles.holdWrap}>
+        <FocalLight size={200} tone="ember" peakOpacity={0.4} reveal={holdProgress} style={styles.holdGlow} />
+        <HoldToCommitButton disabled={!selected} onConfirmed={handleConfirmed} progress={holdProgress} />
+      </View>
     </OnboardingScreenShell>
+  );
+}
+
+/** Mirrors AutoAdvanceChoiceStep's ChoiceOptionCard: the selected level stays at full clarity while its siblings quiet down instead of the choice being conveyed by border color alone. */
+function CommitmentOptionCard({
+  label,
+  isSelected,
+  anySelected,
+  disabled,
+  onPress,
+  styles,
+}: {
+  label: string;
+  isSelected: boolean;
+  anySelected: boolean;
+  disabled: boolean;
+  onPress: () => void;
+  styles: ReturnType<typeof createStyles>;
+}) {
+  const reduceMotion = useReducedMotion();
+  const quiet = useSharedValue(1);
+
+  useEffect(() => {
+    const target = anySelected && !isSelected ? 0.55 : 1;
+    quiet.value = reduceMotion ? target : withTiming(target, { duration: 260, easing: Easing.out(Easing.cubic) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anySelected, isSelected, reduceMotion]);
+
+  const quietStyle = useAnimatedStyle(() => ({ opacity: quiet.value }));
+
+  return (
+    <Animated.View style={quietStyle}>
+      <Pressable
+        style={[styles.option, isSelected && styles.optionSelected]}
+        onPress={onPress}
+        disabled={disabled}
+        accessibilityRole="radio"
+        accessibilityState={{ selected: isSelected }}
+        accessibilityLabel={label}
+      >
+        <Text style={[styles.optionLabel, isSelected && styles.optionLabelSelected]}>{label}</Text>
+        <View style={[styles.radio, isSelected && styles.radioSelected]}>{isSelected && <View style={styles.radioDot} />}</View>
+      </Pressable>
+    </Animated.View>
   );
 }
 
 function createStyles(colors: ThemeColors, typography: Typography) {
   return StyleSheet.create({
+  holdWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  holdGlow: {
+    position: 'absolute',
+  },
   eyebrow: {
     ...typography.eyebrow,
     marginBottom: spacing.sm,

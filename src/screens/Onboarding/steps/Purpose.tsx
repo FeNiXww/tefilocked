@@ -3,11 +3,18 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { PrimaryButton } from '../../../components/PrimaryButton';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 import { HighlightText } from '../HighlightText';
+import { FocalLight } from '../motion/OnboardingLight';
+import { WORLD } from '../motion/tokens';
+import { useWorldTransition } from '../motion/useWorldTransition';
 import { computePhoneTimeStats, type StepComponentProps } from '../onboardingState';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
 
 const HEADLINE_START_DELAY_MS = 250;
 const BODY_START_DELAY_MS = HEADLINE_START_DELAY_MS + 900;
+// The cold->warm shift starts right as the headline itself lands — the
+// reframe from loss to possibility should be felt in the light a beat before
+// the words underneath say it outright.
+const WORLD_SHIFT_DELAY_MS = HEADLINE_START_DELAY_MS + 200;
 
 /**
  * The payoff beat right after Bombshell — reframes the years the user just
@@ -19,10 +26,13 @@ export function Purpose({ answers, onNext, onBack, progress }: StepComponentProp
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const stats = computePhoneTimeStats(answers);
+  const world = useWorldTransition(WORLD.purposeStart, WORLD.purposeEnd, { delayMs: WORLD_SHIFT_DELAY_MS, durationMs: 1800 });
 
   return (
-    <OnboardingScreenShell onBack={onBack} progress={progress}>
+    <OnboardingScreenShell onBack={onBack} progress={progress} world={world} richness="quiet">
       <View style={styles.stage}>
+        <FocalLight size={320} tone="warm" peakOpacity={0.24} revealDurationMs={1600} style={styles.headlineGlow} />
+
         <Animated.View entering={FadeIn.duration(450)} style={styles.echo}>
           <Text style={styles.echoText}>
             {stats.lifetimeYearsPrecise.toFixed(1)} <Text style={styles.echoUnit}>שנים</Text>
@@ -30,7 +40,7 @@ export function Purpose({ answers, onNext, onBack, progress }: StepComponentProp
         </Animated.View>
 
         <HighlightText
-          text="**מה אם חלק מהזמן הזה** יחזור אליך?"
+          text={`**מה אם חלק מהזמן הזה** יחזור אליך${answers.name ? `, ${answers.name}` : ''}?`}
           style={styles.headline}
           startDelayMs={HEADLINE_START_DELAY_MS}
         />
@@ -55,6 +65,10 @@ function createStyles(colors: ThemeColors, typography: Typography) {
       alignItems: 'center',
       justifyContent: 'center',
       gap: spacing.xl,
+    },
+    headlineGlow: {
+      position: 'absolute',
+      top: '30%',
     },
     echo: {
       opacity: 0.55,

@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { haptics } from '../../haptics';
 import { PrimaryButton } from '../../components/PrimaryButton';
 import { headlineFontFamily, lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 import { HighlightText } from './HighlightText';
+import { WORLD } from './motion/tokens';
 import type { StepComponentProps } from './onboardingState';
 import type { SingleChoiceQuestion } from './questionBank';
 import { OnboardingScreenShell } from './OnboardingScreenShell';
@@ -11,6 +14,14 @@ import { StaggerItem } from './StaggerItem';
 interface AutoAdvanceChoiceStepProps extends StepComponentProps {
   question: SingleChoiceQuestion;
 }
+
+// A question-bank key isn't always present in WORLD (e.g. `name` reuses the
+// shell's default) — only the keys this step actually renders need an entry.
+const QUESTION_WORLD: Partial<Record<SingleChoiceQuestion['key'], number>> = {
+  gender: WORLD.gender,
+  ageRange: WORLD.age,
+  phoneHoursRange: WORLD.phoneUsage,
+};
 
 /**
  * A single-choice question screen: tapping an option only selects it — the
@@ -30,7 +41,7 @@ export function AutoAdvanceChoiceStep({ answers, update, onNext, onBack, progres
   };
 
   return (
-    <OnboardingScreenShell onBack={onBack} progress={progress}>
+    <OnboardingScreenShell onBack={onBack} progress={progress} world={QUESTION_WORLD[question.key] ?? WORLD.name}>
       {question.eyebrow ? <Text style={styles.eyebrow}>{question.eyebrow}</Text> : null}
       <HighlightText text={question.title} style={styles.title} />
       {question.subtitle ? <Text style={styles.subtitle}>{question.subtitle}</Text> : null}
@@ -40,20 +51,13 @@ export function AutoAdvanceChoiceStep({ answers, update, onNext, onBack, progres
           const isSelected = option.id === selected;
           return (
             <StaggerItem key={option.id} index={index}>
-              <Pressable
-                style={[styles.option, isSelected && styles.optionSelected]}
+              <ChoiceOptionCard
+                label={option.emoji ? `${option.emoji}  ${option.label}` : option.label}
+                isSelected={isSelected}
+                anySelected={selected !== null}
                 onPress={() => handleSelect(option.id)}
-                accessibilityRole="radio"
-                accessibilityState={{ selected: isSelected }}
-                accessibilityLabel={option.label}
-              >
-                <Text style={[styles.optionLabel, isSelected && styles.optionLabelSelected]}>
-                  {option.emoji ? `${option.emoji}  ${option.label}` : option.label}
-                </Text>
-                <View style={[styles.radio, isSelected && styles.radioSelected]}>
-                  {isSelected && <View style={styles.radioDot} />}
-                </View>
-              </Pressable>
+                styles={styles}
+              />
             </StaggerItem>
           );
         })}
@@ -61,6 +65,47 @@ export function AutoAdvanceChoiceStep({ answers, update, onNext, onBack, progres
 
       <PrimaryButton label="המשך" onPress={onNext} disabled={!selected} style={styles.button} />
     </OnboardingScreenShell>
+  );
+}
+
+/** A single choice card — the selected card stays at full clarity while its siblings quiet down, so the pick itself reads as a small, felt moment rather than just a border color flipping. */
+function ChoiceOptionCard({
+  label,
+  isSelected,
+  anySelected,
+  onPress,
+  styles,
+}: {
+  label: string;
+  isSelected: boolean;
+  anySelected: boolean;
+  onPress: () => void;
+  styles: ReturnType<typeof createStyles>;
+}) {
+  const reduceMotion = useReducedMotion();
+  const quiet = useSharedValue(1);
+
+  useEffect(() => {
+    const target = anySelected && !isSelected ? 0.55 : 1;
+    quiet.value = reduceMotion ? target : withTiming(target, { duration: 260, easing: Easing.out(Easing.cubic) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anySelected, isSelected, reduceMotion]);
+
+  const quietStyle = useAnimatedStyle(() => ({ opacity: quiet.value }));
+
+  return (
+    <Animated.View style={quietStyle}>
+      <Pressable
+        style={[styles.option, isSelected && styles.optionSelected]}
+        onPress={onPress}
+        accessibilityRole="radio"
+        accessibilityState={{ selected: isSelected }}
+        accessibilityLabel={label}
+      >
+        <Text style={[styles.optionLabel, isSelected && styles.optionLabelSelected]}>{label}</Text>
+        <View style={[styles.radio, isSelected && styles.radioSelected]}>{isSelected && <View style={styles.radioDot} />}</View>
+      </Pressable>
+    </Animated.View>
   );
 }
 

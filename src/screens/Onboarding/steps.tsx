@@ -7,10 +7,12 @@ import { AppSelectionStep } from './steps/AppSelectionStep';
 import { Bombshell } from './steps/Bombshell';
 import { CommitmentStep } from './steps/CommitmentStep';
 import { CoreLoopDemo } from './steps/CoreLoopDemo';
+import { FirstWeekStep } from './steps/FirstWeekStep';
 import { IntroPager } from './steps/IntroPager';
 import { NameInput } from './steps/NameInput';
 import { NotificationPrimer } from './steps/NotificationPrimer';
 import { PermissionSetup } from './steps/PermissionSetup';
+import { PlanReadyStep } from './steps/PlanReadyStep';
 import { Purpose } from './steps/Purpose';
 import { WidgetPrimer } from './steps/WidgetPrimer';
 
@@ -53,6 +55,13 @@ export const ONBOARDING_STEPS: OnboardingStepDef[] = [
         { key: 'permissionSetup', render: (p: StepComponentProps) => <PermissionSetup {...p} /> },
       ]
     : []),
+  // The ring-and-reveal "we built this for you" beat now that there's
+  // something real to quote back (the commitment level, plus the apps/
+  // permissions setup just finished) — leads into FirstWeekStep instead of a
+  // separate generic "plan" page, since there isn't enough real data yet to
+  // back a whole page of plan content beyond that preview.
+  { key: 'planReady', render: (p) => <PlanReadyStep {...p} /> },
+  { key: 'firstWeek', render: (p) => <FirstWeekStep {...p} /> },
   { key: 'notificationPrimer', render: (p) => <NotificationPrimer {...p} /> },
   { key: 'widgetPrimer', render: (p) => <WidgetPrimer {...p} /> },
 ];

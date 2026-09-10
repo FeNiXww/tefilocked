@@ -7,15 +7,22 @@ import Animated, {
   useReducedMotion,
   useSharedValue,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
-import { SparkleBackground } from '../../components/SparkleBackground';
 import { spacing, useTheme, type ThemeColors } from '../../theme';
-import { ProgressBar } from './ProgressBar';
+import { OnboardingAtmosphere } from './motion/OnboardingAtmosphere';
+import { WORLD, type OnboardingRichness } from './motion/tokens';
+import { OnboardingProgress } from './motion/OnboardingProgress';
 
 interface OnboardingScreenShellProps {
   onBack?: () => void;
   progress?: { current: number; total: number };
-  tone?: 'accent' | 'navy';
+  /** Position along the cold-digital → warm-spiritual throughline (motion/tokens.ts WORLD). Pass a shared value for a scene whose world shifts mid-beat. */
+  world?: number | SharedValue<number>;
+  /** How visually "full" the scene's atmosphere should be — gives the flow rhythm instead of every screen looking identical. */
+  richness?: OnboardingRichness;
+  particles?: boolean;
+  vignette?: boolean;
   scroll?: boolean;
   children: ReactNode;
 }
@@ -33,7 +40,10 @@ interface OnboardingScreenShellProps {
 export function OnboardingScreenShell({
   onBack,
   progress,
-  tone = 'navy',
+  world = WORLD.name,
+  richness = 'balanced',
+  particles = false,
+  vignette = false,
   scroll = true,
   children,
 }: OnboardingScreenShellProps) {
@@ -60,7 +70,7 @@ export function OnboardingScreenShell({
 
   return (
     <View style={styles.container}>
-      <SparkleBackground tone={tone} starCount={8} />
+      <OnboardingAtmosphere world={world} richness={richness} particles={particles} vignette={vignette} />
 
       <View style={[styles.topBar, { paddingTop: insets.top }]}>
         {onBack ? (
@@ -72,7 +82,7 @@ export function OnboardingScreenShell({
         )}
       </View>
 
-      {progress && <ProgressBar current={progress.current} total={progress.total} />}
+      {progress && <OnboardingProgress current={progress.current} total={progress.total} />}
 
       <Animated.View style={[styles.flex, revealStyle]}>
         <Content

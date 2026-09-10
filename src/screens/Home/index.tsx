@@ -16,6 +16,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {
   getLastKnownStreak,
+  getOnboardingGender,
   getPreferredContentTypes,
   isPendingHanukkiahCompletionCelebration,
   isReviewPrompted,
@@ -23,6 +24,7 @@ import {
   setLastKnownStreak,
   setPendingHanukkiahCompletionCelebration,
 } from '../../data/storage/mmkv';
+import { pickG } from '../Onboarding/onboardingState';
 import {
   getCurrentStreak,
   getStreakCandles,
@@ -80,6 +82,7 @@ export function Home() {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const insets = useSafeAreaInsets();
+  const gender = getOnboardingGender();
   const [showingFlow, setShowingFlow] = useState(false);
   const [streak, setStreak] = useState(() => getCurrentStreak());
   const [litToday, setLitToday] = useState(() => hasCompletedToday());
@@ -510,7 +513,9 @@ export function Home() {
           <Text style={[styles.streakLabel, litToday && styles.streakLabelLit]}>ימי רצף</Text>
         </View>
 
-        <Text style={styles.greeting}>{litToday ? 'התפילה של היום נרשמה' : 'מוכן לרגע של תפילה?'}</Text>
+        <Text style={styles.greeting}>
+          {litToday ? 'התפילה של היום נרשמה' : pickG(gender, 'מוכן לרגע של תפילה?', 'מוכנה לרגע של תפילה?')}
+        </Text>
         <UnlockCountdown remainingSeconds={remainingSeconds} onPress={() => setShowingTimerEditor(true)} />
       </Animated.View>
 

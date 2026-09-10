@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
@@ -23,22 +24,28 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 // Long enough to read as deliberate (can't be mis-tapped), short enough not to feel like a chore.
 const HOLD_DURATION_MS = 900;
 
-interface FingerprintConfirmButtonProps {
+interface HoldToCommitButtonProps {
   disabled?: boolean;
   onConfirmed: () => void;
+  /** Externally-owned 0-1 progress shared value — pass one so a parent scene can drive its own visuals (a growing warm light, an atmosphere shift) in exact sync with the hold instead of guessing at timing. */
+  progress?: SharedValue<number>;
 }
 
 /**
- * Press-and-hold commitment gesture: a ring fills in around a fingerprint glyph
- * while held, completing into a checkmark. Entirely custom-drawn in JS — no OS
- * biometric API involved. This is a deliberate, weighted confirmation tap
- * standing in for "I stand behind this," not a real fingerprint/security check,
- * so it must never be described to the user as biometric authentication.
+ * Press-and-hold commitment gesture: a ring of warm light fills in around a
+ * fingerprint glyph while held, completing into a checkmark. Entirely
+ * custom-drawn in JS — no OS biometric API involved. This is a weighted
+ * confirmation gesture standing in for "I stand behind this," not a real
+ * fingerprint/security check, so it must never be described to the user as
+ * biometric authentication. The scene's own light warms in step with the
+ * hold, so the physical act of holding is what visibly transforms the
+ * screen rather than a scripted animation running alongside it.
  */
-export function FingerprintConfirmButton({ disabled, onConfirmed }: FingerprintConfirmButtonProps) {
+export function HoldToCommitButton({ disabled, onConfirmed, progress: externalProgress }: HoldToCommitButtonProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
-  const progress = useSharedValue(0);
+  const internalProgress = useSharedValue(0);
+  const progress = externalProgress ?? internalProgress;
   const scale = useSharedValue(1);
   const [holding, setHolding] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -79,7 +86,7 @@ export function FingerprintConfirmButton({ disabled, onConfirmed }: FingerprintC
     transform: [{ scale: scale.value }],
   }));
 
-  const hint = confirmed ? 'המחויבות אושרה' : holding ? 'ממשיכים להחזיק…' : 'החזק לאישור';
+  const hint = confirmed ? 'המחויבות נחתמה' : holding ? 'ממשיכים להחזיק…' : 'החזק כדי להתחייב';
 
   return (
     <View style={styles.wrap}>
@@ -88,8 +95,8 @@ export function FingerprintConfirmButton({ disabled, onConfirmed }: FingerprintC
         onPressOut={handlePressOut}
         disabled={disabled || confirmed}
         accessibilityRole="button"
-        accessibilityLabel="החזק לאישור המחויבות"
-        accessibilityHint="לחצו והחזיקו כדי לאשר"
+        accessibilityLabel="החזק כדי להתחייב"
+        accessibilityHint="לחצו והחזיקו כדי לאשר את ההתחייבות. זהו מחוות אישור באפליקציה בלבד, לא אימות ביומטרי."
         accessibilityState={{ disabled: disabled || confirmed }}
         hitSlop={12}
       >

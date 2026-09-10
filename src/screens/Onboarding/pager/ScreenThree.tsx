@@ -16,9 +16,10 @@ import Animated, {
   withTiming,
   type SharedValue,
 } from 'react-native-reanimated';
-import { SparkleBackground } from '../../../components/SparkleBackground';
 import { headlineFontFamily, useTheme, type ThemeColors, type Spacing, type Typography } from '../../../theme';
 import { ContinueNodeButton } from '../ContinueNodeButton';
+import { OnboardingAtmosphere } from '../motion/OnboardingAtmosphere';
+import { WORLD } from '../motion/tokens';
 import { ThemeToggleButton } from '../ThemeToggleButton';
 import type { PagerPageProps } from './OnboardingPager';
 import { usePageActive, usePageProgress } from './pagerAnimations';
@@ -224,8 +225,8 @@ export function ScreenThree({ index, scrollX, pageWidth, onComplete }: PagerPage
   };
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top + 56 }]}>
-      <SparkleBackground tone="navy" starCount={8} />
+    <View style={[styles.root, { paddingTop: insets.top + 72 }]}>
+      <OnboardingAtmosphere world={WORLD.lockdown} richness="balanced" />
       <ThemeToggleButton />
 
       <Animated.View style={[styles.headlineWrap, containerStyle]}>

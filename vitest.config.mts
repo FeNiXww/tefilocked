@@ -10,6 +10,10 @@ import { defineConfig } from 'vitest/config';
 // research doc.
 export default defineConfig({
   test: {
-    include: ['src/content/**/*.test.ts', 'src/screens/LockContentFlow/tokenizePrayer.test.ts'],
+    include: [
+      'src/content/**/*.test.ts',
+      'src/screens/LockContentFlow/tokenizePrayer.test.ts',
+      'src/screens/Paywall/paywallExitOffer.test.ts',
+    ],
   },
 });

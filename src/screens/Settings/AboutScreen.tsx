@@ -1,12 +1,15 @@
 import Constants from 'expo-constants';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Logo } from '../../components/Logo';
+import { getOnboardingGender } from '../../data/storage/mmkv';
+import { pickG } from '../Onboarding/onboardingState';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 export function AboutScreen() {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const version = Constants.expoConfig?.version ?? '1.0.0';
+  const gender = getOnboardingGender();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -17,8 +20,11 @@ export function AboutScreen() {
       </View>
 
       <Text style={styles.body}>
-        תפילוק עוזרת לך לעצור לפני שאתה פותח אפליקציות שמסיחות את דעתך, ולהקדיש רגע קצר לתפילה,
-        פרק תהלים או מחשבה יהודית — לפני שאתה ממשיך.
+        {pickG(
+          gender,
+          'תפילוק עוזרת לך לעצור לפני שאתה פותח אפליקציות שמסיחות את דעתך, ולהקדיש רגע קצר לתפילה, פרק תהלים או מחשבה יהודית — לפני שאתה ממשיך.',
+          'תפילוק עוזרת לך לעצור לפני שאת פותחת אפליקציות שמסיחות את דעתך, ולהקדיש רגע קצר לתפילה, פרק תהלים או מחשבה יהודית — לפני שאת ממשיכה.',
+        )}
       </Text>
 
       <Text style={styles.version}>גרסה {version}</Text>

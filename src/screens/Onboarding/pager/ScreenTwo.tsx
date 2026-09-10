@@ -9,10 +9,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { SparkleBackground } from '../../../components/SparkleBackground';
 import { headlineFontFamily, useTheme, type ThemeColors, type Spacing, type Typography } from '../../../theme';
 import { ContinueNodeButton } from '../ContinueNodeButton';
 import { HighlightText } from '../HighlightText';
+import { OnboardingAtmosphere } from '../motion/OnboardingAtmosphere';
+import { WORLD } from '../motion/tokens';
 import { ThemeToggleButton } from '../ThemeToggleButton';
 import type { PagerPageProps } from './OnboardingPager';
 import { useBreathingScale, usePageActive, usePageProgress } from './pagerAnimations';
@@ -62,8 +63,8 @@ export function ScreenTwo({ index, scrollX, pageWidth, illustration, onNext }: S
   };
 
   return (
-    <Animated.View style={[styles.root, { paddingTop: insets.top + 56 }]}>
-      <SparkleBackground tone="navy" starCount={8} />
+    <Animated.View style={[styles.root, { paddingTop: insets.top + 72 }]}>
+      <OnboardingAtmosphere world={WORLD.embrace} richness="quiet" vignette />
       <ThemeToggleButton />
 
       <Animated.View style={textStyle}>

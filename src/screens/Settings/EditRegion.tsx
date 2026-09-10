@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { haptics } from '../../haptics';
 import { PrimaryButton } from '../../components/PrimaryButton';
-import { getUserRegion, setUserRegion, type UserRegion } from '../../data/storage/mmkv';
+import { getOnboardingGender, getUserRegion, setUserRegion, type UserRegion } from '../../data/storage/mmkv';
+import { pickG } from '../Onboarding/onboardingState';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 interface EditRegionProps {
@@ -28,6 +29,7 @@ export function EditRegion({ onComplete }: EditRegionProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const [selected, setSelected] = useState<UserRegion>(() => getUserRegion());
+  const gender = getOnboardingGender();
 
   const handleSelect = (id: UserRegion) => {
     haptics.selection();
@@ -41,7 +43,7 @@ export function EditRegion({ onComplete }: EditRegionProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>באיזה אזור אתה נמצא?</Text>
+      <Text style={styles.title}>{pickG(gender, 'באיזה אזור אתה נמצא?', 'באיזה אזור את נמצאת?')}</Text>
       <Text style={styles.subtitle}>
         זה משפיע רק על כמה עובדות לוח שנה עדינות (כמו יום טוב שני של גלויות) שמשמשות את מנוע ההקשר ההלכתי של
         האפליקציה.

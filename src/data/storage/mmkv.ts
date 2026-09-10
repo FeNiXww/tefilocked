@@ -59,6 +59,7 @@ export const StorageKeys = {
   userNusach: 'preferences.nusach',
   userRegion: 'preferences.region',
   themeMode: 'preferences.themeMode',
+  paywallExitOfferSeen: 'paywall.exitOfferSeen',
 } as const;
 
 export type StoredGender = 'man' | 'woman';
@@ -79,6 +80,15 @@ export function isOnboardingComplete(): boolean {
 
 export function setOnboardingComplete(complete: boolean): void {
   storage.set(StorageKeys.onboardingComplete, complete);
+}
+
+/** Whether the one-time paywall exit offer (see Paywall/PaywallExitOfferScreen.tsx) has already been shown on this install — backing out of the pricing screen a second time exits normally instead of showing it again. */
+export function hasSeenPaywallExitOffer(): boolean {
+  return storage.getBoolean(StorageKeys.paywallExitOfferSeen) ?? false;
+}
+
+export function markPaywallExitOfferSeen(): void {
+  storage.set(StorageKeys.paywallExitOfferSeen, true);
 }
 
 export function isReviewPrompted(): boolean {

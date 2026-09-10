@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { isPinWidgetSupportedAndroid, requestPinWidgetAndroid } from '../../../../modules/streak-widget';
 import { FlameIcon } from '../../../components/FlameIcon';
 import { PrimaryButton } from '../../../components/PrimaryButton';
@@ -8,8 +9,12 @@ import { TextLinkButton } from '../../../components/TextLinkButton';
 import { haptics } from '../../../haptics';
 import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 import { HighlightText } from '../HighlightText';
+import { FocalLight } from '../motion/OnboardingLight';
+import { WORLD } from '../motion/tokens';
 import type { StepComponentProps } from '../onboardingState';
 import { OnboardingScreenShell } from '../OnboardingScreenShell';
+
+const BUTTON_DELAY_MS = 550;
 
 const IOS_STEPS = [
   'החזיקו אצבע על מסך הבית עד שהאייקונים מתחילים לרעוד',
@@ -36,9 +41,10 @@ export function WidgetPrimer({ onNext, onBack, progress }: StepComponentProps) {
   };
 
   return (
-    <OnboardingScreenShell onBack={onBack} progress={progress} tone="accent">
+    <OnboardingScreenShell onBack={onBack} progress={progress} world={WORLD.widgetPrimer}>
       <View style={styles.container}>
         <View style={styles.iconWrap}>
+          <FocalLight size={140} tone="warm" peakOpacity={0.24} revealDurationMs={700} style={styles.iconGlow} />
           <Ionicons name="grid" size={36} color={colors.accentDark} />
           <FlameIcon size={28} />
         </View>
@@ -62,14 +68,16 @@ export function WidgetPrimer({ onNext, onBack, progress }: StepComponentProps) {
           </View>
         )}
 
-        <PrimaryButton
-          label={pinSupported ? 'הוספת הווידג׳ט' : 'המשך'}
-          onPress={pinSupported ? handleAddWidget : onNext}
-          variant="accent"
-          glow
-          style={styles.button}
-        />
-        {pinSupported && <TextLinkButton label="לא תודה" onPress={onNext} />}
+        <Animated.View entering={FadeIn.delay(BUTTON_DELAY_MS).duration(400)} style={styles.buttonWrap}>
+          <PrimaryButton
+            label={pinSupported ? 'הוספת הווידג׳ט' : 'המשך'}
+            onPress={pinSupported ? handleAddWidget : onNext}
+            variant="accent"
+            glow
+            style={styles.button}
+          />
+          {pinSupported && <TextLinkButton label="לא תודה" onPress={onNext} />}
+        </Animated.View>
       </View>
     </OnboardingScreenShell>
   );
@@ -89,6 +97,9 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     alignItems: 'center',
     gap: spacing.sm,
     marginBottom: spacing.md,
+  },
+  iconGlow: {
+    position: 'absolute',
   },
   eyebrow: {
     ...typography.eyebrow,
@@ -137,8 +148,12 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     flex: 1,
     textAlign: 'right',
   },
-  button: {
+  buttonWrap: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
     marginTop: spacing.xxl,
+  },
+  button: {
     alignSelf: 'stretch',
   },
   });

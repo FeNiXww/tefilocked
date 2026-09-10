@@ -9,8 +9,11 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import { PrimaryButton } from '../../components/PrimaryButton';
-import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
+import { PrimaryButton } from '../../../components/PrimaryButton';
+import { WORLD } from '../motion/tokens';
+import { commitmentLevel, pickG, type StepComponentProps } from '../onboardingState';
+import { OnboardingScreenShell } from '../OnboardingScreenShell';
+import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../../theme';
 
 interface JourneyDay {
   day: number;
@@ -36,7 +39,8 @@ const JOURNEY: JourneyDay[] = [
 const ROW_STAGGER_MS = 170;
 const ROWS_DONE_MS = JOURNEY.length * ROW_STAGGER_MS + 420;
 const TAGLINE_DELAY_MS = ROWS_DONE_MS + 150;
-const CTA_DELAY_MS = TAGLINE_DELAY_MS + 500;
+const THESIS_DELAY_MS = TAGLINE_DELAY_MS + 550;
+const CTA_DELAY_MS = THESIS_DELAY_MS + 600;
 
 function JourneyRow({ item, index }: { item: JourneyDay; index: number }) {
   const { colors, typography } = useTheme();
@@ -81,48 +85,62 @@ function JourneyRow({ item, index }: { item: JourneyDay; index: number }) {
 }
 
 /**
- * First paywall screen — a fast, auto-playing preview of the week ahead
- * (original beats, not a translation of any reference app's day-by-day
- * copy) instead of a long scrollable list: every row lands within ~1.5s,
- * then the tagline and CTA settle in right after. The trial itself is
- * shorter than a week (see PlanScreen) — this is showing the value of
- * sticking with it, not the trial length.
+ * The onboarding's "here's what's ahead" beat — a fast, auto-playing preview
+ * of the week ahead (original beats, not a translation of any reference
+ * app's day-by-day copy) instead of a long scrollable list: every row lands
+ * within ~1.5s, then the tagline and CTA settle in right after. Placed after
+ * CommitmentStep and PlanReadyStep specifically so the commitment level it
+ * quotes back is always answered by the time this renders.
  */
-export function JourneyPreviewScreen({ onNext }: { onNext: () => void }) {
+export function FirstWeekStep({ answers, onNext, onBack, progress }: StepComponentProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const reduceMotion = useReducedMotion();
+  const level = commitmentLevel(answers.commitment, answers.gender);
   const taglineOpacity = useSharedValue(reduceMotion ? 1 : 0);
+  const thesisOpacity = useSharedValue(reduceMotion ? 1 : 0);
   const ctaOpacity = useSharedValue(reduceMotion ? 1 : 0);
 
   useEffect(() => {
     if (reduceMotion) return;
     taglineOpacity.value = withDelay(TAGLINE_DELAY_MS, withTiming(1, { duration: 400 }));
+    thesisOpacity.value = withDelay(THESIS_DELAY_MS, withTiming(1, { duration: 500 }));
     ctaOpacity.value = withDelay(CTA_DELAY_MS, withTiming(1, { duration: 400 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion]);
 
   const taglineStyle = useAnimatedStyle(() => ({ opacity: taglineOpacity.value }));
+  const thesisStyle = useAnimatedStyle(() => ({ opacity: thesisOpacity.value }));
   const ctaStyle = useAnimatedStyle(() => ({ opacity: ctaOpacity.value }));
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ככה נראה השבוע הראשון שלך</Text>
+    <OnboardingScreenShell onBack={onBack} progress={progress} world={WORLD.planReady} richness="balanced">
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          {answers.name ? `ככה נראה השבוע הראשון שלך, ${answers.name}` : 'ככה נראה השבוע הראשון שלך'}
+        </Text>
 
-      <View style={styles.list}>
-        {JOURNEY.map((item, index) => (
-          <JourneyRow key={item.day} item={item} index={index} />
-        ))}
+        <View style={styles.list}>
+          {JOURNEY.map((item, index) => (
+            <JourneyRow key={item.day} item={item} index={index} />
+          ))}
+        </View>
+
+        <Animated.Text style={[styles.tagline, taglineStyle]}>
+          {answers.commitment
+            ? `${level.emoji} ${pickG(answers.gender, 'סימנת שאתה', 'סימנת שאת')} ${level.label} — בדיוק מה שצריך כדי שזה באמת יקרה.`
+            : 'כל יום, עוד רגע קטן שקט — עד שהוא הופך להרגל.'}
+        </Animated.Text>
+
+        <Animated.Text style={[styles.thesis, thesisStyle]}>
+          תפילוק לא מבקש ממך פחות מהטלפון.{'\n'}הוא עוזר לך לבחור מה חשוב יותר.
+        </Animated.Text>
+
+        <Animated.View style={[styles.ctaWrap, ctaStyle]}>
+          <PrimaryButton label="המשך" onPress={onNext} variant="accent" style={styles.button} />
+        </Animated.View>
       </View>
-
-      <Animated.Text style={[styles.tagline, taglineStyle]}>
-        כל יום, עוד רגע קטן שקט — עד שהוא הופך להרגל.
-      </Animated.Text>
-
-      <Animated.View style={[styles.ctaWrap, ctaStyle]}>
-        <PrimaryButton label="המשך" onPress={onNext} variant="accent" style={styles.button} />
-      </Animated.View>
-    </View>
+    </OnboardingScreenShell>
   );
 }
 
@@ -206,6 +224,17 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     color: colors.accentDark,
     marginTop: spacing.xs,
     paddingHorizontal: spacing.md,
+  },
+  // The flow's emotional thesis — deliberately the largest, boldest text on
+  // this screen (bigger than `tagline` above it) so it reads as the point
+  // of the whole preview, not one more caption.
+  thesis: {
+    ...typography.hero,
+    fontSize: 17,
+    lineHeight: 24,
+    textAlign: 'center',
+    marginTop: spacing.md,
+    paddingHorizontal: spacing.sm,
   },
   ctaWrap: {
     alignSelf: 'stretch',

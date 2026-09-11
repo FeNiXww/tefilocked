@@ -171,6 +171,23 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
         </Pressable>
       )}
 
+      {/* Dev-only skip button — bypasses the purchase flow entirely and
+          calls onTrialStarted() directly, the same callback the real
+          purchase success path calls, which is what flips App.tsx into
+          rendering MainTabs (the Home tab). Stripped from release builds
+          by __DEV__, so real users never see it. */}
+      {__DEV__ && (
+        <Pressable
+          style={styles.devSkipButton}
+          onPress={onTrialStarted}
+          hitSlop={12}
+          accessibilityRole="button"
+          accessibilityLabel="דילוג ישירות למסך הבית (כלי פיתוח)"
+        >
+          <Text style={styles.devSkipText}>DEV ⏭ Home</Text>
+        </Pressable>
+      )}
+
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <Animated.View style={entranceStyle}>
           {showExitOffer ? (
@@ -267,6 +284,23 @@ function createStyles(colors: ThemeColors) {
     fontSize: 11,
     fontWeight: '700',
     color: colors.danger,
+  },
+  devSkipButton: {
+    position: 'absolute',
+    bottom: spacing.lg,
+    right: spacing.lg,
+    zIndex: 10,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: colors.success,
+  },
+  devSkipText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: colors.success,
   },
   });
 }

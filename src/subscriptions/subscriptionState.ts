@@ -99,3 +99,15 @@ export function resetSubscriptionStateForTesting(): void {
   storage.set(StorageKeys.trialReminderScheduled, false);
   storage.set(StorageKeys.entitlementActive, false);
 }
+
+/**
+ * The inverse of resetSubscriptionStateForTesting: flips hasAppAccess() to
+ * true without going through a real RevenueCat purchase, so a dev build can
+ * jump straight from onboarding into the app past the paywall. Sets
+ * entitlementActive directly (rather than startTrial) so it persists across
+ * reloads without depending on TRIAL_DURATION_MS ever expiring. Never called
+ * from production code paths.
+ */
+export function grantAppAccessForTesting(): void {
+  storage.set(StorageKeys.entitlementActive, true);
+}

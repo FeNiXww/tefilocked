@@ -146,6 +146,59 @@ function resolveFastDay(date: Date, hd: JewishDate): FastDay | null {
   return candidates.find((f) => isFastDayObserved(f, date, hd)) ?? null;
 }
 
+/**
+ * True only for the actual work-prohibited (melacha-assur) days: Rosh
+ * Hashanah, Yom Kippur, the first (+ diaspora second) day of Sukkot,
+ * Shemini Atzeret (+ diaspora Simchat Torah), the first/last (+ diaspora
+ * extra) days of Pesach, and Shavuot. Deliberately narrower than
+ * `isYomTov` above, which also flags Chol HaMoed (16-21 Nisan / 16-21
+ * Tishri minus the days below) — phone use isn't halachically restricted
+ * on Chol HaMoed, so a streak-protection check needs this, not `isYomTov`.
+ * Sources: Vayikra 23; Shulchan Aruch Orach Chaim 429, 625, 663.
+ */
+function isMelachaRestrictedYomTov(hd: JewishDate, diasporaOrIsrael: DiasporaOrIsrael): boolean {
+  if (isMonth(hd, 'Tishri')) {
+    if (hd.day === 1 || hd.day === 2) return true; // Rosh Hashanah
+    if (hd.day === 10) return true; // Yom Kippur
+    if (hd.day === 15) return true; // Sukkot day 1
+    if (hd.day === 16 && diasporaOrIsrael === 'diaspora') return true; // Sukkot Yom Tov Sheni
+    if (hd.day === 22) return true; // Shemini Atzeret
+    if (hd.day === 23 && diasporaOrIsrael === 'diaspora') return true; // Simchat Torah (diaspora)
+    return false;
+  }
+  if (isMonth(hd, 'Nisan')) {
+    if (hd.day === 15) return true; // Pesach day 1
+    if (hd.day === 16 && diasporaOrIsrael === 'diaspora') return true; // Pesach Yom Tov Sheni
+    if (hd.day === 21) return true; // Pesach day 7
+    if (hd.day === 22 && diasporaOrIsrael === 'diaspora') return true; // Pesach day 8 (diaspora)
+    return false;
+  }
+  if (isMonth(hd, 'Sivan')) {
+    if (hd.day === 6) return true; // Shavuot
+    if (hd.day === 7 && diasporaOrIsrael === 'diaspora') return true; // Shavuot day 2 (diaspora)
+    return false;
+  }
+  return false;
+}
+
+/**
+ * Whether phone use is halachically restricted on this day — Shabbat or a
+ * work-prohibited Yom Tov (see `isMelachaRestrictedYomTov`; excludes Chol
+ * HaMoed, Chanukah, Purim, and fast days, none of which restrict phone use).
+ * Built for streak protection (a missed day here shouldn't break a prayer
+ * streak), so it inherits the same day-of-week-only Shabbat detection as
+ * `isShabbatToday` in calendar.ts: real sunset/havdalah times aren't used,
+ * so Friday night after sunset and Saturday night before havdalah are not
+ * separately detected (Saturday itself already covers the bulk of Shabbat).
+ */
+export function isPhoneRestrictedDay(
+  date: Date = new Date(),
+  diasporaOrIsrael: DiasporaOrIsrael = 'diaspora'
+): boolean {
+  if (date.getDay() === 6) return true;
+  return isMelachaRestrictedYomTov(toJewishDate(date), diasporaOrIsrael);
+}
+
 export function getJewishCalendarContext(
   date: Date = new Date(),
   diasporaOrIsrael: DiasporaOrIsrael = 'diaspora'

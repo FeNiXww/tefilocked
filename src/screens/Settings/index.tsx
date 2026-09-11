@@ -10,6 +10,7 @@ import { setLastKnownStreak, setStoredZmanimLocation } from '../../data/storage/
 import { useTheme, type ThemeColors, type Typography, type Spacing } from '../../theme';
 import { AddWidgetRow } from './AddWidgetRow';
 import { SettingsSection } from './SettingsSection';
+import { StreakProtectionRow } from './StreakProtectionRow';
 import { SubscriptionRow } from './SubscriptionRow';
 import { ThemeModeRow } from './ThemeModeRow';
 
@@ -99,6 +100,7 @@ export function Settings({ navigation }: SettingsScreenProps<'SettingsHome'>) {
 
       <SettingsSection title="תוכן">
         <Row label="ניהול אפליקציות נעולות" onPress={() => navigation.getParent()?.navigate('LockList')} />
+        <StreakProtectionRow />
       </SettingsSection>
 
       <SettingsSection title="ווידג׳ט">

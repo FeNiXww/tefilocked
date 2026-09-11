@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildEligibilityContext, evaluateLiturgicalEligibility, isEligibleForRandomPool } from './liturgicalEligibility';
 import { isSafeForRandomPool } from './poolSafety';
-import { getJewishCalendarContext } from './hebrewCalendar';
+import { getJewishCalendarContext, isPhoneRestrictedDay } from './hebrewCalendar';
 import { computeZmanim } from './zmanim';
 import { resolveVerses } from './calendarVariants';
 import { isShabbatToday } from './calendar';
@@ -60,6 +60,78 @@ describe('hebrewCalendar', () => {
     const ctx = getJewishCalendarContext(new Date('2026-09-21T12:00:00'));
     expect(ctx.isYomKippur).toBe(true);
     expect(ctx.isYomTov).toBe(true);
+  });
+
+  describe('isPhoneRestrictedDay — for streak protection', () => {
+    it('flags Shabbat (2026-08-29 = Saturday)', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-08-29T12:00:00'))).toBe(true);
+    });
+
+    it('does not flag an ordinary Friday (2026-08-28) — matches the existing day-of-week-only Shabbat limitation', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-08-28T12:00:00'))).toBe(false);
+    });
+
+    it('flags Yom Kippur (2026-09-21, a Monday) regardless of region', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-09-21T12:00:00'), 'diaspora')).toBe(true);
+      expect(isPhoneRestrictedDay(new Date('2026-09-21T12:00:00'), 'israel')).toBe(true);
+    });
+
+    it('does not flag Chol HaMoed Sukkot (2026-09-28, 17 Tishrei — a Monday, mid-festival but not Yom Tov itself)', () => {
+      const ctx = getJewishCalendarContext(new Date('2026-09-28T12:00:00'));
+      expect(ctx.isSukkot).toBe(true);
+      expect(isPhoneRestrictedDay(new Date('2026-09-28T12:00:00'))).toBe(false);
+    });
+
+    it('flags Sukkot Yom Tov Sheni (2026-09-27, 16 Tishrei) only in the diaspora', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-09-27T12:00:00'), 'diaspora')).toBe(true);
+      expect(isPhoneRestrictedDay(new Date('2026-09-27T12:00:00'), 'israel')).toBe(false);
+    });
+
+    it('flags Simchat Torah (2026-10-04, diaspora only — Israel already covered it via Shemini Atzeret on 2026-10-03)', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-10-03T12:00:00'), 'israel')).toBe(true); // Shemini Atzeret
+      expect(isPhoneRestrictedDay(new Date('2026-10-04T12:00:00'), 'diaspora')).toBe(true); // Simchat Torah
+      expect(isPhoneRestrictedDay(new Date('2026-10-04T12:00:00'), 'israel')).toBe(false); // ordinary day in Israel
+    });
+
+    it('flags Pesach\'s first and seventh days everywhere, and the diaspora-only eighth day (2026-04-09)', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-04-02T12:00:00'), 'diaspora')).toBe(true); // 15 Nisan
+      expect(isPhoneRestrictedDay(new Date('2026-04-08T12:00:00'), 'diaspora')).toBe(true); // 21 Nisan
+      expect(isPhoneRestrictedDay(new Date('2026-04-09T12:00:00'), 'diaspora')).toBe(true); // 22 Nisan
+      expect(isPhoneRestrictedDay(new Date('2026-04-09T12:00:00'), 'israel')).toBe(false);
+    });
+
+    it('does not flag Chol HaMoed Pesach (2026-04-05, 18 Nisan)', () => {
+      const ctx = getJewishCalendarContext(new Date('2026-04-05T12:00:00'));
+      expect(ctx.isPesach).toBe(true);
+      expect(isPhoneRestrictedDay(new Date('2026-04-05T12:00:00'))).toBe(false);
+    });
+
+    it('flags Shavuot everywhere, and the diaspora-only second day (2026-05-23)', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-05-22T12:00:00'), 'diaspora')).toBe(true);
+      expect(isPhoneRestrictedDay(new Date('2026-05-23T12:00:00'), 'diaspora')).toBe(true);
+      // 2026-05-23 also happens to be a Saturday, so it's independently
+      // Shabbat-restricted in Israel too that year — not proof the Yom Tov
+      // branch is region-gated here. See the Sukkot/Simchat Torah tests
+      // above for that (isolated on non-Saturday dates).
+      expect(isPhoneRestrictedDay(new Date('2026-05-23T12:00:00'), 'israel')).toBe(true);
+    });
+
+    it('does not flag a fast day (Tzom Gedaliah, 2024-10-06) — fasting doesn\'t restrict phone use', () => {
+      const ctx = getJewishCalendarContext(new Date('2024-10-06T12:00:00'));
+      expect(ctx.fastDay).toBe('tzom_gedaliah');
+      expect(isPhoneRestrictedDay(new Date('2024-10-06T12:00:00'))).toBe(false);
+    });
+
+    it('does not flag Chanukah — a joyous day with no melacha prohibition', () => {
+      const decDays = Array.from({ length: 31 }, (_, i) => new Date(2026, 11, i + 1, 12));
+      const chanukahWeekday = decDays.find((d) => getJewishCalendarContext(d).isChanukah && d.getDay() !== 6);
+      expect(chanukahWeekday).toBeDefined();
+      expect(isPhoneRestrictedDay(chanukahWeekday!)).toBe(false);
+    });
+
+    it('does not flag an ordinary weekday', () => {
+      expect(isPhoneRestrictedDay(new Date('2026-08-26T12:00:00'))).toBe(false); // Wednesday, no holiday
+    });
   });
 });
 

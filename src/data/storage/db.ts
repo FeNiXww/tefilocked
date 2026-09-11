@@ -1,7 +1,8 @@
 import * as SQLite from 'expo-sqlite';
+import { isPhoneRestrictedDay } from '../../content/hebrewCalendar';
 import type { Mood } from '../../content/types';
 import { MOOD_VALENCE } from '../moodValence';
-import { setPendingHanukkiahCompletionCelebration } from './mmkv';
+import { getUserRegion, isStreakProtectionEnabled, setPendingHanukkiahCompletionCelebration } from './mmkv';
 
 export type Platform = 'ios' | 'android';
 
@@ -141,10 +142,33 @@ function getRowsSince(sinceMs: number): Array<{ occurredAt: number; mood: Mood; 
     .map((r) => ({ occurredAt: r.occurred_at, mood: r.mood, connectionRating: r.connection_rating }));
 }
 
+// Safety bound on the backward walk in getCurrentStreak — protected days
+// (see below) don't stop the loop on their own, so this guarantees
+// termination regardless of how many consecutive protected days exist.
+const MAX_STREAK_LOOKBACK_DAYS = 3650;
+
+/**
+ * Whether `dayStr` ("YYYY-MM-DD", the same UTC calendar day recorded in
+ * `unlock_events.day`) is a day a missed prayer shouldn't count against the
+ * streak — Shabbat or a work-prohibited Yom Tov, when phone use is
+ * halachically restricted — unless the user has turned this protection off
+ * in Settings. Anchored at UTC noon so the local day-of-week/Hebrew-date
+ * lookup in `isPhoneRestrictedDay` lands on the intended calendar day for
+ * all but the most extreme (UTC+13/+14) device timezones.
+ */
+function isProtectedStreakDay(dayStr: string): boolean {
+  if (!isStreakProtectionEnabled()) return false;
+  const anchor = new Date(`${dayStr}T12:00:00.000Z`);
+  const diasporaOrIsrael = getUserRegion() === 'israel' ? 'israel' : 'diaspora';
+  return isPhoneRestrictedDay(anchor, diasporaOrIsrael);
+}
+
 /**
  * Consecutive-day streak of at least one unlock event, counting back from
- * today. A gap of a full day with zero events breaks the streak. If there's
- * no event yet today, the streak still counts as "alive" through yesterday.
+ * today. A gap of a full day with zero events breaks the streak, unless that
+ * day is Shabbat or a Yom Tov (see isProtectedStreakDay) — those are skipped
+ * over rather than counted or treated as a break. If there's no event yet
+ * today, the streak still counts as "alive" through yesterday.
  */
 export function getCurrentStreak(referenceDate: Date = new Date()): number {
   const activeDays = new Set(getDistinctDays());
@@ -155,8 +179,13 @@ export function getCurrentStreak(referenceDate: Date = new Date()): number {
   if (!activeDays.has(toDayString(cursor))) {
     cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
-  while (activeDays.has(toDayString(cursor))) {
-    streak += 1;
+  for (let i = 0; i < MAX_STREAK_LOOKBACK_DAYS; i++) {
+    const dayStr = toDayString(cursor);
+    if (activeDays.has(dayStr)) {
+      streak += 1;
+    } else if (!isProtectedStreakDay(dayStr)) {
+      break;
+    }
     cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
   return streak;

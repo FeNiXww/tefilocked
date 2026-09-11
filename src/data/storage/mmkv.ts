@@ -60,6 +60,7 @@ export const StorageKeys = {
   userRegion: 'preferences.region',
   themeMode: 'preferences.themeMode',
   paywallExitOfferSeen: 'paywall.exitOfferSeen',
+  streakProtectionEnabled: 'streak.protectShabbatHolidays',
 } as const;
 
 export type StoredGender = 'man' | 'woman';
@@ -305,4 +306,18 @@ export function getUserRegion(): UserRegion {
 
 export function setUserRegion(region: UserRegion): void {
   storage.set(StorageKeys.userRegion, region);
+}
+
+/**
+ * Defaults to `true` — a missed prayer on Shabbat/Yom Tov (when phone use is
+ * halachically restricted) shouldn't read as a broken streak, so this
+ * protection is on unless the user explicitly turns it off in Settings. See
+ * `getCurrentStreak` in db.ts, the only place that reads this.
+ */
+export function isStreakProtectionEnabled(): boolean {
+  return storage.getBoolean(StorageKeys.streakProtectionEnabled) ?? true;
+}
+
+export function setStreakProtectionEnabled(enabled: boolean): void {
+  storage.set(StorageKeys.streakProtectionEnabled, enabled);
 }

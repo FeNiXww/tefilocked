@@ -29,6 +29,8 @@ const POST_ONBOARDING_GRACE_MINUTES = 24 * 60;
 
 interface OnboardingFlowProps {
   onComplete: () => void;
+  /** Dev-only escape hatch (see the __DEV__-gated button below) that hands off straight to Home, skipping the paywall entirely. */
+  onDevSkipPaywall?: () => void;
 }
 
 /**
@@ -87,7 +89,7 @@ function LogoIntro({ onFinish }: { onFinish: () => void }) {
 }
 
 /** Linear, data-driven onboarding: LogoIntro, then every step in ONBOARDING_STEPS in order, sharing one persisted answers object. */
-export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
+export function OnboardingFlow({ onComplete, onDevSkipPaywall }: OnboardingFlowProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const [showIntro, setShowIntro] = useState(true);
@@ -146,6 +148,14 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     setStepIndex((index) => Math.max(index - 1, 0));
   };
 
+  // Dev-only escape hatch, same pattern as Paywall's own DEV button (see
+  // that screen's devResetButton) — marks onboarding done and grants test
+  // access so App.tsx mounts MainTabs directly instead of the Paywall.
+  const handleDevSkipPaywall = () => {
+    setOnboardingComplete(true);
+    onDevSkipPaywall?.();
+  };
+
   // OnboardingFlow renders outside NavigationContainer (see App.tsx), so
   // Android's hardware back button has nothing to fall through to by
   // default except exiting the app — step back through the flow instead,
@@ -176,6 +186,21 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           progress: { current: displayIndex + 1, total },
         })}
       </Animated.View>
+
+      {/* Dev-only: lets us jump straight to Home from the final onboarding
+          page without buying a subscription — stripped from release builds
+          by __DEV__, same mechanism as Paywall's own dev reset button. */}
+      {__DEV__ && displayIndex === total - 1 && (
+        <Pressable
+          style={styles.devSkipButton}
+          onPress={handleDevSkipPaywall}
+          hitSlop={12}
+          accessibilityRole="button"
+          accessibilityLabel="דילוג לעמוד הבית, בלי מסך תשלום (כלי פיתוח)"
+        >
+          <Text style={styles.devSkipText}>DEV ⏭</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -205,6 +230,23 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     fontSize: 18,
     letterSpacing: 3,
     color: colors.primary,
+  },
+  devSkipButton: {
+    position: 'absolute',
+    top: spacing.lg,
+    right: spacing.lg,
+    zIndex: 10,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: colors.danger,
+  },
+  devSkipText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: colors.danger,
   },
   });
 }

@@ -9,12 +9,22 @@ import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { OnboardingFlow } from './src/screens/Onboarding';
 import { Paywall } from './src/screens/Paywall';
 import { LockContentFlow } from './src/screens/LockContentFlow';
-import { getPendingLockedApp, getPreferredContentTypes, isOnboardingComplete, setOnboardingComplete } from './src/data/storage/mmkv';
+import { PhoneRestrictedScreen, type PhoneRestrictedGreeting } from './src/screens/LockContentFlow/PhoneRestrictedScreen';
+import { getJewishCalendarContext, isPhoneRestrictedDay } from './src/content/hebrewCalendar';
+import {
+  clearPendingLockedApp,
+  getPendingLockedApp,
+  getPreferredContentTypes,
+  getUserRegion,
+  isOnboardingComplete,
+  isStreakProtectionEnabled,
+  setOnboardingComplete,
+} from './src/data/storage/mmkv';
 import { DEV_RESET_ONBOARDING_EVENT, reloadApp } from './src/dev/devReset';
 import { initDatabase } from './src/data/storage/db';
 import { configureStreakNotificationHandler, useStreakNotificationTrigger } from './src/notifications/streakReminders';
 import { configureRevenueCat } from './src/subscriptions/revenueCatConfig';
-import { hasAppAccess, resetSubscriptionStateForTesting } from './src/subscriptions/subscriptionState';
+import { grantAppAccessForTesting, hasAppAccess, resetSubscriptionStateForTesting } from './src/subscriptions/subscriptionState';
 import { cancelTrialEndingReminder } from './src/subscriptions/trialReminder';
 import { usePendingLockTrigger, type PendingLockTrigger } from './src/native/appLocking/usePendingLockTrigger';
 import { useWidgetDeepLink } from './src/widgets/useWidgetDeepLink';
@@ -138,6 +148,18 @@ function AppContent() {
   );
   usePendingLockTrigger(handleLockTrigger);
 
+  // The locked-app/widget/notification trigger fired, but streak protection
+  // means the user shouldn't be praying through the phone right now either
+  // (see the isPhoneRestrictedDay check below) — dismiss straight back to
+  // Tefillok's own Home without ever unlocking the target app or recording
+  // an unlock event. No Android handoff wait: unlike handleFlowUnlocked,
+  // nothing was ever launched, so there's nothing to wait to leave foreground.
+  const handleRestrictedDismiss = useCallback(() => {
+    clearPendingLockedApp();
+    lockTriggerGenerationRef.current += 1;
+    setLockTrigger(null);
+  }, []);
+
   const handleFlowUnlocked = useCallback(() => {
     if (Platform.OS === 'android' && lockTrigger?.lockedAppPackage) {
       setAwaitingAndroidHandoff(true);
@@ -209,11 +231,29 @@ function AppContent() {
     }, [onboarded, hasAccess])
   );
 
+  // Shabbat/Yom Tov + streak protection on: phone use is halachically
+  // restricted, so any trigger that would otherwise open the prayer flow
+  // (locked-app tap, widget deep link, streak notification) shows the
+  // phone-restricted screen instead — see PhoneRestrictedScreen.
+  const phoneRestrictedRegion = getUserRegion() === 'israel' ? 'israel' : 'diaspora';
+  const phoneRestrictedNow =
+    Boolean(lockTrigger) &&
+    !awaitingAndroidHandoff &&
+    isStreakProtectionEnabled() &&
+    isPhoneRestrictedDay(new Date(), phoneRestrictedRegion);
+  let phoneRestrictedGreeting: PhoneRestrictedGreeting | null = null;
+  if (phoneRestrictedNow) {
+    const ctx = getJewishCalendarContext(new Date(), phoneRestrictedRegion);
+    phoneRestrictedGreeting = ctx.isYomKippur ? 'yomKippur' : ctx.isShabbat ? 'shabbat' : 'yomTov';
+  }
+
   return (
     <ErrorBoundary>
       <SafeAreaProvider>
         {isDevResetting || !fontsLoaded ? (
           <View style={{ flex: 1, backgroundColor: colors.background }} />
+        ) : phoneRestrictedNow && phoneRestrictedGreeting ? (
+          <PhoneRestrictedScreen greeting={phoneRestrictedGreeting} onDismiss={handleRestrictedDismiss} />
         ) : lockTrigger && !awaitingAndroidHandoff ? (
           <LockContentFlow
             preferredContentTypes={getPreferredContentTypes()}
@@ -245,7 +285,14 @@ function AppContent() {
         ) : onboarded ? (
           <Paywall onTrialStarted={() => setHasAccess(true)} />
         ) : (
-          <OnboardingFlow onComplete={() => setOnboarded(true)} />
+          <OnboardingFlow
+            onComplete={() => setOnboarded(true)}
+            onDevSkipPaywall={() => {
+              grantAppAccessForTesting();
+              setHasAccess(true);
+              setOnboarded(true);
+            }}
+          />
         )}
         <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       </SafeAreaProvider>

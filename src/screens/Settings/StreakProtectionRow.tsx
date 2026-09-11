@@ -25,7 +25,13 @@ export function StreakProtectionRow() {
           setEnabled(next);
           setStreakProtectionEnabled(next);
         }}
-        trackColor={{ true: colors.primary }}
+        trackColor={{ false: colors.border, true: colors.primary }}
+        // Android's default Switch thumb ignores trackColor and falls back to
+        // the OS's stock Material accent (a green not otherwise used
+        // anywhere in this app) unless thumbColor is set explicitly too — a
+        // fixed white thumb matches the app's other controls and reads
+        // clearly against either track color in both themes.
+        thumbColor="#FFFFFF"
       />
     </View>
   );

@@ -5,7 +5,6 @@ import type { ContentItem, ContentKind } from '../../content/types';
 import { resolveVerses } from '../../content/calendarVariants';
 import { buildEligibilityContext, evaluateLiturgicalEligibility, resolveDiasporaOrIsrael } from '../../content/liturgicalEligibility';
 import { getCachedZmanimLocation, hasZmanimLocationBeenDenied, requestZmanimLocation } from '../../native/location';
-import { getUserRegion } from '../../data/storage/mmkv';
 import { getDevForcedNow } from '../../dev/devTimeOverride';
 import { PrimaryButton } from '../../components/PrimaryButton';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
@@ -57,7 +56,7 @@ export function ContentDisplay({ content, onContinue, continuing, continueLabel 
     () =>
       evaluateLiturgicalEligibility(
         content,
-        buildEligibilityContext(getDevForcedNow(), getCachedZmanimLocation(), resolveDiasporaOrIsrael(getUserRegion()))
+        buildEligibilityContext(getDevForcedNow(), getCachedZmanimLocation(), resolveDiasporaOrIsrael(getCachedZmanimLocation()))
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [content, locationVersion]

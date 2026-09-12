@@ -81,6 +81,7 @@ export const WORLD = {
   appSelection: 0.3,
   permissionSetup: 0.4,
   notificationPrimer: 0.45,
+  locationPrimer: 0.45,
   widgetPrimer: 0.45,
   valueBridgeCompare: 0.35,
   valueBridgeThesis: 0.7,

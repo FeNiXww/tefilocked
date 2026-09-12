@@ -266,14 +266,23 @@ partial Sephardi omission — an editorial/sensitivity question, explicitly
 self-flagged as such in this item's own `rabbinicReviewNotes`.
 
 ### `prayer-birkat-kohanim` (ברכת כהנים)
-The underlying halacha is settled and well-sourced (Halachipedia confirms
-text-reading/parent-blessing-a-child is categorically different from
-duchening, which needs a minyan and a Kohen). The open question is purely
+**Updated — moved to `EXCLUDED_FROM_POOL`, on product judgment rather than a
+reversed halachic finding.** The underlying halacha is still settled and
+well-sourced exactly as before (Halachipedia confirms text-reading/parent-
+blessing-a-child is categorically different from duchening, which needs a
+minyan and a Kohen) — the text itself remains completely fine, no bracha-
+levatala mechanism applies (it's Biblical verses, not a ברכה formula). What
+changed: the app's owner flagged that its two known legitimate uses
+(duchening; a parent blessing a child) both have a clear blesser/blessed
+relationship, which the app's generic "here's your prayer for the moment"
+framing to a solitary reader doesn't have — no precedent covers *that*
+specific use. This is a real, distinct point from the original UI-clarity
+question below, not just a restatement of it.
+
+Original (still true, now moot while excluded) open question: purely
 whether the app's on-screen wording is unambiguous enough that a user could
 never mistake reading this text for having received nesiat kapayim — a
-UI-clarity question. Already framed to distinguish the two; a rabbi's read
-on the exact copy would still be useful before wide release, but this is
-not an unresolved halachic point.
+UI-clarity question, not an unresolved halachic point on its own.
 
 ### `tehillim-23` (תהלים כ״ג)
 Two real, documented associations (Seudah Shlishit singing; a more

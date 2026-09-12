@@ -629,7 +629,19 @@ reading the verses as text (what this app does) is fundamentally different
 from a Kohen performing duchening. Halachipedia: the only prohibition is
 reciting the blessing *with intent to fulfill the mitzvah and imitate the
 Kohen's act* — reading the text, or a parent blessing a child, isn't subject
-to duchening's rules at all.
+to duchening's rules at all. **This factual conclusion still stands — it's
+not what changed.**
+
+**Update — moved to `EXCLUDED_FROM_POOL` on product judgment:** both
+recognized uses above (duchening; parent blessing a child) have a clear
+blesser/blessed relationship. The app's generic single-reader framing —
+handing the second-person verses ("יְבָרֶכְךָ ה׳...") to a solitary user as
+"their prayer for the moment" — matches neither, and no source or custom
+covers that specific use. This isn't a reversal of the halachic finding
+above (the text is still completely fine to read); it's a narrower product
+decision about *this one framing* of it, flagged directly by the app's
+owner rather than found in this pass's research. See
+`liturgicalEligibility.ts`'s `EXCLUDED_FROM_POOL` comment.
 
 **Standing/direction for the app's use:** not applicable — those apply to a
 Kohen performing duchening (standing, hands raised, facing the congregation

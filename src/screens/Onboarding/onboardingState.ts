@@ -15,6 +15,8 @@ export interface OnboardingAnswers {
   commitmentConfirmed: boolean;
   /** Whether the notification-primer screen's OS prompt was granted — informational only, never gates anything. */
   notificationsEnabled: boolean | null;
+  /** Whether the location-primer screen's OS prompt was granted — informational only, never gates anything. */
+  locationEnabled: boolean | null;
 }
 
 export const INITIAL_ONBOARDING_ANSWERS: OnboardingAnswers = {
@@ -25,6 +27,7 @@ export const INITIAL_ONBOARDING_ANSWERS: OnboardingAnswers = {
   commitment: null,
   commitmentConfirmed: false,
   notificationsEnabled: null,
+  locationEnabled: null,
 };
 
 /**

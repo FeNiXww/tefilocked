@@ -13,7 +13,7 @@ see each item's `researchNotes` for exactly which excluded item's mood/theme it 
 `liturgical-context-research.md`'s backfill section for the sourcing/fact-check method). 22 need
 rabbinic review.
 1 have a real halachic zman.
-8 excluded from random selection (`liturgicalEligibility.ts`'s `EXCLUDED_FROM_POOL`: `prayer-shehecheyanu`, `prayer-tefilat-haderech`, `prayer-refaeinu`, `prayer-sim-shalom`, `prayer-hashkiveinu`, `prayer-asher-yatzar`, `prayer-baruch-sheamar`, `tehillim-100` — this count was previously stale at 2, reflecting only the section-8 blessing-safety audit below, not the full exclusion set).
+9 excluded from random selection (`liturgicalEligibility.ts`'s `EXCLUDED_FROM_POOL`: `prayer-shehecheyanu`, `prayer-tefilat-haderech`, `prayer-refaeinu`, `prayer-sim-shalom`, `prayer-hashkiveinu`, `prayer-asher-yatzar`, `prayer-baruch-sheamar`, `prayer-birkat-kohanim`, `tehillim-100` — this count was previously stale at 2, reflecting only the section-8 blessing-safety audit below, not the full exclusion set. `prayer-birkat-kohanim` is the one exclusion in this list that isn't a bracha-levatala finding — see its row above for the actual (product-judgment) reason).
 22 have at least one documented implementation assumption.
 
 ## Blessing-safety audit (section 8) — every item classified `blessing` or `occasion_triggered`
@@ -24,7 +24,7 @@ The test applied: "can this safely be presented to a random user at an arbitrary
 |---|---|---|
 | `prayer-asher-yatzar` | אשר יצר | **עודכן — מוחרג.** הפסק הקודם כאן ("בטוח... זוהי חובה יומיומית חוזרת, לא אירוע נדיר") היה טעות הנמקה: "סוג האירוע חוזר הרבה" ≠ "מותר לומר בלי קשר לאירוע בפועל". זוהי ברכה מלאה עם שם ומלכות שתוקנה להיאמר מיד לאחר עשיית צרכים בפועל — האפליקציה לא יכולה לאמת שזה קרה. אותו סיכון בדיוק כמו שהחיינו, רק עם טריגר יומיומי חוזר במקום אירוע נדיר. ראו `EXCLUDED_FROM_POOL`. |
 | `prayer-baruch-sheamar` | ברוך שאמר | **חדש בטבלה זו — מוחרג.** ברכה מלאה עם שם ומלכות (פעמיים) שתוקנה כפתיחה ספציפית לפסוקי דזמרה; לא נמצא תיעוד לאמירתה מנותקת מההקשר הזה. אותו סיכון כמו שהחיינו/תפילת הדרך/אשר יצר, עם טריגר של פתיחת רצף תפילה קבוע. ראו `EXCLUDED_FROM_POOL`. |
-| `prayer-birkat-kohanim` | ברכת כהנים | בטוח — קריאת פסוקים כטקסט, לא נוסח ברכה אישית עם כוונת קיום מצווה (אין בה "ברוך אתה ה' אלקינו מלך העולם" כלל); ההבחנה מנשיאת כפיים בפועל כבר מוצגת בכיתוב |
+| `prayer-birkat-kohanim` | ברכת כהנים | **עודכן — מוחרג (שיקול מוצר, לא היפוך הלכתי).** הטקסט עצמו עדיין בטוח — קריאת פסוקים, לא נוסח ברכה עם שם ומלכות. אך אין תקדים לקורא בודד המקבל את נוסח הברכה (לשון נוכח) על עצמו כ"תפילת הרגע", מנותק מיחס מברך/מתברך (בניגוד לנשיאת כפיים או ברכת הורים לילד). ראו EXCLUDED_FROM_POOL. |
 | `prayer-shehecheyanu` | שהחיינו | כן — מוחרג |
 | `prayer-tefilat-haderech` | תפילת הדרך | כן — מוחרג |
 
@@ -71,7 +71,7 @@ The test applied: "can this safely be presented to a random user at an arbitrary
 | `prayer-asher-yatzar` | אשר יצר | blessing | **מוחרג** — ברכה עם שם ומלכות שתוקנה לאירוע מפעיל ספציפי (עשיית צרכים) שלא ניתן לאימות; ראו EXCLUDED_FROM_POOL | לא | customary | לא רלוונטי | לא רלוונטי | לא | לא | לא | לא | לא זוהו | high | **כן** |
 | `prayer-ashrei` | אשרי | psalm | מומלץ | לא | מחלוקת | לא רלוונטי | לא רלוונטי | לא | לא | לא | כן | רמת ודאות עמידה נמוכה מוצגת כטקסט קבוע (לא כשאלה פתוחה בממשק הרגיל) | medium | כן |
 | `prayer-baruch-sheamar` | ברוך שאמר | prayer_component | **מוחרג** — ברכה עם שם ומלכות (פעמיים) שתוקנה כפתיחה ספציפית לפסוקי דזמרה; ראו EXCLUDED_FROM_POOL | לא | מנהג | לא רלוונטי | לא רלוונטי | כן (קטע/רכיב, לא תפילה שלמה) | כן | לא | לא | לא זוהו | medium | כן |
-| `prayer-birkat-kohanim` | ברכת כהנים | blessing | תקף (לא לכתחילה) | לא | לא רלוונטי | לא רלוונטי | לא רלוונטי | לא | כן | כן | לא | מציג טקסט/נוהג של נוסח אחד בלבד | high | כן |
+| `prayer-birkat-kohanim` | ברכת כהנים | blessing | **מוחרג** — קורא בודד ללא יחס מברך/מתברך; ראו EXCLUDED_FROM_POOL (שיקול מוצר, לא הלכה) | לא | לא רלוונטי | לא רלוונטי | לא רלוונטי | לא | כן | כן | לא | מציג טקסט/נוהג של נוסח אחד בלבד | high | כן |
 | `prayer-ein-keloheinu` | אין כאלהינו | piyut | מומלץ | לא | לא רלוונטי | לא רלוונטי | לא רלוונטי | לא | כן | כן | לא | מציג טקסט/נוהג של נוסח אחד בלבד | high | כן |
 | `prayer-elokai-neshama` | אלהי נשמה | prayer_component | נהוג — מנהג יומיומי בלתי חולק של אמירה ביחיד מיד עם ההתעוררות (בשונה מהשכיבנו) | לא | customary | לא רלוונטי | לא רלוונטי | כן (קטע/רכיב, לא תפילה שלמה) | לא | לא | כן | לא זוהו | medium | כן |
 | `prayer-eshet-chayil` | אשת חיל | biblical_passage | תקף (לא לכתחילה) | לא | לא רלוונטי | לא רלוונטי | לא רלוונטי | לא | כן | לא | לא | לא זוהו | medium | כן |

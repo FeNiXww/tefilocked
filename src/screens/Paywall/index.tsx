@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { BackHandler, DeviceEventEmitter, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { DEV_RESET_ONBOARDING_EVENT } from '../../dev/devReset';
 import { haptics } from '../../haptics';
 import { hasSeenPaywallExitOffer, markPaywallExitOfferSeen } from '../../data/storage/mmkv';
 import { billingSummary, type SubscriptionPlan } from '../../subscriptions/pricing';
 import { getOfferings, purchasePackage, purchasePlanForExitOffer } from '../../subscriptions/revenueCatConfig';
-import { startTrial } from '../../subscriptions/subscriptionState';
+import { grantAppAccessForTesting, startTrial } from '../../subscriptions/subscriptionState';
 import { scheduleTrialEndingReminder } from '../../subscriptions/trialReminder';
 import { spacing, useTheme, type ThemeColors } from '../../theme';
 import { OnboardingAtmosphere } from '../Onboarding/motion/OnboardingAtmosphere';
@@ -156,18 +155,22 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
         </Pressable>
       )}
 
-      {/* Dev-only escape hatch for re-running onboarding without reinstalling
-          — stripped from release builds by __DEV__, same mechanism as the
-          Settings screen's "reset onboarding" row (see devReset.ts). */}
+      {/* Dev-only escape hatch straight to Home, skipping the purchase flow
+          entirely — stripped from release builds by __DEV__, same mechanism
+          as Onboarding's own dev skip button (see that screen's
+          handleDevSkipPaywall). */}
       {__DEV__ && (
         <Pressable
-          style={styles.devResetButton}
-          onPress={() => DeviceEventEmitter.emit(DEV_RESET_ONBOARDING_EVENT)}
+          style={styles.devSkipButton}
+          onPress={() => {
+            grantAppAccessForTesting();
+            onTrialStarted();
+          }}
           hitSlop={12}
           accessibilityRole="button"
-          accessibilityLabel="איפוס אונבורדינג (כלי פיתוח)"
+          accessibilityLabel="דילוג לעמוד הבית, בלי מסך תשלום (כלי פיתוח)"
         >
-          <Text style={styles.devResetText}>DEV ↺</Text>
+          <Text style={styles.devSkipText}>DEV ⏭</Text>
         </Pressable>
       )}
 
@@ -251,9 +254,9 @@ function createStyles(colors: ThemeColors) {
     fontSize: 24,
     color: colors.textPrimary,
   },
-  devResetButton: {
+  devSkipButton: {
     position: 'absolute',
-    top: spacing.lg,
+    bottom: spacing.lg,
     right: spacing.lg,
     zIndex: 10,
     paddingHorizontal: spacing.sm,
@@ -263,7 +266,7 @@ function createStyles(colors: ThemeColors) {
     borderStyle: 'dashed',
     borderColor: colors.danger,
   },
-  devResetText: {
+  devSkipText: {
     fontSize: 11,
     fontWeight: '700',
     color: colors.danger,

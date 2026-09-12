@@ -9,6 +9,7 @@ import { CommitmentStep } from './steps/CommitmentStep';
 import { CoreLoopDemo } from './steps/CoreLoopDemo';
 import { FirstWeekStep } from './steps/FirstWeekStep';
 import { IntroPager } from './steps/IntroPager';
+import { LocationPrimer } from './steps/LocationPrimer';
 import { NameInput } from './steps/NameInput';
 import { NotificationPrimer } from './steps/NotificationPrimer';
 import { PermissionSetup } from './steps/PermissionSetup';
@@ -63,5 +64,9 @@ export const ONBOARDING_STEPS: OnboardingStepDef[] = [
   { key: 'planReady', render: (p) => <PlanReadyStep {...p} /> },
   { key: 'firstWeek', render: (p) => <FirstWeekStep {...p} /> },
   { key: 'notificationPrimer', render: (p) => <NotificationPrimer {...p} /> },
+  // Real Shabbat/Yom Tov timing (see shabbatWindow.ts) and any real-zman
+  // content (Shema — see liturgicalEligibility.ts) both need this, so it's
+  // asked once, here, rather than repeatedly later — see LocationPrimer.
+  { key: 'locationPrimer', render: (p) => <LocationPrimer {...p} /> },
   { key: 'widgetPrimer', render: (p) => <WidgetPrimer {...p} /> },
 ];

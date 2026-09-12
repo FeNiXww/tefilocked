@@ -24,11 +24,12 @@ interface PhoneRestrictedScreenProps {
 /**
  * Shown instead of the normal prayer flow when a locked app is opened on
  * Shabbat/Yom Tov with streak protection enabled (see App.tsx, which decides
- * this using `isPhoneRestrictedDay` + `isStreakProtectionEnabled` before ever
- * mounting `LockContentFlow`) — asking for a prayer through the phone would
- * defeat the point of a day phone use is halachically restricted on. Never
- * records an unlock event and never unlocks the target app; `onDismiss` just
- * returns to Tefillok's own Home screen, leaving the locked app locked.
+ * this using `getEffectiveRestrictedDate`/`isStreakProtectionEnabled` before
+ * ever mounting `LockContentFlow`) — asking for a prayer through the phone
+ * would defeat the point of a day phone use is halachically restricted on.
+ * Never records an unlock event and never unlocks the target app;
+ * `onDismiss` just returns to Tefillok's own Home screen, leaving the locked
+ * app locked.
  */
 export function PhoneRestrictedScreen({ greeting, onDismiss }: PhoneRestrictedScreenProps) {
   const { colors, typography } = useTheme();

@@ -57,7 +57,6 @@ export const StorageKeys = {
   zmanimLocation: 'zmanim.location',
   zmanimLocationDenied: 'zmanim.locationDenied',
   userNusach: 'preferences.nusach',
-  userRegion: 'preferences.region',
   themeMode: 'preferences.themeMode',
   paywallExitOfferSeen: 'paywall.exitOfferSeen',
   streakProtectionEnabled: 'streak.protectShabbatHolidays',
@@ -287,26 +286,6 @@ export function setUserNusach(nusach: UserNusach): void {
   storage.set(StorageKeys.userNusach, nusach);
 }
 
-export type UserRegion = 'israel' | 'diaspora' | 'unknown';
-
-/**
- * Defaults to `'unknown'` — never inferred from GPS or silently assumed.
- * The eligibility engine's calendar math needs *some* value to resolve
- * Yom Tov Sheni Shel Galuyot-dependent dates (the extra diaspora day on
- * Sukkot/Pesach/Shavuot/Simchat Torah) even when this is `'unknown'` — see
- * `liturgicalEligibility.ts`'s `buildEligibilityContext`, which documents
- * exactly what it falls back to and why that specific fallback is the safe
- * direction, not a guess presented as fact.
- */
-export function getUserRegion(): UserRegion {
-  const stored = storage.getString(StorageKeys.userRegion);
-  if (stored === 'israel' || stored === 'diaspora') return stored;
-  return 'unknown';
-}
-
-export function setUserRegion(region: UserRegion): void {
-  storage.set(StorageKeys.userRegion, region);
-}
 
 /**
  * Defaults to `true` — a missed prayer on Shabbat/Yom Tov (when phone use is

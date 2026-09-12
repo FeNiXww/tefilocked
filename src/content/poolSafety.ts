@@ -7,7 +7,6 @@ import {
   type EligibilityLocation,
 } from './liturgicalEligibility';
 import type { ContentItem } from './types';
-import type { UserRegion } from '../data/storage/mmkv';
 
 /**
  * The random-pool gate — now a thin wrapper over the central Liturgical
@@ -31,21 +30,19 @@ export function isEligibleContent(item: ContentItem, context: EligibilityContext
 
 /**
  * Single-item convenience wrapper that builds its own context. `now`/
- * `location`/`region` default to "right now, no location, unknown region" so
- * existing callers don't need to change — only
- * `TIME_NOT_YET`/`TIME_EXPIRED`/`CALENDAR_RESTRICTED` actually need live
- * date/location/region to matter, and those only ever narrow the pool when
- * the engine has real data to be sure (see `liturgicalEligibility.ts`).
+ * `location` default to "right now, no location" so existing callers don't
+ * need to change. Region is no longer a separate input — it's derived from
+ * the same `location` via `resolveDiasporaOrIsrael` (see that function's
+ * doc comment for what "no location" resolves to).
  *
  * Prefer `isEligibleContent` with a shared context when checking more than
- * one item against the same `now`/`location`/`region`.
+ * one item against the same `now`/`location`.
  */
 export function isSafeForRandomPool(
   item: ContentItem,
   now: Date = new Date(),
-  location: EligibilityLocation | null = null,
-  region: UserRegion = 'unknown'
+  location: EligibilityLocation | null = null
 ): boolean {
-  const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+  const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(location));
   return isEligibleContent(item, context);
 }

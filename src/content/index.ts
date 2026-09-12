@@ -9,7 +9,6 @@ import { getCurrentDayPart } from './dayPart';
 import { isEligibleContent } from './poolSafety';
 import { buildEligibilityContext, resolveDiasporaOrIsrael } from './liturgicalEligibility';
 import { getCachedZmanimLocation } from '../native/location';
-import { getUserRegion } from '../data/storage/mmkv';
 import type { ContentItem, ContentType, DayPart, Mood } from './types';
 
 // "personal_prayers" has no bundled pack — it's user-authored content (the
@@ -97,12 +96,11 @@ function isTimeEligible(item: ContentItem, dayPart: DayPart): boolean {
  */
 function filterEligible(pool: ContentItem[], now: Date): ContentItem[] {
   const location = getCachedZmanimLocation();
-  const region = getUserRegion();
   // Built once per call and reused across every item in `pool` — this used
   // to be rebuilt (Hebrew-date conversion + up to 2 full zmanim computations)
   // inside the filter callback for every single item, which is what made
   // mood/duration selection feel slow (see buildEligibilityContext's doc).
-  const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+  const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(location));
   return pool.filter((item) => isEligibleContent(item, context));
 }
 

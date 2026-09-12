@@ -2,25 +2,36 @@ import { getJewishCalendarContext, type DiasporaOrIsrael, type JewishCalendarCon
 import { computeZmanim, getZmanValue, type ZmanimResult } from './zmanim';
 import { getPrayerGuidance, type PrayerGuidanceDetail } from './liturgicalGuidance';
 import type { ContentItem, Certainty } from './types';
-import type { UserRegion } from '../data/storage/mmkv';
+
+// Approximate Israel bounding box (generous — includes the Golan and Eilat
+// with margin) used only to turn a granted GPS fix into `DiasporaOrIsrael`.
+// A rough rectangle is deliberately good enough here: the only thing this
+// distinction changes is a handful of Yom Tov Sheni Shel Galuyot dates, not
+// anything where a few km of border precision matters.
+const ISRAEL_BOUNDS = { minLat: 29.0, maxLat: 33.5, minLon: 34.0, maxLon: 35.95 };
+
+function isLocationInIsrael(location: EligibilityLocation): boolean {
+  return (
+    location.latitude >= ISRAEL_BOUNDS.minLat &&
+    location.latitude <= ISRAEL_BOUNDS.maxLat &&
+    location.longitude >= ISRAEL_BOUNDS.minLon &&
+    location.longitude <= ISRAEL_BOUNDS.maxLon
+  );
+}
 
 /**
- * Turns the user's explicit (or unset) region preference into the
- * `DiasporaOrIsrael` value `getJewishCalendarContext` needs. `'unknown'`
- * (never set, the default — see `data/storage/mmkv.ts`'s `getUserRegion`)
- * resolves to `'diaspora'` here, but this is a *documented conservative
- * choice*, not a guess presented as fact: diaspora Yom Tov dates are a
- * strict superset of Israel's (every Israel Yom Tov day is also observed in
- * the diaspora, which adds a handful of extra days) — so for this app's
- * only actual use of the distinction (deciding whether a calendar-restricted
- * item like Psalm 100 should be held back today), treating an unknown
- * region as diaspora only ever makes the app show *less* on an ambiguous
- * day, never more. That's the safe direction when genuinely uncertain — see
- * the core principle in this file's own module doc and
- * src/content/research/israel-diaspora-region.md.
+ * Turns the user's location (or lack of one) into the `DiasporaOrIsrael`
+ * value `getJewishCalendarContext` needs. A granted location is classified
+ * by a rough Israel bounding box; no location (never asked during
+ * onboarding, or explicitly declined) resolves to `'israel'` — a deliberate
+ * product decision, not a guess: onboarding's location screen is the one
+ * real ask, and someone who has none is assumed to be a local user rather
+ * than defaulted to the more conservative diaspora reading this function
+ * used before location was a first-class part of onboarding.
  */
-export function resolveDiasporaOrIsrael(region: UserRegion): DiasporaOrIsrael {
-  return region === 'israel' ? 'israel' : 'diaspora';
+export function resolveDiasporaOrIsrael(location: EligibilityLocation | null): DiasporaOrIsrael {
+  if (!location) return 'israel';
+  return isLocationInIsrael(location) ? 'israel' : 'diaspora';
 }
 
 /**
@@ -47,6 +58,7 @@ export type EligibilityStatus =
   | 'NUSACH_DEPENDENT'
   | 'REQUIRES_CONTEXT'
   | 'NOT_VERIFIED'
+  | 'LOCATION_REQUIRED'
   | 'EXCLUDED_FROM_RANDOM_POOL';
 
 export interface EligibilityResult {
@@ -87,10 +99,19 @@ export interface EligibilityResult {
  *   text, piyutim, or declarations *without* a ברוך-formula (the large
  *   majority of this library) never carry this risk at all, no matter how
  *   "used to be part of a bigger service" they are — see `prayer-elokai-neshama`
- *   and `prayer-birkat-kohanim` for two items that stay eligible precisely
- *   because they don't have this problem (the former's ברכה, unusually, has
- *   an always-true occasion — see its `standaloneGuidance`; the latter isn't
- *   a ברכה formula at all, just Biblical verses).
+ *   for an item that stays eligible precisely because it doesn't have this
+ *   problem (its ברכה, unusually, has an always-true occasion — see its
+ *   `standaloneGuidance`).
+ * - `prayer-birkat-kohanim`: a different concern than the bracha-levatala
+ *   family above — the text itself is just Biblical verses (Bamidbar
+ *   6:24-26), not a ברכה formula, so it was previously kept eligible on that
+ *   basis. But presenting it generically as "your prayer for the moment" to
+ *   a solitary user has no real precedent either: the verses are
+ *   second-person ("יְבָרֶכְךָ ה׳..."), and every actual use this text has —
+ *   duchening (a Kohen blessing the congregation) or a parent blessing a
+ *   child on Friday night — has a clear blesser/blessed relationship the
+ *   app's generic single-reader framing doesn't have. Excluded on product
+ *   judgment, not a reversed halachic finding about the text itself.
  * - `prayer-refaeinu`, `prayer-sim-shalom`, `prayer-hashkiveinu`: single
  *   fixed blessings lifted out of a fixed liturgical sequence (the Amidah for
  *   the first two; the Shema blessings of Maariv for Hashkiveinu) — the text
@@ -142,6 +163,7 @@ const EXCLUDED_FROM_POOL = new Set<string>([
   'prayer-hashkiveinu',
   'prayer-asher-yatzar',
   'prayer-baruch-sheamar',
+  'prayer-birkat-kohanim',
   'tehillim-100',
 ]);
 
@@ -229,6 +251,22 @@ export function evaluateLiturgicalEligibility(item: ContentItem, context: Eligib
   }
 
   if (lc.timeContext.hasRealHalachicZman) {
+    if (!context.zmanim) {
+      // No location granted — there is no honest way to tell whether this
+      // item's real halachic time window is even open right now, and
+      // showing it ungated would silently misrepresent that. Block it
+      // outright rather than falling through to AVAILABLE_WITH_CONTEXT (the
+      // previous behavior) — see onboarding's LocationPrimer, the one place
+      // this is actually asked.
+      return {
+        status: 'LOCATION_REQUIRED',
+        reason: 'התפילה הזו תלויה בזמן הלכתי אמיתי — צריך גישה למיקום כדי להציג אותה',
+        certainty: lc.standaloneLevel,
+        requirements: getPrayerGuidance(item),
+        warnings: lc.requiresRabbinicReview ? ['requires_rabbinic_review'] : [],
+        sources: lc.researchSources,
+      };
+    }
     const zman = getRelevantZmanBoundary(item, context);
     if (zman) {
       if (context.now < zman.start) {
@@ -252,10 +290,6 @@ export function evaluateLiturgicalEligibility(item: ContentItem, context: Eligib
         };
       }
     }
-    // hasRealHalachicZman but no zmanim context available (no location
-    // granted) — fall through to AVAILABLE_WITH_CONTEXT below rather than
-    // fabricating a time judgment. getPrayerGuidance already carries the
-    // honest "we don't compute this" note for this case.
   }
 
   if (lc.serviceRoleKind === 'prayer_component' || lc.serviceRoleKind === 'blessing') {
@@ -302,9 +336,16 @@ export function evaluateLiturgicalEligibility(item: ContentItem, context: Eligib
   };
 }
 
-/** True for statuses that mean "do not randomly hand this out right now" — the gate `poolSafety.ts` enforces. `TIME_NOT_YET`/`TIME_EXPIRED`/`CALENDAR_RESTRICTED` only actually block when the engine had real data to be sure; see `evaluateLiturgicalEligibility`'s fallback behavior when zmanim is unavailable. */
+/** True for statuses that mean "do not randomly hand this out right now" — the gate `poolSafety.ts` enforces. */
 export function isEligibleForRandomPool(status: EligibilityStatus): boolean {
-  return status !== 'EXCLUDED_FROM_RANDOM_POOL' && status !== 'NOT_VERIFIED' && status !== 'TIME_NOT_YET' && status !== 'TIME_EXPIRED' && status !== 'CALENDAR_RESTRICTED';
+  return (
+    status !== 'EXCLUDED_FROM_RANDOM_POOL' &&
+    status !== 'NOT_VERIFIED' &&
+    status !== 'TIME_NOT_YET' &&
+    status !== 'TIME_EXPIRED' &&
+    status !== 'CALENDAR_RESTRICTED' &&
+    status !== 'LOCATION_REQUIRED'
+  );
 }
 
 /**

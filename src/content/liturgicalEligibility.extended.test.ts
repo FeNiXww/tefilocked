@@ -28,17 +28,17 @@ const shema = (dailyPrayers as ContentItem[]).find((i) => i.id === 'prayer-shema
 const psalm100 = (tehillim as ContentItem[]).find((i) => i.id === 'tehillim-100')!;
 const shehecheyanu = (dailyPrayers as ContentItem[]).find((i) => i.id === 'prayer-shehecheyanu')!;
 
-describe('every one of the 77 items evaluates without throwing, under every location/region combination', () => {
-  const combos: { now: Date; location: typeof JERUSALEM | null; region: 'israel' | 'diaspora' | 'unknown' }[] = [
-    { now: new Date('2026-08-29T12:00:00'), location: null, region: 'unknown' },
-    { now: new Date('2026-08-29T12:00:00'), location: JERUSALEM, region: 'israel' },
-    { now: new Date('2026-09-13T03:00:00'), location: JERUSALEM, region: 'diaspora' }, // Rosh Hashanah night
-    { now: new Date('2026-09-21T14:00:00'), location: null, region: 'unknown' }, // Yom Kippur afternoon
+describe('every one of the 77 items evaluates without throwing, under every location combination', () => {
+  const combos: { now: Date; location: typeof JERUSALEM | null }[] = [
+    { now: new Date('2026-08-29T12:00:00'), location: null },
+    { now: new Date('2026-08-29T12:00:00'), location: JERUSALEM },
+    { now: new Date('2026-09-13T03:00:00'), location: JERUSALEM }, // Rosh Hashanah night
+    { now: new Date('2026-09-21T14:00:00'), location: null }, // Yom Kippur afternoon
   ];
 
   for (const combo of combos) {
-    it(`no crash at ${combo.now.toISOString()}, region=${combo.region}, location=${combo.location ? 'granted' : 'none'}`, () => {
-      const ctx = buildEligibilityContext(combo.now, combo.location, resolveDiasporaOrIsrael(combo.region));
+    it(`no crash at ${combo.now.toISOString()}, location=${combo.location ? 'granted' : 'none'}`, () => {
+      const ctx = buildEligibilityContext(combo.now, combo.location, resolveDiasporaOrIsrael(combo.location));
       for (const item of ALL_ITEMS) {
         expect(() => evaluateLiturgicalEligibility(item, ctx)).not.toThrow();
       }
@@ -56,6 +56,7 @@ describe('every one of the 77 items evaluates without throwing, under every loca
       'NUSACH_DEPENDENT',
       'REQUIRES_CONTEXT',
       'NOT_VERIFIED',
+      'LOCATION_REQUIRED',
       'EXCLUDED_FROM_RANDOM_POOL',
     ];
     for (const item of ALL_ITEMS) {
@@ -74,8 +75,8 @@ describe('random-pool safety at scale — negative tests, section 11', () => {
   it('NEGATIVE: Shehecheyanu must NOT enter the random devotional pool, across a full year of dates', () => {
     for (let month = 0; month < 12; month++) {
       const date = new Date(2026, month, 15, 12, 0, 0);
-      expect(isSafeForRandomPool(shehecheyanu, date, JERUSALEM, 'israel')).toBe(false);
-      expect(isSafeForRandomPool(shehecheyanu, date, null, 'unknown')).toBe(false);
+      expect(isSafeForRandomPool(shehecheyanu, date, JERUSALEM)).toBe(false);
+      expect(isSafeForRandomPool(shehecheyanu, date, null)).toBe(false);
     }
   });
 
@@ -85,34 +86,32 @@ describe('random-pool safety at scale — negative tests, section 11', () => {
       const dayOfWeek = date.getDay();
       const saturday = new Date(date);
       saturday.setDate(date.getDate() + ((6 - dayOfWeek + 7) % 7));
-      expect(isSafeForRandomPool(psalm100, saturday, null, 'unknown')).toBe(false);
+      expect(isSafeForRandomPool(psalm100, saturday, null)).toBe(false);
     }
   });
 
   it('Psalm 100 is excluded from the random pool on every day, not just its Shabbat/Yom Tov omission days — see EXCLUDED_FROM_POOL\'s doc comment (the remaining Ashkenazi-specific omission days can\'t be safely enforced without nusach data this app deliberately does not collect)', () => {
     const tuesday = new Date('2026-08-25T12:00:00'); // confirmed weekday
     expect(getJewishCalendarContext(tuesday).isShabbat).toBe(false);
-    expect(isSafeForRandomPool(psalm100, tuesday, null, 'unknown')).toBe(false);
+    expect(isSafeForRandomPool(psalm100, tuesday, null)).toBe(false);
   });
 
   it('NEGATIVE: Shema must NOT be treated as fully time-valid outside the applicable zman (with real location data)', () => {
     const midAfternoon = new Date('2026-08-29T14:00:00'); // well past morning window, well before evening
-    expect(isSafeForRandomPool(shema, midAfternoon, JERUSALEM, 'israel')).toBe(false);
+    expect(isSafeForRandomPool(shema, midAfternoon, JERUSALEM)).toBe(false);
   });
 
   it('POSITIVE: Shema IS safe to surface when genuinely within a valid window', () => {
     const morningWindow = new Date('2026-08-29T07:00:00');
-    expect(isSafeForRandomPool(shema, morningWindow, JERUSALEM, 'israel')).toBe(true);
+    expect(isSafeForRandomPool(shema, morningWindow, JERUSALEM)).toBe(true);
   });
 
-  it('unknown location must NOT be represented as exact local zmanim — Shema is never blocked without real data', () => {
+  it('no location granted — Shema must be fully excluded (LOCATION_REQUIRED), never shown ungated', () => {
     const wouldBeExpiredWithLocation = new Date('2026-08-29T14:00:00');
-    const ctx = buildEligibilityContext(wouldBeExpiredWithLocation, null, 'diaspora');
+    const ctx = buildEligibilityContext(wouldBeExpiredWithLocation, null, 'israel');
     const result = evaluateLiturgicalEligibility(shema, ctx);
-    expect(result.status).not.toBe('TIME_EXPIRED');
-    expect(result.status).not.toBe('TIME_NOT_YET');
-    // still safe for the pool in this state — the engine has no real basis to exclude it
-    expect(isSafeForRandomPool(shema, wouldBeExpiredWithLocation, null, 'unknown')).toBe(true);
+    expect(result.status).toBe('LOCATION_REQUIRED');
+    expect(isSafeForRandomPool(shema, wouldBeExpiredWithLocation, null)).toBe(false);
   });
 
   it('calendar-dependent content must NOT silently use weekday behavior on Shabbat — Hashkiveinu Shabbat text differs from weekday', () => {
@@ -121,28 +120,26 @@ describe('random-pool safety at scale — negative tests, section 11', () => {
     expect(weekday).toContain('שׁוֹמֵר'.normalize('NFC'));
   });
 
-  it('every EXCLUDED item stays excluded regardless of region/location combination', () => {
+  it('every EXCLUDED item stays excluded regardless of location', () => {
     const tefilatHaderech = (dailyPrayers as ContentItem[]).find((i) => i.id === 'prayer-tefilat-haderech')!;
-    for (const region of ['israel', 'diaspora', 'unknown'] as const) {
-      for (const location of [null, JERUSALEM]) {
-        expect(isSafeForRandomPool(shehecheyanu, new Date(), location, region)).toBe(false);
-        expect(isSafeForRandomPool(tefilatHaderech, new Date(), location, region)).toBe(false);
-      }
+    for (const location of [null, JERUSALEM]) {
+      expect(isSafeForRandomPool(shehecheyanu, new Date(), location)).toBe(false);
+      expect(isSafeForRandomPool(tefilatHaderech, new Date(), location)).toBe(false);
     }
   });
 });
 
 describe('Israel vs. Diaspora', () => {
-  it('resolveDiasporaOrIsrael: unknown resolves to diaspora (documented conservative default)', () => {
-    expect(resolveDiasporaOrIsrael('unknown')).toBe('diaspora');
+  it('resolveDiasporaOrIsrael: no location resolves to israel (product default — see the function\'s doc comment)', () => {
+    expect(resolveDiasporaOrIsrael(null)).toBe('israel');
   });
 
-  it('resolveDiasporaOrIsrael: explicit israel is honored, not overridden', () => {
-    expect(resolveDiasporaOrIsrael('israel')).toBe('israel');
+  it('resolveDiasporaOrIsrael: Jerusalem coordinates resolve to israel', () => {
+    expect(resolveDiasporaOrIsrael(JERUSALEM)).toBe('israel');
   });
 
-  it('resolveDiasporaOrIsrael: explicit diaspora is honored', () => {
-    expect(resolveDiasporaOrIsrael('diaspora')).toBe('diaspora');
+  it('resolveDiasporaOrIsrael: coordinates well outside Israel resolve to diaspora', () => {
+    expect(resolveDiasporaOrIsrael({ latitude: 40.7128, longitude: -74.006, elevation: 10 })).toBe('diaspora'); // New York
   });
 
   it('Simchat Torah falls on a different Hebrew date in Israel vs. Diaspora', () => {

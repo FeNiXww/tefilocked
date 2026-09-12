@@ -149,7 +149,7 @@ export function OnboardingFlow({ onComplete, onDevSkipPaywall }: OnboardingFlowP
   };
 
   // Dev-only escape hatch, same pattern as Paywall's own DEV button (see
-  // that screen's devResetButton) — marks onboarding done and grants test
+  // that screen's devSkipButton) — marks onboarding done and grants test
   // access so App.tsx mounts MainTabs directly instead of the Paywall.
   const handleDevSkipPaywall = () => {
     setOnboardingComplete(true);

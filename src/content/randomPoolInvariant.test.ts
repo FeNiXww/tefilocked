@@ -7,7 +7,6 @@ import chazal from './chazal.json';
 import { isSafeForRandomPool } from './poolSafety';
 import { buildEligibilityContext, evaluateLiturgicalEligibility, isEligibleForRandomPool, resolveDiasporaOrIsrael } from './liturgicalEligibility';
 import type { ContentItem } from './types';
-import type { UserRegion } from '../data/storage/mmkv';
 
 // Mirrors src/content/index.ts's ALL_CONTENT assembly, but importing the raw
 // JSON directly (rather than through content/index.ts) so this test has no
@@ -32,8 +31,6 @@ const LOCATIONS: NamedLocation[] = [
   { label: 'Jerusalem', location: { latitude: 31.7683, longitude: 35.2137, elevation: 754 } },
   { label: 'New York', location: { latitude: 40.7128, longitude: -74.006, elevation: 10 } },
 ];
-
-const REGIONS: UserRegion[] = ['israel', 'diaspora', 'unknown'];
 
 // Deterministic PRNG (mulberry32) so a failure is reproducible across runs —
 // a Date.now()-seeded run would make a failure impossible to re-trigger.
@@ -64,7 +61,6 @@ const sampleDates: Date[] = Array.from({ length: SAMPLE_DATE_COUNT }, () => new 
 interface SimRecord {
   itemId: string;
   poolCategory: string;
-  region: UserRegion;
   locationLabel: string;
   now: string;
   status: string;
@@ -73,13 +69,14 @@ interface SimRecord {
 }
 
 describe('random-pool invariant: large-scale simulation', () => {
-  it(`never lets the engine's own random-pool eligibility classification accept an item that eligibility status itself marks unsafe, across ${SAMPLE_DATE_COUNT} dates × ${TIMES_OF_DAY_MINUTES.length} times × ${LOCATIONS.length} locations × ${REGIONS.length} regions × ${ALL_CONTENT.length} items`, () => {
-    // Context (calendar + zmanim) depends only on (date, time, location,
-    // region) — NOT on the item — so it's built once per combo and reused
-    // across all items, rather than re-derived per item (which would
-    // multiply expensive astronomical zmanim math Nx for no reason). This
-    // is exactly what buildEligibilityContext + evaluateLiturgicalEligibility
-    // do internally; a separate, smaller test below checks the real
+  it(`never lets the engine's own random-pool eligibility classification accept an item that eligibility status itself marks unsafe, across ${SAMPLE_DATE_COUNT} dates × ${TIMES_OF_DAY_MINUTES.length} times × ${LOCATIONS.length} locations × ${ALL_CONTENT.length} items`, () => {
+    // Context (calendar + zmanim) depends only on (date, time, location) —
+    // region is itself derived from location now, and NOT on the item — so
+    // it's built once per combo and reused across all items, rather than
+    // re-derived per item (which would multiply expensive astronomical
+    // zmanim math Nx for no reason). This is exactly what
+    // buildEligibilityContext + evaluateLiturgicalEligibility do internally;
+    // a separate, smaller test below checks the real
     // poolSafety.isSafeForRandomPool wrapper isn't miswired relative to this.
     const records: SimRecord[] = [];
     let evaluated = 0;
@@ -91,33 +88,30 @@ describe('random-pool invariant: large-scale simulation', () => {
         now.setHours(0, minutes, 0, 0);
 
         for (const { label: locationLabel, location } of LOCATIONS) {
-          for (const region of REGIONS) {
-            const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+          const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(location));
 
-            for (const item of ALL_CONTENT) {
-              evaluated++;
-              const result = evaluateLiturgicalEligibility(item, context);
-              const eligible = isEligibleForRandomPool(result.status);
-              if (eligible) selected++;
+          for (const item of ALL_CONTENT) {
+            evaluated++;
+            const result = evaluateLiturgicalEligibility(item, context);
+            const eligible = isEligibleForRandomPool(result.status);
+            if (eligible) selected++;
 
-              const record: SimRecord = {
-                itemId: item.id,
-                poolCategory: item.contentTypes.join('/'),
-                region,
-                locationLabel,
-                now: now.toISOString(),
-                status: result.status,
-                reason: result.reason,
-                selectedByPool: eligible,
-              };
-              records.push(record);
-            }
+            const record: SimRecord = {
+              itemId: item.id,
+              poolCategory: item.contentTypes.join('/'),
+              locationLabel,
+              now: now.toISOString(),
+              status: result.status,
+              reason: result.reason,
+              selectedByPool: eligible,
+            };
+            records.push(record);
           }
         }
       }
     }
 
-    expect(evaluated).toBeGreaterThan(500000);
+    expect(evaluated).toBeGreaterThan(300000);
     expect(selected).toBeGreaterThan(1000);
 
     const statusCounts = new Map<string, number>();
@@ -143,12 +137,11 @@ describe('random-pool invariant: large-scale simulation', () => {
     for (let i = 0; i < SPOT_CHECK_SAMPLES; i++) {
       const now = new Date(baseEpoch + Math.floor(rand() * spanMs));
       const { location } = LOCATIONS[Math.floor(rand() * LOCATIONS.length)];
-      const region = REGIONS[Math.floor(rand() * REGIONS.length)];
       const item = ALL_CONTENT[Math.floor(rand() * ALL_CONTENT.length)];
 
-      const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+      const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(location));
       const expected = isEligibleForRandomPool(evaluateLiturgicalEligibility(item, context).status);
-      const actual = isSafeForRandomPool(item, now, location, region);
+      const actual = isSafeForRandomPool(item, now, location);
 
       if (expected !== actual) mismatches++;
     }
@@ -158,12 +151,11 @@ describe('random-pool invariant: large-scale simulation', () => {
 
   it('every item selected by the pool carries a non-empty reason string (no silent/unexplained eligibility)', () => {
     const now = new Date('2026-03-15T10:00:00');
-    const region: UserRegion = 'diaspora';
     const location = LOCATIONS[1].location;
-    const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(region));
+    const context = buildEligibilityContext(now, location, resolveDiasporaOrIsrael(location));
 
     for (const item of ALL_CONTENT) {
-      if (isSafeForRandomPool(item, now, location, region)) {
+      if (isSafeForRandomPool(item, now, location)) {
         const result = evaluateLiturgicalEligibility(item, context);
         expect(result.reason).toBeTruthy();
       }

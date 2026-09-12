@@ -1,8 +1,9 @@
 import * as SQLite from 'expo-sqlite';
-import { isPhoneRestrictedDay } from '../../content/hebrewCalendar';
+import { resolveDiasporaOrIsrael } from '../../content/liturgicalEligibility';
+import { isProtectedStreakDayAt } from '../../content/shabbatWindow';
 import type { Mood } from '../../content/types';
 import { MOOD_VALENCE } from '../moodValence';
-import { getUserRegion, isStreakProtectionEnabled, setPendingHanukkiahCompletionCelebration } from './mmkv';
+import { getStoredZmanimLocation, isStreakProtectionEnabled, setPendingHanukkiahCompletionCelebration } from './mmkv';
 
 export type Platform = 'ios' | 'android';
 
@@ -152,15 +153,14 @@ const MAX_STREAK_LOOKBACK_DAYS = 3650;
  * `unlock_events.day`) is a day a missed prayer shouldn't count against the
  * streak — Shabbat or a work-prohibited Yom Tov, when phone use is
  * halachically restricted — unless the user has turned this protection off
- * in Settings. Anchored at UTC noon so the local day-of-week/Hebrew-date
- * lookup in `isPhoneRestrictedDay` lands on the intended calendar day for
- * all but the most extreme (UTC+13/+14) device timezones.
+ * in Settings. Uses real sunset/tzeit times when the user has granted
+ * zmanim location (see shabbatWindow.ts); falls back to the calendar-day
+ * check otherwise.
  */
 function isProtectedStreakDay(dayStr: string): boolean {
   if (!isStreakProtectionEnabled()) return false;
-  const anchor = new Date(`${dayStr}T12:00:00.000Z`);
-  const diasporaOrIsrael = getUserRegion() === 'israel' ? 'israel' : 'diaspora';
-  return isPhoneRestrictedDay(anchor, diasporaOrIsrael);
+  const location = getStoredZmanimLocation();
+  return isProtectedStreakDayAt(dayStr, location, resolveDiasporaOrIsrael(location));
 }
 
 /**

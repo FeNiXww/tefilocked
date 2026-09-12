@@ -10,12 +10,14 @@ import { OnboardingFlow } from './src/screens/Onboarding';
 import { Paywall } from './src/screens/Paywall';
 import { LockContentFlow } from './src/screens/LockContentFlow';
 import { PhoneRestrictedScreen, type PhoneRestrictedGreeting } from './src/screens/LockContentFlow/PhoneRestrictedScreen';
-import { getJewishCalendarContext, isPhoneRestrictedDay } from './src/content/hebrewCalendar';
+import { getJewishCalendarContext } from './src/content/hebrewCalendar';
+import { resolveDiasporaOrIsrael } from './src/content/liturgicalEligibility';
+import { getEffectiveRestrictedDate } from './src/content/shabbatWindow';
 import {
   clearPendingLockedApp,
   getPendingLockedApp,
   getPreferredContentTypes,
-  getUserRegion,
+  getStoredZmanimLocation,
   isOnboardingComplete,
   isStreakProtectionEnabled,
   setOnboardingComplete,
@@ -235,24 +237,22 @@ function AppContent() {
   // restricted, so any trigger that would otherwise open the prayer flow
   // (locked-app tap, widget deep link, streak notification) shows the
   // phone-restricted screen instead — see PhoneRestrictedScreen.
-  const phoneRestrictedRegion = getUserRegion() === 'israel' ? 'israel' : 'diaspora';
-  const phoneRestrictedNow =
-    Boolean(lockTrigger) &&
-    !awaitingAndroidHandoff &&
-    isStreakProtectionEnabled() &&
-    isPhoneRestrictedDay(new Date(), phoneRestrictedRegion);
   let phoneRestrictedGreeting: PhoneRestrictedGreeting | null = null;
-  if (phoneRestrictedNow) {
-    const ctx = getJewishCalendarContext(new Date(), phoneRestrictedRegion);
-    phoneRestrictedGreeting = ctx.isYomKippur ? 'yomKippur' : ctx.isShabbat ? 'shabbat' : 'yomTov';
+  if (lockTrigger && !awaitingAndroidHandoff && isStreakProtectionEnabled()) {
+    const location = getStoredZmanimLocation();
+    const phoneRestrictedRegion = resolveDiasporaOrIsrael(location);
+    const effectiveDate = getEffectiveRestrictedDate(new Date(), location, phoneRestrictedRegion);
+    if (effectiveDate) {
+      const ctx = getJewishCalendarContext(effectiveDate, phoneRestrictedRegion);
+      phoneRestrictedGreeting = ctx.isYomKippur ? 'yomKippur' : ctx.isShabbat ? 'shabbat' : 'yomTov';
+    }
   }
-
   return (
     <ErrorBoundary>
       <SafeAreaProvider>
         {isDevResetting || !fontsLoaded ? (
           <View style={{ flex: 1, backgroundColor: colors.background }} />
-        ) : phoneRestrictedNow && phoneRestrictedGreeting ? (
+        ) : phoneRestrictedGreeting ? (
           <PhoneRestrictedScreen greeting={phoneRestrictedGreeting} onDismiss={handleRestrictedDismiss} />
         ) : lockTrigger && !awaitingAndroidHandoff ? (
           <LockContentFlow

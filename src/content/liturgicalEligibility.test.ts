@@ -207,15 +207,18 @@ describe('evaluateLiturgicalEligibility — Shema (real halachic zman)', () => {
     expect(evaluateLiturgicalEligibility(shema, ctx).status).toBe('TIME_EXPIRED');
   });
 
-  it('never fabricates a time judgment when location is unavailable', () => {
+  it('never fabricates a time judgment when location is unavailable — blocks outright instead', () => {
     // Same "clearly expired" clock time as the TIME_EXPIRED test above, but
     // with no location granted — must NOT claim TIME_EXPIRED (or TIME_NOT_YET)
-    // without real zmanim data to back it.
+    // without real zmanim data to back it. Rather than showing the content
+    // ungated (the old behavior), it's now excluded via LOCATION_REQUIRED —
+    // see onboarding's LocationPrimer, the one place this is actually asked.
     const now = new Date('2026-08-29T11:00:00');
     const ctx = buildEligibilityContext(now, null);
     const status = evaluateLiturgicalEligibility(shema, ctx).status;
     expect(status).not.toBe('TIME_EXPIRED');
     expect(status).not.toBe('TIME_NOT_YET');
+    expect(status).toBe('LOCATION_REQUIRED');
   });
 
   it('NEGATIVE: Shema does not appear in the random pool when genuinely past its zman with real location data', () => {

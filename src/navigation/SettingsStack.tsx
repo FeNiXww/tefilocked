@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AboutScreen } from '../screens/Settings/AboutScreen';
 import { EditGender } from '../screens/Settings/EditGender';
-import { EditRegion } from '../screens/Settings/EditRegion';
 import { LegalDocument } from '../screens/Settings/LegalDocument';
 import { Settings } from '../screens/Settings';
 import { PRIVACY_TEXT, TERMS_TEXT } from '../legal/legalText';
@@ -23,9 +22,6 @@ export function SettingsStack() {
       <Stack.Screen name="SettingsHome" component={Settings} options={{ title: 'הגדרות' }} />
       <Stack.Screen name="EditGender" options={{ title: 'מגדר' }}>
         {({ navigation }) => <EditGender onComplete={() => navigation.goBack()} />}
-      </Stack.Screen>
-      <Stack.Screen name="EditRegion" options={{ title: 'אזור' }}>
-        {({ navigation }) => <EditRegion onComplete={() => navigation.goBack()} />}
       </Stack.Screen>
       <Stack.Screen name="About" component={AboutScreen} options={{ title: 'אודות' }} />
       <Stack.Screen name="Terms" options={{ title: 'תנאי שימוש' }}>

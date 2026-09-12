@@ -18,7 +18,7 @@ import type { StreakCandle } from '../data/storage/db';
 import { Flame } from './Flame';
 import { FLARE_STAGGER_MS } from './menorahCinematic';
 import { tierForStreak } from './streakTiers';
-import { colors } from '../theme';
+import { colors, useTheme } from '../theme';
 
 // Gold/brass metal palette for the menorah's body (arms, stem, base, cups) —
 // deliberately distinct from the app's core navy/light-blue brand palette
@@ -338,6 +338,11 @@ const Candle = memo(function Candle({
   onIgnite,
 }: CandleProps) {
   const reduceMotion = useReducedMotion();
+  // The day-number label below each candle must track the user's actual
+  // theme, not the static (light-only) `colors` used for the menorah's fixed
+  // metal/wax palette above — otherwise it renders in the light palette's
+  // near-black textPrimary and disappears against a dark background.
+  const { colors: themeColors } = useTheme();
   const glow = useSharedValue(completed ? 1 : 0);
   // Mirrors `completed`, except it lags behind on extinguish: the flame stays
   // mounted (and burning down) through the whole gutter-out sequence below,
@@ -582,7 +587,13 @@ const Candle = memo(function Candle({
       <Text
         style={[
           styles.dayLabel,
-          placeholder ? styles.dayLabelPlaceholder : isToday && !completed && styles.dayLabelPending,
+          {
+            color: placeholder
+              ? themeColors.border
+              : isToday && !completed
+                ? themeColors.textMuted
+                : themeColors.textPrimary,
+          },
         ]}
       >
         {dayNumber}
@@ -824,12 +835,5 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 12,
     fontWeight: '700',
-    color: colors.textPrimary,
-  },
-  dayLabelPending: {
-    color: colors.textMuted,
-  },
-  dayLabelPlaceholder: {
-    color: colors.border,
   },
 });

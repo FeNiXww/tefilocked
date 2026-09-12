@@ -7,6 +7,7 @@ import { setDevForcedNow } from '../../dev/devTimeOverride';
 import { haptics } from '../../haptics';
 import { devDeleteAllUnlockEvents, getCurrentStreak, recordUnlockEvent } from '../../data/storage/db';
 import { setLastKnownStreak, setStoredZmanimLocation } from '../../data/storage/mmkv';
+import { getCachedZmanimLocation, requestZmanimLocation } from '../../native/location';
 import { useTheme, type ThemeColors, type Typography, type Spacing } from '../../theme';
 import { AddWidgetRow } from './AddWidgetRow';
 import { SettingsSection } from './SettingsSection';
@@ -86,12 +87,29 @@ export function Settings({ navigation }: SettingsScreenProps<'SettingsHome'>) {
   const styles = createStyles(colors, spacing, typography);
   const [forcingShema, setForcingShema] = useState(() => getDevForcedContentId() === 'prayer-shema');
   const [shemaTestStateIndex, setShemaTestStateIndex] = useState<number | null>(null);
+  const [locationRequesting, setLocationRequesting] = useState(false);
+  // Bumped after a location request resolves — getCachedZmanimLocation()
+  // itself isn't reactive state, so this forces the re-render that picks up
+  // its new value and hides this row once granted.
+  const [, setLocationVersion] = useState(0);
+  const hasLocation = Boolean(getCachedZmanimLocation());
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <SettingsSection title="פרופיל">
         <Row label="מגדר" onPress={() => navigation.navigate('EditGender')} />
-        <Row label="אזור" onPress={() => navigation.navigate('EditRegion')} />
+        {!hasLocation && (
+          <Row
+            label={locationRequesting ? 'מפעיל מיקום...' : 'הפעל מיקום'}
+            onPress={async () => {
+              if (locationRequesting) return;
+              setLocationRequesting(true);
+              await requestZmanimLocation();
+              setLocationRequesting(false);
+              setLocationVersion((v) => v + 1);
+            }}
+          />
+        )}
       </SettingsSection>
 
       <SettingsSection title="מראה">

@@ -18,7 +18,7 @@ const GREETING_TEXT: Record<PhoneRestrictedGreeting, string> = {
 
 interface PhoneRestrictedScreenProps {
   greeting: PhoneRestrictedGreeting;
-  onDismiss: () => void;
+  onConfirm: () => void;
 }
 
 /**
@@ -27,11 +27,13 @@ interface PhoneRestrictedScreenProps {
  * this using `getEffectiveRestrictedDate`/`isStreakProtectionEnabled` before
  * ever mounting `LockContentFlow`) — asking for a prayer through the phone
  * would defeat the point of a day phone use is halachically restricted on.
- * Never records an unlock event and never unlocks the target app;
- * `onDismiss` just returns to Tefillok's own Home screen, leaving the locked
- * app locked.
+ * Never records an unlock event and the streak stays untouched either way.
+ * `onConfirm` is an explicit "I want to continue anyway" — it grants a
+ * 24-hour unlock (see App.tsx's `handleRestrictedConfirm`) and sends the user
+ * straight back into the app they originally tried to open, not Tefillok's
+ * own Home screen.
  */
-export function PhoneRestrictedScreen({ greeting, onDismiss }: PhoneRestrictedScreenProps) {
+export function PhoneRestrictedScreen({ greeting, onConfirm }: PhoneRestrictedScreenProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const gender = getOnboardingGender();
@@ -48,7 +50,7 @@ export function PhoneRestrictedScreen({ greeting, onDismiss }: PhoneRestrictedSc
       </Text>
       <Text style={styles.body}>הרצף שלך מוגן ולא ייפגע מכך.</Text>
 
-      <PrimaryButton label="סגירה" onPress={onDismiss} variant="accent" style={styles.button} />
+      <PrimaryButton label="בטוח שאתה רוצה להמשיך?" onPress={onConfirm} variant="accent" style={styles.button} />
     </View>
   );
 }

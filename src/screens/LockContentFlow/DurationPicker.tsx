@@ -12,8 +12,8 @@ interface DurationPickerProps {
 
 /** Lets the user choose how long the next unlock lasts before the apps lock again. */
 export function DurationPicker({ onSelect }: DurationPickerProps) {
-  const { colors, typography } = useTheme();
-  const styles = createStyles(colors, typography);
+  const { colors, typography, scheme } = useTheme();
+  const styles = createStyles(colors, typography, scheme);
   const [selectedId, setSelectedId] = useState('24hours');
   const [customMinutes, setCustomMinutes] = useState(30);
 
@@ -69,7 +69,7 @@ export function DurationPicker({ onSelect }: DurationPickerProps) {
   );
 }
 
-function createStyles(colors: ThemeColors, typography: Typography) {
+function createStyles(colors: ThemeColors, typography: Typography, scheme: 'light' | 'dark') {
   return StyleSheet.create({
     container: {
       padding: spacing.xl,
@@ -101,7 +101,10 @@ function createStyles(colors: ThemeColors, typography: Typography) {
     },
     optionSelected: {
       borderColor: colors.accent,
-      backgroundColor: colors.accentLight,
+      // `accentLight` is deliberately not inverted for dark mode (see colors.ts) —
+      // it stays near-white, which would wash out with light selected-text on top.
+      // Use the dark-safe `surfacePressed` token for the chip background instead.
+      backgroundColor: scheme === 'dark' ? colors.surfacePressed : colors.accentLight,
     },
     optionLabel: {
       ...typography.body,

@@ -25,8 +25,8 @@ interface TimerEditSheetProps {
  */
 export function TimerEditSheet({ visible, remainingSeconds, onClose, onSelectDuration, onReset }: TimerEditSheetProps) {
   const insets = useSafeAreaInsets();
-  const { colors, spacing, typography } = useTheme();
-  const styles = createStyles(colors, spacing, typography);
+  const { colors, spacing, typography, scheme } = useTheme();
+  const styles = createStyles(colors, spacing, typography, scheme);
   const [customMinutes, setCustomMinutes] = useState(30);
   const [editingCustom, setEditingCustom] = useState(false);
   const [confirmingReset, setConfirmingReset] = useState(false);
@@ -148,7 +148,7 @@ export function TimerEditSheet({ visible, remainingSeconds, onClose, onSelectDur
   );
 }
 
-function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typography) {
+function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typography, scheme: 'light' | 'dark') {
   return StyleSheet.create({
   backdrop: {
     flex: 1,
@@ -199,7 +199,10 @@ function createStyles(colors: ThemeColors, spacing: Spacing, typography: Typogra
   },
   optionSelected: {
     borderColor: colors.accent,
-    backgroundColor: colors.accentLight,
+    // `accentLight` is deliberately not inverted for dark mode (see colors.ts) —
+    // it stays near-white, which would wash out with light selected-text on top.
+    // Use the dark-safe `surfacePressed` token for the chip background instead.
+    backgroundColor: scheme === 'dark' ? colors.surfacePressed : colors.accentLight,
   },
   optionLabel: {
     ...typography.body,

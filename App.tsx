@@ -28,6 +28,7 @@ import { configureStreakNotificationHandler, useStreakNotificationTrigger } from
 import { configureRevenueCat } from './src/subscriptions/revenueCatConfig';
 import { grantAppAccessForTesting, hasAppAccess, resetSubscriptionStateForTesting } from './src/subscriptions/subscriptionState';
 import { cancelTrialEndingReminder } from './src/subscriptions/trialReminder';
+import { grantTemporaryUnlock, unlockAndLaunchAndroidApp } from './src/native/appLocking';
 import { usePendingLockTrigger, type PendingLockTrigger } from './src/native/appLocking/usePendingLockTrigger';
 import { useWidgetDeepLink } from './src/widgets/useWidgetDeepLink';
 import { ThemeProvider, useTheme } from './src/theme';
@@ -48,6 +49,14 @@ const ANDROID_HANDOFF_GRACE_MS = 1500;
 // them — Reanimated logs each failed frame as a full stack trace, thousands
 // of times a second, which pegs the UI thread and freezes/ANRs the app.
 const DEV_RESET_UNMOUNT_GRACE_MS = 50;
+
+// The Shabbat/holiday screen's confirmation grants a full 24 real hours from
+// the moment of confirmation — not "until the holiday ends" or "until
+// midnight" — using the exact same global temporary-unlock grant as the
+// ordinary post-prayer flow (see useLockContentFlow's finishAndUnlock and
+// TemporaryUnlockController on the native side, the single source of truth
+// for whether blocked apps are currently allowed).
+const SHABBAT_HOLIDAY_UNLOCK_MINUTES = 24 * 60;
 
 export default function App() {
   return (
@@ -152,15 +161,39 @@ function AppContent() {
 
   // The locked-app/widget/notification trigger fired, but streak protection
   // means the user shouldn't be praying through the phone right now either
-  // (see the isPhoneRestrictedDay check below) — dismiss straight back to
-  // Tefillok's own Home without ever unlocking the target app or recording
-  // an unlock event. No Android handoff wait: unlike handleFlowUnlocked,
-  // nothing was ever launched, so there's nothing to wait to leave foreground.
-  const handleRestrictedDismiss = useCallback(() => {
+  // (see the isPhoneRestrictedDay check below) — the user explicitly chose
+  // to continue anyway. This never records an unlock event (the streak stays
+  // untouched, same as before), but it does grant the same kind of global
+  // temporary-unlock the ordinary post-prayer flow grants — just for a full
+  // 24 hours instead of the duration picker's minutes — and, on Android,
+  // hands off into the exact app that triggered the interception (see
+  // handleFlowUnlocked/awaitingAndroidHandoff above, whose wait effect this
+  // reuses unchanged). iOS has no equivalent direct-relaunch primitive (see
+  // finishAndUnlock), so it falls back to Tefillok's own Home, same as the
+  // ordinary flow does on iOS today.
+  const handleRestrictedConfirm = useCallback(async () => {
+    const packageName = lockTrigger?.lockedAppPackage;
     clearPendingLockedApp();
-    lockTriggerGenerationRef.current += 1;
-    setLockTrigger(null);
-  }, []);
+    if (Platform.OS === 'android') {
+      console.log(
+        '[tefillok] Shabbat/holiday confirmed — granting 24h unlock and launching target package:',
+        packageName ?? '(none)'
+      );
+      unlockAndLaunchAndroidApp(packageName, SHABBAT_HOLIDAY_UNLOCK_MINUTES);
+    } else {
+      try {
+        await grantTemporaryUnlock(SHABBAT_HOLIDAY_UNLOCK_MINUTES);
+      } catch (error) {
+        console.warn('[tefillok] Failed to grant Shabbat/holiday unlock:', error);
+      }
+    }
+    if (Platform.OS === 'android' && packageName) {
+      setAwaitingAndroidHandoff(true);
+    } else {
+      lockTriggerGenerationRef.current += 1;
+      setLockTrigger(null);
+    }
+  }, [lockTrigger]);
 
   const handleFlowUnlocked = useCallback(() => {
     if (Platform.OS === 'android' && lockTrigger?.lockedAppPackage) {
@@ -253,7 +286,7 @@ function AppContent() {
         {isDevResetting || !fontsLoaded ? (
           <View style={{ flex: 1, backgroundColor: colors.background }} />
         ) : phoneRestrictedGreeting ? (
-          <PhoneRestrictedScreen greeting={phoneRestrictedGreeting} onDismiss={handleRestrictedDismiss} />
+          <PhoneRestrictedScreen greeting={phoneRestrictedGreeting} onConfirm={handleRestrictedConfirm} />
         ) : lockTrigger && !awaitingAndroidHandoff ? (
           <LockContentFlow
             preferredContentTypes={getPreferredContentTypes()}

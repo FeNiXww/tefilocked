@@ -2,10 +2,11 @@ import { useCallback, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 import { getAllContent, pickContentForMood, pickPrayer } from '../../content';
 import type { ContentItem, ContentType, Mood } from '../../content/types';
-import { getCurrentStreak, recordUnlockEvent } from '../../data/storage/db';
+import { getCurrentStreak, getStreakCandles, recordUnlockEvent } from '../../data/storage/db';
 import { clearPendingLockedApp } from '../../data/storage/mmkv';
 import { grantTemporaryUnlock, unlockAndLaunchAndroidApp } from '../../native/appLocking';
 import { getDevForcedContentId } from '../../dev/devContentOverride';
+import { celebrateStreakWidget } from '../../widgets/syncStreakWidget';
 
 // The daily "prayer to unlock" ritual: connection check-in -> mood check-in
 // -> a curated personal prayer -> "I've prayed today" -> pick how long the
@@ -84,6 +85,17 @@ export function useLockContentFlow({ preferredContentTypes, lockedAppPackage, on
             lockedAppPackage,
             platform: Platform.OS === 'ios' ? 'ios' : 'android',
           });
+          // Push the widget update right here rather than relying on Home's
+          // useFocusEffect — the app-lock interception flow (App.tsx) never
+          // mounts Home/MainTabs at all when the user returns straight to the
+          // app they unlocked, so that effect would otherwise never run and
+          // the widget would show yesterday's state until the user happened
+          // to open Tefillok itself.
+          const nextStreak = getCurrentStreak();
+          celebrateStreakWidget(
+            nextStreak,
+            getStreakCandles().map((c) => c.completed)
+          );
         }
         return {
           ...prev,

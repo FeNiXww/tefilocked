@@ -63,9 +63,11 @@ function AndroidLockListContent() {
     setDirty(true);
   };
 
-  const handleLockAll = () => {
+  const allSelected = !!apps && apps.length > 0 && apps.every((app) => selected.has(app.packageName));
+
+  const handleToggleAll = () => {
     if (!apps) return;
-    setSelected(new Set(apps.map((app) => app.packageName)));
+    setSelected(allSelected ? new Set() : new Set(apps.map((app) => app.packageName)));
     setDirty(true);
   };
 
@@ -99,8 +101,8 @@ function AndroidLockListContent() {
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <Text style={styles.title}>אפליקציות נעולות</Text>
-          <Pressable style={styles.lockAllButton} onPress={handleLockAll} hitSlop={8}>
-            <Text style={styles.lockAllText}>נעל את כולן</Text>
+          <Pressable style={styles.lockAllButton} onPress={handleToggleAll} hitSlop={8}>
+            <Text style={styles.lockAllText}>{allSelected ? 'שחרר את כולן' : 'נעל את כולן'}</Text>
           </Pressable>
         </View>
         <Text style={styles.subtitle}>

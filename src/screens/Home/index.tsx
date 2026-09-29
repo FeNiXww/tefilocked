@@ -55,7 +55,7 @@ import { Logo } from '../../components/Logo';
 import { UnlockCountdown } from '../../components/UnlockCountdown';
 import { TimerEditSheet } from '../../components/TimerEditSheet';
 import { useUnlockTimer } from '../../native/appLocking/useUnlockTimer';
-import { celebrateStreakWidget, syncStreakWidget } from '../../widgets/syncStreakWidget';
+import { syncStreakWidget } from '../../widgets/syncStreakWidget';
 import { spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
 
 /** Gap between each already-lit candle starting its own gutter-out sequence,
@@ -418,7 +418,9 @@ export function Home() {
     setLastKnownStreak(nextStreak);
     syncDailyReminder(true).catch(() => {});
     scheduleMotivationalMessages(true).catch(() => {});
-    celebrateStreakWidget(nextStreak, candles.map((c) => c.completed));
+    // Widget already pushed from useLockContentFlow's selectDuration (the
+    // single choke point shared by this flow and the app-lock interception
+    // one) the moment the completion was recorded — nothing to sync here.
 
     // Today's candle lighting may have just pushed the row to a fully lit
     // חנוכייה — recordUnlockEvent (called from useLockContentFlow's

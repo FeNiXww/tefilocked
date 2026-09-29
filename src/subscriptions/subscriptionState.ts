@@ -1,20 +1,9 @@
 import { storage, StorageKeys } from '../data/storage/mmkv';
+import { computeHasAppAccess, computeSubscriptionStatus, type SubscriptionStatus } from './subscriptionAccess';
 import { TRIAL_DURATION_MS, TRIAL_REMINDER_LEAD_MS } from './trialConfig';
 import type { SubscriptionPlan } from './pricing';
 
-export type { SubscriptionPlan };
-
-/**
- * Conceptual states the rest of the app can gate on. Only TRIAL_ACTIVE is
- * ever written directly (by startTrial, below) — the rest are derived from
- * timestamps/entitlement so they stay correct without anything having to
- * "tick" a status field over time.
- *
- * SUBSCRIBED means "RevenueCat/Play Billing reported an active entitlement"
- * (see revenueCatConfig.ts's cacheEntitlementState, set on purchase, restore,
- * and any live entitlement-change callback).
- */
-export type SubscriptionStatus = 'NO_SUBSCRIPTION' | 'TRIAL_ACTIVE' | 'TRIAL_ENDING' | 'SUBSCRIBED' | 'TRIAL_EXPIRED';
+export type { SubscriptionPlan, SubscriptionStatus };
 
 function readTimestamp(key: string): number | null {
   const raw = storage.getString(key);
@@ -61,26 +50,26 @@ export function startTrial(plan: SubscriptionPlan): void {
 }
 
 export function getSubscriptionStatus(): SubscriptionStatus {
-  if (storage.getBoolean(StorageKeys.entitlementActive)) return 'SUBSCRIBED';
-
-  const trialEndsAt = getTrialEndsAt();
-  if (trialEndsAt === null) return 'NO_SUBSCRIPTION';
-
-  const now = Date.now();
-  if (now >= trialEndsAt) return 'TRIAL_EXPIRED';
-  if (trialEndsAt - now <= TRIAL_REMINDER_LEAD_MS) return 'TRIAL_ENDING';
-  return 'TRIAL_ACTIVE';
+  return computeSubscriptionStatus({
+    entitlementActive: storage.getBoolean(StorageKeys.entitlementActive) ?? false,
+    trialEndsAt: getTrialEndsAt(),
+    now: Date.now(),
+    reminderLeadMs: TRIAL_REMINDER_LEAD_MS,
+  });
 }
 
 /**
- * Gate App.tsx uses to decide Paywall vs. Home. Once a trial has ever been
- * started (or a real entitlement is active), the user has "entered" the app
- * and isn't sent back to the paywall — the trial later lapsing without a
- * real subscription behind it (TRIAL_EXPIRED) isn't re-enforced here yet
- * since this build has no real billing to convert it into a charge.
+ * Gate App.tsx uses to decide Paywall vs. Home. See subscriptionAccess.ts's
+ * computeHasAppAccess for the actual logic (and its test coverage) —
+ * `getSubscriptionStatus()`'s SUBSCRIBED check depends on the locally cached
+ * `entitlementActive` flag, which is only as fresh as the last RevenueCat
+ * call (purchase, restore, or a live entitlement-change event). See App.tsx's
+ * mount/foreground reconciliation, which calls hasPremiumEntitlement() before
+ * trusting this, so a converted subscriber whose local TRIAL_DURATION_MS
+ * mirror has expired isn't locked out before that cache catches up.
  */
 export function hasAppAccess(): boolean {
-  return getTrialStartedAt() !== null || getSubscriptionStatus() === 'SUBSCRIBED';
+  return computeHasAppAccess(getSubscriptionStatus());
 }
 
 /**

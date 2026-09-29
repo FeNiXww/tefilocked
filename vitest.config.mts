@@ -14,6 +14,7 @@ export default defineConfig({
       'src/content/**/*.test.ts',
       'src/screens/LockContentFlow/tokenizePrayer.test.ts',
       'src/screens/Paywall/paywallExitOffer.test.ts',
+      'src/subscriptions/subscriptionAccess.test.ts',
     ],
   },
 });

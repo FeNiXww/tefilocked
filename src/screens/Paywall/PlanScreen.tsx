@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PrimaryButton } from '../../components/PrimaryButton';
-import { TERMS_TEXT } from '../../legal/legalText';
+import { PRIVACY_TEXT, TERMS_TEXT } from '../../legal/legalText';
 import { billingSummary, type SubscriptionPlan } from '../../subscriptions/pricing';
 import { TRIAL_LENGTH_DAYS } from '../../subscriptions/trialConfig';
 import { lightColors, spacing, useTheme, type ThemeColors, type Typography } from '../../theme';
@@ -15,6 +15,11 @@ interface PlanScreenProps {
   busy: boolean;
   onConfirm: () => void;
   error?: string | null;
+  /** Restore Purchases must be reachable from the purchase screen itself
+   *  (Apple 3.1.2) — not only from post-purchase Settings, which a user who
+   *  needs to restore (reinstall, new device) can never reach. */
+  onRestore: () => void;
+  restoring: boolean;
 }
 
 interface TimelineStep {
@@ -34,10 +39,19 @@ const TIMELINE: TimelineStep[] = [
 ];
 
 /** Third and final paywall screen — the trial timeline, the actual plan choice, and the real CTA. */
-export function PlanScreen({ selectedPlan, onSelectPlan, busy, onConfirm, error }: PlanScreenProps) {
+export function PlanScreen({
+  selectedPlan,
+  onSelectPlan,
+  busy,
+  onConfirm,
+  error,
+  onRestore,
+  restoring,
+}: PlanScreenProps) {
   const { colors, typography } = useTheme();
   const styles = createStyles(colors, typography);
   const [termsVisible, setTermsVisible] = useState(false);
+  const [privacyVisible, setPrivacyVisible] = useState(false);
   const insets = useSafeAreaInsets();
 
   return (
@@ -70,7 +84,7 @@ export function PlanScreen({ selectedPlan, onSelectPlan, busy, onConfirm, error 
       <PrimaryButton
         label={busy ? 'רגע...' : `התחל ${TRIAL_LENGTH_DAYS} ימים בחינם`}
         onPress={onConfirm}
-        disabled={busy}
+        disabled={busy || restoring}
         variant="accent"
         glow
         style={styles.ctaButton}
@@ -79,10 +93,20 @@ export function PlanScreen({ selectedPlan, onSelectPlan, busy, onConfirm, error 
       {error && <Text style={styles.errorText}>{error}</Text>}
 
       <Text style={styles.billingSummary}>{billingSummary(selectedPlan)}</Text>
-      <Text style={styles.trustRow}>ניתן לבטל בכל עת לפני תום הניסיון, ללא חיוב</Text>
+      <Text style={styles.trustRow}>
+        ניתן לבטל בכל עת לפני תום הניסיון, ללא חיוב. לאחר מכן המנוי מתחדש אוטומטית עד לביטול.
+      </Text>
       <Text style={styles.footer}>
         <Text style={styles.footerLink} onPress={() => setTermsVisible(true)}>
           תנאי שימוש
+        </Text>
+        {' · '}
+        <Text style={styles.footerLink} onPress={() => setPrivacyVisible(true)}>
+          מדיניות פרטיות
+        </Text>
+        {' · '}
+        <Text style={styles.footerLink} onPress={restoring || busy ? undefined : onRestore}>
+          {restoring ? 'משחזר...' : 'שחזור רכישות'}
         </Text>
         {' · המחירים כוללים מע״מ'}
       </Text>
@@ -99,6 +123,21 @@ export function PlanScreen({ selectedPlan, onSelectPlan, busy, onConfirm, error 
           contentContainerStyle={[styles.termsContent, { paddingBottom: insets.bottom + spacing.xl }]}
         >
           <Text style={styles.termsText}>{TERMS_TEXT}</Text>
+        </ScrollView>
+      </Modal>
+
+      <Modal visible={privacyVisible} animationType="slide" onRequestClose={() => setPrivacyVisible(false)}>
+        <View style={[styles.termsHeader, { paddingTop: insets.top + spacing.sm }]}>
+          <Text style={styles.termsTitle}>מדיניות פרטיות</Text>
+          <Pressable onPress={() => setPrivacyVisible(false)} hitSlop={12} accessibilityLabel="סגירה">
+            <Ionicons name="close" size={24} color={colors.textPrimary} />
+          </Pressable>
+        </View>
+        <ScrollView
+          style={styles.termsBody}
+          contentContainerStyle={[styles.termsContent, { paddingBottom: insets.bottom + spacing.xl }]}
+        >
+          <Text style={styles.termsText}>{PRIVACY_TEXT}</Text>
         </ScrollView>
       </Modal>
     </View>

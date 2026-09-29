@@ -25,7 +25,7 @@ import {
 import { DEV_RESET_ONBOARDING_EVENT, reloadApp } from './src/dev/devReset';
 import { initDatabase } from './src/data/storage/db';
 import { configureStreakNotificationHandler, useStreakNotificationTrigger } from './src/notifications/streakReminders';
-import { configureRevenueCat } from './src/subscriptions/revenueCatConfig';
+import { configureRevenueCat, hasPremiumEntitlement, subscribeToEntitlementChanges } from './src/subscriptions/revenueCatConfig';
 import { grantAppAccessForTesting, hasAppAccess, resetSubscriptionStateForTesting } from './src/subscriptions/subscriptionState';
 import { cancelTrialEndingReminder } from './src/subscriptions/trialReminder';
 import { grantTemporaryUnlock, unlockAndLaunchAndroidApp } from './src/native/appLocking';
@@ -112,6 +112,37 @@ function AppContent() {
     configureStreakNotificationHandler();
     configureRevenueCat();
   }, []);
+
+  // hasAppAccess() (subscriptionState.ts) no longer treats "a trial was ever
+  // started" as permanent access — it depends on the locally cached
+  // entitlementActive flag once the trial mirror's TRIAL_DURATION_MS has
+  // elapsed, and that cache is otherwise never refreshed. Without this, a
+  // subscriber who genuinely converted to paid would get locked back out to
+  // the paywall the moment their local trial timer runs out, since nothing
+  // ever re-checks RevenueCat's actual entitlement. Re-check on cold start,
+  // on every foreground, and live via subscribeToEntitlementChanges (already
+  // written, previously unused).
+  useEffect(() => {
+    if (!onboarded) return;
+    let cancelled = false;
+    const reconcile = () => {
+      hasPremiumEntitlement()
+        .then(() => {
+          if (!cancelled) setHasAccess(hasAppAccess());
+        })
+        .catch(() => {});
+    };
+    reconcile();
+    const unsubscribeEntitlement = subscribeToEntitlementChanges(() => setHasAccess(hasAppAccess()));
+    const appStateSubscription = AppState.addEventListener('change', (next) => {
+      if (next === 'active') reconcile();
+    });
+    return () => {
+      cancelled = true;
+      unsubscribeEntitlement();
+      appStateSubscription.remove();
+    };
+  }, [onboarded]);
 
   useEffect(() => {
     const subscription = DeviceEventEmitter.addListener(DEV_RESET_ONBOARDING_EVENT, () => {
@@ -316,7 +347,7 @@ function AppContent() {
             <MainTabs />
           </NavigationContainer>
         ) : onboarded ? (
-          <Paywall onTrialStarted={() => setHasAccess(true)} />
+          <Paywall onAccessGranted={() => setHasAccess(true)} />
         ) : (
           <OnboardingFlow
             onComplete={() => setOnboarded(true)}

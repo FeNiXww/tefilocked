@@ -4,7 +4,13 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from '
 import { haptics } from '../../haptics';
 import { hasSeenPaywallExitOffer, markPaywallExitOfferSeen } from '../../data/storage/mmkv';
 import { billingSummary, type SubscriptionPlan } from '../../subscriptions/pricing';
-import { getOfferings, purchasePackage, purchasePlanForExitOffer } from '../../subscriptions/revenueCatConfig';
+import {
+  getOfferings,
+  isExitOfferAvailable,
+  purchasePackage,
+  purchasePlanForExitOffer,
+  restorePurchases,
+} from '../../subscriptions/revenueCatConfig';
 import { grantAppAccessForTesting, startTrial } from '../../subscriptions/subscriptionState';
 import { scheduleTrialEndingReminder } from '../../subscriptions/trialReminder';
 import { spacing, useTheme, type ThemeColors } from '../../theme';
@@ -17,13 +23,17 @@ import { TrialReminderScreen } from './TrialReminderScreen';
 import { ValueBridgeScreen } from './ValueBridgeScreen';
 
 interface PaywallProps {
-  /** Called once a purchase has gone through and the trial has been recorded — the caller takes the user into the app. */
-  onTrialStarted: () => void;
+  /** Called once either a purchase has gone through (trial recorded) or a
+   *  restore found an active entitlement — either way, the caller takes the
+   *  user into the app. */
+  onAccessGranted: () => void;
 }
 
 const PAGE_COUNT = 3;
 const LAST_PAGE_INDEX = PAGE_COUNT - 1;
 const GENERIC_PURCHASE_ERROR = 'משהו השתבש בעת הרכישה. נסו שוב.';
+const RESTORE_NOT_FOUND_ERROR = 'לא נמצא מנוי פעיל לשחזור.';
+const RESTORE_FAILED_ERROR = 'שחזור הרכישות נכשל. נסו שוב.';
 
 /**
  * The gate between onboarding and the app itself, presented as a short
@@ -42,7 +52,7 @@ const GENERIC_PURCHASE_ERROR = 'משהו השתבש בעת הרכישה. נסו 
  * rest of the app (trial countdown copy, the "ending soon" reminder) has a
  * timestamp to read without querying RevenueCat everywhere.
  */
-export function Paywall({ onTrialStarted }: PaywallProps) {
+export function Paywall({ onAccessGranted }: PaywallProps) {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   const [pageIndex, setPageIndex] = useState(0);
@@ -50,6 +60,7 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showExitOffer, setShowExitOffer] = useState(false);
+  const [restoring, setRestoring] = useState(false);
 
   const entrance = useSharedValue(0);
 
@@ -66,8 +77,28 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
   const handleBack = () => {
     if (shouldShowPaywallExitOffer(pageIndex, LAST_PAGE_INDEX, hasSeenPaywallExitOffer())) {
       markPaywallExitOfferSeen();
-      setShowExitOffer(true);
+      offerExitDeal();
       return;
+    }
+    goToPage(pageIndex - 1);
+  };
+
+  // Only ever shows PaywallExitOfferScreen's discounted price once the store
+  // has actually confirmed this user is eligible for it — never up front,
+  // since PaywallExitOfferScreen itself has no eligibility check of its own.
+  // An ineligible user backing out just sees a normal step back, the same as
+  // if the exit offer didn't exist, instead of a price the store wouldn't
+  // honor. See revenueCatConfig.ts's isExitOfferAvailable.
+  const offerExitDeal = async () => {
+    try {
+      const offerings = await getOfferings();
+      const pkg = offerings.current?.annual;
+      if (pkg && (await isExitOfferAvailable(pkg))) {
+        setShowExitOffer(true);
+        return;
+      }
+    } catch (err) {
+      console.warn('[tefillok] Exit-offer eligibility check failed:', err);
     }
     goToPage(pageIndex - 1);
   };
@@ -104,7 +135,7 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
   };
 
   const handleConfirm = async () => {
-    if (busy) return;
+    if (busy || restoring) return;
     setBusy(true);
     setError(null);
     try {
@@ -125,7 +156,7 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
       // introductory offer is what actually governs billing.
       startTrial(selectedPlan);
       await scheduleTrialEndingReminder().catch(() => {});
-      onTrialStarted();
+      onAccessGranted();
     } catch (err) {
       const userCancelled = (err as { userCancelled?: boolean } | null)?.userCancelled;
       if (!userCancelled) {
@@ -134,6 +165,30 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
       }
     } finally {
       setBusy(false);
+    }
+  };
+
+  // Reachable from the pricing page itself (not just post-purchase Settings —
+  // see SubscriptionRow.tsx) so a reinstall or new device can recover an
+  // existing subscription without paying again, and so a purchase that
+  // charged the user but failed to attach an entitlement (see handleConfirm's
+  // error case) has a real recovery path instead of a dead end.
+  const handleRestore = async () => {
+    if (busy || restoring) return;
+    setRestoring(true);
+    setError(null);
+    try {
+      const active = await restorePurchases();
+      if (active) {
+        onAccessGranted();
+      } else {
+        setError(RESTORE_NOT_FOUND_ERROR);
+      }
+    } catch (err) {
+      console.warn('[tefillok] Restore failed:', err);
+      setError(RESTORE_FAILED_ERROR);
+    } finally {
+      setRestoring(false);
     }
   };
 
@@ -164,7 +219,7 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
           style={styles.devSkipButton}
           onPress={() => {
             grantAppAccessForTesting();
-            onTrialStarted();
+            onAccessGranted();
           }}
           hitSlop={12}
           accessibilityRole="button"
@@ -199,6 +254,8 @@ export function Paywall({ onTrialStarted }: PaywallProps) {
                   busy={busy}
                   onConfirm={handleConfirm}
                   error={error}
+                  onRestore={handleRestore}
+                  restoring={restoring}
                 />
               )}
             </>

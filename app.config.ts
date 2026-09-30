@@ -22,7 +22,7 @@ const config: ExpoConfig = {
   name: 'תפילוק',
   slug: 'tefillah-lock',
   scheme: 'tefillok',
-  version: '1.6.5',
+  version: '1.6.6',
   orientation: 'portrait',
   icon: './assets/icon.png',
   userInterfaceStyle: 'automatic',

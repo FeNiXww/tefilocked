@@ -45,3 +45,8 @@ yarn-error.*
 
 # local build outputs
 build-output/
+
+# AI assistant config/session files — kept locally for development, never pushed
+CLAUDE.md
+AGENTS.md
+.claude/
